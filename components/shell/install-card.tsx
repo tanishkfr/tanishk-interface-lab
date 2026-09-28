@@ -1,18 +1,13 @@
-"use client";
-
-import { useSyncExternalStore } from "react";
 import { CopyButton } from "./copy-button";
+import { SITE_URL } from "@/lib/site";
 import type { RegistryFile } from "@/lib/registry/types";
-
-const subscribeToOrigin = () => () => {};
-const getOriginSnapshot = () => window.location.origin;
-const getServerOriginSnapshot = () => null;
 
 /**
  * INSTALL CARD — the real thing: the command points at the Lab's own
- * registry endpoint, which serves a shadcn-compatible item built from
- * the shipped source. The origin is read from the browser, so the
- * command is correct wherever the Lab is actually running.
+ * published registry endpoint, which serves a shadcn-compatible item
+ * built from the shipped source. The canonical origin is fixed, so the
+ * copied command installs from the deployed Lab rather than from
+ * whatever host this page happens to be open on.
  */
 export function InstallCard({
   slug,
@@ -25,15 +20,7 @@ export function InstallCard({
   files: RegistryFile[];
   index?: string;
 }) {
-  const origin = useSyncExternalStore(
-    subscribeToOrigin,
-    getOriginSnapshot,
-    getServerOriginSnapshot,
-  );
-
-  const command = origin
-    ? `npx shadcn@latest add ${origin}/r/${slug}.json`
-    : `npx shadcn@latest add <lab-origin>/r/${slug}.json`;
+  const command = `npx shadcn@latest add ${SITE_URL}/r/${slug}.json`;
 
   return (
     <section className="detail-section" id="install" aria-labelledby="install-heading">

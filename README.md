@@ -30,7 +30,7 @@ Every experiment is published as a shadcn-compatible registry item:
 Install one into any project that has a `components.json`:
 
 ```bash
-npx shadcn@latest add https://<lab-origin>/r/signal-field.json
+npx shadcn@latest add https://lab.tanishk.me/r/signal-field.json
 ```
 
 The CLI writes the component folder (component + stylesheet + any logic file)
@@ -42,7 +42,7 @@ Experiments can also be registered as a named registry in `components.json`:
 ```json
 {
   "registries": {
-    "@lab": "https://<lab-origin>/r/{name}.json"
+    "@lab": "https://lab.tanishk.me/r/{name}.json"
   }
 }
 ```

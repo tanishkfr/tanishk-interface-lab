@@ -3,6 +3,7 @@ import { Geist_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/shell/site-header";
 import { SiteFooter } from "@/components/shell/site-footer";
+import { SITE_URL } from "@/lib/site";
 
 const sans = Instrument_Sans({
   variable: "--font-lab-sans",
@@ -17,6 +18,7 @@ const mono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Tanishk Interface Lab — interaction experiments for real interfaces",
     template: "%s — Tanishk Interface Lab",
