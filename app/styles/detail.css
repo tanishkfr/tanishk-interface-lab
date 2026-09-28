@@ -589,6 +589,10 @@
   color: var(--lab-ink-soft);
 }
 
+.install-card .install-cmd + .install-alt {
+  margin-top: 18px;
+}
+
 .install-card .install-files + .install-alt {
   margin-top: 16px;
 }
