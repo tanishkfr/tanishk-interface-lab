@@ -296,7 +296,7 @@
 .card {
   position: relative;
   background: var(--lab-surface);
-  border: 1px solid var(--lab-line);
+  border: 1px solid rgba(20, 20, 24, 0.16);
   border-radius: var(--lab-radius-lg);
   overflow: hidden;
   transition: transform 260ms var(--lab-ease-out),
@@ -307,7 +307,7 @@
 .card:hover {
   transform: translateY(-2px);
   box-shadow: var(--lab-shadow-hover);
-  border-color: rgba(20, 20, 24, 0.2);
+  border-color: rgba(20, 20, 24, 0.28);
 }
 
 .card:focus-within {
