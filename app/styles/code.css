@@ -1,0 +1,100 @@
+/* ============================================================
+   CODE — shiki output dressed as a lab slip
+   ============================================================ */
+
+.code-block {
+  border: 1px solid var(--lab-line);
+  border-radius: var(--lab-radius);
+  background: var(--lab-surface);
+  overflow: hidden;
+}
+
+.code-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px 8px 14px;
+  border-bottom: 1px solid var(--lab-line-soft);
+  background: var(--lab-surface-soft);
+}
+
+.code-block-title {
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-xs);
+  letter-spacing: 0.07em;
+  color: var(--lab-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  background: #fbfbfa;
+  scrollbar-width: thin;
+}
+
+.code-block code {
+  font-family: var(--lab-font-mono);
+}
+
+/* shiki emits inline colors; the panel keeps its own ground */
+.code-block .shiki {
+  background: transparent !important;
+}
+
+.code-block--dark pre {
+  background: #17171c;
+}
+
+.code-details {
+  border: 1px solid var(--lab-line);
+  border-radius: var(--lab-radius);
+  background: var(--lab-surface);
+  overflow: hidden;
+}
+
+.code-details summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 12px 16px;
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-xs);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.code-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.code-details summary::after {
+  content: "+";
+  font-size: 0.9rem;
+  color: var(--lab-faint);
+  transition: transform 180ms var(--lab-ease-out);
+}
+
+.code-details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.code-details summary:hover {
+  color: var(--lab-ink);
+}
+
+.code-details .code-block {
+  border: 0;
+  border-top: 1px solid var(--lab-line-soft);
+  border-radius: 0;
+}

@@ -1,0 +1,327 @@
+/* ============================================================
+   COMMAND MENU — self-contained styles.
+   Every token is scoped on .cm-root with a fallback, so the
+   component works in any host codebase.
+   ============================================================ */
+
+.cm-root {
+  --cm-ink: #141418;
+  --cm-muted: #5f5f68;
+  --cm-faint: #8c8c94;
+  --cm-line: rgba(20, 20, 24, 0.1);
+  --cm-line-soft: rgba(20, 20, 24, 0.06);
+  --cm-surface: #ffffff;
+  --cm-surface-soft: #f7f7f6;
+  --cm-accent: #4f27e0;
+  --cm-accent-soft: rgba(79, 39, 224, 0.08);
+  --cm-shadow: 0 24px 64px -24px rgba(20, 20, 24, 0.35),
+    0 4px 14px -6px rgba(20, 20, 24, 0.18);
+  --cm-radius: 14px;
+  --cm-row-h: 34px;
+
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  font-family: inherit;
+  color: var(--cm-ink);
+}
+
+.cm-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 20, 24, 0.42);
+  animation: cm-fade-in 120ms ease-out both;
+}
+
+.cm-positioner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 24px 16px;
+  pointer-events: none;
+}
+
+.cm-panel {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+  width: min(100%, 760px);
+  max-height: min(560px, calc(100dvh - 48px));
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-line);
+  border-radius: var(--cm-radius);
+  box-shadow: var(--cm-shadow);
+  overflow: hidden;
+  animation: cm-panel-in 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.cm-panel[data-preview="false"] {
+  width: min(100%, 620px);
+}
+
+.cm-panel[data-density="roomy"] {
+  --cm-row-h: 44px;
+}
+
+/* ---------- search ---------- */
+
+.cm-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--cm-line-soft);
+}
+
+.cm-search:focus-within {
+  box-shadow: inset 0 0 0 2px var(--cm-accent);
+  border-radius: var(--cm-radius) var(--cm-radius) 0 0;
+}
+
+.cm-search-icon {
+  flex: none;
+  color: var(--cm-faint);
+}
+
+.cm-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--cm-ink);
+  padding: 4px 0;
+}
+
+.cm-input::placeholder {
+  color: var(--cm-faint);
+}
+
+.cm-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--cm-muted);
+  cursor: pointer;
+}
+
+.cm-close:hover {
+  background: var(--cm-surface-soft);
+  color: var(--cm-ink);
+}
+
+.cm-close:focus-visible {
+  outline: 2px solid var(--cm-accent);
+  outline-offset: 1px;
+}
+
+/* ---------- body: list + preview ---------- */
+
+.cm-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.cm-list-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+/*
+ * Filtering must be instant: nothing inside the list declares a
+ * transition, so a keystroke repaints synchronously.
+ */
+.cm-list,
+.cm-group,
+.cm-group-label,
+.cm-option {
+  transition: none;
+}
+
+.cm-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 6px 8px;
+  overscroll-behavior: contain;
+}
+
+/* With no results the list collapses so the empty note sits under
+   the search row instead of at the bottom of the pane. */
+.cm-list:empty {
+  flex: 0 0 auto;
+  padding: 0;
+}
+
+.cm-group-label {
+  padding: 10px 8px 4px;
+  font-size: 0.6563rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cm-faint);
+}
+
+.cm-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--cm-row-h);
+  padding: 5px 8px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.cm-option[data-active="true"] {
+  background: var(--cm-accent-soft);
+  box-shadow: inset 2px 0 0 var(--cm-accent);
+}
+
+.cm-option[data-disabled="true"] {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.cm-option-label {
+  flex: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+
+.cm-option-desc {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--cm-muted);
+}
+
+.cm-kbd {
+  flex: none;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.6563rem;
+  color: var(--cm-muted);
+  background: var(--cm-surface-soft);
+  border: 1px solid var(--cm-line-soft);
+  border-radius: 5px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+.cm-empty {
+  margin: 0;
+  padding: 28px 16px;
+  font-size: 0.8125rem;
+  color: var(--cm-muted);
+}
+
+/* ---------- preview pane ---------- */
+
+.cm-preview {
+  flex: 0 0 268px;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 14px;
+  border-left: 1px solid var(--cm-line-soft);
+  background: var(--cm-surface);
+  overscroll-behavior: contain;
+}
+
+.cm-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cm-line-soft);
+}
+
+.cm-preview-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.cm-preview-body {
+  padding-top: 12px;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--cm-muted);
+}
+
+.cm-preview-quiet {
+  margin: 0;
+  color: var(--cm-faint);
+  font-size: 0.75rem;
+}
+
+/* ---------- animation ---------- */
+
+@keyframes cm-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cm-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---------- narrow: the preview moves under the list ---------- */
+
+@media (max-width: 719px) {
+  .cm-positioner {
+    padding: 16px 12px;
+  }
+
+  .cm-body {
+    flex-direction: column;
+  }
+
+  .cm-preview {
+    flex: none;
+    width: 100%;
+    max-height: 132px;
+    border-left: 0;
+    border-top: 1px solid var(--cm-line-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cm-backdrop,
+  .cm-panel {
+    animation: none;
+  }
+}

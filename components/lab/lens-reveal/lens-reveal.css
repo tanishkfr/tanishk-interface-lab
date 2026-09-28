@@ -1,0 +1,111 @@
+/* ============================================================
+   LENS REVEAL — self-contained styles.
+   Scoped tokens with fallbacks; no Lab tokens are read.
+   The component writes --lr-x / --lr-y / --lr-r as pixels once it
+   has measured its container; the CSS fallbacks below keep the lens
+   centred (and roughly sized) during the very first paint.
+   ============================================================ */
+
+.lr-reveal {
+  --lr-ink: #141418;
+  --lr-accent: #4f27e0;
+  --lr-ring: #ffffff;
+  --lr-size: 190px;
+  --lr-r: calc(var(--lr-size) / 2);
+  --lr-x: 50%;
+  --lr-y: 50%;
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  cursor: crosshair;
+  isolation: isolate;
+  background: #ffffff;
+}
+
+.lr-reveal:focus-visible {
+  outline: 2px solid var(--lr-accent);
+  outline-offset: -3px;
+}
+
+.lr-reveal[data-dragging="true"] {
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Base and lens layers are both full-bleed; the host gives the root
+   a size (height, aspect-ratio, flex-grow…), and the lens content is
+   registered with the base so the reveal lines up. */
+.lr-base,
+.lr-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* The overlay is the clipped window; everything inside it is the
+   `lens` node. aria-hidden: the revealed layer is presentational —
+   see the notes in the component source. */
+.lr-overlay {
+  position: absolute;
+  inset: 0;
+  clip-path: circle(var(--lr-r) at var(--lr-x) var(--lr-y));
+}
+
+.lr-reveal[data-shape="square"] .lr-overlay {
+  clip-path: inset(
+    calc(var(--lr-y) - var(--lr-r))
+    calc(100% - var(--lr-x) - var(--lr-r))
+    calc(100% - var(--lr-y) - var(--lr-r))
+    calc(var(--lr-x) - var(--lr-r))
+  );
+}
+
+/* The ring makes the lens read as a physical object over the seam. */
+.lr-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--lr-r) * 2);
+  height: calc(var(--lr-r) * 2);
+  transform: translate(
+    calc(var(--lr-x) - var(--lr-r)),
+    calc(var(--lr-y) - var(--lr-r))
+  );
+  border: 2px solid var(--lr-ring);
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 1px rgba(20, 20, 24, 0.22),
+    inset 0 0 16px rgba(20, 20, 24, 0.1),
+    0 16px 36px -20px rgba(20, 20, 24, 0.5);
+  pointer-events: none;
+}
+
+.lr-reveal[data-shape="square"] .lr-ring {
+  border-radius: 14px;
+}
+
+.lr-reveal[data-focused="true"] .lr-ring {
+  box-shadow:
+    0 0 0 2px var(--lr-accent),
+    inset 0 0 16px rgba(20, 20, 24, 0.1),
+    0 16px 36px -20px rgba(20, 20, 24, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lr-reveal {
+    cursor: default;
+  }
+}
+
+/* Visually hidden description of what the lens reveals. */
+.lr-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,133 @@
+/* ============================================================
+   TANISHK INTERFACE LAB — design tokens
+   ------------------------------------------------------------
+   A workshop, not a portfolio: one neutral ground, graphite
+   ink, one violet signal, thin rules, generous preview space.
+
+   The Lab's own tokens live on :root as --lab-*. Experiments
+   never read them directly — every published component carries
+   its own scoped tokens with fallbacks, so it can be installed
+   into a codebase that has never heard of this stylesheet.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ground and surfaces */
+  --lab-ground: #f2f2ef;
+  --lab-surface: #ffffff;
+  --lab-surface-soft: #f8f8f6;
+  --lab-workbench: #e9e9e5;
+  --lab-workbench-deep: #dededa;
+  --lab-ink: #141418;
+  --lab-ink-soft: rgba(20, 20, 24, 0.78);
+  --lab-muted: #5f5f68;
+  --lab-faint: #8c8c94;
+  --lab-line: rgba(20, 20, 24, 0.1);
+  --lab-line-soft: rgba(20, 20, 24, 0.06);
+  --lab-line-strong: rgba(20, 20, 24, 0.62);
+
+  /* the one signal: an instrument violet */
+  --lab-accent: #4f27e0;
+  --lab-accent-deep: #32119c;
+  --lab-accent-soft: rgba(79, 39, 224, 0.09);
+  --lab-focus: #4f27e0;
+  --lab-selection: rgba(79, 39, 224, 0.16);
+  --lab-ok: #137a4e;
+  --lab-warn: #8a5300;
+  --lab-danger: #b3261e;
+
+  /* type */
+  --lab-font-sans: var(--font-lab-sans), ui-sans-serif, system-ui, sans-serif;
+  --lab-font-mono: var(--font-lab-mono), ui-monospace, "SF Mono", "Cascadia Mono",
+    Consolas, monospace;
+
+  /* type scale */
+  --lab-text-xs: 0.6875rem;
+  --lab-text-sm: 0.8125rem;
+  --lab-text-base: 0.9375rem;
+  --lab-text-lg: 1.0625rem;
+  --lab-text-xl: 1.375rem;
+  --lab-text-2xl: clamp(1.625rem, 3.4vw, 2.125rem);
+  --lab-text-hero: clamp(2.1rem, 5.2vw, 3.35rem);
+
+  /* spacing / radii / shadows */
+  --lab-radius-sm: 8px;
+  --lab-radius: 12px;
+  --lab-radius-lg: 16px;
+  --lab-shadow-hover: 0 1px 2px rgba(20, 20, 24, 0.05),
+    0 10px 28px -14px rgba(20, 20, 24, 0.22);
+  --lab-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--lab-ground);
+  color: var(--lab-ink);
+  font-family: var(--lab-font-sans);
+  font-size: var(--lab-text-base);
+  line-height: 1.62;
+  font-feature-settings: "cv11", "ss01";
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--lab-selection);
+}
+
+:focus-visible {
+  outline: 2px solid var(--lab-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--lab-font-mono);
+}
+
+.mono-label {
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-xs);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

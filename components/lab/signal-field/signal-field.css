@@ -1,0 +1,33 @@
+/* ============================================================
+   SIGNAL FIELD — self-contained styles.
+   The canvas fills its container; everything else is the host's job.
+   ============================================================ */
+
+.lab-signal-field {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* The first composed frame arrives as a short fade on the element
+     itself, never as a half-drawn canvas. */
+  animation: lab-signal-field-in 640ms ease-out both;
+}
+
+@keyframes lab-signal-field-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lab-signal-field[data-mode="glyph"] {
+  font-smooth: never;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-signal-field {
+    animation: none;
+  }
+}

@@ -1,0 +1,133 @@
+/* SAMPLE SCENE — writer tool panel with an activity card (demo only). */
+
+.dm-tt-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fbfbfa;
+  color: var(--lab-ink, #141418);
+}
+
+.dm-tt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--lab-line-soft, rgba(20, 20, 24, 0.06));
+  background: #ffffff;
+}
+
+.dm-tt-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 0.8125rem;
+  color: var(--lab-muted, #5f5f68);
+}
+
+.dm-tt-slash {
+  color: var(--lab-faint, #8c8c94);
+}
+
+.dm-tt-crumbs strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--lab-ink, #141418);
+}
+
+.dm-tt-chip {
+  flex: none;
+  padding: 4px 10px;
+  border: 1px solid var(--lab-line, rgba(20, 20, 24, 0.1));
+  border-radius: 999px;
+  background: #ffffff;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--lab-muted, #5f5f68);
+  white-space: nowrap;
+}
+
+.dm-tt-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dm-tt-doc {
+  padding: 15px 16px;
+  border: 1px solid var(--lab-line, rgba(20, 20, 24, 0.1));
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.dm-tt-ask {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.dm-tt-answer {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--lab-ink-soft, rgba(20, 20, 24, 0.78));
+  max-width: 62ch;
+}
+
+.dm-tt-card {
+  padding: 13px 13px 11px;
+  border: 1px solid var(--lab-line-soft, rgba(20, 20, 24, 0.06));
+  border-radius: 14px;
+  background: var(--lab-surface-soft, #f8f8f6);
+}
+
+.dm-tt-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.dm-tt-card-title {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.dm-tt-card-meta {
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lab-faint, #8c8c94);
+  white-space: nowrap;
+}
+
+.dm-tt-selected {
+  margin: 9px 2px 0;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  color: var(--lab-muted, #5f5f68);
+}
+
+@media (max-width: 640px) {
+  .dm-tt-head,
+  .dm-tt-body {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}

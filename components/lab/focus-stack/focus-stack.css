@@ -1,0 +1,185 @@
+/* ============================================================
+   FOCUS STACK — self-contained styles.
+   Prefix .fs-  ·  tokens are scoped on .fs-root with fallbacks.
+   ============================================================ */
+
+.fs-root {
+  --fs-ink: #141418;
+  --fs-muted: #5f5f68;
+  --fs-faint: #8c8c94;
+  --fs-line: rgba(20, 20, 24, 0.12);
+  --fs-line-soft: rgba(20, 20, 24, 0.07);
+  --fs-surface: #ffffff;
+  --fs-sunken: #f4f4f2;
+  --fs-accent: #4f27e0;
+  --fs-accent-soft: rgba(79, 39, 224, 0.09);
+  --fs-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fs-duration: 320ms;
+  --fs-edge: var(--fs-spread, 34px);
+
+  display: block;
+  color: var(--fs-ink, #141418);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/*
+ * When several cards are fanned, the pile reserves breathing room for
+ * the nearest neighbours; the rest may travel beyond it.
+ */
+.fs-root[data-stacked="true"] {
+  --fs-edge: calc(var(--fs-spread, 34px) + 8px);
+}
+
+/* ---------- tablist: title + meta, one tab stop ---------- */
+
+.fs-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0 0 14px;
+}
+
+.fs-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  max-width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--fs-line-soft, rgba(20, 20, 24, 0.07));
+  border-radius: 9px;
+  background: var(--fs-surface, #ffffff);
+  color: var(--fs-muted, #5f5f68);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.fs-tab-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--fs-ink, #141418);
+  overflow-wrap: anywhere;
+}
+
+.fs-tab-meta {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.59375rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fs-faint, #8c8c94);
+  overflow-wrap: anywhere;
+}
+
+.fs-tab[aria-selected="true"] {
+  border-color: rgba(79, 39, 224, 0.45);
+  background: var(--fs-accent-soft, rgba(79, 39, 224, 0.09));
+}
+
+.fs-tab[aria-selected="false"]:hover {
+  background: var(--fs-sunken, #f4f4f2);
+}
+
+.fs-tab:focus-visible,
+.fs-panel:focus-visible {
+  outline: 2px solid var(--fs-accent, #4f27e0);
+  outline-offset: 2px;
+}
+
+/* ---------- the pile ---------- */
+
+.fs-pile {
+  position: relative;
+  padding: var(--fs-edge, 0px) 0;
+}
+
+.fs-card {
+  position: absolute;
+  inset: var(--fs-edge, 0px) 0;
+  background: var(--fs-surface, #ffffff);
+  border: 1px solid var(--fs-line, rgba(20, 20, 24, 0.12));
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(20, 20, 24, 0.05);
+  transition:
+    transform var(--fs-duration, 320ms) var(--fs-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    opacity var(--fs-duration, 320ms) var(--fs-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.fs-card--active {
+  position: relative;
+  inset: auto;
+}
+
+/* Cards behind the selection keep a legible edge: the strip shows the
+   item they hold, so the pile reads as records in a queue rather than
+   blank paper. A card shifted down is seen from below, a card shifted
+   up from above — the strip always sits on the exposed band, and its
+   height tracks the spread so the label is never covered. */
+.fs-peek {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--fs-spread, 34px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-inline: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.fs-peek--top {
+  top: 0;
+  border-bottom: 1px solid var(--fs-line-soft, rgba(20, 20, 24, 0.06));
+}
+
+.fs-peek--bottom {
+  bottom: 0;
+  border-top: 1px solid var(--fs-line-soft, rgba(20, 20, 24, 0.06));
+}
+
+.fs-peek-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fs-ink, #141418);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fs-peek-meta {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--fs-faint, #8c8c94);
+  white-space: nowrap;
+  flex: none;
+}
+
+.fs-panel {
+  padding: 14px 16px;
+}
+
+.fs-panel:focus-visible {
+  outline-offset: -2px;
+  border-radius: 12px;
+}
+
+@media (max-width: 30rem) {
+  .fs-panel {
+    padding: 12px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fs-card {
+    transition: none;
+  }
+}

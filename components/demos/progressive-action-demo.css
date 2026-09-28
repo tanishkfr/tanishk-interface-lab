@@ -1,0 +1,124 @@
+/* SAMPLE SCENE — document card with an in-place pipeline (demo only). */
+
+.dm-pa-root {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 82% 14%, rgba(79, 39, 224, 0.05), transparent 45%),
+    #f4f4f2;
+  overflow: hidden;
+}
+
+.dm-pa-doc {
+  width: min(500px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid var(--lab-line, rgba(20, 20, 24, 0.1));
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(20, 20, 24, 0.05);
+}
+
+.dm-pa-eyebrow {
+  margin: 0;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lab-faint, #8c8c94);
+}
+
+.dm-pa-title {
+  margin: 5px 0 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.dm-pa-meta {
+  margin: 5px 0 0;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  color: var(--lab-faint, #8c8c94);
+}
+
+.dm-pa-copy {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--lab-muted, #5f5f68);
+  max-width: 58ch;
+}
+
+.dm-pa-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  color: var(--lab-faint, #8c8c94);
+}
+
+.dm-pa-action {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.dm-pa-summary {
+  display: block;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--lab-ink, #141418);
+}
+
+.dm-pa-status {
+  margin: 0;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: var(--lab-faint, #8c8c94);
+  min-height: 1.4em;
+}
+
+.dm-pa-simulate {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-top: 12px;
+  border-top: 1px solid var(--lab-line-soft, rgba(20, 20, 24, 0.06));
+  font-size: 0.75rem;
+  color: var(--lab-muted, #5f5f68);
+  cursor: pointer;
+}
+
+.dm-pa-simulate input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--lab-accent, #4f27e0);
+  cursor: pointer;
+}
+
+.dm-pa-simulate input:focus-visible {
+  outline: 2px solid var(--lab-focus, #4f27e0);
+  outline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .dm-pa-root {
+    padding: 14px;
+  }
+
+  .dm-pa-doc {
+    padding: 16px;
+    gap: 12px;
+  }
+}

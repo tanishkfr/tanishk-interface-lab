@@ -1,0 +1,91 @@
+/* ============================================================
+   INVERTED CURSOR — self-contained styles.
+   Every token is scoped with a fallback, so the component works in
+   any codebase without the Lab's stylesheet.
+   ============================================================ */
+
+/*
+ * The native cursor disappears only while the component has engaged —
+ * a fine, hovering pointer has actually moved. Over text surfaces the
+ * component removes the attribute again, so the I-beam returns.
+ */
+html[data-lab-cursor="custom"],
+html[data-lab-cursor="custom"] * {
+  cursor: none !important;
+}
+
+.cur-disc {
+  --cur-size: 22px;
+  --cur-grow: 2.6;
+  --cur-zoom: 1;
+  --cur-press: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  width: var(--cur-size);
+  height: var(--cur-size);
+  border-radius: 50%;
+  background: #fff;
+  mix-blend-mode: var(--cursor-blend, difference);
+  pointer-events: none;
+  opacity: 0;
+  /* Position travels on `translate` (set from JS), scale on `transform`. */
+  transform: scale(calc(var(--cur-zoom) * var(--cur-press)));
+  transform-origin: center;
+  transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 140ms ease;
+  will-change: translate, transform;
+}
+
+.cur-disc[data-engaged="true"] {
+  opacity: 1;
+}
+
+.cur-disc[data-state="text"] {
+  opacity: 0;
+}
+
+.cur-disc[data-state="link"],
+.cur-disc[data-state="view"] {
+  --cur-zoom: var(--cur-grow);
+}
+
+.cur-disc[data-pressed="true"] {
+  --cur-press: 0.84;
+}
+
+/*
+ * The label is white and difference-blends a second time against the
+ * disc's own white surface, so it reads as a cut-out: the word shows
+ * the page content un-inverted while the disc around it inverts. That
+ * keeps the word on the same surface — nothing can outlive teardown.
+ */
+.cur-disc__label {
+  font-family:
+    ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono",
+    Menlo, monospace;
+  font-size: calc(var(--cur-size) * 0.3);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  white-space: nowrap;
+  color: #fff;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.cur-disc[data-state="view"] .cur-disc__label {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cur-disc,
+  .cur-disc__label {
+    transition: none;
+  }
+}

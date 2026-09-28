@@ -1,0 +1,229 @@
+/* ============================================================
+   MORPHING METADATA — self-contained styles.
+   Prefix .mm-  ·  every token is scoped on .mm-root with a fallback,
+   so the component works in a codebase with no Lab stylesheet.
+   ============================================================ */
+
+.mm-root {
+  --mm-ink: #141418;
+  --mm-muted: #5f5f68;
+  --mm-faint: #8c8c94;
+  --mm-line: rgba(20, 20, 24, 0.1);
+  --mm-line-soft: rgba(20, 20, 24, 0.06);
+  --mm-surface: #ffffff;
+  --mm-sunken: rgba(20, 20, 24, 0.045);
+  --mm-accent: #4f27e0;
+  --mm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --mm-duration: 320ms;
+
+  display: block;
+  color: var(--mm-ink, #141418);
+  background: var(--mm-surface, #ffffff);
+  border: 1px solid var(--mm-line, rgba(20, 20, 24, 0.1));
+  border-radius: 12px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* ---------- compact header: glyph · heading · chips · toggle ---------- */
+
+.mm-head {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-areas: "glyph heading chips toggle";
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 7px;
+  padding: 10px 12px;
+}
+
+.mm-glyph {
+  grid-area: glyph;
+  display: inline-flex;
+  align-items: center;
+  color: var(--mm-faint, #8c8c94);
+}
+
+.mm-glyph svg {
+  display: block;
+}
+
+.mm-heading {
+  grid-area: heading;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1px 8px;
+  min-width: 0;
+}
+
+.mm-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.mm-kind {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mm-faint, #8c8c94);
+}
+
+/* ---------- compact: summary chips ---------- */
+
+.mm-chips {
+  grid-area: chips;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.mm-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  max-width: 100%;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--mm-sunken, rgba(20, 20, 24, 0.045));
+}
+
+.mm-chip-label {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.59375rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--mm-muted, #5f5f68);
+}
+
+.mm-chip-value {
+  font-size: 0.75rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- expanded: the same values as a definition list ---------- */
+
+.mm-detail {
+  margin: 0;
+  padding: 2px 12px 10px;
+}
+
+.mm-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 7px 0;
+  border-top: 1px solid var(--mm-line-soft, rgba(20, 20, 24, 0.06));
+}
+
+.mm-row:first-child {
+  border-top-color: var(--mm-line, rgba(20, 20, 24, 0.1));
+}
+
+.mm-term {
+  flex: 0 0 auto;
+  margin: 0;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.59375rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--mm-muted, #5f5f68);
+  padding-top: 2px;
+}
+
+.mm-value {
+  margin: 0;
+  min-width: 0;
+  text-align: right;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- toggle ---------- */
+
+.mm-toggle {
+  grid-area: toggle;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--mm-line, rgba(20, 20, 24, 0.1));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--mm-muted, #5f5f68);
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.mm-toggle:hover {
+  background: var(--mm-sunken, rgba(20, 20, 24, 0.045));
+  color: var(--mm-ink, #141418);
+}
+
+.mm-toggle:focus-visible {
+  outline: 2px solid var(--mm-accent, #4f27e0);
+  outline-offset: 2px;
+}
+
+.mm-caret {
+  flex: none;
+  transition: transform var(--mm-duration, 320ms) var(--mm-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.mm-root[data-expanded="true"] .mm-caret {
+  transform: rotate(180deg);
+}
+
+/* ---------- degradation: CSS settle when no View Transition API ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .mm-root[data-transition="auto"][data-css-morph="true"] .mm-chip,
+  .mm-root[data-transition="auto"][data-css-morph="true"] .mm-row {
+    animation: mm-settle var(--mm-duration, 320ms)
+      var(--mm-ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
+  }
+}
+
+@keyframes mm-settle {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- narrow viewports ---------- */
+
+@media (max-width: 30rem) {
+  .mm-head {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "glyph heading toggle"
+      "chips chips chips";
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-caret {
+    transition: none;
+  }
+}

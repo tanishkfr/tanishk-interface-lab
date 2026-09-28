@@ -1,0 +1,82 @@
+/* SAMPLE SCENE — review inbox (demo only, not shipped code). */
+
+.dm-ar-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--lab-ground, #f2f2ef);
+}
+
+.dm-ar-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px 14px;
+  background: var(--lab-surface, #ffffff);
+  border-bottom: 1px solid var(--lab-line-soft, rgba(20, 20, 24, 0.06));
+}
+
+.dm-ar-eyebrow {
+  margin: 0;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lab-faint, #8c8c94);
+}
+
+.dm-ar-title {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.dm-ar-count {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--lab-accent-soft, rgba(79, 39, 224, 0.09));
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lab-accent-deep, #32119c);
+  white-space: nowrap;
+}
+
+.dm-ar-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 18px 24px 20px;
+}
+
+.dm-ar-body > * {
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.dm-ar-foot {
+  padding: 10px 24px 12px;
+  border-top: 1px solid var(--lab-line-soft, rgba(20, 20, 24, 0.06));
+  background: var(--lab-surface, #ffffff);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--lab-muted, #5f5f68);
+}
+
+@media (max-width: 640px) {
+  .dm-ar-head {
+    padding: 16px 16px 12px;
+  }
+
+  .dm-ar-body {
+    padding: 14px 16px 16px;
+  }
+
+  .dm-ar-foot {
+    padding: 10px 16px 12px;
+  }
+}

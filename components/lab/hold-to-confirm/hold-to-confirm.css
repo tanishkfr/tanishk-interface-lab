@@ -1,0 +1,164 @@
+/* ============================================================
+   HOLD TO CONFIRM — self-contained styles.
+   Tokens are scoped on the root with fallbacks, so the control
+   carries its own theme into any codebase.
+   ============================================================ */
+
+.hc-root {
+  --hc-accent: #4f27e0;
+  --hc-accent-deep: #32119c;
+  --hc-danger: #b3261e;
+  --hc-danger-deep: #7c1a15;
+  --hc-base: var(--hc-accent);
+  --hc-fill: var(--hc-accent-deep);
+  --hc-focus: #4f27e0;
+  --hc-on-base: #ffffff;
+  --hc-ring-track: rgba(255, 255, 255, 0.34);
+  --hc-ring-arc: #ffffff;
+
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.hc-root[data-variant="danger"] {
+  --hc-base: var(--hc-danger);
+  --hc-fill: var(--hc-danger-deep);
+  --hc-focus: #b3261e;
+}
+
+.hc-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--hc-base);
+  color: var(--hc-on-base);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
+  box-shadow:
+    0 1px 2px rgba(20, 20, 24, 0.14),
+    0 10px 22px -14px rgba(20, 20, 24, 0.4);
+  transition:
+    box-shadow 160ms ease,
+    transform 120ms ease,
+    opacity 160ms ease;
+}
+
+.hc-button:hover:not(:disabled) {
+  box-shadow:
+    0 2px 4px rgba(20, 20, 24, 0.16),
+    0 14px 26px -14px rgba(20, 20, 24, 0.45);
+}
+
+.hc-button:active:not(:disabled) {
+  transform: translateY(0.5px);
+}
+
+.hc-button:focus-visible {
+  outline: 2px solid var(--hc-focus);
+  outline-offset: 3px;
+}
+
+.hc-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  box-shadow: none;
+}
+
+/*
+ * The sweeping fill is clipped rather than resized, so the frame loop
+ * only ever writes one custom property: --hold-progress (0–1).
+ */
+.hc-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: var(--hc-fill);
+  clip-path: inset(0 calc(100% - var(--hold-progress, 0) * 100%) 0 0);
+  pointer-events: none;
+}
+
+.hc-root[data-progress="ring"] .hc-fill {
+  display: none;
+}
+
+.hc-face {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.hc-label {
+  display: block;
+}
+
+.hc-check {
+  flex: none;
+}
+
+/* Ring drawing: r = 9 => circumference ≈ 56.55. */
+.hc-ring {
+  flex: none;
+  transform: rotate(-90deg);
+}
+
+.hc-ring-track,
+.hc-ring-arc {
+  fill: none;
+  stroke-width: 3;
+}
+
+.hc-ring-track {
+  stroke: var(--hc-ring-track);
+}
+
+.hc-ring-arc {
+  stroke: var(--hc-ring-arc);
+  stroke-linecap: round;
+  stroke-dasharray: 56.55;
+  stroke-dashoffset: calc(56.55 - 56.55 * var(--hold-progress, 0));
+}
+
+/* Screen-reader-only carriers: progressbar, description, live region. */
+.hc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hc-button {
+    transition: none;
+  }
+
+  .hc-button:active:not(:disabled) {
+    transform: none;
+  }
+}

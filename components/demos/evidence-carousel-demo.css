@@ -1,0 +1,99 @@
+/* SAMPLE SCENE — case-study archive (demo only, not shipped code). */
+
+.dm-ec-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(16px, 3vw, 28px);
+  background: #fbfbfa;
+  overflow-y: auto;
+}
+
+.dm-ec-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dm-ec-eyebrow {
+  margin: 0;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--lab-faint, #8c8c94);
+}
+
+.dm-ec-title {
+  margin: 5px 0 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.dm-ec-note {
+  margin: 0;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lab-faint, #8c8c94);
+  white-space: nowrap;
+}
+
+.dm-ec-stage {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dm-ec-foot p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--lab-muted, #5f5f68);
+}
+
+.dm-ec-foot code {
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  background: rgba(20, 20, 24, 0.055);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+/* ---------- the plates — real archive photography ---------- */
+
+.dm-ec-plate {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background: #e7e7e3;
+}
+
+.dm-ec-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .dm-ec-root {
+    padding: 14px 16px;
+  }
+
+  .dm-ec-note {
+    display: none;
+  }
+}

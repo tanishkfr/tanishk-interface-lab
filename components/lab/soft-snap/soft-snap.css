@@ -1,0 +1,80 @@
+/* ============================================================
+   SOFT SNAP — self-contained styles.
+   Every token is scoped with a fallback, so the component works in
+   any codebase without the Lab's stylesheet.
+   ============================================================ */
+
+.lab-soft-snap {
+  --soft-snap-gap: var(--snap-gap, 24px);
+  --soft-snap-offset: var(--snap-offset, 0px);
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-top: var(--soft-snap-offset);
+  -webkit-overflow-scrolling: touch;
+}
+
+.lab-soft-snap-item {
+  display: flow-root;
+}
+
+.lab-soft-snap-item + .lab-soft-snap-item {
+  margin-top: var(--soft-snap-gap);
+}
+
+.lab-soft-snap-item:last-child {
+  margin-bottom: var(--soft-snap-gap);
+}
+
+/* Alignment per item — always applied, in every mode. */
+.lab-soft-snap[data-align="start"] .lab-soft-snap-item {
+  scroll-snap-align: start;
+  scroll-margin-top: var(--soft-snap-offset);
+}
+
+.lab-soft-snap[data-align="center"] .lab-soft-snap-item {
+  scroll-snap-align: center;
+}
+
+.lab-soft-snap[data-align="nearest"] .lab-soft-snap-item {
+  scroll-snap-align: nearest;
+}
+
+/* Always-on gating for hosts that want the behaviour everywhere. */
+.lab-soft-snap[data-gate="always"][data-mode="proximity"] {
+  scroll-snap-type: y proximity;
+}
+
+.lab-soft-snap[data-gate="always"][data-mode="mandatory"] {
+  scroll-snap-type: y mandatory;
+}
+
+.lab-soft-snap[data-mode="off"] {
+  scroll-snap-type: none;
+}
+
+/*
+ * The gated default: settling is an enhancement for wide screens with
+ * a fine pointer and no reduced-motion preference. Touch keeps its
+ * native momentum scrolling untouched.
+ */
+@media (min-width: 64rem) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .lab-soft-snap[data-gate="fine"][data-mode="proximity"] {
+    scroll-snap-type: y proximity;
+  }
+
+  .lab-soft-snap[data-gate="fine"][data-mode="mandatory"] {
+    scroll-snap-type: y mandatory;
+  }
+}
+
+/* Assist mode never uses CSS snapping — the JS nudge is the settle. */
+.lab-soft-snap[data-mode="assist"] {
+  scroll-snap-type: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-soft-snap {
+    scroll-behavior: auto;
+  }
+}

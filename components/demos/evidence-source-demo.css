@@ -1,0 +1,89 @@
+/* SAMPLE SCENE — a research answer with citations (demo only). */
+
+.dm-es-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--lab-ground, #f2f2ef);
+}
+
+.dm-es-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px 24px;
+}
+
+.dm-es-answer {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 16px 18px 18px;
+  background: var(--lab-surface, #ffffff);
+  border: 1px solid var(--lab-line, rgba(20, 20, 24, 0.1));
+  border-radius: 14px;
+}
+
+.dm-es-question {
+  margin: 0 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--lab-line-soft, rgba(20, 20, 24, 0.06));
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--lab-muted, #5f5f68);
+}
+
+.dm-es-answer-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dm-es-label {
+  margin: 0;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lab-ink, #141418);
+}
+
+.dm-es-note {
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lab-faint, #8c8c94);
+}
+
+.dm-es-text {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--lab-ink-soft, rgba(20, 20, 24, 0.78));
+}
+
+.dm-es-sources-label {
+  margin: 16px 0 8px;
+  font-family: var(--lab-font-mono, ui-monospace, monospace);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lab-faint, #8c8c94);
+}
+
+.dm-es-sources {
+  display: grid;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .dm-es-scroll {
+    padding: 14px 16px;
+  }
+
+  .dm-es-answer {
+    padding: 14px;
+  }
+}

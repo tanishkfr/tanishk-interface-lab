@@ -1,0 +1,287 @@
+/* ============================================================
+   EXPANDABLE EVIDENCE SOURCE — self-contained styles.
+   Scoped tokens with fallbacks; the unfolding is a
+   grid-template-rows transition with a visibility hand-off so a
+   collapsed panel is never in the tab order or the a11y tree.
+   ============================================================ */
+
+.es-root {
+  --es-ink: #141418;
+  --es-ink-soft: #3a3a42;
+  --es-muted: #5f5f68;
+  --es-faint: #8c8c94;
+  --es-surface: #ffffff;
+  --es-surface-soft: #f8f8f6;
+  --es-line: rgba(20, 20, 24, 0.12);
+  --es-line-soft: rgba(20, 20, 24, 0.07);
+  --es-accent: #4f27e0;
+  --es-accent-deep: #32119c;
+  --es-ok: #147a4e;
+  --es-warn: #8a5300;
+  --es-grey: #8c8c94;
+  --es-serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --es-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  --es-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  min-width: 0;
+  border: 1px solid var(--es-line-soft);
+  border-radius: 12px;
+  background: var(--es-surface);
+  color: var(--es-ink);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.es-root :focus-visible {
+  outline: 2px solid var(--es-accent);
+  outline-offset: 2px;
+}
+
+/* Visually hidden, in case the host has no utility class of its own. */
+.es-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- summary row ---- */
+
+.es-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  font: inherit;
+  color: var(--es-ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.es-root[data-open="true"] .es-summary {
+  border-radius: 12px 12px 0 0;
+}
+
+.es-summary:hover {
+  background: var(--es-surface-soft);
+}
+
+.es-summary:focus-visible {
+  outline-offset: -2px;
+}
+
+.es-glyph {
+  display: inline-flex;
+  flex: none;
+  color: var(--es-faint);
+}
+
+.es-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.es-sep {
+  flex: none;
+  color: var(--es-faint);
+}
+
+.es-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.es-status[data-status="verified"] {
+  color: var(--es-ok);
+}
+
+.es-status[data-status="probable"] {
+  color: var(--es-warn);
+}
+
+.es-status[data-status="unverified"] {
+  color: var(--es-grey);
+}
+
+.es-status-dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.es-chevron {
+  display: inline-flex;
+  flex: none;
+  color: var(--es-faint);
+  transition: transform 240ms var(--es-ease);
+}
+
+.es-root[data-open="true"] .es-chevron {
+  transform: rotate(180deg);
+}
+
+/* ---- unfolding panel ---- */
+
+.es-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 320ms var(--es-ease),
+    opacity 220ms ease,
+    visibility 0s linear 320ms;
+}
+
+.es-root[data-open="true"] .es-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    grid-template-rows 320ms var(--es-ease),
+    opacity 220ms ease 40ms,
+    visibility 0s;
+}
+
+.es-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.es-body {
+  padding: 12px;
+  border-top: 1px solid var(--es-line-soft);
+}
+
+/* ---- excerpt (system serif, roomier leading — no new fonts) ---- */
+
+.es-excerpt {
+  margin: 0;
+  font-family: var(--es-serif);
+  font-size: 0.9375rem;
+  font-style: normal;
+  line-height: 1.75;
+  color: var(--es-ink-soft);
+  overflow-wrap: anywhere;
+}
+
+/* ---- meta grid ---- */
+
+.es-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px 16px;
+  margin: 12px 0 0;
+}
+
+.es-meta-row {
+  min-width: 0;
+}
+
+.es-meta dt {
+  font-family: var(--es-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--es-faint);
+}
+
+.es-meta dd {
+  margin: 2px 0 0;
+  font-size: 0.8125rem;
+  color: var(--es-ink-soft);
+  overflow-wrap: anywhere;
+}
+
+/* ---- confidence ---- */
+
+.es-confidence {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.es-confidence-label {
+  flex: none;
+  font-size: 0.75rem;
+  color: var(--es-muted);
+}
+
+.es-meter {
+  flex: 1 1 auto;
+  min-width: 48px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(20, 20, 24, 0.08);
+  overflow: hidden;
+}
+
+.es-meter-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--es-ink-soft);
+}
+
+.es-confidence-value {
+  flex: none;
+  font-family: var(--es-mono);
+  font-size: 0.6875rem;
+  color: var(--es-muted);
+}
+
+/* ---- open action ---- */
+
+.es-open-row {
+  margin-top: 12px;
+}
+
+.es-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--es-accent-deep);
+  text-decoration: underline;
+  text-decoration-color: rgba(50, 17, 156, 0.35);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.es-open:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .es-panel,
+  .es-root[data-open="true"] .es-panel,
+  .es-chevron {
+    transition: none;
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "note": "Sample archive photography used by the Evidence Carousel demo. Every image is public domain or CC0, sourced from Wikimedia Commons.",
+  "images": [
+    {
+      "file": "topographic-sheet.jpg",
+      "title": "Topographic Survey Map of Hutchinson",
+      "author": "U.S. Geological Survey",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Topographic_Survey_Map_of_Hutchinson.jpg"
+    },
+    {
+      "file": "north-face-camp.jpg",
+      "title": "Image from page 154 of \"Mount Everest, the reconnaissance, 1921\" (1922)",
+      "author": "Internet Archive Book Images",
+      "license": "No restrictions",
+      "source": "https://commons.wikimedia.org/wiki/File:Image_from_page_154_of_%22Mount_Everest,_the_reconnaissance,_1921%22_(1922).jpg"
+    },
+    {
+      "file": "field-book.jpg",
+      "title": "Pages with description of sample, from Foshag's Kaminaljuyu-Jade field book",
+      "author": "Smithsonian Institution",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Pages_with_description_of_sample,_from_Foshag%27s_Kaminaljuyu-Jade_field_book.jpg"
+    },
+    {
+      "file": "street-survey-1912.jpg",
+      "title": "Three engineering students and a professor from USC surveying Fourth street in downtown Los Angeles, 1912 (uaic-tro-gal-171~1)",
+      "author": "Unknown (USC Libraries)",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Three_engineering_students_and_a_professor_from_USC_surveying_Fourth_street_in_downtown_Los_Angeles,_1912_(uaic-tro-gal-171~1).jpg"
+    },
+    {
+      "file": "formation-outcrop.jpg",
+      "title": "Bloomsburg Formation at Port Clinton PA",
+      "author": "Jstuby",
+      "license": "CC0",
+      "source": "https://commons.wikimedia.org/wiki/File:Bloomsburg_Formation_at_Port_Clinton_PA.jpg"
+    },
+    {
+      "file": "ground-cover.jpg",
+      "title": "View of wildflowers along the parkway. - Blue Ridge Parkway, Between Shenandoah National Park and Great Smoky Mountains, Asheville, Buncombe County, NC",
+      "author": "Haas, David, creator",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:View_of_wildflowers_along_the_parkway._-_Blue_Ridge_Parkway,_Between_Shenandoah_National_Park_and_Great_Smoky_Mountains,_Asheville,_Buncombe_County,_NC_HAER_NC,11-ASHV.V,2-258_(CT).tif"
+    },
+    {
+      "file": "bentonite-bed.jpg",
+      "title": "Bentonite bed at Shadow Falls",
+      "author": "Joseph H. Hartman",
+      "license": "CC0",
+      "source": "https://commons.wikimedia.org/wiki/File:Bentonite_bed_at_Shadow_Falls_(GeoDIL_number_-_445).jpg"
+    }
+  ]
+}

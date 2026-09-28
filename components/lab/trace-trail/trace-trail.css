@@ -1,0 +1,340 @@
+/* ============================================================
+   TRACE TRAIL — self-contained styles.
+
+   Every token is scoped to the root with a fallback, so the
+   component carries its own look into any codebase that has
+   never heard of this stylesheet.
+   ============================================================ */
+
+.tt-trail {
+  --tt-ink: #141418;
+  --tt-muted: #5f5f68;
+  --tt-faint: #8c8c94;
+  --tt-line: rgba(20, 20, 24, 0.1);
+  --tt-line-soft: rgba(20, 20, 24, 0.06);
+  --tt-rail: rgba(20, 20, 24, 0.18);
+  --tt-surface: #ffffff;
+  --tt-surface-hover: rgba(20, 20, 24, 0.035);
+  --tt-ok: #137a4e;
+  --tt-warn: #8a5300;
+  --tt-danger: #b3261e;
+  --tt-focus: #4f27e0;
+  --tt-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  --tt-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  border: 1px solid var(--tt-line);
+  border-radius: 12px;
+  background: var(--tt-surface);
+  color: var(--tt-ink);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.tt-trail,
+.tt-trail *,
+.tt-trail *::before,
+.tt-trail *::after {
+  box-sizing: border-box;
+}
+
+.tt-trail-empty {
+  padding: 10px 12px;
+  color: var(--tt-muted);
+}
+
+/* ---- the collapsed line ------------------------------------ */
+
+.tt-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 9px 11px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tt-toggle:hover {
+  background: var(--tt-surface-hover);
+}
+
+.tt-toggle:focus-visible {
+  outline: 2px solid var(--tt-focus);
+  outline-offset: 2px;
+}
+
+.tt-trail[data-open="true"] .tt-toggle {
+  border-radius: 11px 11px 0 0;
+}
+
+.tt-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--tt-faint);
+  box-shadow: 0 0 0 3px rgba(20, 20, 24, 0.05);
+}
+
+.tt-dot[data-status="ok"] {
+  background: var(--tt-ok);
+  box-shadow: 0 0 0 3px rgba(19, 122, 78, 0.12);
+}
+
+.tt-dot[data-status="warn"] {
+  background: var(--tt-warn);
+  box-shadow: 0 0 0 3px rgba(138, 83, 0, 0.14);
+}
+
+.tt-dot[data-status="failed"] {
+  background: var(--tt-danger);
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.14);
+}
+
+.tt-summary {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tt-count {
+  flex: none;
+  font-family: var(--tt-mono);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--tt-faint);
+  white-space: nowrap;
+}
+
+.tt-chevron {
+  flex: none;
+  color: var(--tt-faint);
+  transition: transform 200ms var(--tt-ease);
+}
+
+.tt-trail[data-open="true"] .tt-chevron {
+  transform: rotate(180deg);
+}
+
+/* ---- the expanded trail ------------------------------------ */
+
+.tt-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 240ms var(--tt-ease);
+}
+
+.tt-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.tt-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tt-panel[data-open="true"] .tt-panel-inner {
+  border-top: 1px solid var(--tt-line-soft);
+}
+
+.tt-steps {
+  margin: 0;
+  padding: 6px 12px 10px 10px;
+  list-style: none;
+}
+
+.tt-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 10px;
+  padding: 8px 0 10px;
+}
+
+/* the rail: a marker per step, joined downwards to the next one */
+.tt-step::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 21px;
+  bottom: -3px;
+  width: 1px;
+  background: var(--tt-rail);
+}
+
+.tt-step:last-child::before {
+  display: none;
+}
+
+.tt-marker {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  align-self: start;
+  width: 9px;
+  height: 9px;
+  margin-top: 5px;
+  border: 1px solid var(--tt-rail);
+  border-radius: 999px;
+  background: var(--tt-faint);
+  box-shadow: 0 0 0 2.5px var(--tt-surface);
+}
+
+.tt-step[data-status="ok"] .tt-marker {
+  background: var(--tt-ok);
+  border-color: var(--tt-ok);
+}
+
+.tt-step[data-status="warn"] .tt-marker {
+  background: var(--tt-warn);
+  border-color: var(--tt-warn);
+}
+
+.tt-step[data-status="failed"] .tt-marker {
+  background: var(--tt-danger);
+  border-color: var(--tt-danger);
+}
+
+.tt-step-body {
+  min-width: 0;
+}
+
+.tt-step-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 7px;
+}
+
+.tt-step-text {
+  min-width: 0;
+}
+
+.tt-actor {
+  font-weight: 600;
+}
+
+.tt-status {
+  flex: none;
+  padding: 1px 6px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--tt-mono);
+  font-size: 0.625rem;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tt-step[data-status="failed"] .tt-status {
+  color: var(--tt-danger);
+}
+
+.tt-step[data-status="warn"] .tt-status {
+  color: var(--tt-warn);
+}
+
+/* When a host wants steps to act, actor + action become one button. */
+.tt-step-button {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tt-step-button:hover .tt-actor,
+.tt-step-button:hover .tt-action {
+  text-decoration: underline;
+  text-decoration-color: var(--tt-faint);
+  text-underline-offset: 2px;
+}
+
+.tt-step-button:focus-visible {
+  outline: 2px solid var(--tt-focus);
+  outline-offset: 2px;
+}
+
+.tt-detail {
+  margin: 3px 0 0;
+  color: var(--tt-muted);
+  overflow-wrap: anywhere;
+}
+
+.tt-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 3px 10px;
+  margin: 4px 0 0;
+}
+
+.tt-time {
+  font-family: var(--tt-mono);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--tt-faint);
+  white-space: nowrap;
+}
+
+.tt-source {
+  font-family: var(--tt-mono);
+  font-size: 0.6875rem;
+  color: var(--tt-muted);
+  overflow-wrap: anywhere;
+}
+
+a.tt-source {
+  color: var(--tt-focus);
+  text-decoration: underline;
+  text-decoration-color: rgba(79, 39, 224, 0.35);
+  text-underline-offset: 2px;
+}
+
+a.tt-source:hover {
+  text-decoration-color: currentColor;
+}
+
+a.tt-source:focus-visible {
+  outline: 2px solid var(--tt-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* The component ships its own sr-only, so it never depends on the host. */
+.tt-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tt-panel,
+  .tt-chevron {
+    transition: none;
+  }
+}
