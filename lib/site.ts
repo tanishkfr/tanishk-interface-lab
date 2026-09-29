@@ -10,3 +10,9 @@
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://lab.tanishk.me"
 ).replace(/\/+$/, "");
+
+/**
+ * The portfolio the Lab hangs off — the site that reaches here with a "Lab"
+ * button, so the Lab answers with one back the same way, styled as its twin.
+ */
+export const PORTFOLIO_URL = "https://tanishk.me";
