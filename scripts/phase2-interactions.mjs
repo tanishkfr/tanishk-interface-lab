@@ -30,6 +30,12 @@ try {
   assert.match(await page.locator(".dm-pa-status").first().innerText(), /Simulated failure/);
   await page.locator(".pa-action", { hasText: "Retry" }).click();
   await page.locator(".pa-review").waitFor();
+  await page.locator(".pa-review-actions .pa-action", { hasText: "Accept" }).click();
+  await page.locator(".pa-action", { hasText: "Run again" }).click();
+  assert.match(await page.locator(".dm-pa-status").first().innerText(), /Ready to run/);
+  await page.locator(".pa-main").click();
+  await page.locator(".pa-action", { hasText: "Cancel" }).click();
+  assert.match(await page.locator(".dm-pa-status").first().innerText(), /Simulation stopped/);
 
   await page.goto(`${base}/experiments/spatial-command`);
   await page.locator("#demo-root button").first().click();

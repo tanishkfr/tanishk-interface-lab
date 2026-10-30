@@ -166,7 +166,6 @@ export default function ProgressiveActionDemo({ values }: DemoProps) {
     tokenRef.current += 1;
     setPhase("ready");
     setProgress(undefined);
-    setStatus("Simulation stopped. No operation was sent.");
   }, [clearTimers]);
 
   const run = useCallback(
@@ -268,7 +267,12 @@ export default function ProgressiveActionDemo({ values }: DemoProps) {
             onRun={() => run(false)}
             onAccept={complete}
             onRetry={() => run(false)}
-            onReset={reset}
+            onReset={() => {
+              setStatus(phase === "running"
+                ? "Simulation stopped. No operation was sent."
+                : "Ready to run the simulation again.");
+              reset();
+            }}
           />
           <p className="dm-pa-status" role="status">{status}</p>
           <p className="dm-pa-status">Simulation only. No files are uploaded or changed.</p>
