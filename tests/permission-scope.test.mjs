@@ -1,0 +1,22 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import { runInNewContext } from "node:vm";
+import ts from "typescript";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+const require = createRequire(import.meta.url);
+const source = readFileSync(new URL("../components/lab/permission-scope/permission-scope.tsx", import.meta.url), "utf8");
+const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 } }).outputText;
+const exports = {};
+runInNewContext(code, { exports, require: (name) => name.endsWith(".css") ? {} : require(name) });
+const { PermissionScopeInspector } = exports;
+test("permission request starts narrowly and never grants on render", () => {
+  let calls = 0;
+  const html = renderToStaticMarkup(React.createElement(PermissionScopeInspector, { request: { id: "one", requester: "Assistant", purpose: "Organize", resource: "Selected files", requestedAccess: "read-write", denialEffect: "Stops" }, status: "request", onGrant() { calls++; }, onDeny() { calls++; } }));
+  assert.equal(calls, 0);
+  assert.match(html, /checked=""[^>]*\/> Read only/);
+  assert.match(html, /checked=""[^>]*\/> Once/);
+  assert.match(html, />Deny<\/button>/);
+});

@@ -2042,6 +2042,38 @@ export function Publish() {
     pairsWith: ["hold-to-confirm", "progressive-action"],
     order: 17,
   },
+  {
+    slug: "permission-scope",
+    name: "Permission Scope Inspector",
+    tagline: "Review what an assistant may access and for how long.",
+    summary: "Presents an authorization request with its resource, operations and duration. People can deny it or choose a narrower grant. The host validates and enforces every permission, expiry and revocation; this component only communicates choices.",
+    category: "Agentic",
+    tags: ["permissions", "scope", "authorization"],
+    status: "experimental",
+    tech: ["React", "TypeScript"],
+    dependencies: [],
+    files: [
+      { path: "components/lab/permission-scope/permission-scope.tsx", kind: "component", type: "registry:component" },
+      { path: "components/lab/permission-scope/permission-scope.css", kind: "styles", type: "registry:file" },
+    ],
+    preview: { devices: ["desktop", "mobile"], controls: [
+      { kind: "choice", id: "scope", label: "Requested scope", options: [{ value: "selected", label: "Selected files" }, { value: "folder", label: "Whole folder" }] },
+      { kind: "choice", id: "operation", label: "Requested access", options: [{ value: "read-write", label: "Read and move" }, { value: "read", label: "Read only" }] },
+    ], defaults: { scope: "selected", operation: "read-write" }, hint: "Inspect the scope, then deny or allow the selected access." },
+    props: [
+      { name: "request", type: "PermissionRequest", description: "Host-provided identity, purpose, resource, requested access and consequence of denial. Use a new id for changed requests." },
+      { name: "status / grant", type: "PermissionStatus / PermissionDecision", description: "Host-confirmed request or grant state; include matching grant details for an active grant." },
+      { name: "onGrant / onDeny / onRevoke", type: "callbacks", description: "Requests a decision or revocation. The host validates, enforces and reports the result." },
+    ],
+    accessibility: ["Access and duration use labelled radio groups; denial remains available alongside approval.", "The decision result is announced as a status and focus remains on the request surface.", "No information depends on animation or color alone."],
+    usage: `import { PermissionScopeInspector } from "@/components/lab/permission-scope/permission-scope";
+
+<PermissionScopeInspector request={request} status={status} grant={grant} onGrant={requestGrant} onDeny={denyRequest} onRevoke={requestRevoke} />`,
+    demoNote: "Review a fictional file request. The sample records choices locally and does not access files.",
+    designDecisions: ["A clear resource and operation help people distinguish reading from changing files. The initial selection is read only and applies once, so broader access requires a deliberate choice.", "The interface communicates intent; a trusted host must enforce the scope and expiry. A permission decision is distinct from reviewing a proposed result."],
+    pairsWith: ["agent-review", "trace-trail"],
+    order: 18,
+  },
 ];
 
 export const experimentCount = experiments.length;
