@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tanishk Interface Lab">
-  <rect width="64" height="64" rx="14" fill="#4f27e0"/>
-  <path d="M21 17h8v22h14v8H21z" fill="#ffffff"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="13" fill="#4f27e0"/><path d="M17 17h14v6h-8v18h18v-8h6v14H17z" fill="white"/><rect x="35" y="17" width="12" height="12" rx="2" fill="white"/></svg>

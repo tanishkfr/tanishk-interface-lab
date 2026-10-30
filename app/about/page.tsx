@@ -12,7 +12,7 @@ export default function AboutPage() {
     <div className="shell">
       <header className="page-head">
         <p className="mono-label">About the Lab</p>
-        <h1>A small collection of interaction ideas, built properly.</h1>
+        <h1>A workshop for interactions that make software easier to use.</h1>
         <p className="lede">
           {experimentCount} experiments, each one a behaviour rather than a
           skin: something that solves a real interaction problem and survives
@@ -32,8 +32,7 @@ export default function AboutPage() {
             behaviour, and no hidden services.
           </p>
           <p>
-            It is deliberately small. Sixteen experiments that can each be
-            defended beats sixty that cannot.
+            The collection stays focused on interactions that can be explored and reused.
           </p>
 
           <h2>Rules every experiment follows</h2>
@@ -58,8 +57,7 @@ export default function AboutPage() {
             </li>
             <li>
               <strong>Tested in a realistic context.</strong> Previews are
-              sample products, not empty boxes, and each component has been
-              installed into a separate consumer project and built there.
+              sample products, not empty boxes, and a representative subset is installed and built in a separate consumer project.
             </li>
           </ul>
 
@@ -97,6 +95,9 @@ export default function AboutPage() {
             </li>
           </ul>
 
+          <h2>Experiment status</h2>
+          <p><strong>Stable</strong> marks an established API and documented behaviour in the Lab. <strong>Experimental</strong> means the interaction or API may change as it is refined. Neither label guarantees suitability for every project or environment.</p>
+
           <h2>Licence</h2>
           <p>
             The Lab&apos;s own code is MIT licensed. Parts of the Signal Field
@@ -122,7 +123,7 @@ export default function AboutPage() {
             <ul>
               <li>shadcn-compatible registry</li>
               <li>One JSON item per experiment</li>
-              <li>Zero-config, copy-in files</li>
+              <li>Copyable source files</li>
             </ul>
           </div>
           <div className="fact-card">

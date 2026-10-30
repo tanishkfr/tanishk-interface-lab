@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import {
+  explainComposerInput,
   formatIntent,
   parseComposerInput,
   type ComposerIntent,
@@ -193,6 +194,7 @@ export function AdaptiveComposer({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const inputId = useId();
   const hasText = text.trim().length > 0;
+  const explanation = useMemo(() => explainComposerInput(text), [text]);
 
   /* Auto-grow between one and three rows. */
   useEffect(() => {
@@ -238,7 +240,6 @@ export function AdaptiveComposer({
           {hasText ? (
             <span
               className="ac-chip"
-              title={`Confidence ${Math.round(parsed.confidence * 100)}%`}
             >
               {formatIntent(parsed.intent)}
             </span>
@@ -279,8 +280,9 @@ export function AdaptiveComposer({
       <div className="ac-structure" aria-live="polite">
         {hasText ? (
           <div className="ac-card">
-            <p className="ac-summary">{summarise(parsed.payload)}</p>
-            {structureDetail(parsed.payload)}
+            {explanation ? <p className="ac-quiet">{explanation}</p> : null}
+            <p className="ac-summary">{explanation?.startsWith("This may") ? "Current interpretation: " : ""}{summarise(parsed.payload)}</p>
+            {!explanation?.startsWith("This may") ? structureDetail(parsed.payload) : null}
           </div>
         ) : (
           <p className="ac-quiet">

@@ -23,20 +23,20 @@ export default function ProgressiveActionPreview() {
         </div>
 
         <div className="relative mt-3 h-9 overflow-hidden rounded-lg border border-[#4f27e0]/25 bg-[#4f27e0]/10">
-          <span className="absolute inset-0 origin-left scale-x-0 bg-[#4f27e0]/20 transition-transform delay-[140ms] duration-[700ms] ease-out group-hover/preview:scale-x-100" />
+          <span className="absolute inset-0 origin-left scale-x-0 bg-[#4f27e0]/20 transition-transform delay-[140ms] duration-[700ms] ease-out group-hover/preview:scale-x-100 group-focus-within/preview:scale-x-100" />
 
-          <span className="absolute inset-0 grid place-items-center text-[11px] font-semibold text-[#32119c] opacity-100 transition-opacity duration-100 group-hover/preview:opacity-0">
+          <span className="absolute inset-0 grid place-items-center text-[11px] font-semibold text-[#32119c] opacity-100 transition-opacity duration-100 group-hover/preview:opacity-0 group-focus-within/preview:opacity-0">
             Generate summary
           </span>
 
-          <span className="absolute inset-0 grid place-items-center opacity-100 transition-opacity duration-150 group-hover/preview:opacity-0 group-hover/preview:delay-[860ms]">
-            <span className="flex items-center gap-1.5 text-[11px] font-semibold text-[#32119c] opacity-0 transition-opacity duration-150 group-hover/preview:opacity-100 group-hover/preview:delay-[160ms]">
-              <span className="h-2.5 w-2.5 rounded-full border-2 border-[#4f27e0]/30 border-t-[#4f27e0] group-hover/preview:animate-spin" />
+          <span className="absolute inset-0 grid place-items-center opacity-100 transition-opacity duration-150 group-hover/preview:opacity-0 group-focus-within/preview:opacity-0 group-hover/preview:delay-[860ms] group-focus-within/preview:delay-[860ms]">
+            <span className="flex items-center gap-1.5 text-[11px] font-semibold text-[#32119c] opacity-0 transition-opacity duration-150 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100 group-hover/preview:delay-[160ms] group-focus-within/preview:delay-[160ms]">
+              <span className="h-2.5 w-2.5 rounded-full border-2 border-[#4f27e0]/30 border-t-[#4f27e0] group-hover/preview:animate-spin group-focus-within/preview:animate-spin" />
               Running
             </span>
           </span>
 
-          <span className="absolute inset-0 grid place-items-center gap-1.5 text-[11px] font-semibold text-[#0d5c3b] opacity-0 transition-opacity duration-150 group-hover/preview:opacity-100 group-hover/preview:delay-[900ms]">
+          <span className="absolute inset-0 grid place-items-center gap-1.5 text-[11px] font-semibold text-[#0d5c3b] opacity-0 transition-opacity duration-150 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100 group-hover/preview:delay-[900ms] group-focus-within/preview:delay-[900ms]">
             <span className="flex items-center gap-1.5">
               <svg viewBox="0 0 16 16" className="h-3 w-3" aria-hidden="true" focusable="false">
                 <path

@@ -1,0 +1,54 @@
+import assert from "node:assert/strict";
+import { chromium } from "playwright";
+const arg = (name, fallback) => process.argv.find((v) => v.startsWith(`--${name}=`))?.slice(name.length + 3) ?? fallback;
+const base = arg("base-url", "http://localhost:3100");
+const executablePath = arg("browser-executable", undefined);
+const browser = await chromium.launch(executablePath ? { executablePath } : {});
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+try {
+  await page.goto(`${base}/experiments/undo-window`);
+  await page.getByRole("button", { name: "Archive Atlas research" }).focus();
+  await page.keyboard.press("Enter");
+  const undo = page.getByRole("button", { name: "Undo", exact: true });
+  await undo.waitFor();
+  assert.equal(await undo.evaluate((el) => el === document.activeElement), true);
+  await page.keyboard.press("Enter");
+  await page.locator(".uw-window").getByText("Restored", { exact: true }).waitFor();
+  assert.equal(await page.locator(".uw-copy").evaluate((el) => el === document.activeElement), true);
+  assert.equal(await page.getByRole("button", { name: "Archive Atlas research" }).count(), 1);
+  await page.getByRole("button", { name: "Archive Field notes" }).click();
+  await page.getByRole("button", { name: "Archive Launch checklist" }).click();
+  assert.match(await page.locator(".uw-window").innerText(), /Launch checklist/);
+  await undo.click();
+  await page.getByText("Launch checklist restored to active projects.").waitFor();
+  assert.equal(await page.getByRole("button", { name: "Archive Field notes" }).count(), 0);
+  await page.reload();
+  await page.getByText("Simulate restore failure", { exact: true }).click();
+  assert.equal(await page.getByLabel("Simulate restore failure", { exact: false }).isChecked(), true);
+  await page.getByRole("button", { name: "Archive Atlas research" }).click();
+  await undo.click();
+  await page.locator(".uw-window").getByText("Could not restore").waitFor();
+  await page.locator(".ud-archive summary").click();
+  await page.locator(".ud-archive").getByRole("button", { name: "Restore" }).click();
+  assert.equal(await page.getByRole("button", { name: "Archive Atlas research" }).count(), 1);
+  await page.reload();
+  await page.getByRole("button", { name: "10 sec" }).click();
+  await page.getByRole("button", { name: "Archive Atlas research" }).click();
+  await page.locator(".uw-window").getByText("Undo window ended").waitFor({ timeout: 12000 });
+  assert.equal(await undo.count(), 0);
+  await page.locator(".ud-archive summary").click();
+  assert.equal(await page.locator(".ud-archive").getByRole("button", { name: "Restore" }).count(), 1);
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.reload();
+  for (const name of ["Atlas research", "Field notes", "Launch checklist"]) {
+    await page.getByRole("button", { name: `Archive ${name}` }).click();
+  }
+  await page.locator(".ud-archive summary").click();
+  const panel = page.getByRole("region", { name: "Project archive demo" });
+  await panel.evaluate((element) => { element.scrollTop = 0; });
+  await panel.focus();
+  await page.keyboard.press("PageDown");
+  await page.waitForTimeout(350);
+  assert.ok(await panel.evaluate((element) => element.scrollTop > 0));
+  console.log("Undo Window interaction checks passed");
+} finally { await browser.close(); }

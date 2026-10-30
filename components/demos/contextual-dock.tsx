@@ -281,7 +281,7 @@ export default function ContextualDockDemo({ values }: DemoProps) {
           <p className="truncate text-[13px] font-semibold tracking-[-0.01em]">
             Field guide — draft 3
           </p>
-          <p className="truncate font-mono text-[9px] uppercase tracking-[0.12em] text-[#8c8c94]">
+          <p className="truncate font-mono text-[9px] uppercase tracking-[0.12em] text-[#62626a]">
             Coast survey, morning pass
           </p>
         </div>
@@ -307,7 +307,7 @@ export default function ContextualDockDemo({ values }: DemoProps) {
                     : "border-black/10 bg-white"
                 }`}
               >
-                <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#8c8c94]">
+                <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#62626a]">
                   ¶ {String(index + 1).padStart(2, "0")} · {block.label}
                 </p>
                 <p className="mt-1.5 text-[13px] leading-relaxed text-[#3f3f47]">
@@ -339,7 +339,7 @@ export default function ContextualDockDemo({ values }: DemoProps) {
             );
           })}
         </div>
-        <p className="mx-auto mt-4 max-w-[44rem] text-[11px] leading-relaxed text-[#8c8c94]">
+        <p className="mx-auto mt-4 max-w-[44rem] text-[11px] leading-relaxed text-[#62626a]">
           Select text inside a block, click a block, or shift-click a second
           block. Clicking the empty space clears the selection.
         </p>
@@ -348,7 +348,7 @@ export default function ContextualDockDemo({ values }: DemoProps) {
       <footer className="flex-none border-t border-black/5 bg-[#f4f4f2] px-3 py-3 sm:px-5">
         <p
           aria-live="polite"
-          className="mb-2 truncate font-mono text-[10px] uppercase tracking-[0.1em] text-[#8c8c94]"
+          className="mb-2 truncate font-mono text-[10px] uppercase tracking-[0.1em] text-[#62626a]"
         >
           {lastAction ? `Last action — ${lastAction}` : "No action run yet"}
         </p>

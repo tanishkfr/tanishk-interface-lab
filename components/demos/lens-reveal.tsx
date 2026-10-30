@@ -127,8 +127,8 @@ export default function LensRevealDemo({ values }: DemoProps) {
             review pass
           </span>
           <span className="h-3 w-px flex-none bg-black/10" aria-hidden="true" />
-          <span className="truncate font-mono text-[8.5px] uppercase tracking-[0.16em] text-[#8c8c94]">
-            1280 viewport · AA contrast · draft 03
+          <span className="truncate font-mono text-[8.5px] uppercase tracking-[0.16em] text-[#606068]">
+            Drag to reveal · arrow keys when focused
           </span>
         </div>
 
@@ -151,7 +151,7 @@ export default function LensRevealDemo({ values }: DemoProps) {
               aria-hidden="true"
             >
               <span className="flex flex-col items-center gap-1">
-                <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-black/10 bg-white/95 px-2 py-1 font-mono text-[8.5px] uppercase tracking-[0.14em] text-[#32119c] shadow-[0_6px_18px_-10px_rgba(20,20,24,0.5)]">
+                <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-1 font-mono text-[8.5px] uppercase tracking-[0.14em] text-[#32119c] shadow-[0_6px_18px_-10px_rgba(20,20,24,0.5)]">
                   <span className="flex gap-[2px]">
                     <span className="h-1 w-1 rounded-full bg-[#4f27e0]" />
                     <span className="h-1 w-1 rounded-full bg-[#4f27e0]" />
@@ -159,7 +159,7 @@ export default function LensRevealDemo({ values }: DemoProps) {
                   </span>
                   drag
                 </span>
-                <span className="whitespace-nowrap font-mono text-[8px] tracking-[0.08em] text-[#8c8c94]">
+                <span className="whitespace-nowrap rounded bg-white px-1 py-0.5 font-mono text-[8px] tracking-[0.08em] text-[#44444c]">
                   move or drag to inspect
                 </span>
               </span>
@@ -184,7 +184,7 @@ function Sheet({ layer }: { layer: SheetLayer }) {
     <div className="absolute inset-0 overflow-hidden bg-white">
       <div className="grid h-full grid-cols-[minmax(0,1fr)_68px] content-start gap-y-[14px] py-4 sm:grid-cols-[minmax(0,1fr)_118px] sm:py-5">
         <div className={`relative px-4 sm:px-6 ${debug ? "ring-1 ring-[#4f27e0]/35" : ""}`}>
-          <p className="font-mono text-[8px] uppercase tracking-[0.16em] text-[#8c8c94]">
+          <p className="font-mono text-[8px] uppercase tracking-[0.16em] text-[#606068]">
             {AUDIT.eyebrow}
           </p>
           <h3 className="mt-1.5 text-[15px] font-semibold leading-[22px] tracking-[-0.01em] text-[#141418] sm:text-[21px] sm:leading-[30px]">
@@ -224,7 +224,7 @@ function Sheet({ layer }: { layer: SheetLayer }) {
         <div className={`relative px-4 sm:px-6 ${debug ? "ring-1 ring-[#4f27e0]/35" : ""}`}>
           <MiniTable markTeam={annotate} />
           {debug ? <Chip className="-top-2 right-1">gap 14px</Chip> : null}
-          <p className="mt-2 max-w-[64ch] text-[8.5px] leading-[13px] text-[#8c8c94]">
+          <p className="mt-2 max-w-[64ch] text-[8.5px] leading-[13px] text-[#606068]">
             {AUDIT.callout}
           </p>
         </div>
@@ -273,7 +273,7 @@ function MiniTable({
           {AUDIT.head.map((cell) => (
             <th
               key={cell}
-              className={`py-1.5 pr-2 font-mono font-medium uppercase tracking-[0.14em] text-[#8c8c94] ${revised ? "text-[7.5px]" : "text-[8px]"}`}
+              className={`py-1.5 pr-2 font-mono font-medium uppercase tracking-[0.14em] text-[#606068] ${revised ? "text-[7.5px]" : "text-[8px]"}`}
             >
               {cell}
             </th>

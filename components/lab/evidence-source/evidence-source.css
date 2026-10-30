@@ -9,7 +9,7 @@
   --es-ink: #141418;
   --es-ink-soft: #3a3a42;
   --es-muted: #5f5f68;
-  --es-faint: #8c8c94;
+  --es-faint: #606068;
   --es-surface: #ffffff;
   --es-surface-soft: #f8f8f6;
   --es-line: rgba(20, 20, 24, 0.12);
@@ -18,7 +18,7 @@
   --es-accent-deep: #32119c;
   --es-ok: #147a4e;
   --es-warn: #8a5300;
-  --es-grey: #8c8c94;
+  --es-grey: #606068;
   --es-serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
   --es-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
   --es-ease: cubic-bezier(0.22, 1, 0.36, 1);

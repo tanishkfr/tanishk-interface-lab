@@ -20,6 +20,7 @@ export type ProgressiveActionProps = {
   onRun?: () => void;
   onAccept?: () => void;
   onRetry?: () => void;
+  /** Reset the workflow; when running, the host must cancel its work as well. */
   onReset?: () => void;
   /** Short summary shown in the review phase. */
   reviewSummary?: ReactNode;
@@ -142,8 +143,8 @@ export function ProgressiveAction({
             type="button"
             className="pa-main"
             data-state={phase}
-            aria-disabled={phase !== "ready"}
-            onClick={phase === "ready" ? onRun : undefined}
+            aria-disabled={phase !== "ready" || !onRun}
+            onClick={phase === "ready" && onRun ? onRun : undefined}
           >
             <span className="pa-face">
               {phase === "done" ? <CheckIcon /> : null}
@@ -175,17 +176,17 @@ export function ProgressiveAction({
           ) : null}
         </span>
 
-        {phase === "running" ? (
+        {phase === "running" && onReset ? (
           <button type="button" className="pa-action" onClick={onReset}>
             Cancel
           </button>
         ) : null}
-        {phase === "done" ? (
+        {phase === "done" && onReset ? (
           <button type="button" className="pa-action pa-action--go" onClick={onReset}>
             Run again
           </button>
         ) : null}
-        {phase === "error" ? (
+        {phase === "error" && onRetry ? (
           <button type="button" className="pa-action pa-action--go" onClick={onRetry}>
             Retry
           </button>
@@ -205,13 +206,14 @@ export function ProgressiveAction({
             <button
               type="button"
               className="pa-action pa-action--go"
+              disabled={!onAccept}
               onClick={onAccept}
             >
               Accept
             </button>
-            <button type="button" className="pa-action" onClick={onReset}>
+            {onReset ? <button type="button" className="pa-action" onClick={onReset}>
               Run again
-            </button>
+            </button> : null}
           </div>
         </div>
       ) : null}

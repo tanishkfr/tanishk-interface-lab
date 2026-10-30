@@ -32,7 +32,7 @@ export default function InvertedCursorPreview() {
         </div>
 
         {/* The cursor disc — plain div, difference-blended, never mounted. */}
-        <div className="pointer-events-none absolute -left-2 top-[56px] h-3.5 w-3.5 rounded-full bg-white mix-blend-difference transition-all duration-500 ease-out group-hover/preview:translate-x-[38px] group-hover/preview:translate-y-[42px] group-hover/preview:scale-[2]" />
+        <div className="pointer-events-none absolute -left-2 top-[56px] h-3.5 w-3.5 rounded-full bg-white mix-blend-difference transition-all duration-500 ease-out group-hover/preview:translate-x-[38px] group-focus-within/preview:translate-x-[38px] group-hover/preview:translate-y-[42px] group-focus-within/preview:translate-y-[42px] group-hover/preview:scale-[2] group-focus-within/preview:scale-[2]" />
       </div>
     </div>
   );

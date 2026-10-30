@@ -13,7 +13,7 @@ export default function SoftSnapPreview() {
         settle
       </div>
 
-      <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:-translate-y-[10px]">
+      <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:-translate-y-[10px] group-focus-within/preview:-translate-y-[10px]">
         <div className="absolute inset-x-6 top-[11%] h-[24%]">
           <MiniCard index="010" tone="#dfe3ee" />
         </div>

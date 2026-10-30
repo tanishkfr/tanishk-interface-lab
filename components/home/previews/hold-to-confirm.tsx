@@ -25,12 +25,12 @@ export default function HoldToConfirmPreview() {
         <div className="mt-1.5 h-[6px] w-2/3 rounded-full bg-[#141418]/10" />
 
         <div className="relative mt-3 flex h-9 items-center justify-center overflow-hidden rounded-full bg-[#4f27e0]">
-          <span className="absolute inset-0 origin-left scale-x-0 bg-[#32119c] transition-transform delay-[120ms] duration-[760ms] ease-out group-hover/preview:scale-x-100" />
+          <span className="absolute inset-0 origin-left scale-x-0 bg-[#32119c] transition-transform delay-[120ms] duration-[760ms] ease-out group-hover/preview:scale-x-100 group-focus-within/preview:scale-x-100" />
           <span className="relative z-10 flex items-center gap-1.5 text-[11px] font-semibold text-white">
-            <span className="transition-opacity duration-150 group-hover/preview:opacity-0 group-hover/preview:delay-[800ms]">
+            <span className="transition-opacity duration-150 group-hover/preview:opacity-0 group-focus-within/preview:opacity-0 group-hover/preview:delay-[800ms] group-focus-within/preview:delay-[800ms]">
               Publish release
             </span>
-            <span className="absolute inset-0 flex items-center justify-center gap-1.5 opacity-0 transition-opacity duration-150 group-hover/preview:opacity-100 group-hover/preview:delay-[840ms]">
+            <span className="absolute inset-0 flex items-center justify-center gap-1.5 opacity-0 transition-opacity duration-150 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100 group-hover/preview:delay-[840ms] group-focus-within/preview:delay-[840ms]">
               <svg
                 viewBox="0 0 16 16"
                 className="h-3 w-3"

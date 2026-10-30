@@ -124,6 +124,7 @@ export default function ProgressiveActionDemo({ values }: DemoProps) {
     setLastActionKey(actionKey);
     setPhase("ready");
     setProgress(undefined);
+    setStatus("Ready to run the selected simulation.");
   }
 
   useEffect(() => {
@@ -178,6 +179,7 @@ export default function ProgressiveActionDemo({ values }: DemoProps) {
 
       setPhase("running");
       setProgress(0);
+      setStatus("Simulated operation in progress.");
 
       const settle = (next: ActionPhase, delay: number, finished: boolean) => {
         timeoutRef.current = window.setTimeout(() => {
@@ -185,6 +187,7 @@ export default function ProgressiveActionDemo({ values }: DemoProps) {
           if (tokenRef.current !== token) return;
           if (finished) setProgress(1);
           setPhase(next);
+          if (next === "error") setStatus("Simulated failure. Retry to run the example again.");
           if (next === "done") setStatus(`${spec.log} at ${stamp()}`);
           if (next === "review" && auto) {
             timeoutRef.current = window.setTimeout(() => {
@@ -265,9 +268,15 @@ export default function ProgressiveActionDemo({ values }: DemoProps) {
             onRun={() => run(false)}
             onAccept={complete}
             onRetry={() => run(false)}
-            onReset={reset}
+            onReset={() => {
+              setStatus(phase === "running"
+                ? "Simulation stopped. No operation was sent."
+                : "Ready to run the simulation again.");
+              reset();
+            }}
           />
-          <p className="dm-pa-status">{status}</p>
+          <p className="dm-pa-status" role="status">{status}</p>
+          <p className="dm-pa-status">Simulation only. No files are uploaded or changed.</p>
         </div>
 
         <label className="dm-pa-simulate">

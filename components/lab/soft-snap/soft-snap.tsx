@@ -134,6 +134,8 @@ export function SoftSnap({
   return (
     <div
       ref={ref}
+      tabIndex={0}
+      aria-label="Scrollable cards"
       className={`lab-soft-snap${className ? ` ${className}` : ""}`}
       data-mode={mode}
       data-align={align}

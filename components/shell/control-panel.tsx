@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import type {
   PreviewControl,
   PreviewValue,
@@ -38,6 +39,7 @@ export function ControlPanel({
   onChange: (id: string, value: PreviewValue) => void;
   hint?: string;
 }) {
+  const panelId = useId();
   if (controls.length === 0 && !hint) return null;
 
   return (
@@ -69,10 +71,11 @@ export function ControlPanel({
           const checked = Boolean(values[control.id]);
           return (
             <span className="control" key={control.id}>
-              <span className="control-label">{control.label}</span>
+              <label className="control-label" htmlFor={`${panelId}-${control.id}`}>{control.label}</label>
               <label className="control-switch">
                 <input
                   type="checkbox"
+                  id={`${panelId}-${control.id}`}
                   checked={checked}
                   onChange={(event) =>
                     onChange(control.id, event.currentTarget.checked)

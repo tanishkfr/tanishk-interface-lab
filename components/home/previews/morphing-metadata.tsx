@@ -19,14 +19,14 @@ export default function MorphingMetadataPreview() {
           <span className="hidden font-mono text-[8px] uppercase tracking-[0.1em] text-[#8c8c94] sm:block">
             file · 248 MB
           </span>
-          <span className="ml-auto flex-none rounded-full border border-black/10 px-1.5 py-[1px] font-mono text-[8px] uppercase tracking-[0.08em] text-[#5f5f68] transition-colors duration-300 group-hover/preview:border-[#4f27e0]/45 group-hover/preview:text-[#32119c]">
+          <span className="ml-auto flex-none rounded-full border border-black/10 px-1.5 py-[1px] font-mono text-[8px] uppercase tracking-[0.08em] text-[#5f5f68] transition-colors duration-300 group-hover/preview:border-[#4f27e0]/45 group-focus-within/preview:border-[#4f27e0]/45 group-hover/preview:text-[#32119c] group-focus-within/preview:text-[#32119c]">
             details
           </span>
         </div>
 
         <div className="relative mt-3 min-h-0 flex-1">
           <div
-            className={`absolute inset-0 flex flex-wrap content-start gap-1.5 transition-all duration-500 ${EASE} group-hover/preview:-translate-y-1 group-hover/preview:opacity-0`}
+            className={`absolute inset-0 flex flex-wrap content-start gap-1.5 transition-all duration-500 ${EASE} group-hover/preview:-translate-y-1 group-focus-within/preview:-translate-y-1 group-hover/preview:opacity-0 group-focus-within/preview:opacity-0`}
           >
             {[
               ["size", "248 MB"],
@@ -48,7 +48,7 @@ export default function MorphingMetadataPreview() {
           </div>
 
           <div
-            className={`absolute inset-0 translate-y-1 opacity-0 transition-all duration-500 ${EASE} group-hover/preview:translate-y-0 group-hover/preview:opacity-100`}
+            className={`absolute inset-0 translate-y-1 opacity-0 transition-all duration-500 ${EASE} group-hover/preview:translate-y-0 group-focus-within/preview:translate-y-0 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100`}
           >
             {[
               ["Location", "/exports/q1/archive.tar.gz"],

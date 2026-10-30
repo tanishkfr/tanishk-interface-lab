@@ -91,7 +91,7 @@ export default function MorphingMetadataDemo({ values }: DemoProps) {
     <div className="flex h-full flex-col bg-[#f6f6f4] text-[#141418]">
       <header className="flex items-center justify-between gap-3 border-b border-black/10 bg-white px-4 py-3 sm:px-5">
         <div className="min-w-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#8c8c94]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#62626a]">
             Workspace
           </p>
           <h2 className="mt-0.5 truncate text-[15px] font-semibold tracking-[-0.01em]">
@@ -107,9 +107,9 @@ export default function MorphingMetadataDemo({ values }: DemoProps) {
         <span className="flex items-center gap-2 truncate font-mono text-[10px] uppercase tracking-[0.1em] text-[#5f5f68]">
           All records
           <span className="text-[#c6c6cc]">/</span>
-          <span className="text-[#8c8c94]">{active.kind}</span>
+          <span className="text-[#62626a]">{active.kind}</span>
         </span>
-        <span className="shrink-0 font-mono text-[10px] text-[#8c8c94]">
+        <span className="shrink-0 font-mono text-[10px] text-[#62626a]">
           values keep their place
         </span>
       </div>
@@ -131,7 +131,7 @@ export default function MorphingMetadataDemo({ values }: DemoProps) {
             </li>
           ))}
         </ul>
-        <p className="mt-3 font-mono text-[10px] leading-relaxed text-[#8c8c94]">
+        <p className="mt-3 font-mono text-[10px] leading-relaxed text-[#62626a]">
           Other records toggle independently — the list holds their own state.
         </p>
       </div>

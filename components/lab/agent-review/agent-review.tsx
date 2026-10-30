@@ -60,9 +60,9 @@ const RESOLVED_TITLE: Record<Exclude<ReviewDecision, "pending">, string> = {
 };
 
 const RESOLVED_NOTE: Record<Exclude<ReviewDecision, "pending">, string> = {
-  accepted: "The diff stays in view, locked with this decision.",
-  rejected: "No changes are applied to the files above.",
-  revise: "The proposal goes back to its author with the note.",
+  accepted: "The host can now apply the approved change.",
+  rejected: "The proposal was rejected. The host decides what happens next.",
+  revise: "A revision was requested. The host handles the next step.",
 };
 
 /**
@@ -89,6 +89,8 @@ export function AgentReviewSurface({
     decision: ReviewDecision;
     note: string;
   } | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const restoreDecisionFocus = useRef(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const reviseRef = useRef<HTMLButtonElement>(null);
   const noteId = useId();
@@ -114,7 +116,15 @@ export function AgentReviewSurface({
     if (revising) textareaRef.current?.focus();
   }, [revising]);
 
+  useEffect(() => {
+    if (resolved && restoreDecisionFocus.current) {
+      restoreDecisionFocus.current = false;
+      rootRef.current?.focus();
+    }
+  }, [resolved]);
+
   const decide = (next: ReviewDecision, withNote?: string) => {
+    restoreDecisionFocus.current = true;
     const trimmed = withNote?.trim();
     if (decision === undefined) setInternal(next);
     setRevising(false);
@@ -169,6 +179,8 @@ export function AgentReviewSurface({
 
   return (
     <div
+      ref={rootRef}
+      tabIndex={-1}
       className={`ar-root${className ? ` ${className}` : ""}`}
       data-decision={current}
       onKeyDown={handleKeyDown}
@@ -197,7 +209,7 @@ export function AgentReviewSurface({
                 {file.hunks.length} {file.hunks.length === 1 ? "line" : "lines"}
               </span>
             </div>
-            <ul className="ar-diff">
+            <ul className="ar-diff" tabIndex={0} aria-label={`Changes in ${file.path}`}>
               {file.hunks.map((line, index) => (
                 <li
                   key={`${file.path}:${index}`}
@@ -302,7 +314,7 @@ export function AgentReviewSurface({
                 className="ar-note"
                 rows={3}
                 value={note}
-                placeholder="Name the adjustment — the author receives this note."
+                placeholder="Describe the requested adjustment."
                 onChange={(event) => setNote(event.target.value)}
               />
               <div className="ar-revise-actions">

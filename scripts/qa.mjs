@@ -16,8 +16,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const SHOTS = join(ROOT, "qa", "screenshots");
-const VIDEO_DIR = join(ROOT, "qa", "video");
+
 
 const arg = (name, fallback) => {
   const found = process.argv.find((value) => value.startsWith(`--${name}=`));
@@ -25,6 +24,10 @@ const arg = (name, fallback) => {
 };
 
 const BASE = arg("base-url", "http://localhost:3100").replace(/\/$/, "");
+const outputRoot = arg("output-dir", join(ROOT, "qa"));
+const SHOTS = join(outputRoot, "screenshots");
+const VIDEO_DIR = join(outputRoot, "video");
+const executablePath = arg("browser-executable", undefined);
 
 const DESKTOP = { width: 1440, height: 960 };
 const MOBILE = { width: 390, height: 844 };
@@ -74,7 +77,7 @@ async function run() {
   await mkdir(SHOTS, { recursive: true });
   await mkdir(VIDEO_DIR, { recursive: true });
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(executablePath ? { executablePath } : {});
   const started = Date.now();
   const step = (label) =>
     console.log(`[${String((Date.now() - started) / 1000).padStart(5)}s] ${label}`);
@@ -272,7 +275,7 @@ async function run() {
   });
   await settle(mobilePage, 800);
   const deviceSwitch = mobilePage.locator(".device-switch button", {
-    hasText: /mobile/i,
+    hasText: /narrow/i,
   });
   if (await deviceSwitch.count()) {
     await deviceSwitch.first().click().catch(() => {});

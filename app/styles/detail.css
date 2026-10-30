@@ -773,3 +773,25 @@
     display: none;
   }
 }
+
+.detail-jump { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0 0 18px; font-size: var(--lab-text-sm); }
+.detail-jump a { color: var(--lab-muted); text-underline-offset: 4px; }
+.detail-jump a:hover { color: var(--lab-accent-deep); }
+#preview, #how-it-works, #install, #source { scroll-margin-top: 90px; }
+.preview-size-note { margin: 0; padding: 10px 18px 0; color: var(--lab-muted); font-size: var(--lab-text-sm); }
+
+/* Phase 4: a clearer frame for the interactive workshop and its notes. */
+.detail-head { padding-block: 28px 32px; }
+.detail-head h1 { font-size: clamp(2rem, 3.6vw, 3.4rem); letter-spacing: -0.04em; }
+.detail-jump { gap: 12px 24px; margin-bottom: 22px; }
+.preview-panel { border-color: var(--lab-line-strong); box-shadow: 0 12px 36px -30px rgba(20, 20, 24, 0.35); }
+.preview-toolbar { min-height: 54px; padding-inline: 20px 16px; }
+.preview-toolbar-title { color: var(--lab-ink); font-weight: 600; }
+.preview-workbench { padding: clamp(18px, 3vw, 38px); }
+.preview-controls { padding: 18px 20px; }
+.detail-section > h2 { padding-bottom: 14px; border-bottom: 1px solid var(--lab-line-soft); }
+@media (max-width: 40rem) {
+  .detail-head { padding-block: 22px 26px; }
+  .preview-toolbar { padding-inline: 14px; }
+  .preview-controls { padding: 16px; }
+}

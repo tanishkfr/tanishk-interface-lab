@@ -83,5 +83,7 @@ export type Experiment = {
   usage: string;
   /** What the preview sandbox is showing. */
   demoNote: string;
+  designDecisions?: string[];
+  pairsWith?: string[];
   order: number;
 };

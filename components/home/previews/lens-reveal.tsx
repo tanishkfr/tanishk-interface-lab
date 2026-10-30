@@ -14,9 +14,9 @@ export default function LensRevealPreview() {
 
         {/* clip window + ring travel together; the sheet inside is
             counter-translated so it stays registered with the base */}
-        <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:translate-x-[24%]">
+        <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:translate-x-[24%] group-focus-within/preview:translate-x-[24%]">
           <div className="absolute inset-0 [clip-path:circle(37%_at_36%_50%)]">
-            <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:-translate-x-[24%]">
+            <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:-translate-x-[24%] group-focus-within/preview:-translate-x-[24%]">
               <MiniSheet annotated />
             </div>
           </div>

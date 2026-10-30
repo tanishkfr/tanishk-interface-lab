@@ -31,5 +31,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "scripts/fixture/template"]
+  "exclude": ["node_modules", "scripts/fixture/template", "output"]
 }

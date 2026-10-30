@@ -244,6 +244,7 @@ export function LensReveal({
     root.addEventListener("pointermove", onPointerMove);
     root.addEventListener("pointerup", endDrag);
     root.addEventListener("pointercancel", endDrag);
+    root.addEventListener("lostpointercapture", endDrag);
 
     return () => {
       if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
@@ -253,6 +254,7 @@ export function LensReveal({
       root.removeEventListener("pointermove", onPointerMove);
       root.removeEventListener("pointerup", endDrag);
       root.removeEventListener("pointercancel", endDrag);
+      root.removeEventListener("lostpointercapture", endDrag);
       apiRef.current = null;
     };
   }, [size]);

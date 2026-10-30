@@ -47,9 +47,9 @@ const SAMPLES: Record<
       ],
     },
     evidence: [
-      { label: "Call sites", value: "3 updated" },
-      { label: "Schema", value: "v4 migration ready" },
-      { label: "Tests", value: "12 passing" },
+      { label: "Call sites", value: "3 references identified" },
+      { label: "Migration", value: "Not verified" },
+      { label: "Tests", value: "Not run in this sample" },
     ],
   },
   copy: {
@@ -155,7 +155,7 @@ export default function AgentReviewDemo({ values }: DemoProps) {
           <p className="dm-ar-eyebrow">Review inbox</p>
           <h2 className="dm-ar-title">Proposals awaiting a human</h2>
         </div>
-        <span className="dm-ar-count">1 open</span>
+        <span className="dm-ar-count">{decision === "pending" ? "1 open" : "Decision recorded"}</span>
       </header>
 
       <div className="dm-ar-body">

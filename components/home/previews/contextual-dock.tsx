@@ -18,19 +18,19 @@ export default function ContextualDockPreview() {
       <div className="absolute inset-x-5 top-[38%] rounded-lg bg-[#4f27e0]/[0.06] p-2 ring-1 ring-[#4f27e0]/25">
         <span className="block h-1.5 w-11/12 rounded-full bg-[#141418]/35" />
         <span className="mt-1.5 block h-1.5 w-3/4 rounded-full bg-[#141418]/20" />
-        <span className="absolute -right-1.5 -top-1.5 grid h-4 w-4 place-items-center rounded-[4px] bg-[#4f27e0] text-[8px] font-semibold leading-none text-white opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100">
+        <span className="absolute -right-1.5 -top-1.5 grid h-4 w-4 place-items-center rounded-[4px] bg-[#4f27e0] text-[8px] font-semibold leading-none text-white opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100">
           3
         </span>
       </div>
 
       <div className="absolute inset-x-4 bottom-4 rounded-xl border border-black/10 bg-white shadow-[0_8px_22px_-10px_rgba(20,20,24,0.3)]">
         <div className="grid p-1.5">
-          <div className="col-start-1 row-start-1 flex gap-1 transition-opacity duration-300 group-hover/preview:opacity-0">
+          <div className="col-start-1 row-start-1 flex gap-1 transition-opacity duration-300 group-hover/preview:opacity-0 group-focus-within/preview:opacity-0">
             <Pill>Bold</Pill>
             <Pill>Comment</Pill>
             <Pill>Quote</Pill>
           </div>
-          <div className="col-start-1 row-start-1 flex gap-1 opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100">
+          <div className="col-start-1 row-start-1 flex gap-1 opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100">
             <Pill>Align</Pill>
             <Pill>Group</Pill>
             <Pill>Export</Pill>
@@ -40,7 +40,7 @@ export default function ContextualDockPreview() {
           <span className="font-mono text-[8px] uppercase tracking-[0.14em] text-[#8c8c94]">
             no selection
           </span>
-          <span className="ml-auto font-mono text-[8px] uppercase tracking-[0.14em] text-[#32119c] opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100">
+          <span className="ml-auto font-mono text-[8px] uppercase tracking-[0.14em] text-[#32119c] opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100">
             3 selected
           </span>
         </div>

@@ -178,6 +178,9 @@ export function EvidenceCarousel({
       travelled = Math.max(travelled, Math.abs(dx));
       viewport.scrollLeft = startLeft - dx;
     };
+    const preventNativeDrag = (event: DragEvent) => {
+      if (dragging) event.preventDefault();
+    };
     const up = (event: PointerEvent) => {
       if (!dragging) return;
       dragging = false;
@@ -192,11 +195,13 @@ export function EvidenceCarousel({
     viewport.addEventListener("pointermove", move);
     viewport.addEventListener("pointerup", up);
     viewport.addEventListener("pointercancel", up);
+    viewport.addEventListener("dragstart", preventNativeDrag);
     return () => {
       viewport.removeEventListener("pointerdown", down);
       viewport.removeEventListener("pointermove", move);
       viewport.removeEventListener("pointerup", up);
       viewport.removeEventListener("pointercancel", up);
+      viewport.removeEventListener("dragstart", preventNativeDrag);
     };
   }, [goTo, activeFromScroll]);
 
@@ -245,7 +250,6 @@ export function EvidenceCarousel({
               data-active={itemIndex === index ? "true" : "false"}
               aria-label={`${itemIndex + 1} of ${items.length}: ${item.caption}`}
               aria-roledescription="slide"
-              role="group"
               style={{ "--ec-ratio": ratio } as CSSProperties}
             >
               <div className="lab-carousel-media">{item.content}</div>
