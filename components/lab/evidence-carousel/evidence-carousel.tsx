@@ -250,7 +250,6 @@ export function EvidenceCarousel({
               data-active={itemIndex === index ? "true" : "false"}
               aria-label={`${itemIndex + 1} of ${items.length}: ${item.caption}`}
               aria-roledescription="slide"
-              role="group"
               style={{ "--ec-ratio": ratio } as CSSProperties}
             >
               <div className="lab-carousel-media">{item.content}</div>

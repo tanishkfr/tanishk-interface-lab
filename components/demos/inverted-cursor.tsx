@@ -62,7 +62,7 @@ export default function InvertedCursorDemo({ values }: DemoProps) {
 
       <header className="flex items-baseline justify-between gap-4 border-b border-black/10 px-6 py-4 sm:px-10">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#8c8c94]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#62626a]">
             Studio index · 2026
           </p>
           <h2 className="mt-1 text-lg font-semibold tracking-[-0.02em]">
@@ -102,7 +102,7 @@ export default function InvertedCursorDemo({ values }: DemoProps) {
               <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#6b6b73]">
                 {project.type}
               </span>
-              <span className="ml-auto font-mono text-[10px] text-[#8c8c94]">
+              <span className="ml-auto font-mono text-[10px] text-[#62626a]">
                 {project.year}
               </span>
               {specimen ? (
@@ -126,7 +126,7 @@ export default function InvertedCursorDemo({ values }: DemoProps) {
       </p>
 
       <footer className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-black/10 px-6 py-4 sm:px-10">
-        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#8c8c94]">
+        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#62626a]">
           {legend}
         </p>
         <button
