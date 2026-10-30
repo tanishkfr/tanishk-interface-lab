@@ -15,9 +15,9 @@ export const experiments: Experiment[] = [
     slug: "signal-field",
     name: "Signal Field",
     tagline:
-      "An ambient glyph field that the pointer quiets, not creates.",
+      "An animated glyph background that softens around the pointer.",
     summary:
-      "A low-resolution canvas field that resolves into monospace glyphs, dithered dots or sparse pixel fragments. It is already alive at rest; the pointer pushes density down in a soft radius, so attention reads as subtraction rather than a gimmick that only exists while you move. Built for hero backdrops, empty states and section grounds in editorial and tool interfaces.",
+      "A low-resolution animated canvas rendered as glyphs, dithered dots or pixels. The field moves at rest and softens around the pointer. Use it as a background for a hero, empty state or section.",
     category: "Motion",
     tags: ["canvas", "ambient", "pointer", "background"],
     status: "stable",
@@ -41,7 +41,7 @@ export const experiments: Experiment[] = [
         {
           kind: "slider",
           id: "density",
-          label: "Density",
+          label: "Field density",
           min: 0.1,
           max: 1,
           step: 0.05,
@@ -50,7 +50,7 @@ export const experiments: Experiment[] = [
         {
           kind: "slider",
           id: "intensity",
-          label: "Intensity",
+          label: "Field contrast",
           min: 0,
           max: 1,
           step: 0.05,
@@ -59,7 +59,7 @@ export const experiments: Experiment[] = [
         {
           kind: "slider",
           id: "pointerRadius",
-          label: "Pointer radius",
+          label: "Pointer effect radius",
           min: 0,
           max: 18,
           step: 1,
@@ -186,6 +186,7 @@ export function Hero() {
 
   {
     slug: "soft-snap",
+    designDecisions: ["Gentle settling helps align a card after scrolling without taking over the gesture. Avoid strong snapping where uninterrupted free scrolling matters more."],
     name: "Soft Snap Cards",
     tagline:
       "Full-width cards that settle into frame without hijacking your scroll.",
@@ -214,7 +215,7 @@ export function Hero() {
         {
           kind: "choice",
           id: "mode",
-          label: "Settle",
+          label: "Settling mode",
           options: [
             { value: "proximity", label: "Proximity" },
             { value: "mandatory", label: "Mandatory" },
@@ -259,7 +260,7 @@ export function Hero() {
         type: '"off" | "proximity" | "mandatory" | "assist"',
         default: '"proximity"',
         description:
-          "Settle strength. `assist` is the only JS mode: a scroll-end nudge you can cancel by moving.",
+          "Settling strength. `assist` is the only JS mode: a scroll-end nudge you can cancel by moving.",
       },
       {
         name: "align",
@@ -307,6 +308,8 @@ export function WorkLane({ entries }: { entries: Entry[] }) {
 
   {
     slug: "evidence-carousel",
+    designDecisions: ["A focused item and visible neighbours help people browse a sequence while retaining context. A list may be better for comparison across many items."],
+    pairsWith: ["lens-reveal"],
     name: "Evidence Carousel",
     tagline:
       "A large media carousel for case studies — drag, keys, captions, no autoplay.",
@@ -427,7 +430,7 @@ export function Gallery() {
     slug: "inverted-cursor",
     name: "Inverted Cursor",
     tagline:
-      "A difference-blended cursor disc with honest states and clean teardown.",
+      "A cursor disc that responds to links, buttons and marked targets.",
     summary:
       "One white disc painted with mix-blend-mode: difference, so it inverts whatever it crosses. It steps aside over selectable text, expands over interactive targets, and can carry a single label cut from its own surface. Fine pointers only, with a lifecycle that always hands the native cursor back — on unmount, on blur, on route change, on pointer-kind change.",
     category: "Input",
@@ -453,7 +456,7 @@ export function Gallery() {
         {
           kind: "choice",
           id: "state",
-          label: "Sample state",
+          label: "Cursor state",
           options: [
             { value: "rest", label: "Rest" },
             { value: "link", label: "Link" },
@@ -502,7 +505,7 @@ export function Gallery() {
         label: "VIEW",
         magnetic: true,
       },
-      hint: "This preview is desktop-only — the disc follows your pointer",
+      hint: "Move a fine pointer over the rows and buttons.",
     },
     props: [
       {
@@ -566,6 +569,8 @@ export function Cursor() {
 
   {
     slug: "adaptive-composer",
+    designDecisions: ["Structured input can emerge from a familiar sentence, reducing the need to fill in a form first. Keep the parsed result visible and editable when precision matters."],
+    pairsWith: ["contextual-dock"],
     name: "Adaptive Composer",
     tagline:
       "Type a sentence; the input rearranges into the structure it recognised.",
@@ -621,7 +626,7 @@ export function Cursor() {
         },
       ],
       defaults: { sample: "meeting", parsed: true, hint: true },
-      hint: "Edit the sentence — the structure follows",
+      hint: "Edit the sentence and inspect the parsed form.",
     },
     props: [
       {
@@ -680,11 +685,13 @@ export function Capture() {
 
   {
     slug: "agent-review",
+    designDecisions: ["Reviewing a proposed change in place keeps the decision close to its context. This is useful when a person needs to inspect and accept or reject work before it is applied."],
+    pairsWith: ["inline-diff","trace-trail"],
     name: "Agent Review Surface",
     tagline:
       "Proposed change, evidence, and a human decision — the step between.",
     summary:
-      "When an automated process wants to change something, this is the surface where a person decides. A titled proposal, a real diff, the evidence the system used, and three honest actions: accept, reject, revise. It works for code, documents and configuration alike because the diff is structured data, not a screenshot.",
+      "A review surface for a proposed change, with a title, diff, evidence and controls to accept, reject or revise. The structured diff can represent changes to code, documents or configuration.",
     category: "Agentic",
     tags: ["review", "diff", "human-in-the-loop", "decisions"],
     status: "stable",
@@ -847,12 +854,12 @@ export function Review() {
         {
           kind: "toggle",
           id: "open",
-          label: "Expanded",
+          label: "Show details",
         },
         {
           kind: "toggle",
           id: "confidence",
-          label: "Confidence meter",
+          label: "Show sample confidence",
         },
         {
           kind: "toggle",
@@ -890,12 +897,12 @@ export function Review() {
         name: "status",
         type: '"verified" | "probable" | "unverified"',
         default: '"verified"',
-        description: "How well the source supports the claim.",
+        description: "Source status supplied by the host. It does not establish verification on its own.",
       },
       {
         name: "confidence",
         type: "number",
-        description: "0–1; renders as a small meter when provided.",
+        description: "0–1 confidence value supplied by the host; shown as a meter when provided.",
       },
       {
         name: "onOpenSource",
@@ -929,12 +936,14 @@ export function Citation() {
   );
 }`,
     demoNote:
-      "Three sources with different strengths — a book, a study, a forum answer — so the status and confidence readings have something to say. Unfold any line.",
+      "Expand a fictional sample source to inspect its excerpt and illustrative status and confidence values.",
     order: 7,
   },
 
   {
     slug: "spatial-command",
+    designDecisions: ["A command menu brings actions into reach without occupying the workspace. It works best when commands have clear names and a discoverable way to open the menu."],
+    pairsWith: ["contextual-dock"],
     name: "Spatial Command Menu",
     tagline:
       "A ⌘K menu where results regroup by kind and selection previews its effect.",
@@ -1098,7 +1107,7 @@ export function Citation() {
         {
           kind: "toggle",
           id: "expanded",
-          label: "Expanded",
+          label: "Show details",
         },
         {
           kind: "choice",
@@ -1277,6 +1286,8 @@ export function Citation() {
 
   {
     slug: "hold-to-confirm",
+    designDecisions: ["Holding adds a deliberate step before a consequential action. Provide a keyboard path and avoid using the delay for routine actions."],
+    pairsWith: ["progressive-action"],
     name: "Hold to Confirm",
     tagline:
       "Deliberate friction for actions that deserve a second of intent.",
@@ -1342,7 +1353,7 @@ export function Citation() {
         fill: "fill",
         reset: true,
       },
-      hint: "Press and hold the button — Space works too",
+      hint: "Press and hold the button, or hold Space while it is focused.",
     },
     props: [
       {
@@ -1404,11 +1415,13 @@ export function Publish() {
 
   {
     slug: "progressive-action",
+    designDecisions: ["Showing progress and completion at the action helps people understand what happened. The application still owns the operation and its failure handling."],
+    pairsWith: ["hold-to-confirm"],
     name: "Progressive Command Button",
     tagline:
       "One button that shows ready, running, review and done — without a modal.",
     summary:
-      "Long-running actions usually mean a spinner, then a toast, then a modal asking you to confirm what you just asked for. This button keeps the whole small workflow in one control: idle, running with real progress, a review beat, then a done state with a way to run again. The host owns the work; the button owns the honesty.",
+      "Long-running actions usually mean a spinner, then a toast, then a modal asking you to confirm what you just asked for. This button keeps the whole small workflow in one control: idle, running with real progress, a review beat, then a done state with a way to run again. The application performs the work; the button shows progress and completion.",
     category: "Systems",
     tags: ["actions", "state", "progress", "async"],
     status: "stable",
@@ -1561,7 +1574,7 @@ export function Publish() {
         {
           kind: "toggle",
           id: "open",
-          label: "Expanded",
+          label: "Show details",
         },
         {
           kind: "toggle",

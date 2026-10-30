@@ -422,7 +422,6 @@
 }
 
 .card-strip {
-  position: relative;
   padding: 14px 16px 16px;
 }
 
@@ -637,3 +636,9 @@
     transform: none;
   }
 }
+
+.card-name a::after { z-index: 2; }
+.card:focus-within { outline: 2px solid var(--lab-focus); outline-offset: 3px; }
+@media (hover: none) { .card-go { opacity: 1; transform: none; } }
+.hero-start { margin: 20px 0 0; font-size: var(--lab-text-sm); color: var(--lab-muted); }
+.hero-start a { color: var(--lab-accent-deep); text-underline-offset: 3px; }

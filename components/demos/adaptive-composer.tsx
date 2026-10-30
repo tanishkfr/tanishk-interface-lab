@@ -74,7 +74,7 @@ export default function AdaptiveComposerDemo({ values }: DemoProps) {
     <div className="flex h-full flex-col overflow-hidden bg-[#f4f3f0] px-5 py-5 text-[#141418] sm:px-8">
       <header className="flex items-baseline justify-between gap-3">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#8c8c94]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#606068]">
             Ledger · operations
           </p>
           <h2 className="mt-1 text-lg font-semibold tracking-[-0.02em]">
@@ -108,7 +108,7 @@ export default function AdaptiveComposerDemo({ values }: DemoProps) {
             }}
           />
           {showHint ? (
-            <p className="mt-3 text-xs leading-5 text-[#8c8c94]">
+            <p className="mt-3 text-xs leading-5 text-[#606068]">
               Write plainly — “book the room for tue 10am” becomes a meeting,
               “18 * 3” becomes a calculation. Nothing leaves this card.
             </p>
@@ -121,7 +121,7 @@ export default function AdaptiveComposerDemo({ values }: DemoProps) {
         </div>
 
         <section className="mt-5">
-          <h3 className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#8c8c94]">
+          <h3 className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#606068]">
             Recent entries
           </h3>
           <ul className="mt-2 divide-y divide-black/5 overflow-hidden rounded-xl border border-black/10 bg-white">
@@ -136,7 +136,7 @@ export default function AdaptiveComposerDemo({ values }: DemoProps) {
                 <span className="min-w-0 flex-1 truncate text-xs text-[#4c4c54]">
                   {sentence}
                 </span>
-                <span className="font-mono text-[9px] text-[#8c8c94]">
+                <span className="font-mono text-[9px] text-[#606068]">
                   {detailOf(sentence, parsed.payload)}
                 </span>
               </li>

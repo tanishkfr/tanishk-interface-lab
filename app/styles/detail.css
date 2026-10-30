@@ -773,3 +773,9 @@
     display: none;
   }
 }
+
+.detail-jump { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0 0 18px; font-size: var(--lab-text-sm); }
+.detail-jump a { color: var(--lab-muted); text-underline-offset: 4px; }
+.detail-jump a:hover { color: var(--lab-accent-deep); }
+#preview, #how-it-works, #install, #source { scroll-margin-top: 90px; }
+.preview-size-note { margin: 0; padding: 10px 18px 0; color: var(--lab-muted); font-size: var(--lab-text-sm); }

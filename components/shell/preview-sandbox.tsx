@@ -37,7 +37,7 @@ export function PreviewSandbox({
   };
 
   return (
-    <div className="preview-panel">
+    <div className="preview-panel" id="preview">
       <div className="preview-toolbar">
         <span className="preview-toolbar-title">
           <span className="preview-live-dot" aria-hidden="true" />
@@ -50,14 +50,14 @@ export function PreviewSandbox({
               className="copy-btn"
               onClick={() => setValues(defaults)}
             >
-              Reset
+              Reset controls
             </button>
           ) : null}
           {devices.length > 1 ? (
             <div className="device-switch" role="group" aria-label="Preview size">
               {devices.map((option) => (
                 <button
-                  key={option}
+                  key={option === "desktop" ? "Wide" : "Narrow"}
                   type="button"
                   aria-pressed={device === option}
                   onClick={() => setDevice(option)}
@@ -78,6 +78,7 @@ export function PreviewSandbox({
         </div>
       </div>
 
+      {devices.length > 1 ? <p className="preview-size-note">Width only. Input and browser viewport remain unchanged.</p> : null}
       <ControlPanel
         controls={controls}
         values={values}

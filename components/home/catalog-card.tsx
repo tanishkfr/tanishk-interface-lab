@@ -22,7 +22,7 @@ export function CatalogCard({ entry }: { entry: CatalogEntry }) {
 
   return (
     <article className="card">
-      <div className="card-preview group/preview" aria-hidden={Preview ? undefined : true}>
+      <div className="card-preview group/preview" aria-hidden="true" inert>
         <InView rootMargin="420px">
           {Preview ? <Preview /> : null}
         </InView>

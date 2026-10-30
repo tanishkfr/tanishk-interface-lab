@@ -51,11 +51,12 @@ export default async function ExperimentPage(
   const files = readExperimentFiles(experiment);
   const bundle = bundledSource(experiment);
   const { previous, next } = neighbours(experiment.slug);
+  const curated = experiment.pairsWith ?? [];
   const related = sortedExperiments()
     .filter(
       (candidate) =>
         candidate.slug !== experiment.slug &&
-        candidate.category === experiment.category,
+        (curated.length ? curated.includes(candidate.slug) : candidate.category === experiment.category),
     )
     .slice(0, 3);
 
@@ -94,6 +95,7 @@ export default async function ExperimentPage(
         </div>
       </header>
 
+      <nav className="detail-jump" aria-label="On this page"><a href="#preview">Preview</a><a href="#how-it-works">How it works</a><a href="#install">Install</a><a href="#source">Source</a></nav>
       <PreviewSandbox
         slug={experiment.slug}
         controls={experiment.preview.controls}
@@ -104,7 +106,7 @@ export default async function ExperimentPage(
 
       <div className="detail-body">
         <div className="detail-main">
-          <section className="detail-section">
+          <section className="detail-section" id="how-it-works">
             <h2>
               <span className="section-index">01</span>What it does
             </h2>
@@ -115,6 +117,7 @@ export default async function ExperimentPage(
             </p>
           </section>
 
+          {experiment.designDecisions ? <section className="detail-section"><h2>Design decisions</h2>{experiment.designDecisions.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section> : null}
           <InstallCard
             slug={experiment.slug}
             dependencies={experiment.dependencies}
@@ -185,12 +188,11 @@ export default async function ExperimentPage(
             </h2>
             <div className="source-head">
               <p>
-                {files.length} files, {totalLines} lines. Nothing private, no
-                configuration required.
+                {files.length} files, {totalLines} lines. The combined copy is a reference; save each file separately for use.
               </p>
               <CopyButton
                 text={bundle}
-                label="Copy all source"
+                label="Copy combined source"
                 title={`${experiment.name} source`}
               />
             </div>
@@ -229,7 +231,7 @@ export default async function ExperimentPage(
 
           {related.length > 0 ? (
             <div className="fact-card">
-              <h3>More {experiment.category}</h3>
+              <h3>{curated.length ? "Pairs well with" : `More ${experiment.category}`}</h3>
               <ul>
                 {related.map((entry) => (
                   <li key={entry.slug}>

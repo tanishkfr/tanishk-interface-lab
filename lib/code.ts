@@ -1,6 +1,6 @@
 import { createHighlighterCore, type HighlighterCore } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
-import githubLight from "shiki/themes/github-light.mjs";
+import githubLight from "shiki/themes/github-light-high-contrast.mjs";
 import langTsx from "shiki/langs/tsx.mjs";
 import langTs from "shiki/langs/typescript.mjs";
 import langCss from "shiki/langs/css.mjs";
@@ -37,7 +37,7 @@ export async function highlight(
   const highlighter = await getHighlighter();
   return highlighter.codeToHtml(code.trim(), {
     lang,
-    theme: "github-light",
+    theme: "github-light-high-contrast",
     structure: "inline",
   });
 }

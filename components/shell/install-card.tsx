@@ -30,7 +30,7 @@ export function InstallCard({
       <div className="install-card">
         <h3>Registry install</h3>
         <p className="hint">
-          Works with the shadcn CLI in any project that has a{" "}
+          Use the shadcn CLI in a configured React project with a{" "}
           <code>components.json</code>. The component lands in{" "}
           <code>components/lab/{slug}/</code> with its stylesheet beside it.
         </p>
@@ -45,10 +45,10 @@ export function InstallCard({
               <strong>{dependencies.join(", ")}</strong>.{" "}
             </>
           ) : (
-            <>No npm packages are installed — the component is self-contained. </>
+            <>No additional npm packages are declared for this component.  </>
           )}
           <>
-            Prefer manual copying? Every file is below under{" "}
+            For manual installation, copy each file into the same folder and preserve its relative imports. Files are below under{" "}
             <a href="#source">Source</a>.
           </>
         </p>

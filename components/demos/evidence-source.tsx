@@ -19,40 +19,9 @@ import type { DemoProps } from "./demo-host";
  */
 
 const SOURCES: EvidenceSourceData[] = [
-  {
-    id: "book",
-    title: "Designing Interfaces, 3rd ed.",
-    publisher: "O'Reilly Media",
-    excerpt:
-      "Progressive disclosure defers advanced or rarely used features to a secondary screen, making applications easier to learn and less error-prone. The pattern assumes the primary view can stand on its own, with defaults that are sensible before any configuration happens.",
-    location: "Ch. 4, p. 71",
-    status: "verified",
-    confidence: 0.86,
-    date: "2020",
-    href: "https://example.com/books/designing-interfaces",
-  },
-  {
-    id: "study",
-    title: "Staged settings: defaults and first-run setup",
-    publisher: "Field Methods Workshop",
-    excerpt:
-      "Across a semester of first-run observations, participants rarely opened the advanced panel; those who did typically arrived after a failed first attempt, which suggests the primary path was quietly doing the work of the secondary one.",
-    location: "§3.2",
-    status: "probable",
-    confidence: 0.61,
-    date: "2021",
-  },
-  {
-    id: "forum",
-    title: "How do you hide advanced options without hiding them?",
-    publisher: "UI Craft forum",
-    excerpt:
-      "One answer argues for keeping the advanced panel but dropping its link from the empty state, so the full set of options stays one deliberate step away instead of two screens deep.",
-    status: "unverified",
-    confidence: 0.28,
-    date: "2023",
-    href: "https://example.com/forum/advanced-options",
-  },
+  { id: "guide", title: "Sample interface guide", publisher: "Fictional Design Archive", excerpt: "A primary view can present common choices first and place less frequent options in a secondary panel.", location: "Sample chapter 4", status: "verified", confidence: 0.86 },
+  { id: "study", title: "Sample settings observation", publisher: "Fictional Research Studio", excerpt: "This invented observation illustrates how a source excerpt might appear in the component.", location: "Sample section 3", status: "probable", confidence: 0.61 },
+  { id: "forum", title: "Sample discussion of advanced options", publisher: "Fictional Interface Forum", excerpt: "This invented discussion illustrates a different source and confidence value.", status: "unverified", confidence: 0.28 },
 ];
 
 export default function EvidenceSourceDemo({ values }: DemoProps) {
@@ -79,8 +48,7 @@ export default function EvidenceSourceDemo({ values }: DemoProps) {
       <div className="dm-es-scroll">
         <article className="dm-es-answer">
           <p className="dm-es-question">
-            How is progressive disclosure described in the interface
-            literature?
+            How might progressive disclosure be described?
           </p>
 
           <header className="dm-es-answer-head">
@@ -91,14 +59,12 @@ export default function EvidenceSourceDemo({ values }: DemoProps) {
           </header>
 
           <p className="dm-es-text">
-            Most descriptions of progressive disclosure keep the primary
-            surface legible and defer rarely used options to a second step,
-            with sensible defaults standing in until someone asks for more.
-            The same accounts usually insist on a visible way back to the full
-            set, so the deferred options never read as removed.
+            In this fictional answer, common options appear first and less
+            frequent choices are available in a secondary panel.
           </p>
 
-          <p className="dm-es-sources-label">Sources</p>
+          <p className="dm-es-sources-label">Fictional sample sources</p>
+          <p className="dm-es-note">Status and confidence are illustrative values, not verification or relevance scores.</p>
 
           <div className="dm-es-sources">
             {sources.map((source, index) => (

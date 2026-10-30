@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CatalogBrowser } from "@/components/home/catalog-browser";
 import type { CatalogEntry } from "@/components/home/catalog-card";
 import {
@@ -38,10 +39,10 @@ export default function Home() {
           Interaction experiments for <em>real</em> interfaces.
         </h1>
         <p className="hero-lede">
-          Reusable behaviours, not just components. Each experiment here solves
-          one interaction problem properly — keyboard included, reduced motion
-          respected, and installable on its own.
+          Explore working interaction demos, adjust their behaviour, inspect the
+          source, and install the components in a React project.
         </p>
+        <p className="hero-start">New here? <Link href="/experiments/evidence-carousel">Start with Evidence Carousel →</Link></p>
         <div className="hero-meta">
           <span>
             <strong>{entries.length}</strong> experiments
