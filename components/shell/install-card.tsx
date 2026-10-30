@@ -35,7 +35,7 @@ export function InstallCard({
           <code>components/lab/{slug}/</code> with its stylesheet beside it.
         </p>
         <div className="install-cmd">
-          <code>{command}</code>
+          <code tabIndex={0} aria-label="Install command">{command}</code>
           <CopyButton text={command} label="Copy" title="install command" />
         </div>
         <p className="install-alt">

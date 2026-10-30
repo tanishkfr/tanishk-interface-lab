@@ -39,7 +39,7 @@ function TemplateCardPreview() {
       <span className="mt-2 block h-1.5 w-4/5 rounded-full bg-black/25" />
       <span className="mt-1.5 block h-1.5 w-3/5 rounded-full bg-black/10" />
       <span className="mt-1.5 block h-1.5 w-2/3 rounded-full bg-black/10" />
-      <span className="mt-2 block font-mono text-[9px] uppercase tracking-[0.12em] text-[#8c8c94]">
+      <span className="mt-2 block font-mono text-[9px] uppercase tracking-[0.12em] text-[#606068]">
         Field-note template
       </span>
     </div>
@@ -49,7 +49,7 @@ function TemplateCardPreview() {
 function DiffPreview() {
   return (
     <div className="rounded-lg border border-black/10 bg-white p-2.5 font-mono text-[10px] leading-relaxed">
-      <p className="text-[#8c8c94]">draft 3 · copy pass</p>
+      <p className="text-[#606068]">draft 3 · copy pass</p>
       <p className="mt-1.5 rounded bg-[#e9f4ee] px-1.5 py-0.5 text-[#1f5b3c]">
         + 4 punctuation fixes
       </p>
@@ -66,7 +66,7 @@ function DiffPreview() {
 function BreadcrumbPreview() {
   return (
     <div className="rounded-lg border border-black/10 bg-white p-2.5 text-[10px] text-[#5f5f68]">
-      <p className="font-mono uppercase tracking-[0.12em] text-[#8c8c94]">
+      <p className="font-mono uppercase tracking-[0.12em] text-[#606068]">
         Destination
       </p>
       <div className="mt-1.5 flex flex-wrap items-center gap-1">
@@ -78,7 +78,7 @@ function BreadcrumbPreview() {
           Coastline appendix
         </span>
       </div>
-      <p className="mt-2 text-[#8c8c94]">Draft 3 · 12 pages</p>
+      <p className="mt-2 text-[#606068]">Draft 3 · 12 pages</p>
     </div>
   );
 }
@@ -92,7 +92,7 @@ function ShareLinkPreview() {
           harbour.app/s/coastline-8f2k
         </span>
       </div>
-      <p className="mt-2 text-[10px] text-[#8c8c94]">
+      <p className="mt-2 text-[10px] text-[#606068]">
         Anyone with the link can read · expires in 14 days
       </p>
     </div>
@@ -113,7 +113,7 @@ function ReviewersPreview() {
         ))}
         <span className="ml-1 text-[10px] text-[#5f5f68]">3 reviewers</span>
       </div>
-      <p className="mt-2 text-[10px] text-[#8c8c94]">
+      <p className="mt-2 text-[10px] text-[#606068]">
         They will see this draft only, not the whole workspace.
       </p>
     </div>
@@ -268,7 +268,7 @@ export default function SpatialCommandDemo({ values }: DemoProps) {
             <p className="truncate text-[13px] font-semibold leading-tight tracking-[-0.01em]">
               Harbour
             </p>
-            <p className="truncate font-mono text-[9px] uppercase tracking-[0.12em] text-[#8c8c94]">
+            <p className="truncate font-mono text-[9px] uppercase tracking-[0.12em] text-[#606068]">
               Workspace · survey notes
             </p>
           </div>
@@ -278,8 +278,8 @@ export default function SpatialCommandDemo({ values }: DemoProps) {
         </span>
       </header>
 
-      <main className="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6">
-        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#8c8c94]">
+      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6">
+        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#606068]">
           Open documents
         </p>
         <ul className="mt-3 space-y-2">
@@ -309,7 +309,7 @@ export default function SpatialCommandDemo({ values }: DemoProps) {
                 <span className="block truncate text-[13px] font-medium">
                   {document.title}
                 </span>
-                <span className="mt-0.5 block truncate text-[11px] text-[#8c8c94]">
+                <span className="mt-0.5 block truncate text-[11px] text-[#606068]">
                   {document.meta}
                 </span>
               </span>
@@ -318,10 +318,10 @@ export default function SpatialCommandDemo({ values }: DemoProps) {
         </ul>
 
         <p className="mt-5 rounded-xl border border-dashed border-black/10 px-4 py-3 text-[12px] leading-relaxed text-[#5f5f68]">
-          Type to filter, move with the arrow keys, and watch the preview pane
-          describe the highlighted command before it runs.
+          Type to filter and use the arrow keys to inspect a command. This
+          sample records your selection without performing an action.
         </p>
-      </main>
+      </div>
 
       <footer className="flex-none border-t border-black/5 bg-white px-4 py-3 sm:px-6">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -332,7 +332,7 @@ export default function SpatialCommandDemo({ values }: DemoProps) {
           >
             Open command menu
           </button>
-          <span className="text-[11px] text-[#8c8c94]">
+          <span className="text-[11px] text-[#606068]">
             {hotkey
               ? "or press ⌘K / Ctrl+K"
               : "hotkey off in this preview — use the button"}
@@ -340,9 +340,9 @@ export default function SpatialCommandDemo({ values }: DemoProps) {
         </div>
         <p
           aria-live="polite"
-          className="mt-2 truncate font-mono text-[10px] uppercase tracking-[0.1em] text-[#8c8c94]"
+          className="mt-2 truncate font-mono text-[10px] uppercase tracking-[0.1em] text-[#606068]"
         >
-          {lastCommand ? `Last command — ${lastCommand}` : "No command run yet"}
+          {lastCommand ? `Sample selection — ${lastCommand}` : "No command selected yet"}
         </p>
       </footer>
 

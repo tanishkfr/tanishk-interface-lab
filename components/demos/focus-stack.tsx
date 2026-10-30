@@ -133,7 +133,7 @@ export default function FocusStackDemo({ values }: DemoProps) {
     <div className="flex h-full flex-col bg-[#f6f6f4] text-[#141418]">
       <header className="flex items-center justify-between gap-3 border-b border-black/10 bg-white px-4 py-3 sm:px-5">
         <div className="min-w-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#8c8c94]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#606068]">
             {kind === "review" ? "Review queue" : "Inbox"}
           </p>
           <h2 className="mt-0.5 truncate text-[15px] font-semibold tracking-[-0.01em]">
@@ -146,10 +146,10 @@ export default function FocusStackDemo({ values }: DemoProps) {
       </header>
 
       <div className="flex items-center justify-between gap-3 border-b border-black/5 bg-white/70 px-4 py-1.5 sm:px-5">
-        <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#8c8c94]">
+        <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#606068]">
           {kind === "review" ? "Oldest first" : "All mail"}
         </span>
-        <span className="font-mono text-[10px] text-[#8c8c94]">
+        <span className="font-mono text-[10px] text-[#606068]">
           ← → to move
         </span>
       </div>

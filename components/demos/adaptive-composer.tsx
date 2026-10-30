@@ -25,6 +25,9 @@ const SAMPLES: Record<string, string> = {
   task: "draft the outline; send the invite, then book the room",
   person: "ask Ana and Bo to review the style guide",
   link: "the notes live at index.studio/archive",
+  ambiguous: "review the plan tomorrow at 2pm; send the notes",
+  unsupported: "translate this note into Japanese",
+  incomplete: "meet Ana tomorrow",
 };
 
 const RECENT = [

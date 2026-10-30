@@ -199,7 +199,7 @@ export function CommandMenu({
   useEffect(() => {
     hotkeyHandlerRef.current = (event: KeyboardEvent) => {
       if (!hotkey) return;
-      if (!(event.metaKey || event.ctrlKey)) return;
+      if (!(event.metaKey || event.ctrlKey) || event.altKey || event.shiftKey) return;
       const char =
         typeof hotkey === "string" && hotkey.length > 0
           ? hotkey.slice(0, 1).toLowerCase()

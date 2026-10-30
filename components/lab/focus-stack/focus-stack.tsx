@@ -117,6 +117,7 @@ export function FocusStack({
       data-stacked={count > 1 ? "true" : "false"}
       style={{ "--fs-spread": `${spread}px` } as CSSProperties}
     >
+      <p className="fs-position" aria-live="polite">{active + 1} of {count} · Use arrow keys to change item</p>
       <div
         className="fs-tabs"
         role="tablist"

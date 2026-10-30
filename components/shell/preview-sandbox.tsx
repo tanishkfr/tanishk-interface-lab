@@ -57,12 +57,12 @@ export function PreviewSandbox({
             <div className="device-switch" role="group" aria-label="Preview size">
               {devices.map((option) => (
                 <button
-                  key={option === "desktop" ? "Wide" : "Narrow"}
+                  key={option}
                   type="button"
                   aria-pressed={device === option}
                   onClick={() => setDevice(option)}
                 >
-                  {option}
+                  {option === "desktop" ? "Wide" : "Narrow"}
                 </button>
               ))}
             </div>

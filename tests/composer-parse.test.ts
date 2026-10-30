@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  explainComposerInput,
   evaluateExpression,
   formatIntent,
   parseComposerInput,
@@ -98,4 +99,12 @@ test("labels are deterministic for the same input", () => {
   const first = parseComposerInput("draft the outline; send the invite");
   const second = parseComposerInput("draft the outline; send the invite");
   assert.deepEqual(first, second);
+});
+
+test("parser explains ambiguous, incomplete and unsupported input", () => {
+  assert.match(explainComposerInput("review the plan tomorrow at 2pm; send the notes") ?? "", /more than one/);
+  assert.match(explainComposerInput("meet Ana tomorrow") ?? "", /missing/);
+  assert.match(explainComposerInput("translate this note into Japanese") ?? "", /No supported/);
+  assert.equal(explainComposerInput("what is 2 + 2"), null);
+  assert.equal(explainComposerInput(""), null);
 });

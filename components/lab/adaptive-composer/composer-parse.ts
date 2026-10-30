@@ -404,6 +404,25 @@ const PERSON_RE =
  * The parser                                                           *
  * ------------------------------------------------------------------ */
 
+/** Explain likely ambiguity without changing the established parser result. */
+export function explainComposerInput(text: string): string | null {
+  const trimmed = text.trim();
+  if (!trimmed) return null;
+  const hasLink = Boolean(matchLink(trimmed));
+  const hasSchedule = Boolean((matchDay(trimmed) || matchTime(trimmed)) && MEETING_VERBS.test(trimmed));
+  const hasTasks = trimmed.split(TASK_SPLIT).filter((part) => part.trim()).length > 1;
+  if ((hasLink && (hasSchedule || hasTasks)) || (hasSchedule && hasTasks)) {
+    return "This may describe more than one action. Review the interpretation or split it into separate notes.";
+  }
+  const parsed = parseComposerInput(trimmed);
+  if (parsed.intent === "meeting" && (!parsed.payload || parsed.payload.intent !== "meeting" || !parsed.payload.meeting.day || !parsed.payload.meeting.time)) {
+    return "The meeting is missing a recognised day or time. Continue editing before relying on the details.";
+  }
+  if (parsed.intent === "text") return "No supported structure recognised yet. Keep this as a note or continue editing.";
+  if (parsed.intent === "math" && parsed.payload.intent === "math" && parsed.payload.math.result === null) return "This calculation could not be evaluated. Check the expression.";
+  return null;
+}
+
 export function parseComposerInput(text: string): {
   intent: ComposerIntent;
   confidence: number;

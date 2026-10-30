@@ -140,7 +140,7 @@ export default async function ExperimentPage(
             <h2 id="props-heading">
               <span className="section-index">04</span>Props
             </h2>
-            <table className="props-table">
+            <table className="props-table" tabIndex={0}>
               <caption className="sr-only">
                 Props accepted by {experiment.name}
               </caption>

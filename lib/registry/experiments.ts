@@ -460,6 +460,9 @@ export function Gallery() {
           options: [
             { value: "rest", label: "Rest" },
             { value: "link", label: "Link" },
+            { value: "ambiguous", label: "Ambiguous" },
+            { value: "unsupported", label: "Unsupported" },
+            { value: "incomplete", label: "Incomplete" },
             { value: "view", label: "View" },
             { value: "pressed", label: "Pressed" },
           ],

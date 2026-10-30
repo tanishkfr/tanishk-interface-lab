@@ -41,6 +41,9 @@ const SLUGS = [
   "adaptive-composer",
   "soft-snap",
 ];
+for (const slug of arg("additional", "").split(",").filter(Boolean)) {
+  if (!SLUGS.includes(slug)) SLUGS.push(slug);
+}
 
 const run = (command, args, cwd) =>
   execFileSync(command, args, {
