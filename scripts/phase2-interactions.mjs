@@ -36,6 +36,11 @@ try {
   await page.locator(".pa-main").click();
   await page.locator(".pa-action", { hasText: "Cancel" }).click();
   assert.match(await page.locator(".dm-pa-status").first().innerText(), /Simulation stopped/);
+  await page.locator(".pa-main").click();
+  await page.getByRole("button", { name: "Upload", exact: true }).click();
+  await page.waitForTimeout(1800);
+  assert.equal(await page.locator(".pa-root").getAttribute("data-phase"), "ready");
+  assert.match(await page.locator(".dm-pa-status").first().innerText(), /Ready to run the selected simulation/);
 
   await page.goto(`${base}/experiments/spatial-command`);
   await page.locator("#demo-root button").first().click();
@@ -56,6 +61,21 @@ try {
   await lens.focus();
   await page.keyboard.press("ArrowRight");
   assert.equal(await lens.getAttribute("data-focused"), "true");
+
+  await page.goto(`${base}/experiments/evidence-carousel`);
+  await page.waitForTimeout(500);
+  const viewport = page.locator(".lab-carousel-viewport");
+  await viewport.scrollIntoViewIfNeeded();
+  const box = await viewport.boundingBox();
+  assert.ok(box);
+  const startX = box.x + box.width * 0.75;
+  const startY = box.y + box.height * 0.5;
+  await page.mouse.move(startX, startY);
+  await page.mouse.down();
+  await page.mouse.move(startX - box.width * 0.7, startY, { steps: 10 });
+  await page.mouse.up();
+  await page.waitForTimeout(1000);
+  assert.notEqual((await page.locator(".lab-carousel-count").innerText()).trim(), "01\n/\n05");
   console.log("Phase 2 interaction checks passed");
 } finally {
   await browser.close();

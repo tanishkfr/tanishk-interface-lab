@@ -143,8 +143,8 @@ export function ProgressiveAction({
             type="button"
             className="pa-main"
             data-state={phase}
-            aria-disabled={phase !== "ready"}
-            onClick={phase === "ready" ? onRun : undefined}
+            aria-disabled={phase !== "ready" || !onRun}
+            onClick={phase === "ready" && onRun ? onRun : undefined}
           >
             <span className="pa-face">
               {phase === "done" ? <CheckIcon /> : null}

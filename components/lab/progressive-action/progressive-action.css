@@ -72,8 +72,15 @@
   color: #ffffff;
 }
 
-.pa-main[data-state="ready"]:hover {
+.pa-main[data-state="ready"][aria-disabled="false"]:hover {
   background: var(--pa-accent-deep);
+}
+
+.pa-main[data-state="ready"][aria-disabled="true"] {
+  background: #f2f2ef;
+  border-color: rgba(20, 20, 24, 0.18);
+  color: #5f5f68;
+  cursor: default;
 }
 
 .pa-main[data-state="running"],
@@ -108,7 +115,7 @@
   outline-offset: 2px;
 }
 
-.pa-main[data-state="ready"]:active {
+.pa-main[data-state="ready"][aria-disabled="false"]:active {
   transform: translateY(0.5px);
 }
 

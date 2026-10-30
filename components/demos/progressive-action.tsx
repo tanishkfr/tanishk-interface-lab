@@ -124,6 +124,7 @@ export default function ProgressiveActionDemo({ values }: DemoProps) {
     setLastActionKey(actionKey);
     setPhase("ready");
     setProgress(undefined);
+    setStatus("Ready to run the selected simulation.");
   }
 
   useEffect(() => {
