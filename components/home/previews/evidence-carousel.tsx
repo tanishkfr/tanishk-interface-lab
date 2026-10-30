@@ -10,7 +10,7 @@ export default function EvidenceCarouselPreview() {
   return (
     <div className="relative h-full w-full overflow-hidden bg-[#fbfbfa]">
       <div className="absolute inset-x-0 top-[16%]">
-        <div className="ml-[-56%] flex w-full gap-3 transition-[margin-left] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:ml-[-125%]">
+        <div className="ml-[-56%] flex w-full gap-3 transition-[margin-left] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:ml-[-125%] group-focus-within/preview:ml-[-125%]">
           <MiniPlate src="/archive/topographic-sheet.jpg" />
           <MiniPlate
             src="/archive/north-face-camp.jpg"
@@ -31,7 +31,7 @@ export default function EvidenceCarouselPreview() {
           </span>
         </span>
         <span className="h-[6px] flex-1 overflow-hidden rounded-full bg-[#141418]/12">
-          <span className="block h-full w-2/3 rounded-full bg-[#141418]/60 transition-transform duration-700 group-hover/preview:translate-x-[10%]" />
+          <span className="block h-full w-2/3 rounded-full bg-[#141418]/60 transition-transform duration-700 group-hover/preview:translate-x-[10%] group-focus-within/preview:translate-x-[10%]" />
         </span>
         <span className="font-mono text-[9px] tracking-[0.1em] text-[#8c8c94]">
           02/05

@@ -151,7 +151,7 @@ export default function LensRevealDemo({ values }: DemoProps) {
               aria-hidden="true"
             >
               <span className="flex flex-col items-center gap-1">
-                <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-black/10 bg-white/95 px-2 py-1 font-mono text-[8.5px] uppercase tracking-[0.14em] text-[#32119c] shadow-[0_6px_18px_-10px_rgba(20,20,24,0.5)]">
+                <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-1 font-mono text-[8.5px] uppercase tracking-[0.14em] text-[#32119c] shadow-[0_6px_18px_-10px_rgba(20,20,24,0.5)]">
                   <span className="flex gap-[2px]">
                     <span className="h-1 w-1 rounded-full bg-[#4f27e0]" />
                     <span className="h-1 w-1 rounded-full bg-[#4f27e0]" />
@@ -159,7 +159,7 @@ export default function LensRevealDemo({ values }: DemoProps) {
                   </span>
                   drag
                 </span>
-                <span className="whitespace-nowrap font-mono text-[8px] tracking-[0.08em] text-[#606068]">
+                <span className="whitespace-nowrap rounded bg-white px-1 py-0.5 font-mono text-[8px] tracking-[0.08em] text-[#44444c]">
                   move or drag to inspect
                 </span>
               </span>

@@ -51,12 +51,12 @@ export default function FocusStackPreview() {
         <MiniCard
           title="Draft 12"
           meta="needs review"
-          className="top-0 z-10 -translate-y-[13px] scale-[0.93] opacity-60 group-hover/preview:z-30 group-hover/preview:translate-y-[13px] group-hover/preview:scale-100 group-hover/preview:opacity-100"
+          className="top-0 z-10 -translate-y-[13px] scale-[0.93] opacity-60 group-hover/preview:z-30 group-focus-within/preview:z-30 group-hover/preview:translate-y-[13px] group-focus-within/preview:translate-y-[13px] group-hover/preview:scale-100 group-focus-within/preview:scale-100 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100"
         />
         <MiniCard
           title="Draft 11"
           meta="in review · 2 comments"
-          className="top-[13px] z-20 group-hover/preview:z-10 group-hover/preview:-translate-y-[13px] group-hover/preview:scale-[0.93] group-hover/preview:opacity-60"
+          className="top-[13px] z-20 group-hover/preview:z-10 group-focus-within/preview:z-10 group-hover/preview:-translate-y-[13px] group-focus-within/preview:-translate-y-[13px] group-hover/preview:scale-[0.93] group-focus-within/preview:scale-[0.93] group-hover/preview:opacity-60 group-focus-within/preview:opacity-60"
         />
         <MiniCard
           title="Draft 10"

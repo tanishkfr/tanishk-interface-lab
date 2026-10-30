@@ -27,10 +27,10 @@ export default function AgentReviewPreview() {
           </div>
 
           <div className="relative flex h-[38px] items-center border-t border-black/[0.06] px-3">
-            <span className="rounded-full bg-[#4f27e0] px-3 py-[4px] text-[9.5px] font-medium text-white transition-opacity duration-300 group-hover/preview:opacity-0">
+            <span className="rounded-full bg-[#4f27e0] px-3 py-[4px] text-[9.5px] font-medium text-white transition-opacity duration-300 group-hover/preview:opacity-0 group-focus-within/preview:opacity-0">
               Accept change
             </span>
-            <span className="absolute inset-y-0 left-3 flex translate-y-1 items-center gap-1.5 text-[9.5px] font-medium text-[#0f5c3c] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:translate-y-0 group-hover/preview:opacity-100">
+            <span className="absolute inset-y-0 left-3 flex translate-y-1 items-center gap-1.5 text-[9.5px] font-medium text-[#0f5c3c] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:translate-y-0 group-focus-within/preview:translate-y-0 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100">
               <span className="h-[7px] w-[7px] rounded-full bg-[#147a4e]" />
               Change accepted
             </span>

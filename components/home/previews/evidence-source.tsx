@@ -20,7 +20,7 @@ export default function EvidenceSourcePreview() {
             </span>
             <svg
               viewBox="0 0 12 12"
-              className="h-[10px] w-[10px] flex-none text-[#8c8c94] transition-transform duration-300 group-hover/preview:rotate-180"
+              className="h-[10px] w-[10px] flex-none text-[#8c8c94] transition-transform duration-300 group-hover/preview:rotate-180 group-focus-within/preview:rotate-180"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
@@ -31,9 +31,9 @@ export default function EvidenceSourcePreview() {
             </svg>
           </div>
 
-          <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:grid-rows-[1fr]">
+          <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:grid-rows-[1fr] group-focus-within/preview:grid-rows-[1fr]">
             <div className="overflow-hidden">
-              <div className="pt-2.5 opacity-0 transition-opacity duration-500 group-hover/preview:opacity-100">
+              <div className="pt-2.5 opacity-0 transition-opacity duration-500 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100">
                 <div className="h-[5px] w-11/12 rounded-full bg-[#141418]/[0.13]" />
                 <div className="mt-1.5 h-[5px] w-2/3 rounded-full bg-[#141418]/[0.13]" />
                 <div className="mt-3 flex items-center gap-2">

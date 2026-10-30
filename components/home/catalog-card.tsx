@@ -21,8 +21,8 @@ export function CatalogCard({ entry }: { entry: CatalogEntry }) {
   const Preview = PREVIEWS[entry.slug];
 
   return (
-    <article className="card">
-      <div className="card-preview group/preview" aria-hidden="true" inert>
+    <article className="card group/preview">
+      <div className="card-preview" aria-hidden="true" inert>
         <InView rootMargin="420px">
           {Preview ? <Preview /> : null}
         </InView>

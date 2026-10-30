@@ -669,3 +669,8 @@
   .catalog { gap: 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .card-go-arrow { transition: none; } }
+
+/* State previews remain immediate and still for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .card-preview *, .card-preview *::before, .card-preview *::after { transition-delay: 0s !important; animation: none !important; }
+}

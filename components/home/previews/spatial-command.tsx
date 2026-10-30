@@ -26,7 +26,7 @@ export default function SpatialCommandPreview() {
             <div className="relative mt-1 space-y-1">
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 top-0 z-10 h-6 rounded-md bg-[#4f27e0]/[0.07] ring-1 ring-[#4f27e0]/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:translate-y-[28px]"
+                className="absolute inset-x-0 top-0 z-10 h-6 rounded-md bg-[#4f27e0]/[0.07] ring-1 ring-[#4f27e0]/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:translate-y-[28px] group-focus-within/preview:translate-y-[28px]"
               />
               <MiniRow label="New document" hint="⌘N" />
               <MiniRow label="New from template" />
@@ -43,12 +43,12 @@ export default function SpatialCommandPreview() {
             aria-hidden="true"
             className="relative h-[96px] w-[68px] flex-none overflow-hidden rounded-md border border-black/10 bg-[#fbfbfa]"
           >
-            <div className="absolute inset-2 transition-opacity duration-500 group-hover/preview:opacity-0">
+            <div className="absolute inset-2 transition-opacity duration-500 group-hover/preview:opacity-0 group-focus-within/preview:opacity-0">
               <span className="block h-6 rounded-sm bg-[#4f27e0]/15" />
               <span className="mt-1.5 block h-1 w-4/5 rounded-full bg-black/20" />
               <span className="mt-1 block h-1 w-3/5 rounded-full bg-black/10" />
             </div>
-            <div className="absolute inset-2 opacity-0 transition-opacity duration-500 group-hover/preview:opacity-100">
+            <div className="absolute inset-2 opacity-0 transition-opacity duration-500 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100">
               <span className="block h-1 w-full rounded-full bg-black/20" />
               <span className="mt-1 block h-1 w-2/3 rounded-full bg-black/10" />
               <span className="mt-1.5 block h-3 w-3/5 rounded-sm bg-[#4f27e0]/15" />

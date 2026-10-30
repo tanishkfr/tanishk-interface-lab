@@ -1,55 +1,22 @@
-import { Fragment } from "react";
-
-/**
- * CATALOG PREVIEW — Trace Trail. The provenance line at rest, its
- * breadcrumb drawn as three nodes; on hover the compact step list
- * slides down over the line.
- */
-const NODES = ["You", "retriever", "draft-1"];
 const ROWS = [
-  { actor: "You", action: "Asked for a summary", at: "09:12" },
-  { actor: "retriever", action: "Pulled 4 passages", at: "09:12" },
-  { actor: "draft-1", action: "Wrote the summary", at: "09:13" },
+  { actor: "You", action: "Requested a summary" },
+  { actor: "Retriever", action: "Found 4 passages" },
+  { actor: "Draft", action: "Wrote the summary" },
 ];
 
 export default function TraceTrailPreview() {
   return (
-    <div className="relative h-full w-full overflow-hidden bg-[#f5f5f2] p-3">
-      <div className="flex items-center gap-2 rounded-lg border border-black/10 bg-white px-3 py-2 shadow-[0_1px_2px_rgba(20,20,24,0.04)] transition-opacity duration-300 group-hover/preview:opacity-0">
-        <span className="h-[7px] w-[7px] flex-none rounded-full bg-[#137a4e]" />
-        <span className="min-w-0 flex-1 truncate font-mono text-[9.5px] text-[#141418]/70">
-          asked → retrieved → drafted
-        </span>
-        <span className="flex-none font-mono text-[9px] text-[#8c8c94]">3 steps</span>
-      </div>
-      <div className="mt-7 flex items-center gap-1 px-1">
-        {NODES.map((node, index) => (
-          <Fragment key={node}>
-            <span className="min-w-0 flex-1 text-center">
-              <span className={`mx-auto block h-[7px] w-[7px] rounded-full ${index === NODES.length - 1 ? "bg-[#4f27e0]" : "bg-[#141418]/20"}`} />
-              <span className="mt-1.5 block truncate font-mono text-[8.5px] uppercase tracking-[0.08em] text-[#8c8c94]">{node}</span>
-            </span>
-            {index < NODES.length - 1 ? <span className="mb-4 h-px w-3 flex-none bg-[#141418]/15" /> : null}
-          </Fragment>
-        ))}
-      </div>
-      <div className="pointer-events-none absolute inset-x-3 top-3 z-10 -translate-y-1 opacity-0 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/preview:translate-y-0 group-hover/preview:opacity-100">
-        <div className="rounded-lg border border-black/10 bg-white p-2.5 shadow-[0_12px_26px_-16px_rgba(20,20,24,0.4)]">
-          <div className="flex items-center gap-2 border-b border-black/5 pb-2">
-            <span className="h-[7px] w-[7px] rounded-full bg-[#137a4e]" />
-            <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#8c8c94]">activity</span>
-            <span className="ml-auto font-mono text-[9px] text-[#8c8c94]">3 steps</span>
-          </div>
-          <ul className="mt-2 space-y-[7px]">
-            {ROWS.map((row, index) => (
-              <li key={row.actor} className="flex items-center gap-2">
-                <span className={`h-[5px] w-[5px] flex-none rounded-full ${index === ROWS.length - 1 ? "bg-[#137a4e]" : "bg-[#141418]/25"}`} />
-                <span className="font-mono text-[9px] font-semibold text-[#26262c]">{row.actor}</span>
-                <span className="min-w-0 flex-1 truncate text-[10px] text-[#5f5f68]">{row.action}</span>
-                <span className="font-mono text-[8.5px] text-[#b0b0b6]">{row.at}</span>
-              </li>
-            ))}
-          </ul>
+    <div className="flex h-full items-center justify-center overflow-hidden bg-[#f5f5f2] px-5">
+      <div className="w-full max-w-[300px] rounded-xl border border-black/10 bg-white p-3.5 shadow-[0_1px_3px_rgba(20,20,24,0.05)]">
+        <p className="mb-3 font-mono text-[9px] uppercase tracking-[.1em] text-[#606068]">Summary · provenance</p>
+        <div className="flex items-center gap-2 rounded-md border border-black/10 bg-[#f8f8f6] px-2.5 py-2">
+          <span className="h-2 w-2 flex-none rounded-full bg-[#137a4e]" />
+          <span className="min-w-0 flex-1 truncate text-[10px] font-medium text-[#26262c]">Requested → retrieved → drafted</span>
+          <span className="flex-none font-mono text-[9px] text-[#606068]">3 steps</span>
+          <span className="text-[10px] text-[#606068] transition-transform duration-300 group-hover/preview:rotate-180 group-focus-within/preview:rotate-180">⌄</span>
+        </div>
+        <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 group-hover/preview:grid-rows-[1fr] group-focus-within/preview:grid-rows-[1fr]">
+          <div className="overflow-hidden"><ol className="space-y-2 px-1 pb-0.5 pt-3">{ROWS.map((row, index) => <li key={row.actor} className="flex items-center gap-2 text-[10px]"><span className={`h-1.5 w-1.5 rounded-full ${index === 2 ? "bg-[#4f27e0]" : "bg-[#a3a3ab]"}`} /><span className="w-[58px] font-semibold text-[#26262c]">{row.actor}</span><span className="text-[#606068]">{row.action}</span></li>)}</ol></div>
         </div>
       </div>
     </div>

@@ -27,10 +27,10 @@ export default function AdaptiveComposerPreview() {
         </div>
 
         <div className="mt-2 flex gap-1.5">
-          <span className="translate-y-1 rounded-md bg-white px-2 py-[3px] font-mono text-[9px] tracking-[0.06em] text-[#32119c] opacity-0 shadow-[0_1px_2px_rgba(20,20,24,0.05)] transition-all duration-500 ease-out group-hover/preview:translate-y-0 group-hover/preview:opacity-100">
+          <span className="translate-y-1 rounded-md bg-white px-2 py-[3px] font-mono text-[9px] tracking-[0.06em] text-[#32119c] opacity-0 shadow-[0_1px_2px_rgba(20,20,24,0.05)] transition-all duration-500 ease-out group-hover/preview:translate-y-0 group-focus-within/preview:translate-y-0 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100">
             Tue 14:30
           </span>
-          <span className="translate-y-1 rounded-md bg-white px-2 py-[3px] font-mono text-[9px] tracking-[0.06em] text-[#32119c] opacity-0 shadow-[0_1px_2px_rgba(20,20,24,0.05)] transition-all delay-75 duration-500 ease-out group-hover/preview:translate-y-0 group-hover/preview:opacity-100">
+          <span className="translate-y-1 rounded-md bg-white px-2 py-[3px] font-mono text-[9px] tracking-[0.06em] text-[#32119c] opacity-0 shadow-[0_1px_2px_rgba(20,20,24,0.05)] transition-all delay-75 duration-500 ease-out group-hover/preview:translate-y-0 group-focus-within/preview:translate-y-0 group-hover/preview:opacity-100 group-focus-within/preview:opacity-100">
             45 min
           </span>
         </div>
