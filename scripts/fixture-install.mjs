@@ -13,7 +13,7 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { cp, mkdtemp, readdir } from "node:fs/promises";
+import { cp, mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { tmpdir } from "node:os";
@@ -86,6 +86,32 @@ async function main() {
   );
   console.log(`\nfiles installed: ${files.length}`);
   for (const file of files) console.log(`  · src/components/lab/${file}`);
+
+  // Mount the new experiments when requested, so the Vite build bundles
+  // their components and styles as well as type-checking installed files.
+  const examples = {
+    "undo-window": {
+      imports: 'import { UndoWindow } from "@/components/lab/undo-window/undo-window";',
+      element: '<UndoWindow entry={{ id: "fixture", label: "Sample", expiresAt: 4102444800000, status: "available" }} onUndo={() => {}} onExpire={() => {}} />',
+    },
+    "permission-scope": {
+      imports: 'import { PermissionScopeInspector } from "@/components/lab/permission-scope/permission-scope";',
+      element: '<PermissionScopeInspector request={{ id: "fixture", requester: "Assistant", purpose: "Review notes", resource: "Selected notes", requestedAccess: "read", denialEffect: "No access" }} status="request" onGrant={() => {}} onDeny={() => {}} />',
+    },
+    "failure-recovery": {
+      imports: 'import { FailureRecoverySurface } from "@/components/lab/failure-recovery/failure-recovery";',
+      element: '<FailureRecoverySurface title="Fixture export" phase="idle" steps={[{ id: "prepare", label: "Prepare", status: "pending" }]} preserved="No export started." retrySafety="unavailable" rollbackAvailable={false} />',
+    },
+  };
+  const mounted = installed.filter((slug) => Object.hasOwn(examples, slug));
+  if (mounted.length) {
+    const source = `${mounted.map((slug) => examples[slug].imports).join("\n")}\n\nexport function AdditionalExamples() {\n  return <>${mounted.map((slug) => examples[slug].element).join("\n")}</>;\n}\n`;
+    await writeFile(join(root, "src", "additional-examples.tsx"), source);
+    const appPath = join(root, "src", "App.tsx");
+    const app = await readFile(appPath, "utf8");
+    await writeFile(appPath, `import { AdditionalExamples } from "./additional-examples";\n${app.replace("      <h1", "      <AdditionalExamples />\n      <h1")}`);
+    console.log(`Mounted for consumer build: ${mounted.join(", ")}`);
+  }
 
   console.log("\nbuilding the fixture (tsc --noEmit && vite build)…");
   const output = run("npm", ["run", "build"], root);

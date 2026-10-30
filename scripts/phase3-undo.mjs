@@ -38,5 +38,17 @@ try {
   assert.equal(await undo.count(), 0);
   await page.locator(".ud-archive summary").click();
   assert.equal(await page.locator(".ud-archive").getByRole("button", { name: "Restore" }).count(), 1);
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.reload();
+  for (const name of ["Atlas research", "Field notes", "Launch checklist"]) {
+    await page.getByRole("button", { name: `Archive ${name}` }).click();
+  }
+  await page.locator(".ud-archive summary").click();
+  const panel = page.getByRole("region", { name: "Project archive demo" });
+  await panel.evaluate((element) => { element.scrollTop = 0; });
+  await panel.focus();
+  await page.keyboard.press("PageDown");
+  await page.waitForTimeout(350);
+  assert.ok(await panel.evaluate((element) => element.scrollTop > 0));
   console.log("Undo Window interaction checks passed");
 } finally { await browser.close(); }

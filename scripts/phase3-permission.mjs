@@ -12,6 +12,11 @@ try {
   await page.locator(".ps-details summary").focus();
   await page.keyboard.press("Enter");
   assert.match(await page.locator(".ps-details").innerText(), /host must enforce/);
+  await page.getByRole("radio", { name: "Read and move", exact: true }).check();
+  await page.getByRole("radio", { name: "This session" }).check();
+  await page.getByRole("button", { name: "Whole folder" }).click();
+  assert.equal(await page.getByRole("radio", { name: "Read only" }).isChecked(), true);
+  assert.equal(await page.getByRole("radio", { name: "Once", exact: true }).isChecked(), true);
   await page.getByRole("button", { name: "Deny", exact: true }).focus();
   await page.keyboard.press("Enter");
   assert.match(await page.locator(".ps-result").innerText(), /denied/i);
@@ -28,8 +33,8 @@ try {
   await page.getByRole("button", { name: "Allow selected access" }).click();
   await page.getByRole("button", { name: "Simulate expiry" }).click();
   assert.match(await page.locator(".ps-result").innerText(), /expired/i);
-  await page.getByRole("button", { name: "Whole folder" }).click();
-  assert.match(await page.locator(".ps-summary").innerText(), /All files/);
+  await page.getByRole("button", { name: "Selected files" }).click();
+  assert.match(await page.locator(".ps-summary").innerText(), /Three selected notes/);
   assert.equal(await page.getByRole("radio", { name: "Read only" }).isChecked(), true);
   await page.getByRole("button", { name: "Read only", exact: true }).click();
   assert.equal(await page.getByRole("radio", { name: "Read and move", exact: true }).count(), 0);

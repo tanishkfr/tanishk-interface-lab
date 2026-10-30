@@ -20,7 +20,8 @@ export type PermissionScopeProps = {
 
 /** Presentation only. Authorization and expiry enforcement belong to the host. */
 export function PermissionScopeInspector(props: PermissionScopeProps) {
-  return <ScopePanel key={props.request.id} {...props} />;
+  const scopeKey = JSON.stringify([props.request.id, props.request.resource, props.request.requestedAccess]);
+  return <ScopePanel key={scopeKey} {...props} />;
 }
 
 function ScopePanel({ request, status, grant, onGrant, onDeny, onRevoke }: PermissionScopeProps) {

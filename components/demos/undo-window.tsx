@@ -57,7 +57,7 @@ export default function UndoWindowDemo({ values }: DemoProps) {
     }, 350);
   };
   return (
-    <div className="ud-root" ref={root}>
+    <div className="ud-root" ref={root} role="region" aria-label="Project archive demo" tabIndex={0}>
       <header className="ud-head"><div><p>WORKSPACE / PROJECTS</p><h2>Active projects</h2></div><span>{active.length} active</span></header>
       <p className="ud-intro">Archive a project to clear your workspace. This sample keeps an archive for later recovery.</p>
       <ul className="ud-list">{active.map((project) => <li key={project.id}><div><strong>{project.name}</strong><span>{project.detail}</span></div><button type="button" disabled={entry?.status === "pending"} onClick={(event) => archiveProject(project, event.detail === 0)}>Archive<span className="ud-sr"> {project.name}</span></button></li>)}</ul>

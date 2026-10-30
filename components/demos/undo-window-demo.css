@@ -1,4 +1,5 @@
-.ud-root { max-width:650px; width:100%; margin:auto; padding:26px; background:#fff; border:1px solid #dededc; border-radius:16px; color:#17171b; }
+.ud-root { max-width:650px; width:100%; height:100%; overflow-y:auto; margin:auto; padding:26px; background:#fff; border:1px solid #dededc; border-radius:16px; color:#17171b; }
+.ud-root:focus-visible { outline:2px solid #4f27e0; outline-offset:-3px; }
 .ud-head { display:flex; justify-content:space-between; align-items:end; gap:12px; }
 .ud-head p { margin:0; font:600 10px/1.4 ui-monospace,monospace; letter-spacing:.1em; color:#625c70; }
 .ud-head h2 { margin:5px 0 0; font-size:23px; line-height:1.15; letter-spacing:-.025em; }
