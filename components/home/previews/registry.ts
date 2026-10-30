@@ -19,6 +19,7 @@ import InlineDiffPreview from "./inline-diff";
 import LensRevealPreview from "./lens-reveal";
 import UndoWindowPreview from "./undo-window";
 import PermissionScopePreview from "./permission-scope";
+import FailureRecoveryPreview from "./failure-recovery";
 
 /**
  * CATALOG PREVIEWS — each card gets a lightweight window into its
@@ -45,4 +46,5 @@ export const PREVIEWS: Record<string, ComponentType> = {
   "lens-reveal": LensRevealPreview,
   "undo-window": UndoWindowPreview,
   "permission-scope": PermissionScopePreview,
+  "failure-recovery": FailureRecoveryPreview,
 };

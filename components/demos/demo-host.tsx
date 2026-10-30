@@ -48,6 +48,7 @@ const DEMOS: Record<string, ComponentType<DemoProps>> = {
   "lens-reveal": dynamic(() => import("@/components/demos/lens-reveal")),
   "undo-window": dynamic(() => import("@/components/demos/undo-window")),
   "permission-scope": dynamic(() => import("@/components/demos/permission-scope")),
+  "failure-recovery": dynamic(() => import("@/components/demos/failure-recovery")),
 };
 
 export function DemoHost({ slug, values }: { slug: string; values: Record<string, PreviewValue> }) {

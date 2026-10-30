@@ -2074,6 +2074,41 @@ export function Publish() {
     pairsWith: ["agent-review", "trace-trail"],
     order: 18,
   },
+  {
+    slug: "failure-recovery",
+    name: "Failure Recovery Surface",
+    tagline: "Understand what completed and choose how to recover.",
+    summary: "Presents a host-owned multi-step operation, its confirmed progress, preserved work and available recovery actions. Retry safety and rollback availability come from the host, which must prevent duplicate work and validate each result.",
+    category: "Systems",
+    tags: ["recovery", "failure", "operations"],
+    status: "experimental",
+    tech: ["React", "TypeScript"],
+    dependencies: [],
+    files: [
+      { path: "components/lab/failure-recovery/failure-recovery.tsx", kind: "component", type: "registry:component" },
+      { path: "components/lab/failure-recovery/failure-recovery.css", kind: "styles", type: "registry:file" },
+    ],
+    preview: { devices: ["desktop", "mobile"], controls: [
+      { kind: "choice", id: "failure", label: "Simulated failure", options: [{ value: "upload", label: "Upload" }, { value: "package", label: "Package" }, { value: "none", label: "None" }] },
+      { kind: "toggle", id: "retryFail", label: "Simulate retry failure" },
+      { kind: "toggle", id: "confirmRetry", label: "Retry needs confirmation" },
+      { kind: "toggle", id: "rollback", label: "Rollback available" },
+    ], defaults: { failure: "upload", retryFail: false, confirmRetry: false, rollback: true }, hint: "Start the sample export. If a step fails, inspect the preserved work and retry or roll back." },
+    props: [
+      { name: "phase / steps", type: "RecoveryPhase / RecoveryStep[]", description: "Host-confirmed operation phase and individual step states." },
+      { name: "preserved", type: "string", description: "Host-provided explanation of preserved work and whether a partial result is usable." },
+      { name: "retrySafety / rollbackAvailable", type: "RetrySafety / boolean", description: "Host-provided recovery policy. Confirmation is requested when retry safety is uncertain." },
+      { name: "onStart / onRetry / onRollback", type: "callbacks", description: "Requests operations; the host executes, deduplicates and confirms outcomes." },
+    ],
+    accessibility: ["Step states are written as words and do not rely on color alone.", "Status changes are announced politely, and keyboard focus stays on the recovery surface after an action.", "No animation is required to understand progress or recovery."],
+    usage: `import { FailureRecoverySurface } from "@/components/lab/failure-recovery/failure-recovery";
+
+<FailureRecoverySurface title="Export workspace" phase={phase} steps={steps} preserved={preserved} retrySafety="safe" rollbackAvailable={canRollback} onStart={start} onRetry={retryStep} onRollback={rollback} />`,
+    demoNote: "Run a fictional export. Change the failure and retry controls to inspect recovery without creating or uploading files.",
+    designDecisions: ["A partial failure needs more context than a single error message. Step states and a plain-language summary show what is preserved and what remains unfinished.", "The host determines whether retry or rollback is safe. This surface requests actions and displays confirmed results; it does not perform or deduplicate operations."],
+    pairsWith: ["progressive-action", "trace-trail"],
+    order: 19,
+  },
 ];
 
 export const experimentCount = experiments.length;

@@ -1,0 +1,22 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import { runInNewContext } from "node:vm";
+import ts from "typescript";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+const require = createRequire(import.meta.url);
+const source = readFileSync(new URL("../components/lab/failure-recovery/failure-recovery.tsx", import.meta.url), "utf8");
+const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 } }).outputText;
+const exports = {};
+runInNewContext(code, { exports, require: (name) => name.endsWith(".css") ? {} : require(name) });
+const { FailureRecoverySurface } = exports;
+test("recovery describes host state without executing work", () => {
+  let calls = 0;
+  const html = renderToStaticMarkup(React.createElement(FailureRecoverySurface, { title: "Export", phase: "failed", steps: [{ id: "upload", label: "Upload", status: "failed" }], preserved: "Package retained", retrySafety: "confirm", rollbackAvailable: false, onRetry() { calls++; } }));
+  assert.equal(calls, 0);
+  assert.match(html, /Package retained/);
+  assert.match(html, /Retry requires confirmation/);
+  assert.match(html, /Rollback unavailable/);
+});
