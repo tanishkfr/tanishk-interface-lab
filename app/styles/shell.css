@@ -642,3 +642,30 @@
 @media (hover: none) { .card-go { opacity: 1; transform: none; } }
 .hero-start { margin: 20px 0 0; font-size: var(--lab-text-sm); color: var(--lab-muted); }
 .hero-start a { color: var(--lab-accent-deep); text-underline-offset: 3px; }
+
+/* Phase 4: preserve the preview-first gallery while giving its hierarchy more room. */
+.hero { padding-block: clamp(64px, 9vw, 116px) clamp(34px, 5vw, 58px); }
+.hero-title { max-width: 19ch; font-size: clamp(2.5rem, 5.6vw, 5.1rem); letter-spacing: -0.045em; line-height: 1; }
+.hero-lede { max-width: 50ch; margin-top: 26px; }
+.hero-meta { margin-top: 38px; padding-top: 20px; gap: 12px 30px; }
+.hero-meta strong { color: var(--lab-accent-deep); }
+.catalog-bar { padding-block: 14px 16px; margin-bottom: 26px; }
+.chip { padding: 9px 14px; background: var(--lab-surface); }
+.chip[aria-pressed="true"] { background: var(--lab-accent-deep); border-color: var(--lab-accent-deep); }
+.catalog { align-items: stretch; gap: 22px; }
+.card { display: flex; flex-direction: column; }
+.card-preview { flex: none; }
+.card-strip { display: flex; flex-direction: column; flex: 1; padding: 18px 18px 17px; }
+.card-head { align-items: flex-start; }
+.card-name { font-size: 1.0625rem; line-height: 1.25; }
+.card-cat { padding-top: 4px; }
+.card-line { margin-top: 8px; }
+.card-go { margin-top: auto; padding-top: 16px; opacity: 1; transform: none; }
+.card:hover .card-go-arrow { transform: translateX(3px); }
+.card-go-arrow { transition: transform 180ms var(--lab-ease-out); }
+@media (max-width: 40rem) {
+  .hero { padding-block: 54px 36px; }
+  .hero-title { font-size: clamp(2.35rem, 9vw, 3.4rem); }
+  .catalog { gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .card-go-arrow { transition: none; } }

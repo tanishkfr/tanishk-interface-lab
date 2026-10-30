@@ -6,7 +6,7 @@ import { CatalogCard, type CatalogEntry } from "./catalog-card";
 
 /**
  * CATALOG BROWSER — category filtering, and nothing more complicated
- * than that. Sixteen experiments do not need search.
+ * than that. The collection does not need search.
  */
 export function CatalogBrowser({
   entries,
