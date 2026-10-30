@@ -17,6 +17,7 @@ import TraceTrailPreview from "./trace-trail";
 import FocusStackPreview from "./focus-stack";
 import InlineDiffPreview from "./inline-diff";
 import LensRevealPreview from "./lens-reveal";
+import UndoWindowPreview from "./undo-window";
 
 /**
  * CATALOG PREVIEWS — each card gets a lightweight window into its
@@ -41,4 +42,5 @@ export const PREVIEWS: Record<string, ComponentType> = {
   "focus-stack": FocusStackPreview,
   "inline-diff": InlineDiffPreview,
   "lens-reveal": LensRevealPreview,
+  "undo-window": UndoWindowPreview,
 };

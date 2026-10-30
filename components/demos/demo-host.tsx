@@ -46,6 +46,7 @@ const DEMOS: Record<string, ComponentType<DemoProps>> = {
   "focus-stack": dynamic(() => import("@/components/demos/focus-stack")),
   "inline-diff": dynamic(() => import("@/components/demos/inline-diff")),
   "lens-reveal": dynamic(() => import("@/components/demos/lens-reveal")),
+  "undo-window": dynamic(() => import("@/components/demos/undo-window")),
 };
 
 export function DemoHost({ slug, values }: { slug: string; values: Record<string, PreviewValue> }) {

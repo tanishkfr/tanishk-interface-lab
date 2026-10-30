@@ -2000,6 +2000,48 @@ export function Publish() {
       "Three lenses over one sample surface: review annotations, a revised layout, and live debug values. Drag the lens, or focus it and use the arrow keys.",
     order: 16,
   },
+  {
+    slug: "undo-window",
+    name: "Undo Window",
+    tagline: "A short recovery window for reversible actions.",
+    summary: "Shows the outcome of a recent action and offers a time-limited request to reverse it. The host owns persistence, the deadline and the result of restoration. The quick undo is one active opportunity; provide a separate recovery route for important actions.",
+    category: "Systems",
+    tags: ["recovery", "undo", "actions"],
+    status: "experimental",
+    tech: ["React", "TypeScript"],
+    dependencies: [],
+    files: [
+      { path: "components/lab/undo-window/undo-window.tsx", kind: "component", type: "registry:component" },
+      { path: "components/lab/undo-window/undo-window.css", kind: "styles", type: "registry:file" },
+      { path: "components/lab/undo-window/undo-policy.ts", kind: "logic", type: "registry:file" },
+    ],
+    preview: {
+      devices: ["desktop", "mobile"],
+      controls: [
+        { kind: "choice", id: "duration", label: "Undo window", options: [{ value: "10", label: "10 sec" }, { value: "30", label: "30 sec" }, { value: "60", label: "60 sec" }] },
+        { kind: "toggle", id: "fail", label: "Simulate restore failure" },
+      ],
+      defaults: { duration: "30", fail: false },
+      hint: "Archive a project, then choose Undo or restore it from the archive.",
+    },
+    props: [
+      { name: "entry", type: "UndoEntry | null", description: "Host-owned action identity, label, absolute deadline and confirmed status. Use a new id for each action." },
+      { name: "onUndo", type: "(id: string) => void", description: "Requests restoration. The host reports pending, restored or failed through entry." },
+      { name: "onExpire", type: "(id: string) => void", description: "Notifies the host that the deadline passed; the host validates and finalizes the action." },
+    ],
+    accessibility: [
+      "The action and result are announced in a polite status region; the remaining time is not repeatedly announced.",
+      "Undo is a keyboard-operable button with a visible focus state. Provide an independent recovery route for consequential actions.",
+      "The surface uses no motion to convey its state.",
+    ],
+    usage: `import { UndoWindow } from "@/components/lab/undo-window/undo-window";
+
+<UndoWindow entry={recentAction} onUndo={requestRestore} onExpire={finalizeAction} />`,
+    demoNote: "Archive a fictional project, then undo it. Change the simulated result to inspect failure and use the archive to restore later.",
+    designDecisions: ["A reversible action can proceed without a blocking confirmation when recovery is straightforward. The quick window is not the only recovery path: the sample archive remains available after it ends.", "Only one quick-undo target is active. A newer archive supersedes the earlier target; the host remains responsible for actual persistence and recovery."],
+    pairsWith: ["hold-to-confirm", "progressive-action"],
+    order: 17,
+  },
 ];
 
 export const experimentCount = experiments.length;
