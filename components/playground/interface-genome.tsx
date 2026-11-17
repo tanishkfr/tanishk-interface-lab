@@ -11,7 +11,7 @@ type Genome = {
   density: number;
   hierarchy: number;
   navigation: "Top" | "Side";
-  layout: "Journal" | "Gallery";
+  layout: "Journal" | "Gallery" | "Index";
   generation: number;
 };
 const INITIAL: Genome = {
@@ -72,8 +72,11 @@ export default function InterfaceGenome() {
       density: Math.round(Math.random() * 70 + 15),
       hierarchy: Math.round(Math.random() * 80 + 20),
       navigation: Math.random() > 0.5 ? "Top" : "Side",
-      layout: Math.random() > 0.5 ? "Journal" : "Gallery",
-      generation: Math.max(g.generation, ...history.map(h => h.generation)) + 1,
+      layout: (["Journal", "Gallery", "Index"] as const)[
+        Math.floor(Math.random() * 3)
+      ],
+      generation:
+        Math.max(g.generation, ...history.map((h) => h.generation)) + 1,
     };
     setHistory((h) => [...h.slice(-11), n]);
     setG(n);
@@ -232,7 +235,7 @@ export default function InterfaceGenome() {
             />
             <Segments
               label="Composition"
-              options={["Journal", "Gallery"]}
+              options={["Journal", "Gallery", "Index"]}
               value={g.layout}
               onChange={(v) => update("layout", v)}
             />
@@ -255,7 +258,48 @@ export default function InterfaceGenome() {
               />{" "}
               Compare with preserved variant
             </label>
-            {saved.length > 0 && <label className="instrument-field">Preserved variants<select value={preserved} onChange={e => setPreserved(Number(e.target.value))}>{saved.map((variant, i) => <option key={i} value={i}>Variant {saved.length - i} · generation {variant.generation}</option>)}</select></label>}
+            {saved.length > 0 && (
+              <label className="instrument-field">
+                Preserved variants
+                <select
+                  value={preserved}
+                  onChange={(e) => setPreserved(Number(e.target.value))}
+                >
+                  {saved.map((variant, i) => (
+                    <option key={i} value={i}>
+                      Variant {saved.length - i} · generation{" "}
+                      {variant.generation}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+            <button
+              className="lab-button secondary"
+              disabled={!saved.length}
+              onClick={() => {
+                const parent = saved[preserved];
+                if (!parent) return;
+                const child: Genome = {
+                  density: Math.round((g.density + parent.density) / 2),
+                  hierarchy: Math.round((g.hierarchy + parent.hierarchy) / 2),
+                  navigation: parent.navigation,
+                  layout: g.layout,
+                  generation:
+                    Math.max(
+                      g.generation,
+                      ...history.map((h) => h.generation),
+                    ) + 1,
+                };
+                setG(child);
+                setHistory((h) => [...h.slice(-11), child]);
+                setStatus(
+                  `Generation ${child.generation} crossbred: averaged density and hierarchy, inherited preserved navigation and current composition.`,
+                );
+              }}
+            >
+              Crossbreed with preserved variant
+            </button>
             <label className="instrument-field">
               Previous mutations
               <select

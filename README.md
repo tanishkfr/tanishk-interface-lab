@@ -1,13 +1,13 @@
 # LAB/ — an internet playground
 
-V2 expands the preserved component library into seven individually art-directed browser prototypes. The creative direction and spacing system are documented in `DESIGN.md`; product constraints are in `PRODUCT.md`.
+V2 expands the preserved component library into eleven individually art-directed browser prototypes. The unreasonable pass and its verification are documented in `UNREASONABLE_PASS.md`; creative direction is in `DESIGN.md` and product constraints in `PRODUCT.md`.
 
 - `/`: kinetic wordmark, editorial gallery, searchable index, filters, and surprise navigation.
 - `/experiments`: larger experiments and the interactive essay.
 - `/tools`: Motion Foundry and Vector Kitchen.
 - `/components`: the original 19 components with live previews and documentation.
 - `/products`: accurately labeled product prototypes and release information.
-- `/play/<slug>`: the seven browser experiences, loaded independently.
+- `/play/<slug>`: eleven browser experiences, loaded independently.
 - `/experiments/<component>` and `/r/<component>.json`: all original URLs preserved.
 
 New prototype state and uploaded data remain in the browser. Data Matter exports SVG and JSON; Type Has Mass exports SVG with its font embedded; Browser Terrarium exports PNG; Interface Genome exports rules; Motion Foundry exports CSS and spring settings; Vector Kitchen exports editable SVG and reloadable JSON recipes; the essay exports visit observations. These are functioning prototypes, not published plugins or completed versions of every ambitious feature in the brief.
@@ -26,9 +26,11 @@ node scripts/audit-v2.mjs
 node scripts/fixture-install.mjs --base-url=http://127.0.0.1:3300
 ```
 
+The refinement adds `scripts/verify-unreasonable.mjs` for the new experience flows and actual downloads, and `scripts/verify-preview-pass.mjs` for all 19 component workbenches. Both accept `LAB_QA_URL`; their reports live in `output/unreasonable/`.
+
 The V2 browser scripts use installed Chrome and default to port 3300. `verify-v2.mjs` accepts `LAB_QA_URL` to change the origin. Captures, checks, and verified downloads are written under `output/lab-v2/`. The axe script uses the installed axe-core copy. Native Windows build-worker instability required the documented Webpack build path with bounded workers in this environment; no runtime library was added.
 
-Fonts are self-hosted original Google Fonts sources: Bricolage Grotesque, Instrument Sans, and IBM Plex Mono. Their OFL licenses ship beside them in `public/fonts/`. Research retrievals and screenshots record partial loads and bot-check limitations rather than claiming full inspection.
+Typography pairs [Gulax](https://gitlab.com/velvetyne/Gulax) from Velvetyne with [Apfel Grotezk](https://www.collletttivo.it/typefaces/apfel-grotezk) from Collletttivo. IBM Plex Mono is retained for code and measurements. Fonts are self-hosted, and OFL licenses ship in `public/fonts/`. Earlier Google Fonts assets remain for the checkpoint but are no longer loaded by the layout. Research retrievals and screenshots record partial loads rather than claiming full inspection.
 
 ## Original component library
 

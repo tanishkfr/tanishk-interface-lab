@@ -1,5 +1,18 @@
 # V2 reference notes
 
+## Unreasonable pass: independent typography and interaction research
+
+The current pairing is **Gulax + Apfel Grotezk**, rather than the initial pass's Google Fonts pairing below. [Gulax's official repository](https://gitlab.com/velvetyne/Gulax) identifies Morgan Gilbert's experimental monolinear face and supplies its unmodified WOFF2 and OFL. [Collletttivo's Apfel specimen](https://www.collletttivo.it/typefaces/apfel-grotezk) and [official repository](https://github.com/collletttivo/apfel-grotezk) supply the rounded grotesk in Regular, Mittel, Fett and Satt. The local rendered comparison is `output/unreasonable/font-specimen.png`. Gulax carries short expressive statements, Apfel carries reading and operation, and Plex carries code. Type Has Mass and Sticker City embed the actual new font in exports. Grid Crimes embeds all three used weights.
+
+Fresh desktop, pointer/scroll and phone captures of 16 references are in `output/unreasonable/references/`, with retrieval outcomes in `sources.json`. Focused interactions are recorded separately in `focused-interactions.json`: shadcn's View Code was opened and the React Bits specimen was explored after dismissing its announcement. Neal's Perfect Circle was blocked by security verification; no gameplay study is claimed.
+
+- [shadcn/ui](https://ui.shadcn.com/docs/components/button): stable sidebar, preview/source proximity, clear installation and API separation. LAB uses persistent grouped navigation, searchable gallery/list views, familiar documentation sections, and a separate live configuration panel.
+- [React Bits](https://reactbits.dev/text-animations/text-pressure), [Motion](https://motion.dev/), [Hover](https://www.hover.dev/), and [Aceternity](https://www.aceternity.com/): study of interactive component presentation and discoverability. LAB's printing press uses original scan-band geometry; it does not copy their code or commercial assets. Real preview dimensions matter more than decorative device frames.
+- [Awwwards](https://www.awwwards.com/), [Studio Namma](https://studionamma.com/), and [Akaru](https://akaru.fr/): strong type scale, a limited full-surface palette and visible compositional structure. LAB makes each experiment a different world while keeping captions and controls protected.
+- [Rauno](https://rauno.me/craft), [The Pudding](https://pudding.cool/), [Hoverstat.es](https://www.hoverstat.es/), [Codrops](https://tympanus.net/codrops/hub/), [Lyra](https://lyra.horse/), and [fffuel](https://www.fffuel.co/): distinct exhibit media, curiosity-led discovery and outcomes users can make or inspect. Some third-party media loaded partially; captures document those limits.
+
+The new interaction grammars are independent: the printing press deforms a rasterized type impression, Sticker City manipulates vector objects with explicit layers/history, Almost Nothing models ink over active time, Grid Crimes changes actual CSS layout rules and exports responsive HTML, and BRUTAL.EXE navigates a two-dimensional four-room surface. Reduced motion preserves the operations and removes automatic movement.
+
 Retrievals and browser captures: `output/lab-v2/research/`. Readable web retrievals, desktop renders, scrolled states, and phone renders were collected separately; a successful navigation is not proof that all media or interactions loaded.
 
 ## Decisions grounded in inspection

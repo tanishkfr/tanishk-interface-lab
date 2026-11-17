@@ -1,5 +1,7 @@
 # LAB/ V2 — local implementation and verification
 
+Historical checkpoint report. The current refinement and verification are documented in `UNREASONABLE_PASS.md`.
+
 Implemented on `codex/lab-v2-playground`. Production has not been deployed, replaced, or pushed. Changes remain in the local working tree for review. Preview: http://localhost:3300.
 
 ## What is implemented

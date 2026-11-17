@@ -10,6 +10,28 @@ export type Project = {
 };
 export const projects: Project[] = [
   {
+    slug: "sticker-city",
+    name: "Sticker City",
+    category: "Experiment",
+    medium: "A wall with no rules",
+    description:
+      "Make a sticker. Claim a corner. Build a composition that looks like nobody asked for permission.",
+    color: "#b4bce9",
+    status: "Prototype",
+    version: "0.1",
+  },
+  {
+    slug: "almost-nothing",
+    name: "Almost Nothing",
+    category: "Experiment",
+    medium: "An interface that knows when to leave",
+    description:
+      "A mark, a little time, and a surface that lets go. Keep only what is still here.",
+    color: "#f8f7f0",
+    status: "Prototype",
+    version: "0.1",
+  },
+  {
     slug: "data-matter",
     status: "Prototype",
     version: "0.1",
@@ -65,6 +87,28 @@ export const projects: Project[] = [
     color: "#e8dff5",
   },
   {
+    slug: "grid-crimes",
+    name: "Grid Crimes",
+    category: "Experiment",
+    medium: "Rules, temporarily",
+    description:
+      "Push a working editorial grid out of line. Change its rules and take the real composition home.",
+    color: "#f4eee1",
+    status: "Prototype",
+    version: "0.1",
+  },
+  {
+    slug: "brutal-exe",
+    name: "BRUTAL.EXE",
+    category: "Experiment",
+    medium: "Four rooms. No velvet ropes.",
+    description:
+      "A spatial website with exposed structure. Edit the wall, rearrange the order, and leave a trace.",
+    color: "#ff684f",
+    status: "Prototype",
+    version: "0.1",
+  },
+  {
     slug: "motion-foundry",
     status: "Prototype",
     version: "0.1",
@@ -89,4 +133,3 @@ export const projects: Project[] = [
 ];
 export const projectBySlug = (slug: string) =>
   projects.find((p) => p.slug === slug);
-

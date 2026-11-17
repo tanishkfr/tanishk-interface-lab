@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef, useState, type PointerEvent } from "react";
+import { useState } from "react";
+import { HeroPress } from "./hero-press";
 import { projects, type Project } from "@/lib/playground/projects";
 import { Icon } from "./icons";
 import { ProjectArtwork, Rosette } from "./artwork";
@@ -11,60 +12,6 @@ type ComponentEntry = {
   description: string;
   category: string;
 };
-function Letter({ children }: { children: string }) {
-  const ref = useRef<HTMLButtonElement>(null);
-  const drag = useRef<{
-    x: number;
-    y: number;
-  } | null>(null);
-  function release() {
-    drag.current = null;
-    const el = ref.current;
-    if (!el) return;
-    const transform = el.style.transform;
-    el.style.transform = "";
-    if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
-      el.animate(
-        [
-          { transform },
-          { transform: "translate(0,0) rotate(0deg)", offset: 0.65 },
-          { transform: "translate(0,-8px) rotate(-1deg)", offset: 0.8 },
-          { transform: "translate(0,0) rotate(0deg)" },
-        ],
-        { duration: 650, easing: "cubic-bezier(.22,1,.36,1)" },
-      );
-  }
-  function move(e: PointerEvent) {
-    if (!drag.current || !ref.current) return;
-    const x = Math.max(-75, Math.min(75, e.clientX - drag.current.x)),
-      y = Math.max(-50, Math.min(50, e.clientY - drag.current.y));
-    ref.current.style.transform = `translate(${x}px,${y}px) rotate(${x * 0.08}deg)`;
-  }
-  return (
-    <button
-      ref={ref}
-      className="kinetic-letter"
-      aria-label={`Pull the letter ${children}. Press Enter to bounce.`}
-      onPointerDown={(e) => {
-        drag.current = { x: e.clientX, y: e.clientY };
-        e.currentTarget.setPointerCapture(e.pointerId);
-      }}
-      onPointerMove={move}
-      onPointerUp={release}
-      onPointerCancel={release}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          if (ref.current)
-            ref.current.style.transform = "translate(0,-30px) rotate(-8deg)";
-          release();
-        }
-      }}
-    >
-      {children}
-    </button>
-  );
-}
 export function SurpriseButton() {
   const router = useRouter();
   return (
@@ -110,7 +57,10 @@ export function ProjectCard({
             <h3>{project.name}</h3>
             <p>{project.description}</p>
           </div>
-          <span className="exhibit-category">{project.category}<small>{project.status}</small></span>
+          <span className="exhibit-category">
+            {project.category}
+            <small>{project.status}</small>
+          </span>
         </div>
       </Link>
     </article>
@@ -156,21 +106,7 @@ export function PlaygroundHome({
             </span>
           </div>
         </div>
-        <div className="hero-object">
-          <h1 className="sr-only">LAB/ — An internet playground</h1>
-          <div className="kinetic-word" aria-label="Interactive LAB wordmark">
-            {["L", "A", "B"].map((l) => (
-              <Letter key={l}>{l}</Letter>
-            ))}
-            <span className="hero-slash" aria-hidden="true">
-              /
-            </span>
-          </div>
-          <div className="hero-rosette">
-            <Rosette />
-          </div>
-          <span className="hero-touch">Go on. Pull a letter.</span>
-        </div>
+        <HeroPress />
         <div className="hero-floor">
           <span>
             <span className="live-dot" /> Open for play
@@ -216,9 +152,9 @@ export function PlaygroundHome({
                   {f === "Everything"
                     ? projects.length + components.length
                     : f === "Experiments"
-                      ? 5
+                      ? projects.filter((p) => p.category !== "Tool").length
                       : f === "Tools"
-                        ? 2
+                        ? projects.filter((p) => p.category === "Tool").length
                         : components.length}
                 </sup>
               </button>
@@ -276,11 +212,13 @@ export function PlaygroundHome({
         ) : (
           <>
             <div className="exhibit-grid">
-              {selected.map((p, i) => (
+              {selected.map((p) => (
                 <ProjectCard
                   key={p.slug}
                   project={p}
-                  prominent={filter === "Everything" && !q && i === 0}
+                  prominent={
+                    filter === "Everything" && !q && p.slug === "data-matter"
+                  }
                 />
               ))}
             </div>

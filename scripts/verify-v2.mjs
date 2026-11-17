@@ -2,8 +2,9 @@ import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 const BASE = process.env.LAB_QA_URL || "http://127.0.0.1:3300";
-const OUT = "output/lab-v2";
+const OUT = process.env.LAB_QA_OUT || "output/lab-v2";
 await mkdir(`${OUT}/exports`, { recursive: true });
+await mkdir(`${OUT}/screenshots`, { recursive: true });
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 const context = await browser.newContext({
   viewport: { width: 1440, height: 1000 },
@@ -44,7 +45,7 @@ await check(
   async () => {
     await goto("/");
     await click("Index");
-    assert.equal(await page.locator(".project-index>a").count(), 26);
+    assert.equal(await page.locator(".project-index>a").count(), 30);
     await page
       .getByRole("searchbox", { name: "Search the collection" })
       .fill("carousel");
@@ -52,13 +53,13 @@ await check(
     await page.getByRole("searchbox").fill("not-a-real-title");
     assert.ok(await page.getByText("Nothing here by that name.").isVisible());
     await click("Show everything");
-    assert.equal(await page.locator(".project-index>a").count(), 26);
+    assert.equal(await page.locator(".project-index>a").count(), 30);
     await click("Tools2");
     assert.equal(await page.locator(".project-index>a").count(), 2);
-    const letter = page.getByRole("button", { name: /Pull the letter L/ });
-    await letter.focus();
-    await letter.press("Enter");
-    assert.ok(await letter.evaluate((el) => document.activeElement === el));
+    const press = page.getByRole("button", { name: /Make an impression/ });
+    await press.focus();
+    await press.press("Enter");
+    assert.ok(await press.evaluate((el) => document.activeElement === el));
   },
 );
 await check(

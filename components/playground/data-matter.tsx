@@ -10,6 +10,60 @@ import {
   Segments,
 } from "./workbench";
 import { SAMPLE_DATA, parseData, type Datum } from "@/lib/playground/math";
+function DataFossil({
+  data,
+  relief,
+  angle,
+  wire,
+}: {
+  data: Datum[];
+  relief: number;
+  angle: number;
+  wire: boolean;
+}) {
+  const max = Math.max(1, ...data.map((d) => d.value));
+  const contours = Array.from({ length: 32 }, (_, layer) => {
+    const radius = 42 + layer * 5.5;
+    return (
+      Array.from({ length: 161 }, (_, i) => {
+        const a = (i / 160) * Math.PI * 2,
+          position = (i / 160) * data.length,
+          index = Math.floor(position) % data.length,
+          t = position - Math.floor(position);
+        const value =
+          (data[index].value * (1 - t) +
+            data[(index + 1) % data.length].value * t) /
+          max;
+        const r =
+          radius +
+          value * relief * 0.38 * Math.sin(((layer + 2) / 34) * Math.PI);
+        return `${i ? "L" : "M"}${(450 + Math.cos(a) * r).toFixed(2)} ${(270 + Math.sin(a) * r * 0.77).toFixed(2)}`;
+      }).join(" ") + "Z"
+    );
+  });
+  return (
+    <svg
+      viewBox="0 0 900 560"
+      role="img"
+      aria-label={`Data fossil. ${data.length} values mapped clockwise into 32 nested contours.`}
+    >
+      <title>Data Matter — a record in contours</title>
+      <g transform={`rotate(${angle} 450 270)`}>
+        {[...contours].reverse().map((d, i) => (
+          <path
+            key={i}
+            d={d}
+            fill={wire ? "none" : `hsl(${34 + i * 0.6} 18% ${49 + i * 1.3}%)`}
+            stroke="#514b3b"
+            strokeOpacity={wire ? 0.65 : 0.5}
+            strokeWidth=".8"
+          />
+        ))}
+        <circle cx="450" cy="270" r="21" fill="#e7e8e4" stroke="#514b3b" />
+      </g>
+    </svg>
+  );
+}
 export default function DataMatter() {
   const [data, setData] = useState<Datum[]>(SAMPLE_DATA);
   const [input, setInput] = useState(
@@ -19,6 +73,7 @@ export default function DataMatter() {
   const [height, setHeight] = useState(170),
     [angle, setAngle] = useState(0),
     [material, setMaterial] = useState<"Paper" | "Wire">("Paper");
+  const [formation, setFormation] = useState<"Terrain" | "Fossil">("Terrain");
   const [error, setError] = useState(""),
     [note, setNote] = useState("Illustrative sample · daily observations");
   const scene = useRef<HTMLDivElement>(null);
@@ -77,12 +132,21 @@ export default function DataMatter() {
                 </span>
                 <span>Drag to turn</span>
               </div>
-              <DataSculpture
-                data={data}
-                height={height}
-                angle={angle}
-                wire={material === "Wire"}
-              />
+              {formation === "Fossil" ? (
+                <DataFossil
+                  data={data}
+                  relief={height}
+                  angle={angle}
+                  wire={material === "Wire"}
+                />
+              ) : (
+                <DataSculpture
+                  data={data}
+                  height={height}
+                  angle={angle}
+                  wire={material === "Wire"}
+                />
+              )}
               <span className="scene-bottomline">
                 Every ridge begins with a number.
               </span>
@@ -104,6 +168,12 @@ export default function DataMatter() {
           <aside className="instrument-panel">
             <h2>Shape the matter</h2>
             <p className="instrument-note">{note}</p>
+            <Segments
+              label="Formation"
+              options={["Terrain", "Fossil"]}
+              value={formation}
+              onChange={setFormation}
+            />
             <Slider
               label="Relief"
               value={height}
@@ -179,7 +249,11 @@ export default function DataMatter() {
               onClick={() =>
                 download(
                   "data-matter.json",
-                  JSON.stringify({ data, height, angle, material }, null, 2),
+                  JSON.stringify(
+                    { data, height, angle, material, formation },
+                    null,
+                    2,
+                  ),
                   "application/json",
                 )
               }
@@ -190,6 +264,13 @@ export default function DataMatter() {
         </div>
         <section className="project-notes">
           <h2>Reading the landscape</h2>
+          <p>
+            Fossil mode wraps the row order clockwise around 32 nested contours.
+            Each value pushes its angular segment outward; the relief control
+            scales that displacement. Contours repeat the same series, like an
+            impression held in layers. This is a visual encoding, not a
+            geological age estimate.
+          </p>
           <p>
             Left to right follows your row order. Height is value ÷ maximum ×
             relief. The 47 ribs repeat the same interpolated series; their depth

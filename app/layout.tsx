@@ -4,23 +4,30 @@ import "./globals.css";
 import { SiteHeader } from "@/components/shell/site-header";
 import { SiteFooter } from "@/components/shell/site-footer";
 import { SITE_URL } from "@/lib/site";
+import { SiteFrame } from "@/components/shell/site-frame";
 
 const sans = localFont({
-  src: "../public/fonts/instrument.ttf",
+  src: [
+    { path: "../public/fonts/apfel-regular.woff2", weight: "400" },
+    { path: "../public/fonts/apfel-mittel.woff2", weight: "500" },
+    { path: "../public/fonts/apfel-fett.woff2", weight: "700" },
+    { path: "../public/fonts/apfel-satt.woff2", weight: "900" },
+  ],
   variable: "--font-lab-sans",
-  weight: "400 700",
   display: "swap",
 });
 
 const mono = localFont({
   src: "../public/fonts/plex.ttf",
   variable: "--font-lab-mono",
+  preload: false,
+  weight: "400",
   display: "swap",
 });
 const display = localFont({
-  src: "../public/fonts/bricolage.ttf",
+  src: "../public/fonts/gulax.woff2",
   variable: "--font-lab-display",
-  weight: "200 800",
+  weight: "400",
   display: "swap",
 });
 
@@ -48,12 +55,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${sans.variable} ${mono.variable} ${display.variable}`}
     >
       <body>
-        <a className="skip-link" href="#main">
-          Skip to content
-        </a>
-        <SiteHeader />
-        <main id="main">{children}</main>
-        <SiteFooter />
+        <SiteFrame header={<SiteHeader />} footer={<SiteFooter />}>
+          {children}
+        </SiteFrame>
       </body>
     </html>
   );

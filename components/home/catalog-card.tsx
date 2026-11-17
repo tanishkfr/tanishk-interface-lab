@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { InView } from "@/components/shell/in-view";
 import type { Category, ExperimentStatus } from "@/lib/registry/types";
 import { PREVIEWS } from "./previews/registry";
 
@@ -23,9 +22,7 @@ export function CatalogCard({ entry }: { entry: CatalogEntry }) {
   return (
     <article className="card group/preview">
       <div className="card-preview" aria-hidden="true" inert>
-        <InView rootMargin="420px">
-          {Preview ? <Preview /> : null}
-        </InView>
+        {Preview ? <Preview /> : null}
       </div>
       <div className="card-strip">
         <div className="card-head">

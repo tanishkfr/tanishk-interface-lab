@@ -12,8 +12,16 @@ const Mass = dynamic(() => import("./type-has-mass"), { loading });
 const Terrarium = dynamic(() => import("./browser-terrarium"), { loading });
 const Genome = dynamic(() => import("./interface-genome"), { loading });
 const Click = dynamic(() => import("./cost-of-a-click"), { loading });
+const Stickers = dynamic(() => import("./sticker-city"), { loading });
+const Almost = dynamic(() => import("./almost-nothing"), { loading });
+const Grid = dynamic(() => import("./grid-crimes"), { loading });
+const Brutal = dynamic(() => import("./brutal-exe"), { loading });
 export function ProjectHost({ slug }: { slug: string }) {
   switch (slug) {
+    case "sticker-city": return <Stickers />;
+    case "almost-nothing": return <Almost />;
+    case "grid-crimes": return <Grid />;
+    case "brutal-exe": return <Brutal />;
     case "data-matter":
       return <Data />;
     case "vector-kitchen":

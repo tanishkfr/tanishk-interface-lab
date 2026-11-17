@@ -6,21 +6,25 @@ The brief explicitly delegates creative decisions and requests implementation wi
 
 ## World
 
-Warm uncoated-paper ground (#f3f1e8), near-black ink (#252620), acid-chartreuse (#d7f45b), electric violet (#613bdf), and coral (#ff795b). Color belongs to whole exhibits, not scattered decoration. Broad editorial Bricolage Grotesque, Instrument Sans for operating UI, and IBM Plex Mono for code and measurements. All sourced from Google Fonts under OFL.
+Warm paper ground (#f1efe5), near-black ink (#23241f), acid yellow (#e5e94b), violet (#5834d7), and coral (#ff795b). Color belongs to whole exhibits. Gulax, from Velvetyne, supplies the angular expressive voice; Apfel Grotezk, from Collletttivo, supplies readable operating text and soft, heavy display typography. IBM Plex Mono is reserved for code and measurements. The independent-foundry pairing is self-hosted as WOFF2 with real weights; licenses ship beside the fonts. Gulax is for short statements, never documentation paragraphs or compact controls.
+
+Body copy is 16px with generous leading; operating controls are 14px and compact metadata generally 12px. Artwork annotations may be smaller. Narrow layouts reflow controls and allow intentional internal scrolling. Component previews use an actual iframe viewport, so responsive behavior follows the preview width rather than the documentation page width.
 
 ## Composition and spacing
 
-Use a 1440px maximum reading/exhibition frame, fluid 24–64px gutters, 8px base spacing, 24–32px control groups, 64–120px between editorial sections. Type scales with available width. Artwork can overlap artwork inside a clipped scene; labels, controls and navigation never overlap. Interactive controls have at least 44px targets. Mobile rearranges stages into a portrait scene followed by controls; no desktop sidebar squeezed onto a phone.
+Use a 1440px maximum reading/exhibition frame, fluid 24–64px gutters, 8px base spacing, 24–32px control groups, 64–120px between editorial sections. Type scales with available width. Artwork can overlap artwork inside a clipped scene; labels, controls and navigation never overlap. Primary operating controls use 44px targets; compact documentation choices use at least 36px. Mobile rearranges stages into a portrait scene followed by controls; no desktop sidebar squeezed onto a phone.
 
-The hero is an editable physical LAB/ wordmark, not a marketing headline plus buttons. A compact introduction sits above it. The discovery sequence alternates a full-width sculptural data exhibit, two unequal typographic/software spreads, and a green living scene. A searchable index provides a direct route to every project and all 19 components.
+The hero is a working typographic printing press. Drag its lettering, change the pressure, print an impression and keep the actual PNG. A compact introduction sits above it. Discovery pairs a loud sticker wall with a quiet drawing, then alternates full-width sculptural data, unequal typographic/software spreads, and a green living scene. A searchable index provides a direct route to every project and all 19 components.
 
 ## Motion
 
-One physical language: displacement, tension, and release. The wordmark can be pulled and springs back; typed letters carry mass and collide; terrain rotates only under direct input; generated recipes change immediately. Keep native scroll. Continuous simulations pause offscreen, when hidden, or under reduced motion. Provide keyboard alternatives and explicit pause controls. No global entrance animation.
+Different tasks have different motion: print deformation and spring settling, direct sticker lifting and placement, temporal ink fading, immediate rule changes, and severe spatial room changes. Typed letters carry mass and collide; terrain rotates only under direct input. Keep native scroll. Continuous simulations pause offscreen, when hidden, or under reduced motion. Provide keyboard alternatives and explicit pause controls. No global entrance animation.
 
 ## Individual worlds
 
 Data Matter: cobalt plotting room with warm sculptural ribs; values map directly to ridge height. Interface Genome: paper/black rule-driven editorial interface. Type Has Mass: coral kinetic type installation. Browser Terrarium: pale chartreuse botanical world with violet inhabitants. Cost of a Click: high-contrast editorial stages, framed illustrative demonstrations. Motion Foundry: dark aubergine timeline and lime motion specimens. Vector Kitchen: cream/navy recipe-based vector instrument with violet/coral outputs.
+
+Sticker City: periwinkle and printed vector matter. Almost Nothing: a quiet, unframed surface with temporal ink. Grid Crimes: exposed editorial rules, warm paper and a coral/lime illustration. BRUTAL.EXE: four hard-color rooms with a visible floor plan. Products' violet coming-soon installation is truthful about unreleased possibilities.
 
 ## Product truth
 

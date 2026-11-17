@@ -17,7 +17,6 @@ import { chromium } from "playwright";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-
 const arg = (name, fallback) => {
   const found = process.argv.find((value) => value.startsWith(`--${name}=`));
   return found ? found.slice(name.length + 3) : fallback;
@@ -77,10 +76,14 @@ async function run() {
   await mkdir(SHOTS, { recursive: true });
   await mkdir(VIDEO_DIR, { recursive: true });
 
-  const browser = await chromium.launch(executablePath ? { executablePath } : {});
+  const browser = await chromium.launch(
+    executablePath ? { executablePath } : {},
+  );
   const started = Date.now();
   const step = (label) =>
-    console.log(`[${String((Date.now() - started) / 1000).padStart(5)}s] ${label}`);
+    console.log(
+      `[${String((Date.now() - started) / 1000).padStart(5)}s] ${label}`,
+    );
 
   /* the registry index is the source of truth for what must exist */
   const indexResponse = await fetch(`${BASE}/r/registry.json`);
@@ -182,13 +185,17 @@ async function run() {
 
     if (mode === "menu") {
       const trigger = page
+        .frameLocator(".component-preview-frame")
         .locator("#demo-root button", { hasText: /command/i })
         .first();
       if (await trigger.count()) {
         await trigger.click();
         await settle(page, 700);
         check(
-          (await page.locator('[role="dialog"]').count()) > 0,
+          (await page
+            .frameLocator(".component-preview-frame")
+            .locator('[role="dialog"]')
+            .count()) > 0,
           "[command-menu] the dialog did not open",
         );
       } else {
@@ -197,13 +204,17 @@ async function run() {
     }
     if (mode === "expanded") {
       const toggle = page
+        .frameLocator(".component-preview-frame")
         .locator("#demo-root button", { hasText: /details/i })
         .first();
       if (await toggle.count()) {
         await toggle.click().catch(() => {});
         await settle(page, 600);
         check(
-          (await page.locator("#demo-root dl").count()) > 0,
+          (await page
+            .frameLocator(".component-preview-frame")
+            .locator("#demo-root dl")
+            .count()) > 0,
           "[morphing-metadata] expanding did not reveal a detail list",
         );
       } else {
@@ -225,12 +236,18 @@ async function run() {
   });
   await settle(page, 700);
   const counterBefore = await page
+    .frameLocator(".component-preview-frame")
     .locator(".lab-carousel-count")
     .first()
     .innerText();
-  await page.locator(".lab-carousel-btn").nth(1).click();
+  await page
+    .frameLocator(".component-preview-frame")
+    .locator(".lab-carousel-btn")
+    .nth(1)
+    .click();
   await settle(page, 900);
   const counterAfter = await page
+    .frameLocator(".component-preview-frame")
     .locator(".lab-carousel-count")
     .first()
     .innerText();
@@ -278,7 +295,10 @@ async function run() {
     hasText: /narrow/i,
   });
   if (await deviceSwitch.count()) {
-    await deviceSwitch.first().click().catch(() => {});
+    await deviceSwitch
+      .first()
+      .click()
+      .catch(() => {});
     await settle(mobilePage, 500);
   }
   await overflow(mobilePage, "mobile detail");
@@ -298,11 +318,14 @@ async function run() {
     waitUntil: "networkidle",
   });
   await settle(calmPage, 900);
-  const canvasWidth = await calmPage.evaluate(() => {
-    const canvas = document.querySelector("canvas.lab-signal-field");
-    return canvas ? canvas.width : -1;
-  });
-  check(canvasWidth !== 0, "[reduced-motion] signal field canvas is empty");
+  const canvasWidth = await calmPage
+    .frameLocator(".component-preview-frame")
+    .locator("body")
+    .evaluate(() => {
+      const canvas = document.querySelector("canvas.lab-signal-field");
+      return canvas ? canvas.width : -1;
+    });
+  check(canvasWidth > 0, "[reduced-motion] signal field canvas is empty");
   await calm.close();
 
   /* ---------------- walkthrough video ---------------- */
@@ -322,7 +345,9 @@ async function run() {
   await walk.evaluate(() => window.scrollTo({ top: 2400, behavior: "smooth" }));
   await beat(1600);
 
-  await walk.goto(`${BASE}/experiments/signal-field`, { waitUntil: "networkidle" });
+  await walk.goto(`${BASE}/experiments/signal-field`, {
+    waitUntil: "networkidle",
+  });
   await beat(1400);
   await walk.mouse.move(900, 300);
   for (let i = 0; i < 26; i++) {
@@ -343,16 +368,24 @@ async function run() {
     waitUntil: "networkidle",
   });
   await beat(1200);
-  const composer = walk.locator("#demo-root textarea").first();
+  const composer = walk
+    .frameLocator(".component-preview-frame")
+    .locator("#demo-root textarea")
+    .first();
   if (await composer.count()) {
     await composer.click();
     await composer.fill("review the deck with Ana on tue 2pm for 45m");
     await beat(1500);
   }
 
-  await walk.goto(`${BASE}/experiments/agent-review`, { waitUntil: "networkidle" });
+  await walk.goto(`${BASE}/experiments/agent-review`, {
+    waitUntil: "networkidle",
+  });
   await beat(1200);
-  const accept = walk.locator("#demo-root button", { hasText: /accept/i }).first();
+  const accept = walk
+    .frameLocator(".component-preview-frame")
+    .locator("#demo-root button", { hasText: /accept/i })
+    .first();
   if (await accept.count()) {
     await accept.click();
     await beat(1200);
@@ -371,9 +404,14 @@ async function run() {
   await walk.keyboard.press("Escape");
   await beat(500);
 
-  await walk.goto(`${BASE}/experiments/hold-to-confirm`, { waitUntil: "networkidle" });
+  await walk.goto(`${BASE}/experiments/hold-to-confirm`, {
+    waitUntil: "networkidle",
+  });
   await beat(1000);
-  const hold = walk.locator("#demo-root button", { hasText: /publish/i }).first();
+  const hold = walk
+    .frameLocator(".component-preview-frame")
+    .locator("#demo-root button", { hasText: /publish/i })
+    .first();
   if (await hold.count()) {
     const box = await hold.boundingBox();
     if (box) {
@@ -385,15 +423,22 @@ async function run() {
     }
   }
 
-  await walk.goto(`${BASE}/experiments/inline-diff`, { waitUntil: "networkidle" });
+  await walk.goto(`${BASE}/experiments/inline-diff`, {
+    waitUntil: "networkidle",
+  });
   await beat(1200);
-  const reason = walk.locator("#demo-root button", { hasText: /reason/i }).first();
+  const reason = walk
+    .frameLocator(".component-preview-frame")
+    .locator("#demo-root button", { hasText: /reason/i })
+    .first();
   if (await reason.count()) {
     await reason.click().catch(() => {});
     await beat(1000);
   }
 
-  await walk.goto(`${BASE}/experiments/signal-field`, { waitUntil: "networkidle" });
+  await walk.goto(`${BASE}/experiments/signal-field`, {
+    waitUntil: "networkidle",
+  });
   await beat(600);
   await walk.locator("#install").scrollIntoViewIfNeeded();
   await beat(1200);
@@ -406,7 +451,10 @@ async function run() {
   await beat(600);
   const details = walk.locator("#source details").first();
   if (await details.count()) {
-    await details.locator("summary").click().catch(() => {});
+    await details
+      .locator("summary")
+      .click()
+      .catch(() => {});
     await beat(1400);
   }
   await walk.locator(".experiment-nav").scrollIntoViewIfNeeded();
@@ -424,7 +472,10 @@ async function run() {
   const videoFiles = await readdir(VIDEO_DIR);
   const recorded = videoFiles.find((file) => file.endsWith(".webm"));
   if (recorded) {
-    await rename(join(VIDEO_DIR, recorded), join(VIDEO_DIR, "interface-lab-v1.webm"));
+    await rename(
+      join(VIDEO_DIR, recorded),
+      join(VIDEO_DIR, "interface-lab-v1.webm"),
+    );
     console.log(`  · interface-lab-v1.webm`);
   }
 

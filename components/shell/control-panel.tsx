@@ -55,6 +55,7 @@ export function ControlPanel({
               </span>
               <input
                 type="range"
+                aria-label={control.label}
                 min={control.min}
                 max={control.max}
                 step={control.step}

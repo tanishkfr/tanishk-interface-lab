@@ -1,4 +1,5 @@
 "use client";
+import { ARTWORK_FONT } from "@/lib/playground/typography";
 import { useEffect, useRef, type RefObject, type ReactNode } from "react";
 import Link from "next/link";
 import { Icon } from "./icons";
@@ -23,7 +24,9 @@ export function ProjectHeading({
         </Link>
         <h1>{p.name}</h1>
         <p>{p.description}</p>
-        <span className="project-version">{p.status} · v{p.version}</span>
+        <span className="project-version">
+          {p.status} · v{p.version}
+        </span>
       </div>
       {children}
     </header>
@@ -127,6 +130,7 @@ export async function exportSvg(
   { font = false, background = "transparent" } = {},
 ) {
   const clone = svg.cloneNode(true) as SVGSVGElement;
+  clone.querySelectorAll("[data-editor-only]").forEach((node) => node.remove());
   const box = svg.viewBox.baseVal;
   clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   clone.setAttribute("width", String(box.width || 900));
@@ -144,7 +148,7 @@ export async function exportSvg(
   clone.prepend(rect);
   if (font) {
     const buffer: ArrayBuffer = await (
-      await fetch("/fonts/bricolage.ttf")
+      await fetch(ARTWORK_FONT.url)
     ).arrayBuffer();
     const bytes = new Uint8Array(buffer);
     let binary = "";
@@ -153,7 +157,7 @@ export async function exportSvg(
       "http://www.w3.org/2000/svg",
       "style",
     );
-    style.textContent = `@font-face{font-family:LabExport;src:url(data:font/ttf;base64,${btoa(binary)})}text{font-family:LabExport,sans-serif}`;
+    style.textContent = `@font-face{font-family:LabExport;src:url(data:${ARTWORK_FONT.mime};base64,${btoa(binary)});font-weight:${ARTWORK_FONT.weight}}text{font-family:LabExport,sans-serif}`;
     clone.prepend(style);
   }
   download(name, new XMLSerializer().serializeToString(clone));

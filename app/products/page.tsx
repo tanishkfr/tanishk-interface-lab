@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { VectorArtwork } from "@/components/playground/artwork";
 import { Icon } from "@/components/playground/icons";
+import { ComingSoon } from "@/components/playground/coming-soon";
 export const metadata = { title: "Products" };
 export default function Products() {
   return (
@@ -43,13 +44,7 @@ export default function Products() {
           </div>
         </div>
       </article>
-      <div className="product-release">
-        <h3>Room to grow.</h3>
-        <p>
-          Future plugins, integrations, extensions, and standalone apps will
-          live here when they exist. No downloads are published yet.
-        </p>
-      </div>
+      <ComingSoon />
     </div>
   );
 }

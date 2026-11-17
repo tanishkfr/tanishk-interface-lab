@@ -1,14 +1,8 @@
 "use client";
-
-import { useMemo, useState } from "react";
-import { DemoHost } from "@/components/demos/demo-host";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ControlPanel } from "./control-panel";
+import { CopyButton } from "./copy-button";
 import type { PreviewControl, PreviewValue } from "@/lib/registry/types";
-
-/**
- * PREVIEW SANDBOX — the demo is the hero. A device frame, a live
- * component, and the two-to-four controls that genuinely matter.
- */
 export function PreviewSandbox({
   slug,
   controls,
@@ -22,69 +16,166 @@ export function PreviewSandbox({
   devices: ("desktop" | "mobile")[];
   hint?: string;
 }) {
-  const [values, setValues] = useState<Record<string, PreviewValue>>(defaults);
-  const [device, setDevice] = useState<"desktop" | "mobile">(
-    devices[0] ?? "desktop",
-  );
-
+  const [values, setValues] = useState(defaults),
+    [device, setDevice] = useState<"desktop" | "mobile">(
+      devices[0] ?? "desktop",
+    ),
+    [tab, setTab] = useState<"Preview" | "Configuration">("Preview");
+  const frame = useRef<HTMLIFrameElement>(null),
+    current = useRef(values);
+  useEffect(() => {
+    current.current = values;
+    frame.current?.contentWindow?.postMessage(
+      { type: "LAB_PREVIEW_CONFIG", slug, values },
+      location.origin,
+    );
+  }, [values, slug]);
+  useEffect(() => {
+    function ready(e: MessageEvent) {
+      if (
+        e.origin === location.origin &&
+        e.source === frame.current?.contentWindow &&
+        e.data?.type === "LAB_PREVIEW_READY"
+      )
+        frame.current?.contentWindow?.postMessage(
+          { type: "LAB_PREVIEW_CONFIG", slug, values: current.current },
+          location.origin,
+        );
+    }
+    window.addEventListener("message", ready);
+    return () => window.removeEventListener("message", ready);
+  }, [slug]);
   const dirty = useMemo(
-    () => Object.keys(defaults).some((key) => values[key] !== defaults[key]),
+    () => Object.keys(defaults).some((k) => values[k] !== defaults[k]),
     [values, defaults],
   );
-
-  const setValue = (id: string, value: PreviewValue) => {
-    setValues((current) => ({ ...current, [id]: value }));
-  };
-
+  const code = JSON.stringify(values, null, 2);
   return (
-    <div className="preview-panel" id="preview">
+    <section
+      className="preview-panel"
+      id="preview"
+      aria-label="Interactive component workbench"
+    >
       <div className="preview-toolbar">
-        <span className="preview-toolbar-title">
-          <span className="preview-live-dot" aria-hidden="true" />
-          Live preview
-        </span>
-        <div className="preview-toolbar-actions">
-          {dirty ? (
+        <div
+          className="preview-tabs"
+          role="tablist"
+          aria-label="Workbench view"
+        >
+          {(["Preview", "Configuration"] as const).map((t) => (
             <button
-              type="button"
-              className="copy-btn"
-              onClick={() => setValues(defaults)}
+              key={t}
+              role="tab"
+              aria-selected={tab === t}
+              tabIndex={tab === t ? 0 : -1}
+              aria-controls={`workbench-${t}`}
+              id={`tab-${t}`}
+              onClick={() => setTab(t)}
+              onKeyDown={(e) => {
+                if (
+                  ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)
+                ) {
+                  e.preventDefault();
+                  const next =
+                    e.key === "Home"
+                      ? "Preview"
+                      : e.key === "End"
+                        ? "Configuration"
+                        : tab === "Preview"
+                          ? "Configuration"
+                          : "Preview";
+                  setTab(next);
+                  document.getElementById(`tab-${next}`)?.focus();
+                }
+              }}
             >
+              {t}
+            </button>
+          ))}
+        </div>
+        <div className="preview-toolbar-actions">
+          {dirty && (
+            <button className="copy-btn" onClick={() => setValues(defaults)}>
               Reset controls
             </button>
-          ) : null}
-          {devices.length > 1 ? (
-            <div className="device-switch" role="group" aria-label="Preview size">
-              {devices.map((option) => (
+          )}
+          {devices.length > 1 && (
+            <div
+              className="device-switch"
+              role="group"
+              aria-label="Preview size"
+            >
+              {devices.map((d) => (
                 <button
-                  key={option}
-                  type="button"
-                  aria-pressed={device === option}
-                  onClick={() => setDevice(option)}
+                  key={d}
+                  aria-pressed={device === d}
+                  onClick={() => setDevice(d)}
                 >
-                  {option === "desktop" ? "Wide" : "Narrow"}
+                  {d === "desktop" ? "Wide" : "Narrow"}
                 </button>
               ))}
             </div>
-          ) : null}
+          )}
         </div>
       </div>
-
-      <div className="preview-workbench">
-        <div className="preview-stage" data-device={device}>
-          <div className="preview-stage-inner" id="demo-root">
-            <DemoHost slug={slug} values={values} />
+      <div
+        id="workbench-Preview"
+        role="tabpanel"
+        aria-labelledby="tab-Preview"
+        hidden={tab !== "Preview"}
+      >
+        <div className="preview-workbench">
+          <div className="preview-stage" data-device={device}>
+            <iframe
+              ref={frame}
+              className="component-preview-frame"
+              title={`${slug} interactive preview`}
+              src={`/preview/${slug}`}
+              onLoad={() =>
+                frame.current?.contentWindow?.postMessage(
+                  { type: "LAB_PREVIEW_CONFIG", slug, values: current.current },
+                  location.origin,
+                )
+              }
+            />
           </div>
         </div>
       </div>
-
-      {devices.length > 1 ? <p className="preview-size-note">Width only. Input and browser viewport remain unchanged.</p> : null}
+      <div
+        id="workbench-Configuration"
+        className="preview-config"
+        role="tabpanel"
+        aria-labelledby="tab-Configuration"
+        hidden={tab !== "Configuration"}
+      >
+        <div>
+          <h2>Your preview settings</h2>
+          <CopyButton
+            text={code}
+            label="Copy settings"
+            title="preview settings"
+          />
+        </div>
+        <pre tabIndex={0}>
+          <code>{code}</code>
+        </pre>
+        <p>
+          These are the exact settings driving this demo, including sample
+          content and simulated states. For the installable component’s public
+          API, see <a href="#usage-heading">Usage</a> and{" "}
+          <a href="#props-heading">Props</a> below.
+        </p>
+      </div>
       <ControlPanel
         controls={controls}
         values={values}
-        onChange={setValue}
+        onChange={(id, value) => setValues((v) => ({ ...v, [id]: value }))}
         hint={hint}
       />
-    </div>
+      <p className="preview-size-note">
+        A real browser viewport. Scroll within the preview when the sample needs
+        more space. Configuration stays in sync between sizes.
+      </p>
+    </section>
   );
 }

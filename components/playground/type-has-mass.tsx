@@ -1,4 +1,5 @@
 "use client";
+import { ARTWORK_FONT } from "@/lib/playground/typography";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ProjectHeading,
@@ -147,7 +148,7 @@ export default function TypeHasMass() {
       const el = stage.current;
       if (!el) return;
       const buffer: ArrayBuffer = await (
-        await fetch("/fonts/bricolage.ttf")
+        await fetch(ARTWORK_FONT.url)
       ).arrayBuffer();
       const bytes = new Uint8Array(buffer);
       let binary = "";
@@ -170,12 +171,12 @@ export default function TypeHasMass() {
       const texts = bodies.current
         .map(
           (b) =>
-            `<text x="${b.x}" y="${b.y}" dominant-baseline="text-before-edge" font-size="${fontSize}" font-weight="800">${escape(b.letter)}</text>`,
+            `<text x="${b.x}" y="${b.y}" dominant-baseline="text-before-edge" font-size="${fontSize}" font-weight="${ARTWORK_FONT.weight}">${escape(b.letter)}</text>`,
         )
         .join("");
       download(
         "type-has-mass.svg",
-        `<svg xmlns="http://www.w3.org/2000/svg" width="${el.clientWidth}" height="${el.clientHeight}" viewBox="0 0 ${el.clientWidth} ${el.clientHeight}"><style>@font-face{font-family:LabMass;src:url(data:font/ttf;base64,${btoa(binary)})}text{font-family:LabMass,sans-serif;fill:#252620}</style><rect width="100%" height="100%" fill="#ff795b"/>${texts}</svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${el.clientWidth}" height="${el.clientHeight}" viewBox="0 0 ${el.clientWidth} ${el.clientHeight}"><style>@font-face{font-family:LabMass;src:url(data:${ARTWORK_FONT.mime};base64,${btoa(binary)});font-weight:${ARTWORK_FONT.weight}}text{font-family:LabMass,sans-serif;fill:#252620}</style><rect width="100%" height="100%" fill="#ff795b"/>${texts}</svg>`,
       );
       setStatus("Composition exported with its font embedded.");
     } catch {

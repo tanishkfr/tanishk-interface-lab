@@ -128,7 +128,7 @@ p {
   margin: 0;
 }
 .hero-intro > p > span {
-  color: #6d6f62;
+  color: #65675c;
 }
 .hero-note {
   padding-top: 5px;
@@ -797,7 +797,7 @@ p {
 .product-feature > div:first-child {
   background: #252737;
 }
-.product-feature svg {
+.product-feature > div:first-child > svg {
   width: 100%;
   display: block;
   max-height: 450px;

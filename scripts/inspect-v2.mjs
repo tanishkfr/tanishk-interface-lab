@@ -1,10 +1,10 @@
 import { chromium } from "playwright";
 import { mkdir, writeFile } from "node:fs/promises";
-const out = "output/lab-v2/screenshots";
+const out = process.env.LAB_QA_OUT || "output/lab-v2/screenshots";
 await mkdir(out, { recursive: true });
 const b = await chromium.launch({ channel: "chrome", headless: true });
 const results = [];
-for (const width of [1440, 820, 390]) {
+for (const width of [1440, 820, 390, 320, 1920]) {
   const p = await b.newPage({ viewport: { width, height: 1000 } });
   const errors = [];
   p.on("pageerror", (e) => errors.push(e.message));
@@ -17,15 +17,33 @@ for (const width of [1440, 820, 390]) {
     "/play/interface-genome",
     "/play/motion-foundry",
     "/play/the-cost-of-a-click",
+    "/play/sticker-city",
+    "/play/almost-nothing",
+    "/play/grid-crimes",
+    "/play/brutal-exe",
     "/components",
     "/products",
   ]) {
     try {
-      const r = await p.goto("http://127.0.0.1:3300" + path, {
-        waitUntil: "networkidle",
-        timeout: 60000,
-      });
+      const r = await p.goto(
+        (process.env.LAB_QA_URL || "http://127.0.0.1:3300") + path,
+        {
+          waitUntil: "networkidle",
+          timeout: 60000,
+        },
+      );
       await p.waitForTimeout(400);
+      if (path === "/components") {
+        for (
+          let y = 0;
+          y < (await p.evaluate(() => document.documentElement.scrollHeight));
+          y += 700
+        ) {
+          await p.evaluate((top) => scrollTo(0, top), y);
+          await p.waitForTimeout(30);
+        }
+        await p.evaluate(() => scrollTo(0, 0));
+      }
       const name = path === "/" ? "home" : path.split("/").at(-1);
       await p.screenshot({
         path: `${out}/${name}-${width}.png`,
@@ -58,9 +76,15 @@ for (const width of [1440, 820, 390]) {
   }
   await p.close();
 }
-await writeFile(
-  "output/lab-v2/inspection.json",
-  JSON.stringify(results, null, 2),
-);
+await writeFile(`${out}/inspection.json`, JSON.stringify(results, null, 2));
 await b.close();
-if (results.some(result => result.error || result.status !== 200 || result.scroll > result.width || result.errors.length)) process.exitCode = 1;
+if (
+  results.some(
+    (result) =>
+      result.error ||
+      result.status !== 200 ||
+      result.scroll > result.width ||
+      result.errors.length,
+  )
+)
+  process.exitCode = 1;
