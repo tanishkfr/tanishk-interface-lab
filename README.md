@@ -1,11 +1,43 @@
-# Tanishk Interface Lab
+# LAB/ — an internet playground
+
+V2 expands the preserved component library into seven individually art-directed browser prototypes. The creative direction and spacing system are documented in `DESIGN.md`; product constraints are in `PRODUCT.md`.
+
+- `/`: kinetic wordmark, editorial gallery, searchable index, filters, and surprise navigation.
+- `/experiments`: larger experiments and the interactive essay.
+- `/tools`: Motion Foundry and Vector Kitchen.
+- `/components`: the original 19 components with live previews and documentation.
+- `/products`: accurately labeled product prototypes and release information.
+- `/play/<slug>`: the seven browser experiences, loaded independently.
+- `/experiments/<component>` and `/r/<component>.json`: all original URLs preserved.
+
+New prototype state and uploaded data remain in the browser. Data Matter exports SVG and JSON; Type Has Mass exports SVG with its font embedded; Browser Terrarium exports PNG; Interface Genome exports rules; Motion Foundry exports CSS and spring settings; Vector Kitchen exports editable SVG and reloadable JSON recipes; the essay exports visit observations. These are functioning prototypes, not published plugins or completed versions of every ambitious feature in the brief.
+
+## V2 verification
+
+```bash
+pnpm typecheck
+pnpm lint
+pnpm test
+pnpm build --webpack
+pnpm start --port 3300
+node scripts/verify-v2.mjs
+node scripts/inspect-v2.mjs
+node scripts/audit-v2.mjs
+node scripts/fixture-install.mjs --base-url=http://127.0.0.1:3300
+```
+
+The V2 browser scripts use installed Chrome and default to port 3300. `verify-v2.mjs` accepts `LAB_QA_URL` to change the origin. Captures, checks, and verified downloads are written under `output/lab-v2/`. The axe script uses the installed axe-core copy. Native Windows build-worker instability required the documented Webpack build path with bounded workers in this environment; no runtime library was added.
+
+Fonts are self-hosted original Google Fonts sources: Bricolage Grotesque, Instrument Sans, and IBM Plex Mono. Their OFL licenses ship beside them in `public/fonts/`. Research retrievals and screenshots record partial loads and bot-check limitations rather than claiming full inspection.
+
+## Original component library
 
 A small collection of reusable interaction experiments — behaviours, not just
 components. Each experiment solves one interaction problem properly: keyboard
 included, reduced motion respected, dependency-light, and installable on its
 own into any React project.
 
-The catalog lives at `/`; every experiment has its own page under
+The component catalog lives at `/components`; every component has its own page under
 `/experiments/<slug>` with a live preview, controls, install command, usage,
 props, accessibility notes and source.
 

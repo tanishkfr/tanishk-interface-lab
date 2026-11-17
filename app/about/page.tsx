@@ -11,12 +11,12 @@ export default function AboutPage() {
   return (
     <div className="shell">
       <header className="page-head">
-        <p className="mono-label">About the Lab</p>
-        <h1>A workshop for interactions that make software easier to use.</h1>
+        <h1>A good place to follow a strange idea.</h1>
         <p className="lede">
-          {experimentCount} experiments, each one a behaviour rather than a
-          skin: something that solves a real interaction problem and survives
-          being copied into a real codebase.
+          LAB/ is Tanishk&apos;s independent internet playground: experiments,
+          creative instruments, interactive stories, and {experimentCount}
+          reusable components. Some things are useful. Some things are here
+          because they were interesting to make.
         </p>
       </header>
 
@@ -24,18 +24,18 @@ export default function AboutPage() {
         <div className="prose-block">
           <h2>What this is</h2>
           <p>
-            The Lab is a workshop. Every experiment starts from a behavioural
-            question — what should scrolling past a large card feel like, how
-            should a system ask a person to review its work — and ends as a
-            standalone component with the same obligations as production code:
-            TypeScript, keyboard support, visible focus, reduced-motion
-            behaviour, and no hidden services.
+            A space to make things without needing a case study to justify them.
+            Numbers become a landscape. Words fall under gravity. A tiny world
+            grows in the browser. Tools let you create motion and vectors of your own.
           </p>
           <p>
-            The collection stays focused on interactions that can be explored and reused.
+            Larger creations live under Experiments and Tools. The original
+            component collection remains in Components, with every existing URL
+            and registry installation link preserved. Products records prototypes
+            honestly; no plugin or extension is presented as published before it exists.
           </p>
 
-          <h2>Rules every experiment follows</h2>
+          <h2>The component library</h2>
           <ul>
             <li>
               <strong>One behaviour, done well.</strong> No kitchen-sink
@@ -63,7 +63,7 @@ export default function AboutPage() {
 
           <h2>How installation works</h2>
           <p>
-            Every experiment is published as a shadcn-compatible registry item.
+            Every component is published as a shadcn-compatible registry item.
             The install command on each page points at this site&apos;s{" "}
             <code>/r/&lt;slug&gt;.json</code> endpoint, which serves the
             shipped source as JSON; the shadcn CLI writes the files into your

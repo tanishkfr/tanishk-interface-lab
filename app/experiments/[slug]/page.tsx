@@ -68,7 +68,7 @@ export default async function ExperimentPage(
   return (
     <div className="shell">
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link href="/">Experiments</Link>
+        <Link href="/components">Components</Link>
         <span className="sep" aria-hidden="true">
           /
         </span>

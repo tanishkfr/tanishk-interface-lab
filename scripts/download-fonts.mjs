@@ -1,0 +1,2 @@
+import {writeFile} from 'node:fs/promises';
+for(const [name,path] of [['bricolage','bricolagegrotesque/BricolageGrotesque%5Bopsz%2Cwdth%2Cwght%5D.ttf'],['instrument','instrumentsans/InstrumentSans%5Bwdth%2Cwght%5D.ttf'],['plex','ibmplexmono/IBMPlexMono-Regular.ttf']]){const r=await fetch('https://raw.githubusercontent.com/google/fonts/main/ofl/'+path);if(!r.ok)throw Error(path+' '+r.status);await writeFile('public/fonts/'+name+'.ttf',new Uint8Array(await r.arrayBuffer()));console.log(name,'downloaded original font');}
