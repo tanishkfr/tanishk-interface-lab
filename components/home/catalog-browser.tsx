@@ -16,17 +16,19 @@ export function CatalogBrowser({
   categories: { category: Category; count: number }[];
 }) {
   const [active, setActive] = useState<"All" | Category>("All");
+  const [query, setQuery] = useState('');
 
   const filtered = useMemo(
     () =>
-      active === "All"
+      (active === "All"
         ? entries
-        : entries.filter((entry) => entry.category === active),
-    [entries, active],
+        : entries.filter((entry) => entry.category === active)).filter(entry=>`${entry.name} ${entry.tagline} ${entry.category}`.toLowerCase().includes(query.trim().toLowerCase())),
+    [entries, active, query],
   );
 
   return (
     <>
+      <label className="catalog-search"><span>Find an interaction</span><input type="search" aria-label="Search components" placeholder="Try keyboard, carousel, review…" value={query} onChange={e=>setQuery(e.target.value)}/></label>
       <div className="catalog-bar">
         <button
           type="button"
@@ -51,7 +53,7 @@ export function CatalogBrowser({
         ))}
         <p className="catalog-note" aria-live="polite">
           {active === "All"
-            ? `${entries.length} experiments`
+            ? `${filtered.length} components`
             : `${filtered.length} in ${active}`}
         </p>
       </div>
@@ -61,6 +63,7 @@ export function CatalogBrowser({
           <CatalogCard key={entry.slug} entry={entry} />
         ))}
       </div>
+      {filtered.length===0&&<p role="status">No components found. Try another search or category.</p>}
     </>
   );
 }

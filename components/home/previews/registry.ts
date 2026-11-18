@@ -20,6 +20,7 @@ import LensRevealPreview from "./lens-reveal";
 import UndoWindowPreview from "./undo-window";
 import PermissionScopePreview from "./permission-scope";
 import FailureRecoveryPreview from "./failure-recovery";
+import ScrubNumberPreview from './scrub-number';
 
 /**
  * CATALOG PREVIEWS — each card gets a lightweight window into its
@@ -28,6 +29,7 @@ import FailureRecoveryPreview from "./failure-recovery";
  * never run sixteen animation loops.
  */
 export const PREVIEWS: Record<string, ComponentType> = {
+  'scrub-number':ScrubNumberPreview,
   "signal-field": SignalFieldPreview,
   "soft-snap": SoftSnapPreview,
   "evidence-carousel": EvidenceCarouselPreview,

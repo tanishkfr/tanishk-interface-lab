@@ -12,10 +12,106 @@ import { CATEGORIES } from "./types";
 
 export const experiments: Experiment[] = [
   {
+    slug: "scrub-number",
+    name: "Scrub Number",
+    tagline: "Drag for a feeling. Type for precision.",
+    summary:
+      "A compact controlled number field with a horizontal drag handle, direct numeric input and keyboard adjustments. Useful for creative tools, layout inspectors and parameter panels.",
+    category: "Input",
+    tags: ["number", "drag", "precision", "keyboard"],
+    status: "stable",
+    tech: ["React", "Pointer Events", "CSS"],
+    dependencies: [],
+    files: [
+      {
+        path: "components/lab/scrub-number/scrub-number.tsx",
+        kind: "component",
+        type: "registry:component",
+      },
+      {
+        path: "components/lab/scrub-number/scrub-number.css",
+        kind: "styles",
+        type: "registry:file",
+      },
+    ],
+    preview: {
+      devices: ["desktop", "mobile"],
+      controls: [
+        {
+          kind: "choice",
+          id: "step",
+          label: "Size increment",
+          options: [
+            { value: "1", label: "One" },
+            { value: "5", label: "Five" },
+            { value: "10", label: "Ten" },
+          ],
+        },
+      ],
+      defaults: { step: "1" },
+      hint: "Drag the arrow handles, type a number, or focus a handle and use arrow keys.",
+    },
+    props: [
+      {
+        name: "value",
+        type: "number",
+        description: "Controlled numeric value.",
+      },
+      {
+        name: "onChange",
+        type: "(value: number) => void",
+        description: "Receives the finite, rounded and clamped value.",
+      },
+      {
+        name: "label",
+        type: "string",
+        description: "Visible and accessible field label.",
+      },
+      {
+        name: "min",
+        type: "number",
+        default: "0",
+        description: "Lower bound.",
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "100",
+        description: "Upper bound.",
+      },
+      {
+        name: "step",
+        type: "number",
+        default: "1",
+        description: "Positive increment; invalid increments fall back to one.",
+      },
+    ],
+    accessibility: [
+      "A native labeled number input provides direct entry and native numeric semantics.",
+      "The drag handle is a focusable button: arrow keys adjust, Shift multiplies keyboard steps, and Home/End reach the bounds.",
+      "Pointer capture ends on release or cancellation; horizontal touch dragging is limited to the handle.",
+      "No animation is required for operation.",
+    ],
+    usage: `"use client";
+import { useState } from "react";
+import { ScrubNumber } from "@/components/lab/scrub-number/scrub-number";
+
+export function SizeField() {
+  const [value, setValue] = useState(48);
+  return <ScrubNumber label="Size" value={value} onChange={setValue} min={12} max={120} />;
+}`,
+    demoNote:
+      "The controls change the actual size, corner radius and rotation of a local specimen. No values are saved or sent.",
+    designDecisions: [
+      "Keep dragging on an explicit handle so text entry and scrolling remain predictable.",
+      "Use native numeric input alongside the drag gesture so precision never depends on pointer dexterity.",
+    ],
+    order: 20,
+  },
+  {
     slug: "signal-field",
     name: "Signal Field",
-    tagline:
-      "An animated glyph background that softens around the pointer.",
+    tagline: "An animated glyph background that softens around the pointer.",
     summary:
       "A low-resolution animated canvas rendered as glyphs, dithered dots or pixels. The field moves at rest and softens around the pointer. Use it as a background for a hero, empty state or section.",
     category: "Motion",
@@ -123,7 +219,8 @@ export const experiments: Experiment[] = [
         name: "pointerRadius",
         type: "number",
         default: "9",
-        description: "Suppression radius around the pointer, in cells. 0 disables.",
+        description:
+          "Suppression radius around the pointer, in cells. 0 disables.",
       },
       {
         name: "speed",
@@ -135,26 +232,29 @@ export const experiments: Experiment[] = [
         name: "mode",
         type: '"glyph" | "dither" | "pixel"',
         default: '"glyph"',
-        description: "How cells resolve: characters, halftone dots or solid fragments.",
+        description:
+          "How cells resolve: characters, halftone dots or solid fragments.",
       },
       {
         name: "accent",
         type: "string",
         default: "—",
         description:
-          'Hex colour for the densest cells. Without it the field inherits currentColor at low opacity.',
+          "Hex colour for the densest cells. Without it the field inherits currentColor at low opacity.",
       },
       {
         name: "seed",
         type: "number",
         default: "1",
-        description: "Changes the noise field’s composition. Same seed, same field.",
+        description:
+          "Changes the noise field’s composition. Same seed, same field.",
       },
       {
         name: "paused",
         type: "boolean",
         default: "false",
-        description: "Freeze the field externally; the last composed frame stays.",
+        description:
+          "Freeze the field externally; the last composed frame stays.",
       },
     ],
     accessibility: [
@@ -186,7 +286,9 @@ export function Hero() {
 
   {
     slug: "soft-snap",
-    designDecisions: ["Gentle settling helps align a card after scrolling without taking over the gesture. Avoid strong snapping where uninterrupted free scrolling matters more."],
+    designDecisions: [
+      "Gentle settling helps align a card after scrolling without taking over the gesture. Avoid strong snapping where uninterrupted free scrolling matters more.",
+    ],
     name: "Soft Snap Cards",
     tagline:
       "Full-width cards that settle into frame without hijacking your scroll.",
@@ -308,7 +410,9 @@ export function WorkLane({ entries }: { entries: Entry[] }) {
 
   {
     slug: "evidence-carousel",
-    designDecisions: ["A focused item and visible neighbours help people browse a sequence while retaining context. A list may be better for comparison across many items."],
+    designDecisions: [
+      "A focused item and visible neighbours help people browse a sequence while retaining context. A list may be better for comparison across many items.",
+    ],
     pairsWith: ["lens-reveal"],
     name: "Evidence Carousel",
     tagline:
@@ -527,13 +631,14 @@ export function Gallery() {
         name: "label",
         type: "string",
         default: '"VIEW"',
-        description: "Word carried by the disc on data-cursor=\"view\" targets.",
+        description: 'Word carried by the disc on data-cursor="view" targets.',
       },
       {
         name: "blend",
         type: "string",
         default: '"difference"',
-        description: "Any mix-blend-mode value; difference is the honest default.",
+        description:
+          "Any mix-blend-mode value; difference is the honest default.",
       },
       {
         name: "magnetic",
@@ -572,7 +677,9 @@ export function Cursor() {
 
   {
     slug: "adaptive-composer",
-    designDecisions: ["Structured input can emerge from a familiar sentence, reducing the need to fill in a form first. Keep the parsed result visible and editable when precision matters."],
+    designDecisions: [
+      "Structured input can emerge from a familiar sentence, reducing the need to fill in a form first. Keep the parsed result visible and editable when precision matters.",
+    ],
     pairsWith: ["contextual-dock"],
     name: "Adaptive Composer",
     tagline:
@@ -688,8 +795,10 @@ export function Capture() {
 
   {
     slug: "agent-review",
-    designDecisions: ["Reviewing a proposed change in place keeps the decision close to its context. This is useful when a person needs to inspect and accept or reject work before it is applied."],
-    pairsWith: ["inline-diff","trace-trail"],
+    designDecisions: [
+      "Reviewing a proposed change in place keeps the decision close to its context. This is useful when a person needs to inspect and accept or reject work before it is applied.",
+    ],
+    pairsWith: ["inline-diff", "trace-trail"],
     name: "Agent Review Surface",
     tagline:
       "Proposed change, evidence, and a human decision — the step between.",
@@ -900,12 +1009,14 @@ export function Review() {
         name: "status",
         type: '"verified" | "probable" | "unverified"',
         default: '"verified"',
-        description: "Source status supplied by the host. It does not establish verification on its own.",
+        description:
+          "Source status supplied by the host. It does not establish verification on its own.",
       },
       {
         name: "confidence",
         type: "number",
-        description: "0–1 confidence value supplied by the host; shown as a meter when provided.",
+        description:
+          "0–1 confidence value supplied by the host; shown as a meter when provided.",
       },
       {
         name: "onOpenSource",
@@ -945,7 +1056,9 @@ export function Citation() {
 
   {
     slug: "spatial-command",
-    designDecisions: ["A command menu brings actions into reach without occupying the workspace. It works best when commands have clear names and a discoverable way to open the menu."],
+    designDecisions: [
+      "A command menu brings actions into reach without occupying the workspace. It works best when commands have clear names and a discoverable way to open the menu.",
+    ],
     pairsWith: ["contextual-dock"],
     name: "Spatial Command Menu",
     tagline:
@@ -1073,8 +1186,7 @@ export function Citation() {
   {
     slug: "morphing-metadata",
     name: "Morphing Metadata",
-    tagline:
-      "A record that grows from compact summary into structured detail.",
+    tagline: "A record that grows from compact summary into structured detail.",
     summary:
       "Compact and expanded are the same surface, not two widgets: the summary keys become detail rows, the numbers keep their position, and the transition is a morph rather than an accordion unfolding underneath. Where the browser supports the View Transitions API the swap is a true cross-fade of shared geometry; everywhere else it degrades to a clean, quick re-layout.",
     category: "Systems",
@@ -1289,11 +1401,12 @@ export function Citation() {
 
   {
     slug: "hold-to-confirm",
-    designDecisions: ["Holding adds a deliberate step before a consequential action. Provide a keyboard path and avoid using the delay for routine actions."],
+    designDecisions: [
+      "Holding adds a deliberate step before a consequential action. Provide a keyboard path and avoid using the delay for routine actions.",
+    ],
     pairsWith: ["progressive-action"],
     name: "Hold to Confirm",
-    tagline:
-      "Deliberate friction for actions that deserve a second of intent.",
+    tagline: "Deliberate friction for actions that deserve a second of intent.",
     summary:
       "Publishing, deploying, overwriting and accepting-all are the actions where a click is too cheap. Press and hold for a moment — with visible progress, a cancel path on release, and keyboard and touch equivalents — and the action commits. No modal, no checkbox theatre, and the friction is exactly as long as the host says it should be.",
     category: "Input",
@@ -1379,7 +1492,8 @@ export function Citation() {
         name: "variant",
         type: '"accent" | "danger"',
         default: '"accent"',
-        description: "Tone of the control; danger is reserved for destructive actions.",
+        description:
+          "Tone of the control; danger is reserved for destructive actions.",
       },
       {
         name: "progress",
@@ -1418,7 +1532,9 @@ export function Publish() {
 
   {
     slug: "progressive-action",
-    designDecisions: ["Showing progress and completion at the action helps people understand what happened. The application still owns the operation and its failure handling."],
+    designDecisions: [
+      "Showing progress and completion at the action helps people understand what happened. The application still owns the operation and its failure handling.",
+    ],
     pairsWith: ["hold-to-confirm"],
     name: "Progressive Command Button",
     tagline:
@@ -1540,8 +1656,7 @@ export function Publish() {
   {
     slug: "trace-trail",
     name: "Trace Trail",
-    tagline:
-      "One line of provenance that opens into the whole action history.",
+    tagline: "One line of provenance that opens into the whole action history.",
     summary:
       "Automated work should be able to say where it came from. Collapsed, it is a single breadcrumb — source, transformations, result — with a status dot. Expanded, each step gets an actor, what it did, when, and the source it used, so a person can audit the chain without leaving the sentence they were reading.",
     category: "Agentic",
@@ -1603,7 +1718,8 @@ export function Publish() {
       {
         name: "summary",
         type: "string",
-        description: "One-line collapsed text; defaults to the step actions joined by arrows.",
+        description:
+          "One-line collapsed text; defaults to the step actions joined by arrows.",
       },
       {
         name: "defaultOpen",
@@ -1714,7 +1830,8 @@ export function Publish() {
       {
         name: "items",
         type: "StackItem[]",
-        description: "{ id, title, meta?, content } — content is the panel shown when selected.",
+        description:
+          "{ id, title, meta?, content } — content is the panel shown when selected.",
       },
       {
         name: "index / onIndexChange",
@@ -1760,8 +1877,7 @@ export function Publish() {
   {
     slug: "inline-diff",
     name: "Inline Diff Text",
-    tagline:
-      "Original, revision and reason — revealed in place, legibly.",
+    tagline: "Original, revision and reason — revealed in place, legibly.",
     summary:
       "A sentence that changed, shown as a sentence: the removed words stay visible, the revision sits in their place, and the reason is one affordance away. Word-level diffing is computed locally, so it works for editorial tools, version history and any AI rewrite that owes the reader an explanation.",
     category: "Systems",
@@ -1838,7 +1954,8 @@ export function Publish() {
       {
         name: "onAccept",
         type: "() => void",
-        description: "When provided, an accept control appears next to the reason.",
+        description:
+          "When provided, an accept control appears next to the reason.",
       },
       {
         name: "emphasis",
@@ -1874,8 +1991,7 @@ export function Publish() {
   {
     slug: "lens-reveal",
     name: "Lens Reveal",
-    tagline:
-      "A movable lens that reveals the layer beneath a surface.",
+    tagline: "A movable lens that reveals the layer beneath a surface.",
     summary:
       "Not a magnifier: a lens you move over a surface to reveal a second, registered layer — annotations over a page, before/after over artwork, debug values over a rendered chart. Pointer and touch drag move it, arrow keys move it precisely, and everything it reveals is also available in an accessible list, so the lens is an accelerator rather than a gate.",
     category: "Media",
@@ -2004,30 +2120,67 @@ export function Publish() {
     slug: "undo-window",
     name: "Undo Window",
     tagline: "A short recovery window for reversible actions.",
-    summary: "Shows the outcome of a recent action and offers a time-limited request to reverse it. The host owns persistence, the deadline and the result of restoration. The quick undo is one active opportunity; provide a separate recovery route for important actions.",
+    summary:
+      "Shows the outcome of a recent action and offers a time-limited request to reverse it. The host owns persistence, the deadline and the result of restoration. The quick undo is one active opportunity; provide a separate recovery route for important actions.",
     category: "Systems",
     tags: ["recovery", "undo", "actions"],
     status: "experimental",
     tech: ["React", "TypeScript"],
     dependencies: [],
     files: [
-      { path: "components/lab/undo-window/undo-window.tsx", kind: "component", type: "registry:component" },
-      { path: "components/lab/undo-window/undo-window.css", kind: "styles", type: "registry:file" },
-      { path: "components/lab/undo-window/undo-policy.ts", kind: "logic", type: "registry:file" },
+      {
+        path: "components/lab/undo-window/undo-window.tsx",
+        kind: "component",
+        type: "registry:component",
+      },
+      {
+        path: "components/lab/undo-window/undo-window.css",
+        kind: "styles",
+        type: "registry:file",
+      },
+      {
+        path: "components/lab/undo-window/undo-policy.ts",
+        kind: "logic",
+        type: "registry:file",
+      },
     ],
     preview: {
       devices: ["desktop", "mobile"],
       controls: [
-        { kind: "choice", id: "duration", label: "Undo window", options: [{ value: "10", label: "10 sec" }, { value: "30", label: "30 sec" }, { value: "60", label: "60 sec" }] },
+        {
+          kind: "choice",
+          id: "duration",
+          label: "Undo window",
+          options: [
+            { value: "10", label: "10 sec" },
+            { value: "30", label: "30 sec" },
+            { value: "60", label: "60 sec" },
+          ],
+        },
         { kind: "toggle", id: "fail", label: "Simulate restore failure" },
       ],
       defaults: { duration: "30", fail: false },
       hint: "Archive a project, then choose Undo or restore it from the archive.",
     },
     props: [
-      { name: "entry", type: "UndoEntry | null", description: "Host-owned action identity, label, absolute deadline and confirmed status. Use a new id for each action." },
-      { name: "onUndo", type: "(id: string) => void", description: "Requests restoration. The host reports pending, restored or failed through entry." },
-      { name: "onExpire", type: "(id: string) => void", description: "Notifies the host that the deadline passed; the host validates and finalizes the action." },
+      {
+        name: "entry",
+        type: "UndoEntry | null",
+        description:
+          "Host-owned action identity, label, absolute deadline and confirmed status. Use a new id for each action.",
+      },
+      {
+        name: "onUndo",
+        type: "(id: string) => void",
+        description:
+          "Requests restoration. The host reports pending, restored or failed through entry.",
+      },
+      {
+        name: "onExpire",
+        type: "(id: string) => void",
+        description:
+          "Notifies the host that the deadline passed; the host validates and finalizes the action.",
+      },
     ],
     accessibility: [
       "The action and result are announced in a polite status region; the remaining time is not repeatedly announced.",
@@ -2037,8 +2190,12 @@ export function Publish() {
     usage: `import { UndoWindow } from "@/components/lab/undo-window/undo-window";
 
 <UndoWindow entry={recentAction} onUndo={requestRestore} onExpire={finalizeAction} />`,
-    demoNote: "Archive a fictional project, then undo it. Change the simulated result to inspect failure and use the archive to restore later.",
-    designDecisions: ["A reversible action can proceed without a blocking confirmation when recovery is straightforward. The quick window is not the only recovery path: the sample archive remains available after it ends.", "Only one quick-undo target is active. A newer archive supersedes the earlier target; the host remains responsible for actual persistence and recovery."],
+    demoNote:
+      "Archive a fictional project, then undo it. Change the simulated result to inspect failure and use the archive to restore later.",
+    designDecisions: [
+      "A reversible action can proceed without a blocking confirmation when recovery is straightforward. The quick window is not the only recovery path: the sample archive remains available after it ends.",
+      "Only one quick-undo target is active. A newer archive supersedes the earlier target; the host remains responsible for actual persistence and recovery.",
+    ],
     pairsWith: ["hold-to-confirm", "progressive-action"],
     order: 17,
   },
@@ -2046,31 +2203,84 @@ export function Publish() {
     slug: "permission-scope",
     name: "Permission Scope Inspector",
     tagline: "Review what an assistant may access and for how long.",
-    summary: "Presents an authorization request with its resource, operations and duration. People can deny it or choose a narrower grant. The host validates and enforces every permission, expiry and revocation; this component only communicates choices.",
+    summary:
+      "Presents an authorization request with its resource, operations and duration. People can deny it or choose a narrower grant. The host validates and enforces every permission, expiry and revocation; this component only communicates choices.",
     category: "Agentic",
     tags: ["permissions", "scope", "authorization"],
     status: "experimental",
     tech: ["React", "TypeScript"],
     dependencies: [],
     files: [
-      { path: "components/lab/permission-scope/permission-scope.tsx", kind: "component", type: "registry:component" },
-      { path: "components/lab/permission-scope/permission-scope.css", kind: "styles", type: "registry:file" },
+      {
+        path: "components/lab/permission-scope/permission-scope.tsx",
+        kind: "component",
+        type: "registry:component",
+      },
+      {
+        path: "components/lab/permission-scope/permission-scope.css",
+        kind: "styles",
+        type: "registry:file",
+      },
     ],
-    preview: { devices: ["desktop", "mobile"], controls: [
-      { kind: "choice", id: "scope", label: "Requested scope", options: [{ value: "selected", label: "Selected files" }, { value: "folder", label: "Whole folder" }] },
-      { kind: "choice", id: "operation", label: "Requested access", options: [{ value: "read-write", label: "Read and move" }, { value: "read", label: "Read only" }] },
-    ], defaults: { scope: "selected", operation: "read-write" }, hint: "Inspect the scope, then deny or allow the selected access." },
+    preview: {
+      devices: ["desktop", "mobile"],
+      controls: [
+        {
+          kind: "choice",
+          id: "scope",
+          label: "Requested scope",
+          options: [
+            { value: "selected", label: "Selected files" },
+            { value: "folder", label: "Whole folder" },
+          ],
+        },
+        {
+          kind: "choice",
+          id: "operation",
+          label: "Requested access",
+          options: [
+            { value: "read-write", label: "Read and move" },
+            { value: "read", label: "Read only" },
+          ],
+        },
+      ],
+      defaults: { scope: "selected", operation: "read-write" },
+      hint: "Inspect the scope, then deny or allow the selected access.",
+    },
     props: [
-      { name: "request", type: "PermissionRequest", description: "Host-provided identity, purpose, resource, requested access and consequence of denial. Use a new id for changed requests." },
-      { name: "status / grant", type: "PermissionStatus / PermissionDecision", description: "Host-confirmed request or grant state; include matching grant details for an active grant." },
-      { name: "onGrant / onDeny / onRevoke", type: "callbacks", description: "Requests a decision or revocation. The host validates, enforces and reports the result." },
+      {
+        name: "request",
+        type: "PermissionRequest",
+        description:
+          "Host-provided identity, purpose, resource, requested access and consequence of denial. Use a new id for changed requests.",
+      },
+      {
+        name: "status / grant",
+        type: "PermissionStatus / PermissionDecision",
+        description:
+          "Host-confirmed request or grant state; include matching grant details for an active grant.",
+      },
+      {
+        name: "onGrant / onDeny / onRevoke",
+        type: "callbacks",
+        description:
+          "Requests a decision or revocation. The host validates, enforces and reports the result.",
+      },
     ],
-    accessibility: ["Access and duration use labelled radio groups; denial remains available alongside approval.", "The decision result is announced as a status and focus remains on the request surface.", "No information depends on animation or color alone."],
+    accessibility: [
+      "Access and duration use labelled radio groups; denial remains available alongside approval.",
+      "The decision result is announced as a status and focus remains on the request surface.",
+      "No information depends on animation or color alone.",
+    ],
     usage: `import { PermissionScopeInspector } from "@/components/lab/permission-scope/permission-scope";
 
 <PermissionScopeInspector request={request} status={status} grant={grant} onGrant={requestGrant} onDeny={denyRequest} onRevoke={requestRevoke} />`,
-    demoNote: "Review a fictional file request. The sample records choices locally and does not access files.",
-    designDecisions: ["A clear resource and operation help people distinguish reading from changing files. The initial selection is read only and applies once, so broader access requires a deliberate choice.", "The interface communicates intent; a trusted host must enforce the scope and expiry. A permission decision is distinct from reviewing a proposed result."],
+    demoNote:
+      "Review a fictional file request. The sample records choices locally and does not access files.",
+    designDecisions: [
+      "A clear resource and operation help people distinguish reading from changing files. The initial selection is read only and applies once, so broader access requires a deliberate choice.",
+      "The interface communicates intent; a trusted host must enforce the scope and expiry. A permission decision is distinct from reviewing a proposed result.",
+    ],
     pairsWith: ["agent-review", "trace-trail"],
     order: 18,
   },
@@ -2078,34 +2288,94 @@ export function Publish() {
     slug: "failure-recovery",
     name: "Failure Recovery Surface",
     tagline: "Understand what completed and choose how to recover.",
-    summary: "Presents a host-owned multi-step operation, its confirmed progress, preserved work and available recovery actions. Retry safety and rollback availability come from the host, which must prevent duplicate work and validate each result.",
+    summary:
+      "Presents a host-owned multi-step operation, its confirmed progress, preserved work and available recovery actions. Retry safety and rollback availability come from the host, which must prevent duplicate work and validate each result.",
     category: "Systems",
     tags: ["recovery", "failure", "operations"],
     status: "experimental",
     tech: ["React", "TypeScript"],
     dependencies: [],
     files: [
-      { path: "components/lab/failure-recovery/failure-recovery.tsx", kind: "component", type: "registry:component" },
-      { path: "components/lab/failure-recovery/failure-recovery.css", kind: "styles", type: "registry:file" },
+      {
+        path: "components/lab/failure-recovery/failure-recovery.tsx",
+        kind: "component",
+        type: "registry:component",
+      },
+      {
+        path: "components/lab/failure-recovery/failure-recovery.css",
+        kind: "styles",
+        type: "registry:file",
+      },
     ],
-    preview: { devices: ["desktop", "mobile"], controls: [
-      { kind: "choice", id: "failure", label: "Simulated failure", options: [{ value: "upload", label: "Upload" }, { value: "package", label: "Package" }, { value: "none", label: "None" }] },
-      { kind: "toggle", id: "retryFail", label: "Simulate retry failure" },
-      { kind: "toggle", id: "confirmRetry", label: "Retry needs confirmation" },
-      { kind: "toggle", id: "rollback", label: "Rollback available" },
-    ], defaults: { failure: "upload", retryFail: false, confirmRetry: false, rollback: true }, hint: "Start the sample export. If a step fails, inspect the preserved work and retry or roll back." },
+    preview: {
+      devices: ["desktop", "mobile"],
+      controls: [
+        {
+          kind: "choice",
+          id: "failure",
+          label: "Simulated failure",
+          options: [
+            { value: "upload", label: "Upload" },
+            { value: "package", label: "Package" },
+            { value: "none", label: "None" },
+          ],
+        },
+        { kind: "toggle", id: "retryFail", label: "Simulate retry failure" },
+        {
+          kind: "toggle",
+          id: "confirmRetry",
+          label: "Retry needs confirmation",
+        },
+        { kind: "toggle", id: "rollback", label: "Rollback available" },
+      ],
+      defaults: {
+        failure: "upload",
+        retryFail: false,
+        confirmRetry: false,
+        rollback: true,
+      },
+      hint: "Start the sample export. If a step fails, inspect the preserved work and retry or roll back.",
+    },
     props: [
-      { name: "phase / steps", type: "RecoveryPhase / RecoveryStep[]", description: "Host-confirmed operation phase and individual step states." },
-      { name: "preserved", type: "string", description: "Host-provided explanation of preserved work and whether a partial result is usable." },
-      { name: "retrySafety / rollbackAvailable", type: "RetrySafety / boolean", description: "Host-provided recovery policy. Confirmation is requested when retry safety is uncertain." },
-      { name: "onStart / onRetry / onRollback", type: "callbacks", description: "Requests operations; the host executes, deduplicates and confirms outcomes." },
+      {
+        name: "phase / steps",
+        type: "RecoveryPhase / RecoveryStep[]",
+        description:
+          "Host-confirmed operation phase and individual step states.",
+      },
+      {
+        name: "preserved",
+        type: "string",
+        description:
+          "Host-provided explanation of preserved work and whether a partial result is usable.",
+      },
+      {
+        name: "retrySafety / rollbackAvailable",
+        type: "RetrySafety / boolean",
+        description:
+          "Host-provided recovery policy. Confirmation is requested when retry safety is uncertain.",
+      },
+      {
+        name: "onStart / onRetry / onRollback",
+        type: "callbacks",
+        description:
+          "Requests operations; the host executes, deduplicates and confirms outcomes.",
+      },
     ],
-    accessibility: ["Step states are written as words and do not rely on color alone.", "Status changes are announced politely, and keyboard focus stays on the recovery surface after an action.", "No animation is required to understand progress or recovery."],
+    accessibility: [
+      "Step states are written as words and do not rely on color alone.",
+      "Status changes are announced politely, and keyboard focus stays on the recovery surface after an action.",
+      "No animation is required to understand progress or recovery.",
+    ],
     usage: `import { FailureRecoverySurface } from "@/components/lab/failure-recovery/failure-recovery";
 
 <FailureRecoverySurface title="Export workspace" phase={phase} steps={steps} preserved={preserved} retrySafety="safe" rollbackAvailable={canRollback} onStart={start} onRetry={retryStep} onRollback={rollback} />`,
-    demoNote: "Run a fictional export. Change the failure and retry controls to inspect recovery without creating or uploading files.",
-    designDecisions: ["A partial failure needs more context than a single error message. Step states and a plain-language summary show what is preserved and what remains unfinished.", "The host determines whether retry or rollback is safe. This surface requests actions and displays confirmed results; it does not perform or deduplicate operations."],
+    demoNote:
+      "Run a fictional export. Change the failure and retry controls to inspect recovery without creating or uploading files.",
+    designDecisions: [
+      "A partial failure needs more context than a single error message. Step states and a plain-language summary show what is preserved and what remains unfinished.",
+      "The host determines whether retry or rollback is safe. This surface requests actions and displays confirmed results; it does not perform or deduplicate operations.",
+    ],
     pairsWith: ["progressive-action", "trace-trail"],
     order: 19,
   },

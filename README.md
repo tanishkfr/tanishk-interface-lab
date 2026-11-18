@@ -1,11 +1,45 @@
-# Tanishk Interface Lab
+# LAB/ — an internet playground
+
+V2 expands the preserved component library into eleven individually art-directed browser prototypes. The unreasonable pass and its verification are documented in `UNREASONABLE_PASS.md`; creative direction is in `DESIGN.md` and product constraints in `PRODUCT.md`.
+
+- `/`: kinetic wordmark, editorial gallery, searchable index, filters, and surprise navigation.
+- `/experiments`: larger experiments and the interactive essay.
+- `/tools`: Motion Foundry and Vector Kitchen.
+- `/components`: the original 19 components with live previews and documentation.
+- `/products`: accurately labeled product prototypes and release information.
+- `/play/<slug>`: eleven browser experiences, loaded independently.
+- `/experiments/<component>` and `/r/<component>.json`: all original URLs preserved.
+
+New prototype state and uploaded data remain in the browser. Data Matter exports SVG and JSON; Type Has Mass exports SVG with its font embedded; Browser Terrarium exports PNG; Interface Genome exports rules; Motion Foundry exports CSS and spring settings; Vector Kitchen exports editable SVG and reloadable JSON recipes; the essay exports visit observations. These are functioning prototypes, not published plugins or completed versions of every ambitious feature in the brief.
+
+## V2 verification
+
+```bash
+pnpm typecheck
+pnpm lint
+pnpm test
+pnpm build --webpack
+pnpm start --port 3300
+node scripts/verify-v2.mjs
+node scripts/inspect-v2.mjs
+node scripts/audit-v2.mjs
+node scripts/fixture-install.mjs --base-url=http://127.0.0.1:3300
+```
+
+The refinement adds `scripts/verify-unreasonable.mjs` for the new experience flows and actual downloads, and `scripts/verify-preview-pass.mjs` for all 19 component workbenches. Both accept `LAB_QA_URL`; their reports live in `output/unreasonable/`.
+
+The V2 browser scripts use installed Chrome and default to port 3300. `verify-v2.mjs` accepts `LAB_QA_URL` to change the origin. Captures, checks, and verified downloads are written under `output/lab-v2/`. The axe script uses the installed axe-core copy. Native Windows build-worker instability required the documented Webpack build path with bounded workers in this environment; no runtime library was added.
+
+Typography pairs [Gulax](https://gitlab.com/velvetyne/Gulax) from Velvetyne with [Apfel Grotezk](https://www.collletttivo.it/typefaces/apfel-grotezk) from Collletttivo. IBM Plex Mono is retained for code and measurements. Fonts are self-hosted, and OFL licenses ship in `public/fonts/`. Earlier Google Fonts assets remain for the checkpoint but are no longer loaded by the layout. Research retrievals and screenshots record partial loads rather than claiming full inspection.
+
+## Original component library
 
 A small collection of reusable interaction experiments — behaviours, not just
 components. Each experiment solves one interaction problem properly: keyboard
 included, reduced motion respected, dependency-light, and installable on its
 own into any React project.
 
-The catalog lives at `/`; every experiment has its own page under
+The component catalog lives at `/components`; every component has its own page under
 `/experiments/<slug>` with a live preview, controls, install command, usage,
 props, accessibility notes and source.
 

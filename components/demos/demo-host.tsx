@@ -14,6 +14,7 @@ export type DemoProps = {
  * sample interfaces the catalog links into.
  */
 const DEMOS: Record<string, ComponentType<DemoProps>> = {
+  "scrub-number":dynamic(()=>import('@/components/demos/scrub-number')),
   "signal-field": dynamic(() => import("@/components/demos/signal-field")),
   "soft-snap": dynamic(() => import("@/components/demos/soft-snap")),
   "evidence-carousel": dynamic(

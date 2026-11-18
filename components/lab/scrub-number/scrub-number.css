@@ -1,0 +1,50 @@
+.lab-scrub-number {
+  display: grid;
+  gap: 10px;
+  font: inherit;
+  color: inherit;
+  min-width: 0;
+}
+.lab-scrub-label {
+  font-size: 14px;
+}
+.lab-scrub-field {
+  display: flex;
+  align-items: center;
+  border: 1px solid #25262055;
+  border-radius: 4px;
+  background: #fff;
+  overflow: hidden;
+}
+.lab-scrub-handle {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-right: 1px solid #25262025;
+  background: #eeeae0;
+  color: #252620;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+  font: inherit;
+  font-size: 22px;
+}
+.lab-scrub-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  color: #252620;
+  font: inherit;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.lab-scrub-handle:focus-visible,
+.lab-scrub-field input:focus-visible {
+  outline: 2px solid #5834d7;
+  outline-offset: -3px;
+}
