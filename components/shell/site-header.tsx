@@ -34,7 +34,8 @@ export function SiteHeader() {
               href={href}
               aria-current={
                 pathname === href ||
-                (href === "/components" && pathname.startsWith("/experiments/"))
+                (href === "/components" && pathname.startsWith("/experiments/")) ||
+                (href === "/products" && pathname.startsWith("/products/"))
                   ? "page"
                   : undefined
               }

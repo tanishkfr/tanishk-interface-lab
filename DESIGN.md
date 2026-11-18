@@ -28,4 +28,4 @@ Sticker City: periwinkle and printed vector matter. Almost Nothing: a quiet, unf
 
 ## Product truth
 
-Existing components and registry source remain independently portable. New creations use `/play/`; the existing `/experiments/<component>` routes remain valid. Products accurately presents Vector Kitchen as a browser prototype with no published plugin. User data stays in the browser. Exports use generated SVG/JSON/CSS with actual parameter values.
+Existing components and registry source remain independently portable. New creations use `/play/`; the existing `/experiments/<component>` routes remain valid. Products accurately presents Vector Kitchen as a browser prototype and GRID CRIMES/ as a Figma development build with no Community publication. User data stays in the browser; the plugin makes no network requests. Exports use generated SVG/JSON/CSS with actual parameter values.
