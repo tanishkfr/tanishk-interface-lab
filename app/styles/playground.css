@@ -78,6 +78,7 @@ p {
   font: 800 32px/1 var(--lab-display);
   letter-spacing: -0.04em;
   display: inline-flex;
+  gap: 0.1em;
 }
 .v2-logo span {
   position: relative;
@@ -88,7 +89,7 @@ p {
 .v2-logo span::before {
   content: "";
   position: absolute;
-  inset: 0.14em -0.04em;
+  inset: 0.29em -0.04em -0.01em;
   z-index: -1;
   background: var(--lab-acid);
   border-radius: 2px;
