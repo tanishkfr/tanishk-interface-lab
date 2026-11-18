@@ -5,7 +5,7 @@ import { useState } from "react";
 import { HeroPress } from "./living-wordmark";
 import { projects, type Project } from "@/lib/playground/projects";
 import { Icon } from "./icons";
-import { ProjectArtwork, Rosette } from "./artwork";
+import { ProjectArtwork } from "./artwork";
 type ComponentEntry = {
   slug: string;
   name: string;
@@ -274,19 +274,6 @@ export function PlaygroundHome({
           </>
         )}
       </section>
-      <div className="home-colophon v2-wrap">
-        <Rosette />
-        <p>
-          A space for useful things,
-          <br />
-          strange things, and the things
-          <br />
-          <em>somewhere in between.</em>
-        </p>
-        <Link href="/about" className="text-link">
-          Why this place exists <Icon />
-        </Link>
-      </div>
     </div>
   );
 }
