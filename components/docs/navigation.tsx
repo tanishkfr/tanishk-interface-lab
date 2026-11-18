@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 export type DocEntry = {
@@ -12,31 +11,12 @@ export type DocEntry = {
   dependencies: number;
 };
 export function DocsNavigation({ entries }: { entries: DocEntry[] }) {
-  const pathname = usePathname(),
-    [query, setQuery] = useState("");
+  const pathname = usePathname();
   return (
     <nav className="docs-navigation" aria-label="Component navigation">
-      <Link className="docs-home-link" href="/components">
-        The component library <span aria-hidden="true">↗</span>
-      </Link>
-      <label className="docs-nav-search">
-        <span className="sr-only">Find a component in navigation</span>
-        <input
-          type="search"
-          value={query}
-          placeholder="Find a component…"
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </label>
       {["Motion", "Input", "Navigation", "Media", "Systems", "Agentic"].map(
         (category) => {
-          const filtered = entries.filter(
-            (e) =>
-              e.category === category &&
-              `${e.name} ${e.tags.join(" ")}`
-                .toLowerCase()
-                .includes(query.toLowerCase()),
-          );
+          const filtered = entries.filter((e) => e.category === category);
           return filtered.length ? (
             <div className="docs-nav-group" key={category}>
               <span>{category}</span>
@@ -55,12 +35,6 @@ export function DocsNavigation({ entries }: { entries: DocEntry[] }) {
           ) : null;
         },
       )}
-      {entries.every(
-        (e) =>
-          !`${e.name} ${e.tags.join(" ")}`
-            .toLowerCase()
-            .includes(query.toLowerCase()),
-      ) && <p className="docs-no-results">No matching components.</p>}
     </nav>
   );
 }

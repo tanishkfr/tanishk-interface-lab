@@ -64,16 +64,11 @@ await test("Foundry fonts load locally, licenses included, reduced-motion printi
   ])
     assert.equal((await context.request.get(BASE + path)).status(), 200);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  const canvas = page.locator(".press-canvas canvas"),
-    before = await canvas.evaluate((c) => c.toDataURL());
-  await click("Make an impression");
-  assert.notEqual(await canvas.evaluate((c) => c.toDataURL()), before);
-  const pending = page.waitForEvent("download");
-  await page.getByRole("button", { name: /Keep it/ }).click();
-  const png = await pending;
-  await png.saveAs(`${OUT}/lab-impression.png`);
-  const bytes = await readFile(`${OUT}/lab-impression.png`);
-  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  const hero = page.locator(".living-wordmark");
+  const before = await hero.getAttribute("class");
+  await page.waitForTimeout(3000);
+  assert.equal(await hero.getAttribute("class"), before);
+  assert.equal(await hero.locator("svg .living-letters text").count(), 4);
   await page.emulateMedia({ reducedMotion: "no-preference" });
 });
 await test("Sticker creation, direct dragging, precise controls, layer order, undo/redo and self-contained export", async () => {

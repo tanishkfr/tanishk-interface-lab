@@ -29,8 +29,9 @@ export function ComponentLibrary({ entries }: { entries: DocEntry[] }) {
             <em>Lasting impressions.</em>
           </h1>
           <p>
-            19 thoughtful interactions. Real previews, independent source, and
-            an installation command that gets you straight to making.
+            {entries.length} thoughtful interactions. Real previews, independent
+            source, and an installation command that gets you straight to
+            making.
           </p>
         </div>
         <a

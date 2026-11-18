@@ -10,6 +10,17 @@ export type Project = {
 };
 export const projects: Project[] = [
   {
+    slug: "text-desk",
+    name: "Text Desk",
+    category: "Tool",
+    medium: "A little order for your words",
+    description:
+      "Clean pasted text, untangle whitespace, remove duplicate lines, and take a fresh copy with you.",
+    color: "#e4e7dc",
+    status: "Prototype",
+    version: "0.1",
+  },
+  {
     slug: "sticker-city",
     name: "Sticker City",
     category: "Experiment",

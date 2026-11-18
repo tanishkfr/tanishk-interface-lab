@@ -213,6 +213,15 @@ export function MotionArtwork() {
   );
 }
 export function ProjectArtwork({ slug }: { slug: string }) {
+  if (slug === "text-desk")
+    return (
+      <div className="text-desk-art" aria-hidden="true">
+        <span>too &nbsp; much &nbsp; space.</span>
+        <i>↓</i>
+        <strong>A little clarity.</strong>
+        <small>PASTE / CLEAN / KEEP</small>
+      </div>
+    );
   if (slug === "sticker-city")
     return (
       <svg viewBox="0 0 900 500" aria-hidden="true">

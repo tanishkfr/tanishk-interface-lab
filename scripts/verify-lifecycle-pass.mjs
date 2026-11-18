@@ -56,12 +56,13 @@ assert.equal(
   0,
   "Hero should sleep at rest",
 );
-await page
-  .getByRole("button", { name: "Make an impression", exact: true })
-  .click();
-await page.waitForTimeout(100);
-assert.ok((await page.evaluate(() => window.__labFrames.pending.size)) > 0);
-await page.waitForTimeout(3500);
+await page.emulateMedia({ reducedMotion: "reduce" });
+const before = await page.locator(".living-wordmark").getAttribute("class");
+await page.waitForTimeout(3000);
+assert.equal(
+  await page.locator(".living-wordmark").getAttribute("class"),
+  before,
+);
 const settled = await page.evaluate(() => window.__labFrames.pending.size);
 assert.equal(settled, 0, "Hero should stop when settled");
 results.push({

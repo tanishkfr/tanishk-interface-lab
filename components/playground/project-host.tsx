@@ -5,6 +5,7 @@ const loading = () => (
     Opening the experiment…
   </div>
 );
+const TextDesk = dynamic(() => import("./text-desk"), { loading });
 const Data = dynamic(() => import("./data-matter"), { loading });
 const Vector = dynamic(() => import("./vector-kitchen"), { loading });
 const Motion = dynamic(() => import("./motion-foundry"), { loading });
@@ -18,10 +19,16 @@ const Grid = dynamic(() => import("./grid-crimes"), { loading });
 const Brutal = dynamic(() => import("./brutal-exe"), { loading });
 export function ProjectHost({ slug }: { slug: string }) {
   switch (slug) {
-    case "sticker-city": return <Stickers />;
-    case "almost-nothing": return <Almost />;
-    case "grid-crimes": return <Grid />;
-    case "brutal-exe": return <Brutal />;
+    case "text-desk":
+      return <TextDesk />;
+    case "sticker-city":
+      return <Stickers />;
+    case "almost-nothing":
+      return <Almost />;
+    case "grid-crimes":
+      return <Grid />;
+    case "brutal-exe":
+      return <Brutal />;
     case "data-matter":
       return <Data />;
     case "vector-kitchen":

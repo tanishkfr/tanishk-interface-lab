@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { HeroPress } from "./hero-press";
+import { HeroPress } from "./living-wordmark";
 import { projects, type Project } from "@/lib/playground/projects";
 import { Icon } from "./icons";
 import { ProjectArtwork, Rosette } from "./artwork";
@@ -108,9 +108,6 @@ export function PlaygroundHome({
         </div>
         <HeroPress />
         <div className="hero-floor">
-          <span>
-            <span className="live-dot" /> Open for play
-          </span>
           <a href="#collection">
             A few things to get lost in <span aria-hidden="true">↓</span>
           </a>
@@ -211,16 +208,32 @@ export function PlaygroundHome({
           </div>
         ) : (
           <>
-            <div className="exhibit-grid">
-              {selected.map((p) => (
-                <ProjectCard
-                  key={p.slug}
-                  project={p}
-                  prominent={
-                    filter === "Everything" && !q && p.slug === "data-matter"
-                  }
-                />
-              ))}
+            <div className="staggered-gallery">
+              {Array.from(
+                { length: Math.ceil(selected.length / 5) },
+                (_, group) => {
+                  const items = selected.slice(group * 5, group * 5 + 5);
+                  return (
+                    <div className="gallery-cluster" key={group}>
+                      <div className="gallery-column">
+                        {[items[0], items[3]].filter(Boolean).map((p) => (
+                          <ProjectCard key={p.slug} project={p} />
+                        ))}
+                      </div>
+                      <div className="gallery-column">
+                        {[items[1], items[2]].filter(Boolean).map((p) => (
+                          <ProjectCard key={p.slug} project={p} />
+                        ))}
+                      </div>
+                      {items[4] && (
+                        <div className="gallery-wide">
+                          <ProjectCard project={items[4]} />
+                        </div>
+                      )}
+                    </div>
+                  );
+                },
+              )}
             </div>
             {matches.length > 0 && (
               <div className="component-collection">
@@ -231,7 +244,8 @@ export function PlaygroundHome({
                     <em>Considered in detail.</em>
                   </h2>
                   <p>
-                    19 components for the moments between clicks.
+                    {components.length} components for the moments between
+                    clicks.
                     <br />
                     Real previews. Source included. Yours to make your own.
                   </p>
@@ -241,7 +255,10 @@ export function PlaygroundHome({
                 </div>
                 <div className="component-links">
                   {matches
-                    .slice(0, filter === "Components" || q ? 19 : 5)
+                    .slice(
+                      0,
+                      filter === "Components" || q ? components.length : 5,
+                    )
                     .map((c) => (
                       <Link key={c.slug} href={`/experiments/${c.slug}`}>
                         <span>

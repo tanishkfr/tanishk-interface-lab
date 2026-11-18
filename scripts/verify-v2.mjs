@@ -45,7 +45,7 @@ await check(
   async () => {
     await goto("/");
     await click("Index");
-    assert.equal(await page.locator(".project-index>a").count(), 30);
+    assert.equal(await page.locator(".project-index>a").count(), 32);
     await page
       .getByRole("searchbox", { name: "Search the collection" })
       .fill("carousel");
@@ -53,13 +53,14 @@ await check(
     await page.getByRole("searchbox").fill("not-a-real-title");
     assert.ok(await page.getByText("Nothing here by that name.").isVisible());
     await click("Show everything");
-    assert.equal(await page.locator(".project-index>a").count(), 30);
-    await click("Tools2");
-    assert.equal(await page.locator(".project-index>a").count(), 2);
-    const press = page.getByRole("button", { name: /Make an impression/ });
-    await press.focus();
-    await press.press("Enter");
-    assert.ok(await press.evaluate((el) => document.activeElement === el));
+    assert.equal(await page.locator(".project-index>a").count(), 32);
+    await click("Tools3");
+    assert.equal(await page.locator(".project-index>a").count(), 3);
+    assert.equal(await page.locator(".living-letters text").count(), 4);
+    assert.equal(
+      await page.getByText("Open for play", { exact: true }).count(),
+      0,
+    );
   },
 );
 await check(
@@ -127,13 +128,11 @@ await check(
     await page.waitForFunction(
       () => document.querySelectorAll(".vector-canvas svg path").length === 6,
     );
-    await page
-      .locator("input[type=file]")
-      .setInputFiles({
-        name: "bad.json",
-        mimeType: "application/json",
-        buffer: Buffer.from('{"count":90000}'),
-      });
+    await page.locator("input[type=file]").setInputFiles({
+      name: "bad.json",
+      mimeType: "application/json",
+      buffer: Buffer.from('{"count":90000}'),
+    });
     assert.ok(await page.locator(".instrument-error[role=alert]").isVisible());
   },
 );
@@ -142,10 +141,18 @@ await check(
   async () => {
     await goto("/play/motion-foundry");
     await click("Run the sequence");
-      const delays = await page.locator('[data-motion-sample=spring]').evaluateAll(nodes => nodes.map(el => el.getAnimations()[0]?.effect.getTiming().delay));
-      const referenceDelays = await page.locator('[data-motion-sample=reference]').evaluateAll(nodes => nodes.map(el => el.getAnimations()[0]?.effect.getTiming().delay));
-      assert.deepEqual(delays, [0, 80, 160, 240]);
-      assert.deepEqual(referenceDelays, delays);
+    const delays = await page
+      .locator("[data-motion-sample=spring]")
+      .evaluateAll((nodes) =>
+        nodes.map((el) => el.getAnimations()[0]?.effect.getTiming().delay),
+      );
+    const referenceDelays = await page
+      .locator("[data-motion-sample=reference]")
+      .evaluateAll((nodes) =>
+        nodes.map((el) => el.getAnimations()[0]?.effect.getTiming().delay),
+      );
+    assert.deepEqual(delays, [0, 80, 160, 240]);
+    assert.deepEqual(referenceDelays, delays);
     await page.waitForTimeout(180);
     const transform = await page
       .locator("[data-motion-sample=spring]")
@@ -304,7 +311,7 @@ await check(
     const r = await context.request.get(BASE + "/r/registry.json");
     assert.equal(r.status(), 200);
     const index = await r.json();
-    assert.equal(index.items.length, 19);
+    assert.equal(index.items.length, 20);
     for (const item of index.items) {
       const response = await context.request.get(
         `${BASE}/experiments/${item.name}`,
