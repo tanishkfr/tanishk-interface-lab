@@ -1,0 +1,22 @@
+{
+  "name": "@lab/grid-crimes",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GRID CRIMES/ — a procedural composition instrument for Figma",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "watch": "node tools/build.mjs --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node tools/test.mjs",
+    "preview": "node tools/preview.mjs",
+    "qa": "node tools/qa.mjs",
+    "verify": "pnpm run typecheck && pnpm run test && pnpm run build"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.125.0",
+    "@types/node": "^22.10.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.9.0"
+  }
+}

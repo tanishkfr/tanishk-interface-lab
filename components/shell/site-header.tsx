@@ -7,7 +7,7 @@ const links = [
   ["/experiments", "Experiments"],
   ["/tools", "Tools"],
   ["/components", "Components"],
-  ["/products", "Products"],
+  ["/software", "Software"],
 ] as const;
 export function SiteHeader() {
   const pathname = usePathname();
@@ -34,7 +34,8 @@ export function SiteHeader() {
               href={href}
               aria-current={
                 pathname === href ||
-                (href === "/components" && pathname.startsWith("/experiments/"))
+                (href === "/components" && pathname.startsWith("/experiments/")) ||
+                (href === "/software" && pathname.startsWith("/software/"))
                   ? "page"
                   : undefined
               }

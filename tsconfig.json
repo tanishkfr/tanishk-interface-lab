@@ -31,5 +31,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "scripts/fixture/template", "output"]
+  "exclude": ["node_modules", "scripts/fixture/template", "output", "plugins/grid-crimes"]
 }

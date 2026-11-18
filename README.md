@@ -6,11 +6,12 @@ V2 expands the preserved component library into eleven individually art-directed
 - `/experiments`: larger experiments and the interactive essay.
 - `/tools`: Motion Foundry and Vector Kitchen.
 - `/components`: the original 19 components with live previews and documentation.
-- `/products`: accurately labeled product prototypes and release information.
+- `/software`: accurately labeled product prototypes and release information, including the Grid Crimes Figma development build.
+- `/software/grid-crimes`: Grid Crimes build notes, install steps, direction sheet, privacy and release status.
 - `/play/<slug>`: eleven browser experiences, loaded independently.
 - `/experiments/<component>` and `/r/<component>.json`: all original URLs preserved.
 
-New prototype state and uploaded data remain in the browser. Data Matter exports SVG and JSON; Type Has Mass exports SVG with its font embedded; Browser Terrarium exports PNG; Interface Genome exports rules; Motion Foundry exports CSS and spring settings; Vector Kitchen exports editable SVG and reloadable JSON recipes; the essay exports visit observations. These are functioning prototypes, not published plugins or completed versions of every ambitious feature in the brief.
+New prototype state and uploaded data remain in the browser. Data Matter exports SVG and JSON; Type Has Mass exports SVG with its font embedded; Browser Terrarium exports PNG; Interface Genome exports rules; Motion Foundry exports CSS and spring settings; Vector Kitchen exports editable SVG and reloadable JSON recipes; the essay exports visit observations. Grid Crimes is a standalone Figma development build in `plugins/grid-crimes/`; it is not published. These are functioning prototypes, not published plugins or completed versions of every ambitious feature in the brief.
 
 ## V2 verification
 
@@ -42,6 +43,18 @@ own into any React project.
 The component catalog lives at `/components`; every component has its own page under
 `/experiments/<slug>` with a live preview, controls, install command, usage,
 props, accessibility notes and source.
+
+## Grid Crimes Figma plugin
+
+The repository also contains the first standalone Figma product:
+
+```bash
+cd plugins/grid-crimes
+pnpm install
+pnpm run build
+```
+
+Import `plugins/grid-crimes/manifest.json` through **Figma → Plugins → Development → Import plugin from manifest…**. The plugin is a development build, not a Community-published product. Its full documentation, test results and native-QA checklist are in `plugins/grid-crimes/README.md`; the LAB/ software presentation is at `/software/grid-crimes`.
 
 ## Development
 
@@ -147,3 +160,4 @@ MIT. Some experiments adapt ideas from Tanishk Salagame's own portfolio
 (Signal Field, the Inverted Cursor lifecycle and the Soft Snap gating); those
 adaptations are generalised and relicensed under the same MIT terms by the
 copyright holder. See `LICENSE`.
+

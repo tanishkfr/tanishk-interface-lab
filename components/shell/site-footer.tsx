@@ -27,7 +27,7 @@ export function SiteFooter() {
             ["01", "Experiments", "/experiments", "Follow a strange idea."],
             ["02", "Tools", "/tools", "Make something of your own."],
             ["03", "Components", "/components", "Take a detail with you."],
-            ["04", "Products", "/products", "See what grows next."],
+            ["04", "Software", "/software", "See what leaves the lab."],
           ].map(([n, title, url, description]) => (
             <Link href={url} key={url}>
               <span>{n}</span>

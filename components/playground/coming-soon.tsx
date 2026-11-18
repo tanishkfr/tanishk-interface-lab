@@ -37,8 +37,6 @@ export function ComingSoon() {
           A few ideas are trying
           <br />
           to become their own thing.
-          <br />
-          <strong>Nothing to install. Yet.</strong>
         </p>
       </div>
       <div
@@ -64,9 +62,10 @@ export function ComingSoon() {
         <h3>{possibilities[selected][0]}</h3>
         <p>
           {possibilities[selected][1]} These are directions for future work, not
-          announced products or promised release dates.
+          announced software or promised release dates.
         </p>
       </div>
     </section>
   );
 }
+

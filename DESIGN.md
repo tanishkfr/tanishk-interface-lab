@@ -24,8 +24,9 @@ Different tasks have different motion: print deformation and spring settling, di
 
 Data Matter: cobalt plotting room with warm sculptural ribs; values map directly to ridge height. Interface Genome: paper/black rule-driven editorial interface. Type Has Mass: coral kinetic type installation. Browser Terrarium: pale chartreuse botanical world with violet inhabitants. Cost of a Click: high-contrast editorial stages, framed illustrative demonstrations. Motion Foundry: dark aubergine timeline and lime motion specimens. Vector Kitchen: cream/navy recipe-based vector instrument with violet/coral outputs.
 
-Sticker City: periwinkle and printed vector matter. Almost Nothing: a quiet, unframed surface with temporal ink. Grid Crimes: exposed editorial rules, warm paper and a coral/lime illustration. BRUTAL.EXE: four hard-color rooms with a visible floor plan. Products' violet coming-soon installation is truthful about unreleased possibilities.
+Sticker City: periwinkle and printed vector matter. Almost Nothing: a quiet, unframed surface with temporal ink. Grid Crimes: exposed editorial rules, warm paper and a coral/lime illustration. BRUTAL.EXE: four hard-color rooms with a visible floor plan. Software's violet coming-soon installation is truthful about unreleased possibilities.
 
 ## Product truth
 
-Existing components and registry source remain independently portable. New creations use `/play/`; the existing `/experiments/<component>` routes remain valid. Products accurately presents Vector Kitchen as a browser prototype with no published plugin. User data stays in the browser. Exports use generated SVG/JSON/CSS with actual parameter values.
+Existing components and registry source remain independently portable. New creations use `/play/`; the existing `/experiments/<component>` routes remain valid. Software accurately presents Vector Kitchen as a browser prototype and Grid Crimes as a Figma development build with no Community publication. User data stays in the browser; the plugin makes no network requests. Exports use generated SVG/JSON/CSS with actual parameter values.
+
