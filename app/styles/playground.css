@@ -80,9 +80,17 @@ p {
   display: inline-flex;
 }
 .v2-logo span {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
   color: var(--lab-ink);
+}
+.v2-logo span::before {
+  content: "";
+  position: absolute;
+  inset: 0.14em -0.04em;
+  z-index: -1;
   background: var(--lab-acid);
-  padding: 0 0.04em;
   border-radius: 2px;
 }
 .v2-nav {
@@ -98,22 +106,10 @@ p {
 .v2-nav a:hover,
 .v2-nav a[aria-current] {
   color: var(--lab-ink);
-}
-.v2-nav a:hover {
   background: var(--lab-acid);
   border-radius: 3px;
   padding-inline: 8px;
   margin-inline: -8px;
-}
-.v2-nav a[aria-current]:after {
-  content: "";
-  height: 4px;
-  width: 4px;
-  border-radius: 50%;
-  background: var(--lab-accent);
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
 }
 .v2-index-link {
   display: flex;
