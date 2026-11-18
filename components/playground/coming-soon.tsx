@@ -37,8 +37,6 @@ export function ComingSoon() {
           A few ideas are trying
           <br />
           to become their own thing.
-          <br />
-          <strong>Nothing to install. Yet.</strong>
         </p>
       </div>
       <div
