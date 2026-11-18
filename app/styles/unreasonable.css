@@ -164,15 +164,8 @@ p {
 .v2-footer-bottom {
   font-size: 13px;
 }
-.home-colophon p {
-  font-weight: 500;
-}
-.home-colophon .text-link,
 .text-link {
   font-size: 14px;
-}
-.home-colophon > svg {
-  display: none;
 }
 /* A familiar library, with a real viewport for every component. */
 .docs-shell {
@@ -1056,15 +1049,6 @@ p {
 .project-index strong {
   font-weight: 700;
 }
-.home-colophon {
-  border-top: 1px solid #23241f30;
-  margin-top: 36px;
-}
-.home-colophon p {
-  font-family: var(--lab-expressive);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-}
 .hero-rosette {
   display: none;
 }
@@ -1128,16 +1112,6 @@ p {
   }
   .collection {
     padding-top: 56px;
-  }
-  .home-colophon {
-    margin-top: 0;
-    gap: 24px;
-  }
-  .home-colophon p {
-    font-size: 26px;
-  }
-  .home-colophon .text-link {
-    margin-left: 0;
   }
   .v2-footer-top > p {
     font-size: 58px;

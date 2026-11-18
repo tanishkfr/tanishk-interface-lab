@@ -91,24 +91,6 @@ export function VectorArtwork({
     </svg>
   );
 }
-export function Rosette() {
-  return (
-    <svg viewBox="0 0 400 400" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeWidth="1.2">
-        {Array.from({ length: 36 }, (_, i) => (
-          <ellipse
-            key={i}
-            cx="200"
-            cy="200"
-            rx="68"
-            ry="162"
-            transform={`rotate(${i * 5} 200 200)`}
-          />
-        ))}
-      </g>
-    </svg>
-  );
-}
 export function TerrariumArtwork() {
   return (
     <svg viewBox="0 0 900 500" aria-hidden="true">

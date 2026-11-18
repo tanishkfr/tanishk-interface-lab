@@ -648,31 +648,6 @@ p {
   padding-inline: 10px;
   margin-inline: -10px;
 }
-.home-colophon {
-  display: flex;
-  gap: 44px;
-  align-items: center;
-  justify-content: center;
-  padding-block: 90px 120px;
-}
-.home-colophon > svg {
-  width: 120px;
-  color: var(--lab-ink);
-  background: var(--lab-acid);
-}
-.home-colophon p {
-  font: 500 clamp(24px, 2.6vw, 36px) / 1.2 var(--lab-display);
-  letter-spacing: -0.025em;
-  margin: 0;
-}
-.home-colophon p em {
-  color: #6d6f62;
-  font-weight: 400;
-}
-.home-colophon .text-link {
-  align-self: flex-end;
-  margin-left: 50px;
-}
 .v2-footer {
   background: #252620;
   color: #f3f1e8;
@@ -928,12 +903,6 @@ p {
   .component-collection {
     gap: 36px;
   }
-  .home-colophon {
-    gap: 24px;
-  }
-  .home-colophon .text-link {
-    margin-left: 0;
-  }
   .collection-filters {
     gap: 16px;
   }
@@ -1170,22 +1139,6 @@ p {
   }
   .component-links > a {
     font-size: 16px;
-  }
-  .home-colophon {
-    padding-block: 72px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 24px;
-  }
-  .home-colophon > svg {
-    width: 70px;
-  }
-  .home-colophon p {
-    font-size: 22px;
-  }
-  .home-colophon .text-link {
-    margin-left: 94px;
-    font-size: 11px;
   }
   .v2-footer {
     padding-top: 40px;

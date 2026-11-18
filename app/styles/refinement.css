@@ -204,9 +204,6 @@
   margin-top: 48px;
   padding-top: 36px;
 }
-.home-colophon {
-  padding-block: 48px;
-}
 .section-page {
   padding-top: 42px;
   padding-bottom: 56px;
@@ -347,9 +344,6 @@
   }
   .library-gallery .card-preview {
     height: 240px;
-  }
-  .home-colophon {
-    padding-block: 36px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
