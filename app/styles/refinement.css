@@ -1283,3 +1283,61 @@
     stroke-dashoffset: 0 !important;
   }
 }
+.scrub-animated-preview > .scrub-preview-shape {
+  animation: scrub-thumbnail-shape 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.scrub-preview-value {
+  display: grid;
+}
+.scrub-preview-value > span {
+  grid-area: 1/1;
+}
+.scrub-preview-value > span:first-child {
+  animation: scrub-thumbnail-first 3.6s ease-in-out infinite;
+}
+.scrub-preview-value > span:last-child {
+  animation: scrub-thumbnail-second 3.6s ease-in-out infinite;
+}
+@keyframes scrub-thumbnail-shape {
+  0%,
+  15%,
+  100% {
+    transform: rotate(-12deg) scale(0.85);
+  }
+  45%,
+  65% {
+    transform: rotate(8deg) scale(1.08);
+  }
+}
+@keyframes scrub-thumbnail-first {
+  0%,
+  20%,
+  90%,
+  100% {
+    opacity: 1;
+  }
+  40%,
+  70% {
+    opacity: 0;
+  }
+}
+@keyframes scrub-thumbnail-second {
+  0%,
+  20%,
+  90%,
+  100% {
+    opacity: 0;
+  }
+  40%,
+  70% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scrub-animated-preview * {
+    animation: none !important;
+  }
+  .scrub-preview-value > span:last-child {
+    opacity: 0;
+  }
+}

@@ -14,7 +14,7 @@ export default function AboutPage() {
         <h1>A good place to follow a strange idea.</h1>
         <p className="lede">
           LAB/ is Tanishk&apos;s independent internet playground: experiments,
-          creative instruments, interactive stories, and {experimentCount}
+          creative instruments, interactive stories, and {experimentCount}{" "}
           reusable components. Some things are useful. Some things are here
           because they were interesting to make.
         </p>
@@ -26,13 +26,15 @@ export default function AboutPage() {
           <p>
             A space to make things without needing a case study to justify them.
             Numbers become a landscape. Words fall under gravity. A tiny world
-            grows in the browser. Tools let you create motion and vectors of your own.
+            grows in the browser. Tools let you create motion and vectors of
+            your own.
           </p>
           <p>
             Larger creations live under Experiments and Tools. The original
             component collection remains in Components, with every existing URL
-            and registry installation link preserved. Products records prototypes
-            honestly; no plugin or extension is presented as published before it exists.
+            and registry installation link preserved. Products records
+            prototypes honestly; no plugin or extension is presented as
+            published before it exists.
           </p>
 
           <h2>The component library</h2>
@@ -42,22 +44,23 @@ export default function AboutPage() {
               components with eleven modes.
             </li>
             <li>
-              <strong>Self-contained.</strong> Components install as a folder
-              of files with relative imports and scoped CSS. Nothing reads from
-              the Lab&apos;s own design tokens or state.
+              <strong>Self-contained.</strong> Components install as a folder of
+              files with relative imports and scoped CSS. Nothing reads from the
+              Lab&apos;s own design tokens or state.
             </li>
             <li>
               <strong>Honest about cost.</strong> Dependencies are listed, and
               most experiments have none — browser APIs and CSS come first.
             </li>
             <li>
-              <strong>Accessible by construction.</strong> Keyboard paths,
-              ARIA where it is genuinely needed, and documented limitations
-              where an interaction is inherently pointer-first.
+              <strong>Accessible by construction.</strong> Keyboard paths, ARIA
+              where it is genuinely needed, and documented limitations where an
+              interaction is inherently pointer-first.
             </li>
             <li>
               <strong>Tested in a realistic context.</strong> Previews are
-              sample products, not empty boxes, and a representative subset is installed and built in a separate consumer project.
+              sample products, not empty boxes, and a representative subset is
+              installed and built in a separate consumer project.
             </li>
           </ul>
 
@@ -65,9 +68,9 @@ export default function AboutPage() {
           <p>
             Every component is published as a shadcn-compatible registry item.
             The install command on each page points at this site&apos;s{" "}
-            <code>/r/&lt;slug&gt;.json</code> endpoint, which serves the
-            shipped source as JSON; the shadcn CLI writes the files into your
-            project and installs any npm dependency the component needs.
+            <code>/r/&lt;slug&gt;.json</code> endpoint, which serves the shipped
+            source as JSON; the shadcn CLI writes the files into your project
+            and installs any npm dependency the component needs.
           </p>
           <p>
             Nothing is hosted for you and nothing phones home. If you prefer,
@@ -82,8 +85,8 @@ export default function AboutPage() {
               removes easing, magnetism and settling — never information.
             </li>
             <li>
-              Every custom interaction has a keyboard path, or documents that
-              it is pointer-first and renders safely without one.
+              Every custom interaction has a keyboard path, or documents that it
+              is pointer-first and renders safely without one.
             </li>
             <li>
               Colour is never the only signal; statuses are written as words
@@ -96,7 +99,12 @@ export default function AboutPage() {
           </ul>
 
           <h2>Experiment status</h2>
-          <p><strong>Stable</strong> marks an established API and documented behaviour in the Lab. <strong>Experimental</strong> means the interaction or API may change as it is refined. Neither label guarantees suitability for every project or environment.</p>
+          <p>
+            <strong>Stable</strong> marks an established API and documented
+            behaviour in the Lab. <strong>Experimental</strong> means the
+            interaction or API may change as it is refined. Neither label
+            guarantees suitability for every project or environment.
+          </p>
 
           <h2>Licence</h2>
           <p>
@@ -131,9 +139,7 @@ export default function AboutPage() {
             <p>
               <Link href="/experiments/signal-field">Signal Field</Link> for
               ambient motion, or{" "}
-              <Link href="/experiments/agent-review">
-                Agent Review Surface
-              </Link>{" "}
+              <Link href="/experiments/agent-review">Agent Review Surface</Link>{" "}
               if you are building human-in-the-loop tools.
             </p>
           </div>
