@@ -800,7 +800,7 @@
   font: inherit;
 }
 .text-desk-options input {
-  accent-color: #5834d7;
+  accent-color: var(--lab-ink);
   width: 17px;
   height: 17px;
 }

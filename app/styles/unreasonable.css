@@ -7,8 +7,10 @@
   --lab-type-meta: 0.75rem;
   --lab-ground: #f1efe5;
   --lab-ink: #23241f;
-  --lab-accent: #5834d7;
-  --lab-focus: #5834d7;
+  --lab-accent: var(--lab-acid);
+  --lab-accent-deep: var(--lab-ink);
+  --lab-accent-soft: color-mix(in srgb, var(--lab-acid) 30%, transparent);
+  --lab-focus: var(--lab-ink);
 }
 body {
   font-size: var(--lab-type-body);
@@ -226,8 +228,8 @@ p {
 }
 .docs-nav-group > a[aria-current],
 .docs-nav-group > a:hover {
-  background: #5834d712;
-  color: #4921bd;
+  background: color-mix(in srgb, var(--lab-accent) 40%, transparent);
+  color: var(--lab-ink);
 }
 .docs-nav-group > a[aria-current] {
   font-weight: 700;
@@ -333,8 +335,9 @@ p {
   min-height: 44px;
 }
 .preview-tabs button[aria-selected="true"] {
-  border-color: #5834d7;
-  color: #23241f;
+  border-color: var(--lab-accent);
+  background: color-mix(in srgb, var(--lab-accent) 38%, transparent);
+  color: var(--lab-ink);
 }
 .device-switch {
   border-radius: 3px;
@@ -667,8 +670,18 @@ p {
   padding-top: 36px;
 }
 .library-mini-mark {
-  font: 400 45px var(--lab-expressive);
-  color: #5834d7;
+  font: 400 45px/1 var(--lab-expressive);
+  color: var(--lab-ink);
+  background: linear-gradient(
+    transparent 60%,
+    var(--lab-accent) 60%,
+    var(--lab-accent) 92%,
+    transparent 92%
+  );
+  display: inline-block;
+  padding-inline: 2px;
+  justify-self: start;
+  align-self: start;
 }
 .library-install-note h2 {
   font-size: 28px;
@@ -1306,7 +1319,7 @@ p {
   touch-action: none;
 }
 .almost-surface canvas:focus-visible {
-  outline: 2px solid #5834d7;
+  outline: 2px solid var(--lab-focus);
   outline-offset: 4px;
 }
 .almost-controls {
@@ -1644,8 +1657,8 @@ p {
 }
 .future-installation {
   position: relative;
-  background: #5135d1;
-  color: #f1efe5;
+  background: var(--lab-acid);
+  color: var(--lab-ink);
   margin: 120px 0 0;
   padding: 56px 48px;
   overflow: hidden;
@@ -1671,7 +1684,7 @@ p {
   letter-spacing: -0.04em;
 }
 .future-period {
-  color: #e5e94b;
+  color: var(--lab-ink);
 }
 .future-heading p {
   font-size: 18px;
@@ -1682,7 +1695,7 @@ p {
 .future-heading strong {
   display: block;
   margin-top: 24px;
-  color: #e5e94b;
+  color: var(--lab-ink);
 }
 .future-packages {
   display: grid;
@@ -1723,7 +1736,7 @@ p {
   background: #b4bce9;
 }
 .future-package[aria-pressed="true"] {
-  outline: 3px solid #f1efe5;
+  outline: 3px solid var(--lab-ink);
   outline-offset: 5px;
 }
 .future-package-mark {
@@ -1745,7 +1758,7 @@ p {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 24px;
-  border-top: 1px solid #ffffff50;
+  border-top: 1px solid color-mix(in srgb, var(--lab-ink) 30%, transparent);
   padding-top: 24px;
 }
 .future-note h3 {
