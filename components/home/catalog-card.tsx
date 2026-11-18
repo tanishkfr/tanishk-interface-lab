@@ -35,9 +35,6 @@ export function CatalogCard({ entry }: { entry: CatalogEntry }) {
           </span>
         </div>
         <p className="card-line">{entry.tagline}</p>
-        <span className="card-go" aria-hidden="true">
-          Open <span className="card-go-arrow">→</span>
-        </span>
       </div>
     </article>
   );
