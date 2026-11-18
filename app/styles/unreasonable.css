@@ -186,8 +186,8 @@ p {
 .docs-sidebar {
   align-self: start;
   position: sticky;
-  top: 24px;
-  max-height: calc(100dvh - 48px);
+  top: 112px;
+  max-height: calc(100dvh - 136px);
   overflow: auto;
   scrollbar-width: thin;
   padding-right: 12px;
@@ -638,10 +638,6 @@ p {
   font-family: var(--lab-font-sans);
   font-size: 10px;
   letter-spacing: 0;
-}
-.library-gallery .card-go {
-  font-size: 11px;
-  font-family: var(--lab-font-sans);
 }
 .library-list > a {
   display: grid;

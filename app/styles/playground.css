@@ -59,7 +59,8 @@ p {
   padding-inline: clamp(24px, 4.45vw, 72px);
 }
 .v2-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 40;
   background: var(--lab-ground);
   border-bottom: 1px solid #25262030;
@@ -381,6 +382,7 @@ p {
 .exhibit-art {
   position: relative;
   aspect-ratio: 1.38;
+  border-radius: var(--lab-radius-lg);
   overflow: hidden;
   isolation: isolate;
   color: #252620;
@@ -948,7 +950,7 @@ p {
 }
 @media (max-width: 650px) {
   html {
-    scroll-padding-top: 20px;
+    scroll-padding-top: 84px;
   }
   .v2-header-inner {
     min-height: 72px;

@@ -252,8 +252,9 @@
 }
 .library-gallery .card-preview {
   border: 1px solid #25262030;
-  border-radius: 0;
+  border-radius: var(--lab-radius-lg);
   height: 250px;
+  overflow: hidden;
 }
 .library-gallery .card-strip {
   padding: 14px 0 4px;
@@ -270,12 +271,6 @@
   text-transform: none;
   letter-spacing: 0;
   font-size: 12px;
-}
-.library-gallery .card-go {
-  font-family: var(--lab-font-sans);
-  font-size: 13px;
-  text-transform: none;
-  letter-spacing: 0;
 }
 .library-gallery .card:nth-child(4n + 1) .card-preview {
   background: #e1e7bb;
@@ -296,8 +291,7 @@
 @supports (animation-timeline: view()) {
   @media (min-width: 850px) and (prefers-reduced-motion: no-preference) {
     .staggered-gallery .exhibit-art > svg,
-    .staggered-gallery .exhibit-art > .mass-art,
-    .staggered-gallery .exhibit-art > .brutal-art {
+    .staggered-gallery .exhibit-art > .mass-art {
       animation: exhibit-parallax linear both;
       animation-timeline: view();
       animation-range: entry 0% exit 100%;

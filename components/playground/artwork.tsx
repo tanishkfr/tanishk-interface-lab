@@ -76,7 +76,7 @@ export function VectorArtwork({
         {recipeShapes(recipe).map((s, i) => (
           <g
             key={i}
-            transform={`translate(${s.x} ${s.y}) rotate(${s.rotation})`}
+            transform={`translate(${s.x.toFixed(2)} ${s.y.toFixed(2)}) rotate(${s.rotation.toFixed(2)})`}
           >
             {recipe.kind === "orbit" ? (
               <circle r={s.size} />
