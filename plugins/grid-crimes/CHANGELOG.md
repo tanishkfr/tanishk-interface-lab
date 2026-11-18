@@ -20,7 +20,7 @@ First development build. Not published to Figma Community.
 - Dense-composition fallback: editorial index layout for 19–30 elements.
 - Batch transaction rollback; only tracked generated nodes are removed.
 - Self-contained UI with bundled licensed fonts, light/dark support, reduced-motion support and keyboard navigation.
-- 32 automated engine/adapter tests and 9 browser UI QA cases.
+- 35 automated engine/adapter tests and 9 browser UI QA cases.
 
 ### Pending
 

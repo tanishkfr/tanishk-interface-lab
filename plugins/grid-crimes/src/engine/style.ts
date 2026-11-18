@@ -148,10 +148,13 @@ export function deriveDna(
     ),
     gutter: clamp(base.gutter * lerp(1.35, 0.72, density), 0.006, 0.05),
     asymmetry: clamp(base.asymmetry + (chaos - 0.45) * 0.25, -0.8, 0.9),
-    rotation: Math.min(16, base.rotation * (0.18 + chaos * 1.3)),
+    rotation: Math.min(16, base.rotation * (0.18 + chaos * 1.3) * (settings.allowOverlap ? 1 : 0.7)),
     scaleContrast: clamp(base.scaleContrast * 0.55 + hierarchy * 0.62, 0.2, 1),
     decorative: clamp(
-      base.decorative * (0.55 + density * 0.65) * (0.7 + chaos * 0.5),
+      base.decorative *
+        (0.55 + density * 0.65) *
+        (0.7 + chaos * 0.5) *
+        (settings.allowOverlap ? 1 : 0.55),
       0.02,
       1,
     ),

@@ -407,6 +407,10 @@ export async function analyzeSelection(
       FRAME_TYPES.has(root.type) ||
       root.type === "INSTANCE"
     ) {
+      const hiddenChildren =
+        hasChildren(root) && root.type !== "INSTANCE"
+          ? root.children.filter((child) => !isVisible(child)).length
+          : 0;
       let inner = meaningfulChildren(root);
       if (root.type === "INSTANCE") {
         // Instance internals must not be cloned individually; the instance is
@@ -425,6 +429,11 @@ export async function analyzeSelection(
         width = rootBox.w;
         height = rootBox.h;
         selectionKind = selectionKindFor(root);
+        if (hiddenChildren) {
+          warnings.push(
+            `${hiddenChildren} hidden child layer${hiddenChildren === 1 ? " was" : "s were"} skipped.`,
+          );
+        }
         if (inner.length === 1) {
           warnings.push(
             "The frame resolves to a single layer. The result will be a one-focal composition.",

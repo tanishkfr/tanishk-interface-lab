@@ -176,7 +176,7 @@ pnpm run build
 Current results on this machine:
 
 - TypeScript: passing.
-- Engine / adapter suite: **32 tests passing**.
+- Engine / adapter suite: **35 tests passing**.
 - Browser UI QA (Playwright, Chromium): **9/9 cases passing**, including light/dark, 340/440/680 px widths, reduced motion, keyboard navigation and axe serious/critical checks.
 - Gallery / cover / icon rendering: passing.
 - Native Figma manual validation: **pending** — this repository contains no Figma test environment.

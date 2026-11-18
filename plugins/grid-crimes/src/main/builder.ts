@@ -98,11 +98,6 @@ export async function loadFonts(snapshot: CompositionSnapshot): Promise<FontAvai
   return { available, unavailable, warnings, decorationFont };
 }
 
-function splitFontKey(key: string): { family: string; style: string } {
-  const [family, style] = key.split("::");
-  return { family: family ?? "Inter", style: style ?? "Regular" };
-}
-
 function canEditText(
   node: TextNode,
   fonts: FontAvailability,
@@ -648,4 +643,4 @@ export function missingSourceIds(
     .map((block) => block.name);
 }
 
-export { splitFontKey, fontKey, GENERATOR_VERSION };
+export { fontKey, GENERATOR_VERSION };

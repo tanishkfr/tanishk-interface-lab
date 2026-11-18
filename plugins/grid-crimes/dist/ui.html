@@ -1523,6 +1523,51 @@ input[type="range"]:active::-webkit-slider-thumb {
   line-height: 1.45;
 }
 
+.crossbreed-hero h1 {
+  animation: mix-title 0.46s var(--ease-snap) both;
+}
+
+@keyframes mix-title {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.parent-card[data-parent="A"] {
+  animation: mix-a 0.42s var(--ease-snap) both;
+}
+
+.parent-card[data-parent="B"] {
+  animation: mix-b 0.48s var(--ease-snap) both;
+}
+
+@keyframes mix-a {
+  from {
+    opacity: 0;
+    transform: translateX(-12px) rotate(-0.8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes mix-b {
+  from {
+    opacity: 0;
+    transform: translateX(12px) rotate(0.8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .parent-pair {
   display: grid;
   grid-template-columns: 1fr 18px 1fr;

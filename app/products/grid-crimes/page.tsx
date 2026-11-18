@@ -324,7 +324,7 @@ export default async function GridCrimesProductPage() {
                 </li>
                 <li>
                   <span>Engine + adapter tests</span>
-                  <span className="gc-pass">32 passing</span>
+                  <span className="gc-pass">35 passing</span>
                 </li>
                 <li>
                   <span>Browser UI QA</span>

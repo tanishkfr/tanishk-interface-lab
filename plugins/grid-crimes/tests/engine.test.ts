@@ -226,6 +226,51 @@ test("single-element compositions still produce four complete directions", () =>
   }
 });
 
+test("the controlled-overlap toggle changes layering, not just a label", () => {
+  const on = generatePlans(heroFixture, settings({ allowOverlap: true }), { count: 1 }).plans[0];
+  const off = generatePlans(heroFixture, settings({ allowOverlap: false }), { count: 1 }).plans[0];
+  assert.notDeepEqual(
+    on.blocks.map((block) => block.rect),
+    off.blocks.map((block) => block.rect),
+  );
+  assert.ok(off.decorations.length <= on.decorations.length);
+  assert.ok(off.dna.decorative <= on.dna.decorative);
+});
+
+test("narrow portrait sources still produce safe plans", () => {
+  const narrow: CompositionSnapshot = {
+    ...posterFixture,
+    name: "Narrow portrait",
+    width: 320,
+    height: 1200,
+    blocks: [
+      { ...posterFixture.blocks[0], id: "n-head", bounds: { x: 20, y: 40, w: 280, h: 160 } },
+      { ...posterFixture.blocks[1], id: "n-visual", bounds: { x: 20, y: 240, w: 280, h: 430 } },
+      { ...posterFixture.blocks[3], id: "n-body", bounds: { x: 20, y: 720, w: 280, h: 220 } },
+      { ...posterFixture.blocks[2], id: "n-label", bounds: { x: 20, y: 1000, w: 280, h: 30 } },
+    ],
+    sourceIds: ["n-head", "n-visual", "n-body", "n-label"],
+  };
+  narrow.roleCounts = {
+    headline: 1,
+    subhead: 0,
+    body: 1,
+    visual: 1,
+    action: 0,
+    label: 1,
+    decoration: 0,
+    module: 0,
+  };
+  for (const preset of allPresets) {
+    const result = generatePlans(narrow, settings({ preset }), { count: 4 });
+    assert.equal(result.plans.length, 4);
+    for (const plan of result.plans) {
+      assert.equal(scorePlan(plan, narrow).valid, true);
+      assert.equal(plan.blocks.length, 4);
+    }
+  }
+});
+
 test("plans never contain negative or zero dimensions", () => {
   for (const fixture of allFixtures) {
     for (const preset of allPresets) {

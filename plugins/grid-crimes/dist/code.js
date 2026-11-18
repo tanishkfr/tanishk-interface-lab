@@ -830,10 +830,10 @@
       ),
       gutter: clamp(base.gutter * lerp(1.35, 0.72, density), 6e-3, 0.05),
       asymmetry: clamp(base.asymmetry + (chaos - 0.45) * 0.25, -0.8, 0.9),
-      rotation: Math.min(16, base.rotation * (0.18 + chaos * 1.3)),
+      rotation: Math.min(16, base.rotation * (0.18 + chaos * 1.3) * (settings.allowOverlap ? 1 : 0.7)),
       scaleContrast: clamp(base.scaleContrast * 0.55 + hierarchy * 0.62, 0.2, 1),
       decorative: clamp(
-        base.decorative * (0.55 + density * 0.65) * (0.7 + chaos * 0.5),
+        base.decorative * (0.55 + density * 0.65) * (0.7 + chaos * 0.5) * (settings.allowOverlap ? 1 : 0.55),
         0.02,
         1
       ),
@@ -1015,7 +1015,8 @@
     place(block, slot, options = {}) {
       var _a, _b, _c, _d;
       const role = block.role;
-      const fitMode = (_a = options.fit) != null ? _a : role === "visual" && (this.dna.colorStrategy === "layered" || this.dna.occupancy > 0.82) ? "fill" : "contain";
+      const requestedFit = (_a = options.fit) != null ? _a : role === "visual" && (this.dna.colorStrategy === "layered" || this.dna.occupancy > 0.82) ? "fill" : "contain";
+      const fitMode = this.settings.allowOverlap ? requestedFit : "contain";
       let target;
       if (block.text) {
         target = {
@@ -5046,6 +5047,7 @@
     if (roots.length === 1) {
       const root = roots[0];
       if (FRAME_TYPES.has(root.type) || root.type === "INSTANCE") {
+        const hiddenChildren = hasChildren(root) && root.type !== "INSTANCE" ? root.children.filter((child) => !isVisible(child)).length : 0;
         let inner = meaningfulChildren(root);
         if (root.type === "INSTANCE") {
           inner = [];
@@ -5062,6 +5064,11 @@
           width = rootBox.w;
           height = rootBox.h;
           selectionKind = selectionKindFor(root);
+          if (hiddenChildren) {
+            warnings.push(
+              `${hiddenChildren} hidden child layer${hiddenChildren === 1 ? " was" : "s were"} skipped.`
+            );
+          }
           if (inner.length === 1) {
             warnings.push(
               "The frame resolves to a single layer. The result will be a one-focal composition."

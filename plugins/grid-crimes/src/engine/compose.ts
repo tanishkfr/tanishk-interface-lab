@@ -198,11 +198,14 @@ export class Composer {
     options: PlacedOptions = {},
   ): PlannedBlock {
     const role = block.role;
-    const fitMode =
+    const requestedFit =
       options.fit ??
       (role === "visual" && (this.dna.colorStrategy === "layered" || this.dna.occupancy > 0.82)
         ? "fill"
         : "contain");
+    // When controlled overlap is off, image/visual layers are contained rather
+    // than covering a slot. This prevents bleed and keeps a calmer composition.
+    const fitMode = this.settings.allowOverlap ? requestedFit : "contain";
     let target: Rect;
     if (block.text) {
       target = {

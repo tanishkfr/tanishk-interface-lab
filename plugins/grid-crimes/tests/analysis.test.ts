@@ -135,6 +135,40 @@ test("single text layers are accepted as a one-element composition", async () =>
   assert.ok(result.snapshot!.warnings.length > 0);
 });
 
+test("multiple selected sibling layers become one normalized composition", async () => {
+  installFigmaMock();
+  const head = mockText({
+    id: "multi-head",
+    name: "Headline",
+    absoluteBoundingBox: { x: 100, y: 80, width: 500, height: 180 },
+  });
+  const body = mockText({
+    id: "multi-body",
+    name: "Body",
+    fontSize: 16,
+    characters: "A supporting paragraph for the composition.",
+    absoluteBoundingBox: { x: 100, y: 300, width: 420, height: 100 },
+  });
+  const visual = baseNode({
+    id: "multi-visual",
+    name: "Portrait",
+    absoluteBoundingBox: { x: 700, y: 80, width: 300, height: 420 },
+    fills: [{ type: "IMAGE", visible: true, imageHash: "img" }],
+  });
+  const result = await analyzeSelection([
+    head as never,
+    body as never,
+    visual as never,
+  ]);
+  assert.ok(result.snapshot);
+  assert.equal(result.snapshot!.selectionKind, "multiple");
+  assert.equal(result.snapshot!.blocks.length, 3);
+  assert.equal(result.snapshot!.name, "3 selected layers");
+  assert.equal(result.snapshot!.blocks[0].bounds.x, 0);
+  assert.equal(result.snapshot!.blocks[1].bounds.y, 220);
+  assert.equal(result.snapshot!.roleCounts.visual, 1);
+});
+
 test("missing fonts degrade to a warning rather than a substitution", async () => {
   installFigmaMock({ failFonts: true });
   const fonts = await loadFonts(posterFixture);
