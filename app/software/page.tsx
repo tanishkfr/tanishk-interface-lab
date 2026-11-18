@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@/components/playground/icons";
 import { ComingSoon } from "@/components/playground/coming-soon";
-export const metadata = { title: "Products" };
-export default function Products() {
+export const metadata = { title: "Software" };
+export default function Software() {
   return (
     <div className="v2-wrap section-page">
       <h1>
@@ -18,7 +18,7 @@ export default function Products() {
       <article className="product-feature vector-feature">
         <div>
           <Image
-            src="/products/vector-kitchen-flat-lay.webp"
+            src="/software/vector-kitchen-flat-lay.webp"
             alt="A print-studio flat lay of Vector Kitchen studies: swirling vector ribbons, geometric petal forms and recipe cards in violet, coral and acid yellow."
             width={1374}
             height={1145}
@@ -54,8 +54,8 @@ export default function Products() {
       <article className="product-feature gc-feature">
         <div>
           <Image
-            src="/products/grid-crimes/feature-still-life.webp"
-            alt="Six printed composition sheets, registration marks and a black GRID CRIMES card with an acid slash tile arranged on a studio table."
+            src="/software/grid-crimes/feature-still-life.webp"
+            alt="Six printed composition sheets, registration marks and a black Grid Crimes card with an acid slash tile arranged on a studio table."
             width={1374}
             height={1145}
             sizes="(max-width: 980px) 90vw, 54vw"
@@ -64,9 +64,9 @@ export default function Products() {
         </div>
         <div>
           <span className="status gc-feature-status">
-            Figma development build · v0.1.0
+            Figma Plugin · v0.1.0
           </span>
-          <h2>GRID CRIMES/</h2>
+          <h2>Grid Crimes</h2>
           <p>
             A procedural composition instrument. Select a composition, choose
             one of six art directions, and generate four new layouts that keep
@@ -74,16 +74,25 @@ export default function Products() {
           </p>
           <p>
             Then crossbreed two directions into a third with real design-DNA
-            inheritance. Not published to Figma Community yet; the local
-            development build and full build notes are ready.
+            inheritance. Not published to Figma Community yet; the Figma plugin
+            and full build notes are ready.
           </p>
-          <Link className="lab-button" href="/products/grid-crimes">
-            Read the build notes <Icon />
-          </Link>
+          <div className="gc-feature-actions">
+            <a
+              className="lab-button gc-download-button"
+              href="/downloads/grid-crimes-v0.1.0.zip"
+              download
+            >
+              Download v0.1.0 <Icon name="download" />
+            </a>
+            <Link className="lab-button" href="/software/grid-crimes">
+              Read the build notes <Icon />
+            </Link>
+          </div>
           <div className="product-release gc-feature-release">
             <h3>Release notes</h3>
             <p>
-              <strong>v0.1.0 · Figma development build</strong>
+              <strong>v0.1.0 · Figma Plugin</strong>
               <br />
               Six direction engines, 24 grammars, seeded layout planning,
               quality scoring, native editable output, crossbreed, missing-font
@@ -97,3 +106,4 @@ export default function Products() {
     </div>
   );
 }
+

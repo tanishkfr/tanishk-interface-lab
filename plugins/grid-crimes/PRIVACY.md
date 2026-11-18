@@ -1,6 +1,6 @@
 # Privacy
 
-GRID CRIMES/ is a local Figma plugin. It does not operate a server.
+Grid Crimes is a local Figma plugin. It does not operate a server.
 
 ## What it reads
 

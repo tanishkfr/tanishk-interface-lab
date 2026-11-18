@@ -32,7 +32,7 @@ export default function AboutPage() {
           <p>
             Larger creations live under Experiments and Tools. The original
             component collection remains in Components, with every existing URL
-            and registry installation link preserved. Products records
+            and registry installation link preserved. Software records
             prototypes honestly; no plugin or extension is presented as
             published before it exists.
           </p>
@@ -148,3 +148,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

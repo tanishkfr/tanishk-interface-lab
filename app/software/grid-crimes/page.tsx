@@ -4,9 +4,9 @@ import { CodeBlock } from "@/components/shell/code-block";
 import { Icon } from "@/components/playground/icons";
 
 export const metadata = {
-  title: "GRID CRIMES/",
+  title: "Grid Crimes",
   description:
-    "GRID CRIMES/ is a procedural composition instrument for Figma. Six art directions, four editable variations, and a real crossbreed engine. A LAB/ development build.",
+    "Grid Crimes is a procedural composition instrument for Figma. Six art directions, four editable variations, and a real crossbreed engine. A LAB/ Figma plugin.",
 };
 
 const directions = [
@@ -55,11 +55,10 @@ export default async function GridCrimesProductPage() {
     <div className="v2-wrap section-page gc-product">
       <header className="gc-hero">
         <div>
-          <p className="gc-eyebrow">LAB/ Product 02 · Figma instrument</p>
+          <p className="gc-eyebrow">LAB/ Software 02 · Figma instrument</p>
           <h1 className="gc-wordmark">
-            <span>GRID</span>
-            <span>CRIMES</span>
-            <i aria-hidden="true">/</i>
+            <span>Grid</span>
+            <span>Crimes</span>
           </h1>
           <p className="gc-tagline">
             Break the grid.
@@ -74,6 +73,13 @@ export default async function GridCrimesProductPage() {
             produced alone.
           </p>
           <div className="gc-actions">
+            <a
+              className="lab-button gc-download-button"
+              href="/downloads/grid-crimes-v0.1.0.zip"
+              download
+            >
+              Download v0.1.0 <Icon name="download" />
+            </a>
             <Link className="lab-button" href="#install">
               Local install <Icon />
             </Link>
@@ -82,7 +88,7 @@ export default async function GridCrimesProductPage() {
             </Link>
           </div>
           <div className="gc-statusbar" aria-label="Release status">
-            <span>Development build</span>
+            <span>Figma Plugin</span>
             <span>v0.1.0</span>
             <span>Not yet published</span>
             <span>Figma Design only</span>
@@ -90,8 +96,8 @@ export default async function GridCrimesProductPage() {
         </div>
         <figure className="gc-cover">
           <Image
-            src="/products/grid-crimes/cover-v2.png"
-            alt="GRID CRIMES/ cover artwork: oversized type, acid slash and six generated layout directions."
+            src="/software/grid-crimes/cover-v2.png"
+            alt="Grid Crimes cover artwork: oversized type, acid slash and six generated layout directions."
             width={1600}
             height={900}
             priority
@@ -99,8 +105,8 @@ export default async function GridCrimesProductPage() {
             unoptimized
           />
           <figcaption>
-            <span>GRID CRIMES / 0.1.0</span>
-            <span>Community cover · development</span>
+            <span>Grid Crimes / 0.1.0</span>
+            <span>Community cover · Figma Plugin</span>
           </figcaption>
         </figure>
       </header>
@@ -130,7 +136,7 @@ export default async function GridCrimesProductPage() {
           <h2>Not a random layout generator.</h2>
           <div className="gc-prose">
             <p>
-              GRID CRIMES/ reads the selection as a composition: bounds, type
+              Grid Crimes reads the selection as a composition: bounds, type
               sizes, text lengths, image fills, instances, auto-layout and layer
               names become a semantic block model. It infers roles, chooses a
               layout grammar, builds a plan, and scores the result before
@@ -154,8 +160,8 @@ export default async function GridCrimesProductPage() {
           <div className="gc-shot-grid">
             <figure className="gc-shot">
               <Image
-                src="/products/grid-crimes/ui-configure-v2.png"
-                alt="GRID CRIMES/ configuration panel: detected roles, six direction tiles, chaos, density and hierarchy controls."
+                src="/software/grid-crimes/ui-configure-v2.png"
+                alt="Grid Crimes configuration panel: detected roles, six direction tiles, chaos, density and hierarchy controls."
                 width={880}
                 height={2000}
                 sizes="(max-width: 650px) 90vw, 34vw"
@@ -169,8 +175,8 @@ export default async function GridCrimesProductPage() {
             </figure>
             <figure className="gc-shot">
               <Image
-                src="/products/grid-crimes/ui-results-v2.png"
-                alt="GRID CRIMES/ results panel showing four generated variations with scores, seeds and edit actions."
+                src="/software/grid-crimes/ui-results-v2.png"
+                alt="Grid Crimes results panel showing four generated variations with scores, seeds and edit actions."
                 width={880}
                 height={2000}
                 sizes="(max-width: 650px) 90vw, 34vw"
@@ -206,7 +212,7 @@ export default async function GridCrimesProductPage() {
           </div>
           <figure className="gc-directions-image">
             <Image
-              src="/products/grid-crimes/directions-v2.png"
+              src="/software/grid-crimes/directions-v2.png"
               alt="Direction sheet: one source composition and six generated layout directions."
               width={1600}
               height={900}
@@ -266,8 +272,8 @@ export default async function GridCrimesProductPage() {
           </div>
           <figure className="gc-cross-shot">
             <Image
-              src="/products/grid-crimes/ui-crossbreed-v2.png"
-              alt="GRID CRIMES/ crossbreed workspace with two parents, inheritance slider and inherited design parameters."
+              src="/software/grid-crimes/ui-crossbreed-v2.png"
+              alt="Grid Crimes crossbreed workspace with two parents, inheritance slider and inherited design parameters."
               width={880}
               height={2000}
               sizes="(max-width: 650px) 90vw, 300px"
@@ -297,7 +303,7 @@ export default async function GridCrimesProductPage() {
                   <code>plugins/grid-crimes/manifest.json</code>.
                 </li>
                 <li>
-                  <strong>Run GRID CRIMES/.</strong> Select a frame, group or a
+                  <strong>Run Grid Crimes.</strong> Select a frame, group or a
                   few sibling layers, or press <em>Try with sample</em> to
                   create an editable demonstration.
                 </li>
@@ -364,7 +370,7 @@ export default async function GridCrimesProductPage() {
             <li>
               <time dateTime="2026-11-18">18 Nov 2026</time>
               <div>
-                <h3>v0.1.0 — First development build</h3>
+                <h3>v0.1.0 · Figma Plugin</h3>
                 <p>
                   Six direction engines and 24 layout grammars. Seeded planning
                   with constraint scoring. Chaos, density and hierarchy
@@ -445,7 +451,7 @@ export default async function GridCrimesProductPage() {
         </div>
       </section>
 
-      <section className="gc-cta" aria-label="Try GRID CRIMES">
+      <section className="gc-cta" aria-label="Try Grid Crimes">
         <div>
           <h2>
             Break the grid.
@@ -470,4 +476,6 @@ export default async function GridCrimesProductPage() {
     </div>
   );
 }
+
+
 

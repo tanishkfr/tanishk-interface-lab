@@ -63,7 +63,7 @@
   font-size: clamp(74px, 12.5vw, 184px);
   line-height: 0.74;
   letter-spacing: -0.045em;
-  text-transform: uppercase;
+  text-transform: none;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -72,33 +72,6 @@
 
 .gc-wordmark span {
   display: block;
-}
-
-.gc-wordmark i {
-  display: inline-block;
-  position: relative;
-  width: 0.68em;
-  height: 0.68em;
-  margin-top: 0.02em;
-  background: var(--gc-acid);
-  color: transparent;
-  font-style: normal;
-  font-size: 0.72em;
-  line-height: 1;
-  overflow: hidden;
-  transform: skewX(-8deg);
-  border: 1px solid var(--gc-ink);
-}
-
-.gc-wordmark i::after {
-  content: "";
-  position: absolute;
-  left: 46%;
-  top: 20%;
-  width: 8%;
-  height: 60%;
-  background: var(--gc-ink);
-  transform: rotate(18deg);
 }
 
 .gc-tagline {
@@ -732,6 +705,32 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.gc-feature-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.gc-feature-actions .lab-button {
+  margin: 0;
+}
+
+.gc-download-button,
+.gc-feature-actions .gc-download-button {
+  background: var(--lab-acid);
+  color: var(--lab-ink);
+  border-color: var(--lab-ink);
+}
+
+.gc-download-button:hover,
+.gc-feature-actions .gc-download-button:hover {
+  background: #ff795b;
+  color: var(--lab-ink);
 }
 
 .gc-feature .gc-feature-status {

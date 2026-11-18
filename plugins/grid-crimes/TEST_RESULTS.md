@@ -27,7 +27,7 @@ The 9 UI QA cases cover:
 - axe serious/critical checks;
 - real image loading and horizontal-overflow checks.
 
-Visual evidence is written to `qa/grid-crimes/` (ignored by git) and product-facing captures to `public/products/grid-crimes/`.
+Visual evidence is written to `qa/grid-crimes/` (ignored by git) and software-facing captures to `public/software/grid-crimes/`.
 
 ## Browser vs Figma
 
@@ -36,3 +36,4 @@ The UI QA runs the **shipped `dist/ui.html`** in Chromium against a small mock h
 ## Native Figma QA: PENDING
 
 No Figma test environment is available in this workspace. The local development build has not been claimed as natively verified. Use the checklist in `README.md` before any publication. Record actual results and screenshots from Figma desktop.
+

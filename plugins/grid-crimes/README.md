@@ -1,4 +1,4 @@
-# GRID CRIMES/
+# Grid Crimes
 
 **Break the grid. Keep the craft.**
 
@@ -6,7 +6,7 @@ A procedural composition instrument for Figma Design. Select an existing composi
 
 **Status:** local development build, `v0.1.0`. Not published to Figma Community. No plugin ID is invented or hardcoded.
 
-![GRID CRIMES/ results interface](../../public/products/grid-crimes/ui-results-v2.png)
+![Grid Crimes results interface](../../public/software/grid-crimes/ui-results-v2.png)
 
 ---
 
@@ -229,3 +229,4 @@ Plugin code is part of the MIT-licensed LAB/ repository. Fonts are licensed unde
 
 - Gulax by Morgan Gilbert / Velvetyne Type Foundry.
 - Apfel Grotezk by Luigi Gorlero / Collletttivo.
+

@@ -8,7 +8,7 @@
 - `cover.png` — 1600×900 Community cover. Ink ground, oversized Gulax wordmark and six real engine previews.
 - `fonts/` — licensed Gulax and Apfel Grotezk files with OFL texts.
 
-Additional product screenshots live at `public/products/grid-crimes/`:
+Additional software screenshots live at `public/software/grid-crimes/`:
 
 - `ui-configure-v2.png`
 - `ui-results-v2.png`
@@ -22,7 +22,7 @@ These are browser-rendered captures of the shipped interface and real engine pla
 
 **Name**
 
-GRID CRIMES/
+Grid Crimes
 
 **Tagline (short)**
 
@@ -34,9 +34,9 @@ Turn an existing Figma composition into six radically different art directions. 
 
 **Long description**
 
-GRID CRIMES/ is a composition instrument, not a random layout generator.
+Grid Crimes is a composition instrument, not a random layout generator.
 
-Select a frame, group, or a few sibling layers. GRID CRIMES/ reads the content as a composition, infers roles, then builds four new layouts from four different grammars inside the direction you choose. Text stays text. Images keep their fills. Instances stay instances. The source is never edited.
+Select a frame, group, or a few sibling layers. Grid Crimes reads the content as a composition, infers roles, then builds four new layouts from four different grammars inside the direction you choose. Text stays text. Images keep their fills. Instances stay instances. The source is never edited.
 
 Six directions each have their own spatial logic:
 
@@ -84,3 +84,5 @@ See `PRIVACY.md`.
 - [ ] Register the plugin through Figma's Community flow and add the assigned `id` to `manifest.json`.
 - [ ] Replace the development status on the LAB/ product page with the real listing URL only after approval.
 - [ ] Obtain explicit owner approval before submitting or publishing.
+
+

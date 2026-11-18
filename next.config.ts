@@ -6,6 +6,16 @@ const nextConfig: NextConfig = {
     cpus: 2,
     webpackBuildWorker: false,
   },
+  async redirects() {
+    return [
+      { source: "/products", destination: "/software", permanent: true },
+      {
+        source: "/products/:path*",
+        destination: "/software/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

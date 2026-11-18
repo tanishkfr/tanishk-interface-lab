@@ -6,4 +6,5 @@
 
 The icon and cover were generated from a local Playwright composition using the licensed fonts. The six miniature compositions on the cover are real GRID CRIMES engine plans rendered for the browser.
 
-- `feature-still-life.webp` — 6:5 print-room still life used as the GRID CRIMES feature image on the LAB products page. Source artwork supplied for the preview.
+- `feature-still-life.webp` — 6:5 print-room still life used as the Grid Crimes feature image on the LAB software page. Source artwork supplied for the preview.
+
