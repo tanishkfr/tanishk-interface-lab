@@ -90,12 +90,13 @@ export default async function GridCrimesProductPage() {
         </div>
         <figure className="gc-cover">
           <Image
-            src="/products/grid-crimes/cover.png"
+            src="/products/grid-crimes/cover-v2.png"
             alt="GRID CRIMES/ cover artwork: oversized type, acid slash and six generated layout directions."
             width={1600}
             height={900}
             priority
             sizes="(max-width: 980px) 90vw, 46vw"
+            unoptimized
           />
           <figcaption>
             <span>GRID CRIMES / 0.1.0</span>
@@ -153,30 +154,32 @@ export default async function GridCrimesProductPage() {
           <div className="gc-shot-grid">
             <figure className="gc-shot">
               <Image
-                src="/products/grid-crimes/ui-configure.png"
+                src="/products/grid-crimes/ui-configure-v2.png"
                 alt="GRID CRIMES/ configuration panel: detected roles, six direction tiles, chaos, density and hierarchy controls."
-                width={440}
-                height={1400}
-                sizes="(max-width: 650px) 90vw, 28vw"
+                width={880}
+                height={2000}
+                sizes="(max-width: 650px) 90vw, 34vw"
                 loading="eager"
+                unoptimized
               />
               <figcaption>
                 <b>Configure</b>
-                <span>Shipped UI bundle · real engine plans</span>
+                <span>Built UI · top of panel</span>
               </figcaption>
             </figure>
             <figure className="gc-shot">
               <Image
-                src="/products/grid-crimes/ui-results.png"
+                src="/products/grid-crimes/ui-results-v2.png"
                 alt="GRID CRIMES/ results panel showing four generated variations with scores, seeds and edit actions."
-                width={440}
-                height={1000}
-                sizes="(max-width: 650px) 90vw, 28vw"
+                width={880}
+                height={2000}
+                sizes="(max-width: 650px) 90vw, 34vw"
                 loading="eager"
+                unoptimized
               />
               <figcaption>
                 <b>Results</b>
-                <span>Four variations · live thumbnails</span>
+                <span>Real exports · top of panel</span>
               </figcaption>
             </figure>
           </div>
@@ -203,12 +206,13 @@ export default async function GridCrimesProductPage() {
           </div>
           <figure className="gc-directions-image">
             <Image
-              src="/products/grid-crimes/directions.png"
+              src="/products/grid-crimes/directions-v2.png"
               alt="Direction sheet: one source composition and six generated layout directions."
               width={1600}
               height={900}
               sizes="(max-width: 980px) 94vw, 74vw"
               loading="eager"
+              unoptimized
             />
             <figcaption>
               <span>One source · six engines · seed 2718</span>
@@ -262,14 +266,15 @@ export default async function GridCrimesProductPage() {
           </div>
           <figure className="gc-cross-shot">
             <Image
-              src="/products/grid-crimes/ui-crossbreed.png"
+              src="/products/grid-crimes/ui-crossbreed-v2.png"
               alt="GRID CRIMES/ crossbreed workspace with two parents, inheritance slider and inherited design parameters."
-              width={440}
-              height={1000}
+              width={880}
+              height={2000}
               sizes="(max-width: 650px) 90vw, 300px"
               loading="eager"
+              unoptimized
             />
-            <figcaption>Crossbreed / equal inheritance</figcaption>
+            <figcaption>Crossbreed / equal inheritance · top of panel</figcaption>
           </figure>
         </div>
       </section>
@@ -465,3 +470,4 @@ export default async function GridCrimesProductPage() {
     </div>
   );
 }
+

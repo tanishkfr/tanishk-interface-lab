@@ -67,6 +67,7 @@ async function openCase(options) {
     viewport: { width: options.width, height: options.height },
     colorScheme: options.theme,
     reducedMotion: options.reducedMotion ? "reduce" : "no-preference",
+    deviceScaleFactor: options.productName ? 2 : 1,
   });
   page.on("pageerror", (error) => consoleErrors.push(`${options.name}: ${error.message}`));
   page.on("console", (message) => {
@@ -188,7 +189,7 @@ async function openCase(options) {
 
 const cases = [
   { name: "results-light-440", screen: "results", width: 440, height: 1000, theme: "light", productName: "ui-results" },
-  { name: "configure-light-440", screen: "configure", width: 440, height: 1400, theme: "light", productName: "ui-configure" },
+  { name: "configure-light-440", screen: "configure", width: 440, height: 1000, theme: "light", productName: "ui-configure" },
   { name: "crossbreed-light-440", screen: "crossbreed", width: 440, height: 1000, theme: "light", productName: "ui-crossbreed" },
   { name: "help-light-440", screen: "help", width: 440, height: 900, theme: "light" },
   { name: "results-dark-440", screen: "results", width: 440, height: 1000, theme: "dark" },

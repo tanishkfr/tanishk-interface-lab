@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { VectorArtwork } from "@/components/playground/artwork";
 import { Icon } from "@/components/playground/icons";
 import { ComingSoon } from "@/components/playground/coming-soon";
 export const metadata = { title: "Products" };
@@ -16,9 +15,16 @@ export default function Products() {
         Some experiments want a life outside the Lab. A home for the software
         that might get there.
       </p>
-      <article className="product-feature">
+      <article className="product-feature vector-feature">
         <div>
-          <VectorArtwork />
+          <Image
+            src="/products/vector-kitchen-flat-lay.webp"
+            alt="A print-studio flat lay of Vector Kitchen studies: swirling vector ribbons, geometric petal forms and recipe cards in violet, coral and acid yellow."
+            width={1374}
+            height={1145}
+            sizes="(max-width: 980px) 90vw, 54vw"
+            unoptimized
+          />
         </div>
         <div>
           <span className="status">Browser prototype · v0.1</span>
@@ -48,11 +54,12 @@ export default function Products() {
       <article className="product-feature gc-feature">
         <div>
           <Image
-            src="/products/grid-crimes/cover.png"
-            alt="GRID CRIMES/ cover artwork with six generated composition directions."
-            width={1600}
-            height={900}
+            src="/products/grid-crimes/feature-still-life.webp"
+            alt="Six printed composition sheets, registration marks and a black GRID CRIMES card with an acid slash tile arranged on a studio table."
+            width={1374}
+            height={1145}
             sizes="(max-width: 980px) 90vw, 54vw"
+            unoptimized
           />
         </div>
         <div>

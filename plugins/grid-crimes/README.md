@@ -6,7 +6,7 @@ A procedural composition instrument for Figma Design. Select an existing composi
 
 **Status:** local development build, `v0.1.0`. Not published to Figma Community. No plugin ID is invented or hardcoded.
 
-![GRID CRIMES/ results interface](../../public/products/grid-crimes/ui-results.png)
+![GRID CRIMES/ results interface](../../public/products/grid-crimes/ui-results-v2.png)
 
 ---
 

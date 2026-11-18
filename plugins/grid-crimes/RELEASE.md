@@ -10,10 +10,11 @@
 
 Additional product screenshots live at `public/products/grid-crimes/`:
 
-- `ui-configure.png`
-- `ui-results.png`
-- `ui-crossbreed.png`
-- `directions.png`
+- `ui-configure-v2.png`
+- `ui-results-v2.png`
+- `ui-crossbreed-v2.png`
+- `directions-v2.png`
+- `feature-still-life.webp`
 
 These are browser-rendered captures of the shipped interface and real engine plans. They are not native Figma screenshots.
 

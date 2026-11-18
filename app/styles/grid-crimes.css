@@ -75,19 +75,30 @@
 }
 
 .gc-wordmark i {
-  display: inline-grid;
-  place-items: center;
+  display: inline-block;
+  position: relative;
   width: 0.68em;
   height: 0.68em;
   margin-top: 0.02em;
   background: var(--gc-acid);
-  color: var(--gc-ink);
+  color: transparent;
   font-style: normal;
-  font-family: var(--lab-expressive);
   font-size: 0.72em;
   line-height: 1;
+  overflow: hidden;
   transform: skewX(-8deg);
   border: 1px solid var(--gc-ink);
+}
+
+.gc-wordmark i::after {
+  content: "";
+  position: absolute;
+  left: 46%;
+  top: 20%;
+  width: 8%;
+  height: 60%;
+  background: var(--gc-ink);
+  transform: rotate(18deg);
 }
 
 .gc-tagline {
@@ -164,6 +175,8 @@
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .gc-cover figcaption {
@@ -288,6 +301,9 @@
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top center;
   border-bottom: 1px solid var(--gc-ink);
 }
 
@@ -402,6 +418,9 @@
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .gc-cross-shot figcaption {
@@ -677,6 +696,23 @@
 
 /* Product listing feature ------------------------------------- */
 
+.vector-feature > div:first-child {
+  position: relative;
+  min-height: 420px;
+  background: #f3f1e8;
+  overflow: hidden;
+}
+
+.vector-feature > div:first-child img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .gc-feature {
   margin-top: 80px;
 }
@@ -684,12 +720,18 @@
 .gc-feature > div:first-child {
   background: var(--lab-ink);
   overflow: hidden;
+  position: relative;
+  min-height: 420px;
 }
 
 .gc-feature > div:first-child img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .gc-feature .gc-feature-status {

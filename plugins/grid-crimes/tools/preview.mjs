@@ -119,13 +119,14 @@ const cover = `<!doctype html>
   .meta-top,.meta-bottom{position:absolute;left:54px;right:54px;display:flex;justify-content:space-between;gap:20px;font-family:monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,241,232,.62)}
   .meta-top{top:34px}
   .meta-bottom{bottom:30px;border-top:1px solid rgba(243,241,232,.2);padding-top:14px}
-  .left{position:absolute;left:54px;top:112px;width:790px;z-index:2}
-  h1{margin:0;font-family:Gulax,Arial Black,sans-serif;font-size:206px;line-height:.72;letter-spacing:-.045em;text-transform:uppercase}
+  .left{position:absolute;left:54px;top:98px;width:790px;z-index:2}
+  h1{margin:0;font-family:Gulax,Arial Black,sans-serif;font-size:196px;line-height:.72;letter-spacing:-.045em;text-transform:uppercase}
   h1 span{display:block}
-  h1 em{display:inline-grid;place-items:center;width:142px;height:142px;margin:14px 0 0 -2px;background:#e5e94b;color:#23241f;font-style:normal;font-family:Gulax,Arial Black,sans-serif;font-size:176px;line-height:1;transform:skewX(-8deg)}
-  .tagline{margin:34px 0 0;font-family:Gulax,Arial Black,sans-serif;font-size:47px;line-height:.92;letter-spacing:-.035em;text-transform:uppercase;color:#e5e94b}
-  .describe{max-width:48ch;margin:22px 0 0;font-size:16px;line-height:1.5;color:rgba(243,241,232,.72)}
-  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}
+  h1 em{display:inline-grid;place-items:center;position:relative;width:136px;height:136px;margin:12px 0 0 -2px;background:#e5e94b;color:transparent;font-style:normal;font-size:0;line-height:1;overflow:hidden;transform:skewX(-8deg)}
+  h1 em::before{content:"";position:absolute;left:50%;top:50%;width:23px;height:98px;background:#23241f;transform:translate(-50%,-50%) rotate(18deg)}
+  .tagline{margin:26px 0 0;font-family:Gulax,Arial Black,sans-serif;font-size:44px;line-height:.92;letter-spacing:-.035em;text-transform:uppercase;color:#e5e94b}
+  .describe{max-width:48ch;margin:16px 0 0;font-size:15px;line-height:1.45;color:rgba(243,241,232,.72)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:17px}
   .chips span{padding:5px 8px;border:1px solid rgba(243,241,232,.26);font-family:monospace;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:rgba(243,241,232,.8)}
   .right{position:absolute;right:-40px;top:100px;width:720px;height:710px;z-index:1}
   .strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;transform:rotate(-4deg)}
@@ -156,7 +157,8 @@ const icon = `<!doctype html>
   .icon-grid span{border-right:1px solid #23241f;border-bottom:1px solid #23241f}
   .icon-type{position:absolute;left:22px;top:44px;display:flex;align-items:flex-start;font-family:Gulax,Arial Black,sans-serif;font-size:236px;line-height:.72;letter-spacing:-.07em}
   .icon-type b{font-weight:400}
-  .icon-type em{display:inline-grid;place-items:center;width:116px;height:116px;margin:8px 0 0 2px;background:#23241f;color:#e5e94b;font-style:normal;font-size:150px;line-height:1;transform:skewX(-8deg)}
+  .icon-type em{display:inline-grid;place-items:center;position:relative;width:116px;height:116px;margin:8px 0 0 2px;background:#23241f;color:transparent;font-style:normal;font-size:0;line-height:1;overflow:hidden;transform:skewX(-8deg)}
+  .icon-type em::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:84px;background:#e5e94b;transform:translate(-50%,-50%) rotate(18deg)}
   .icon-foot{position:absolute;left:26px;bottom:26px;font-family:monospace;font-size:15px;line-height:1.4;letter-spacing:.07em}
   .icon-tag{position:absolute;right:24px;bottom:26px;background:#23241f;color:#e5e94b;font-family:monospace;font-size:14px;letter-spacing:.06em;padding:6px 8px}
   .icon-type::after{content:"";position:absolute;left:0;bottom:-14px;width:340px;height:5px;background:#ff795b}

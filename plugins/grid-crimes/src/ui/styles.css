@@ -261,17 +261,27 @@ summary:focus-visible,
 }
 
 .wordmark-slash {
-  display: grid;
-  place-items: center;
+  display: block;
+  position: relative;
   width: 21px;
   height: 27px;
   margin-top: 1px;
   background: var(--acid);
-  color: #23241f;
-  font-family: var(--font-display);
-  font-size: 24px;
-  line-height: 1;
+  color: transparent;
+  font-size: 0;
+  overflow: hidden;
   transform: skewX(-8deg);
+}
+
+.wordmark-slash::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 18px;
+  background: #23241f;
+  transform: translate(-50%, -50%) rotate(18deg);
 }
 
 .wordmark-sub {
@@ -2122,7 +2132,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   .wordmark-slash {
     width: 18px;
     height: 23px;
-    font-size: 20px;
+  }
+  .wordmark-slash::before {
+    height: 15px;
+    width: 2px;
   }
   .panel {
     padding-left: 13px;
