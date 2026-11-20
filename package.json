@@ -11,7 +11,12 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --test",
-    "qa": "node scripts/qa.mjs"
+    "qa": "node scripts/qa.mjs",
+    "afterclick:build": "node extensions/afterclick/tools/build.mjs",
+    "afterclick:package": "node extensions/afterclick/tools/package.mjs",
+    "afterclick:acceptance": "node scripts/afterclick-acceptance.mjs",
+    "afterclick:studio-qa": "node scripts/afterclick-studio-qa.mjs",
+    "afterclick:product-qa": "node scripts/afterclick-product-qa.mjs"
   },
   "dependencies": {
     "next": "16.3.6",

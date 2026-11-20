@@ -6,8 +6,10 @@ V2 expands the preserved component library into eleven individually art-directed
 - `/experiments`: larger experiments and the interactive essay.
 - `/tools`: Motion Foundry and Vector Kitchen.
 - `/components`: the original 19 components with live previews and documentation.
-- `/software`: accurately labeled product prototypes and release information, including the Grid Crimes Figma development build.
+- `/software`: accurately labeled product prototypes and release information, including the Grid Crimes Figma development build and the AFTERCLICK browser extension.
 - `/software/grid-crimes`: Grid Crimes build notes, install steps, direction sheet, privacy and release status.
+- `/software/afterclick`: AFTERCLICK build notes, local install steps, state-map explanation, test status, privacy, and release notes.
+- `/play/afterclick`: the AFTERCLICK Studio for importing, inspecting, annotating, and exporting interaction recordings.
 - `/play/<slug>`: eleven browser experiences, loaded independently.
 - `/experiments/<component>` and `/r/<component>.json`: all original URLs preserved.
 
@@ -55,6 +57,17 @@ pnpm run build
 ```
 
 Import `plugins/grid-crimes/manifest.json` through **Figma → Plugins → Development → Import plugin from manifest…**. The plugin is a development build, not a Community-published product. Its full documentation, test results and native-QA checklist are in `plugins/grid-crimes/README.md`; the LAB/ software presentation is at `/software/grid-crimes`.
+
+## AFTERCLICK browser extension
+
+The repository also contains a standalone Chrome Manifest V3 product:
+
+```bash
+node extensions/afterclick/tools/build.mjs
+node extensions/afterclick/tools/package.mjs
+```
+
+Load `extensions/afterclick/dist/` through **chrome://extensions → Developer mode → Load unpacked**. The downloadable developer build is `public/downloads/afterclick-v0.1.0.zip`. The extension records one tab after explicit consent and exports portable JSON; the Studio lives at `/play/afterclick`. There is no backend, account, or network request. Full details, permissions, limitations, test results, and privacy notes are at `/software/afterclick`.
 
 ## Development
 

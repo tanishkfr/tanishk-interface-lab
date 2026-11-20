@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harbor &amp; Pine — checkout review</title>
+    <style>
+      :root {
+        --ink: #1b241f;
+        --paper: #f4f0e5;
+        --pine: #234d3c;
+        --rust: #c85637;
+        --line: rgba(27, 36, 31, 0.22);
+        --muted: #6a7068;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: #d8d3c5;
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .shell {
+        width: min(100% - 32px, 980px);
+        margin: 24px auto;
+        background: var(--paper);
+        border: 1px solid var(--ink);
+        box-shadow: 10px 10px 0 rgba(27, 36, 31, 0.18);
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 20px;
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .brand {
+        font-family: Georgia, serif;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+      }
+      .brand em { color: var(--rust); font-style: normal; }
+      header p {
+        margin: 0;
+        font-family: ui-monospace, Consolas, monospace;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      main {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 0;
+      }
+      .checkout { padding: 28px 24px 32px; }
+      .aside {
+        border-left: 1px solid var(--line);
+        padding: 28px 24px;
+        background: #eae5d8;
+      }
+      .step {
+        font-family: ui-monospace, Consolas, monospace;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 8px;
+      }
+      h1 {
+        font-family: Georgia, serif;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        margin: 0 0 22px;
+        max-width: 12ch;
+      }
+      h2 { font-size: 15px; margin: 24px 0 10px; }
+      label { display: block; font-size: 12px; color: var(--muted); }
+      input {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid var(--line);
+        background: #fffdf7;
+        color: var(--ink);
+        padding: 10px 12px;
+        font: inherit;
+        margin: 5px 0 14px;
+        border-radius: 2px;
+      }
+      input:focus { outline: 2px solid var(--pine); outline-offset: 1px; }
+      .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      button {
+        appearance: none;
+        min-height: 46px;
+        border: 1px solid var(--ink);
+        background: transparent;
+        color: var(--ink);
+        padding: 10px 16px;
+        font: inherit;
+        cursor: pointer;
+        border-radius: 2px;
+      }
+      button:hover { background: rgba(35, 77, 60, 0.08); }
+      button:disabled { opacity: 0.55; cursor: wait; }
+      button.primary {
+        width: 100%;
+        background: var(--pine);
+        color: #fffdf7;
+        border-color: var(--pine);
+        margin-top: 8px;
+        font-weight: 600;
+      }
+      button.primary:hover { background: #16382a; }
+      .inline { display: flex; gap: 8px; }
+      .inline input { margin: 0; }
+      .inline button { white-space: nowrap; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+      .actions button { min-height: 40px; padding: 8px 12px; font-size: 13px; }
+      .feedback {
+        margin-top: 14px;
+        min-height: 24px;
+        font-size: 14px;
+      }
+      .feedback.error {
+        border-left: 3px solid var(--rust);
+        background: rgba(200, 86, 55, 0.1);
+        padding: 8px 10px;
+        color: #7a2f1b;
+      }
+      .feedback.success {
+        border-left: 3px solid var(--pine);
+        background: rgba(35, 77, 60, 0.09);
+        padding: 8px 10px;
+        color: #1b3d2f;
+      }
+      .loading {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        font-family: ui-monospace, Consolas, monospace;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .spinner {
+        width: 12px;
+        height: 12px;
+        border: 2px solid var(--line);
+        border-top-color: var(--pine);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .summary { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 14px; }
+      .summary div { display: flex; justify-content: space-between; gap: 16px; padding: 5px 0; font-size: 14px; }
+      .summary .total { font-weight: 700; border-top: 1px solid var(--line); margin-top: 8px; padding-top: 12px; }
+      .note { margin-top: 24px; font-size: 12px; color: var(--muted); line-height: 1.55; }
+      [hidden] { display: none !important; }
+      dialog {
+        width: min(420px, calc(100% - 32px));
+        border: 1px solid var(--ink);
+        background: var(--paper);
+        padding: 24px;
+      }
+      dialog::backdrop { background: rgba(27, 36, 31, 0.45); }
+      dialog h2 { margin-top: 0; }
+      .receipt { padding: 40px 24px; grid-column: 1 / -1; }
+      .receipt h1 { max-width: 16ch; }
+      .receipt .stamp {
+        display: inline-block;
+        border: 2px solid var(--pine);
+        color: var(--pine);
+        padding: 6px 10px;
+        font-family: ui-monospace, Consolas, monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transform: rotate(-2deg);
+      }
+      .receipt table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+      .receipt td, .receipt th { border-bottom: 1px solid var(--line); padding: 10px 0; text-align: left; }
+      .receipt th { font-family: ui-monospace, Consolas, monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+      @media (max-width: 720px) {
+        main { grid-template-columns: 1fr; }
+        .aside { border-left: 0; border-top: 1px solid var(--line); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div class="brand">Harbor <em>&amp;</em> Pine</div>
+        <p>Checkout · review fixture 03</p>
+      </header>
+      <main>
+        <section class="checkout" id="checkout-view">
+          <p class="step">02 / Delivery</p>
+          <h1>Where should this order land?</h1>
+          <form id="order-form" novalidate>
+            <div class="field-row">
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" value="mira@example.com" />
+              </div>
+              <div>
+                <label for="password">Account password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" value="hunter2-not-recorded" />
+              </div>
+            </div>
+            <label for="address">Street address</label>
+            <input id="address" name="address" value="14 Harbour Walk, Unit 3" />
+            <div class="actions">
+              <button type="button" id="save-address">Save address</button>
+              <button type="button" id="gift-options">Gift options</button>
+            </div>
+
+            <h2>Order</h2>
+            <div class="inline">
+              <input id="promo" name="promo" value="SPRING24" aria-label="Promo code" />
+              <button type="button" id="apply-promo">Apply promo</button>
+            </div>
+            <div id="promo-loading" class="loading" role="status" aria-busy="true" hidden>
+              <span class="spinner" aria-hidden="true"></span>
+              Checking promo…
+            </div>
+            <div id="promo-feedback" class="feedback" role="status" aria-live="polite"></div>
+            <div id="order-feedback" class="feedback" role="status" aria-live="polite"></div>
+            <div id="order-loading" class="loading" role="status" aria-busy="true" hidden>
+              <span class="spinner" aria-hidden="true"></span>
+              Placing order…
+            </div>
+            <div id="order-success" class="feedback success" role="alert" hidden>
+              Order confirmed. A receipt is ready.
+            </div>
+            <button type="submit" class="primary" id="place-order">Place order · $86.00</button>
+            <div class="actions">
+              <button type="button" id="view-receipt" hidden>View receipt</button>
+              <button type="button" id="download-invoice">Download invoice</button>
+            </div>
+            <p class="note">
+              Test fixture for AFTERCLICK. Fields contain deliberately fake data.
+              The recorder should never store their values.
+            </p>
+          </form>
+        </section>
+
+        <aside class="aside">
+          <p class="step">Shipment</p>
+          <h2 style="margin-top:0">Two-day delivery</h2>
+          <div class="summary">
+            <div><span>Field blanket</span><span>$64.00</span></div>
+            <div><span>Care kit</span><span>$14.00</span></div>
+            <div><span>Shipping</span><span>$8.00</span></div>
+            <div class="total"><span>Total</span><span>$86.00</span></div>
+          </div>
+          <p class="note">
+            “Save address” intentionally gives no feedback. “Download invoice”
+            deliberately delays its confirmation for more than two seconds.
+            Both are here to test how the recorder represents missing and slow
+            feedback.
+          </p>
+        </aside>
+
+        <section class="receipt" id="receipt-view" hidden>
+          <p class="step">Receipt</p>
+          <h1>Order HP-1048 is on its way.</h1>
+          <span class="stamp">Confirmed</span>
+          <table>
+            <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+            <tbody>
+              <tr><td>Field blanket</td><td>$64.00</td></tr>
+              <tr><td>Care kit</td><td>$14.00</td></tr>
+              <tr><td>Shipping</td><td>$8.00</td></tr>
+            </tbody>
+          </table>
+          <p id="receipt-status" role="status" aria-live="polite">Receipt ready.</p>
+          <div class="actions">
+            <button type="button" id="back-to-checkout">Back to checkout</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="gift-dialog" aria-labelledby="gift-title">
+      <p class="step">Optional</p>
+      <h2 id="gift-title">Add a handwritten note?</h2>
+      <p style="font-size:14px;color:#6a7068">
+        A small card will be tucked into the parcel.
+      </p>
+      <button type="button" id="close-gift">Not this time</button>
+    </dialog>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+      let timers = [];
+
+      $("gift-options").addEventListener("click", () => {
+        $("gift-dialog").showModal();
+      });
+      $("close-gift").addEventListener("click", () => {
+        $("gift-dialog").close();
+      });
+
+      $("apply-promo").addEventListener("click", () => {
+        const button = $("apply-promo");
+        button.disabled = true;
+        button.textContent = "Checking…";
+        $("promo-loading").hidden = false;
+        const feedback = $("promo-feedback");
+        feedback.className = "feedback";
+        feedback.textContent = "";
+        timers.push(
+          setTimeout(() => {
+            button.disabled = false;
+            button.textContent = "Apply promo";
+            $("promo-loading").hidden = true;
+            feedback.className = "feedback error";
+            feedback.textContent = "Promo code expired. Try another code.";
+          }, 900),
+        );
+      });
+
+      $("save-address").addEventListener("click", () => {
+        // Intentionally silent: the product decision under review.
+        console.info("address save handler ran (no visible feedback)");
+      });
+
+      $("download-invoice").addEventListener("click", () => {
+        // Also silent, but after a two second delay, to test slow feedback.
+        timers.push(
+          setTimeout(() => {
+            $("order-feedback").className = "feedback success";
+            $("order-feedback").textContent = "Invoice download ready.";
+          }, 2200),
+        );
+      });
+
+      $("order-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const button = $("place-order");
+        button.disabled = true;
+        button.textContent = "Placing order…";
+        const loading = $("order-loading");
+        loading.hidden = false;
+        loading.setAttribute("aria-busy", "true");
+        $("order-feedback").textContent = "";
+        timers.push(
+          setTimeout(() => {
+            loading.hidden = true;
+            loading.setAttribute("aria-busy", "false");
+            $("order-success").hidden = false;
+            button.disabled = false;
+            button.textContent = "Order placed";
+            $("view-receipt").hidden = false;
+          }, 1450),
+        );
+      });
+
+      $("view-receipt").addEventListener("click", () => {
+        history.pushState({ receipt: true }, "", "/receipt");
+        $("checkout-view").hidden = true;
+        $("receipt-view").hidden = false;
+        document.title = "Receipt HP-1048 — Harbor & Pine";
+      });
+
+      $("back-to-checkout").addEventListener("click", () => {
+        history.pushState({}, "", "/checkout");
+        $("receipt-view").hidden = true;
+        $("checkout-view").hidden = false;
+        document.title = "Harbor & Pine — checkout review";
+      });
+    </script>
+  </body>
+</html>

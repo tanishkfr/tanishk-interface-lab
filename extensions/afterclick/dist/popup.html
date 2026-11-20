@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AFTERCLICK</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="ac-head">
+      <div class="ac-brand">
+        <span class="ac-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <strong>AFTERCLICK</strong>
+        <span class="ac-version">0.1.0</span>
+      </div>
+      <p class="ac-kicker">Interface flight recorder</p>
+    </header>
+
+    <div class="ac-statusline">
+      <span class="ac-status-dot" id="status-dot" aria-hidden="true"></span>
+      <span id="status-label">Checking this tab…</span>
+      <span class="ac-status-scope" id="status-scope">local only</span>
+    </div>
+
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+
+    <main class="ac-body">
+      <section id="view-idle" hidden>
+        <div class="ac-intro">
+          <p class="ac-eyebrow">Ready to record</p>
+          <h1>What happens<br />after the click?</h1>
+          <p class="ac-copy">
+            Record this tab. Watch the action, the delay, and the interface
+            response become one inspectable sequence.
+          </p>
+        </div>
+
+        <div class="ac-consent">
+          <label class="ac-check">
+            <input type="checkbox" id="consent" />
+            <span class="ac-check-box" aria-hidden="true"></span>
+            <span>
+              I choose to record <strong id="consent-tab">this tab</strong>.
+              I understand the recording stays in Chrome until I export or
+              clear it.
+            </span>
+          </label>
+          <label class="ac-check ac-check-secondary">
+            <input type="checkbox" id="feedback-text" />
+            <span class="ac-check-box" aria-hidden="true"></span>
+            <span>
+              Include short feedback text (alerts and status messages only,
+              redacted). Off by default.
+            </span>
+          </label>
+        </div>
+
+        <button class="ac-button ac-button-primary" id="start" disabled>
+          Start recording <span aria-hidden="true">→</span>
+        </button>
+
+        <dl class="ac-scope">
+          <div>
+            <dt>Captures</dt>
+            <dd>Clicks, modifier shortcuts, focus, navigation, and observed UI state changes.</dd>
+          </div>
+          <div>
+            <dt>Never</dt>
+            <dd>Form values, passwords, typed characters, cookies, or network payloads.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section id="view-recording" hidden>
+        <div class="ac-readout">
+          <div>
+            <p class="ac-eyebrow" id="recording-mode">Recording this tab</p>
+            <p class="ac-timer" id="timer">00:00.0</p>
+          </div>
+          <div class="ac-counts">
+            <div><strong id="event-count">0</strong><span>events</span></div>
+            <div><strong id="action-count">0</strong><span>actions</span></div>
+          </div>
+        </div>
+        <div class="ac-tape" id="tape" role="img" aria-label="Activity tape; marks appear as events are captured."></div>
+        <p class="ac-latest" id="latest">Listening for the first action.</p>
+        <p class="ac-warning" id="paused-warning" hidden>
+          Paused. This page is not being observed.
+        </p>
+        <div class="ac-controls">
+          <button class="ac-button ac-button-quiet" id="pause">Pause</button>
+          <button class="ac-button ac-button-quiet" id="resume" hidden>Resume</button>
+          <button class="ac-button ac-button-stop" id="stop">Stop &amp; keep</button>
+        </div>
+        <div class="ac-checkpoint">
+          <label for="checkpoint-note">Manual checkpoint</label>
+          <div>
+            <input id="checkpoint-note" maxlength="160" placeholder="Optional note" autocomplete="off" />
+            <button class="ac-button ac-button-small" id="checkpoint">Mark</button>
+          </div>
+        </div>
+        <p class="ac-hint">Use this tab normally. AFTERCLICK only sees the tab you started on.</p>
+      </section>
+
+      <section id="view-complete" hidden>
+        <p class="ac-eyebrow" id="complete-eyebrow">Recording complete</p>
+        <h1 id="complete-title">A recording<br />you can inspect.</h1>
+        <div class="ac-summary">
+          <div><strong id="complete-duration">00:00.0</strong><span>elapsed</span></div>
+          <div><strong id="complete-events">0</strong><span>events</span></div>
+          <div><strong id="complete-actions">0</strong><span>actions</span></div>
+        </div>
+        <p class="ac-copy ac-copy-small" id="complete-meta"></p>
+        <div class="ac-complete-actions">
+          <button class="ac-button ac-button-primary" id="export">
+            Export .json <span aria-hidden="true">↓</span>
+          </button>
+          <button class="ac-button ac-button-quiet" id="open-studio">
+            Open Studio <span aria-hidden="true">↗</span>
+          </button>
+          <button class="ac-button ac-button-quiet" id="start-again">Start another</button>
+        </div>
+        <p class="ac-warning ac-warning-soft">
+          Review before sharing. The file can contain the page title, path, UI
+          labels, and any feedback text you enabled.
+        </p>
+        <div class="ac-import-note">
+          <span>Studio handoff</span>
+          <p>
+            Export the file, open the Studio, then import it through the file
+            picker or drag-and-drop.
+          </p>
+        </div>
+        <button class="ac-link" id="clear">Clear saved recording</button>
+      </section>
+
+      <section id="view-error" hidden>
+        <p class="ac-eyebrow">Cannot record</p>
+        <h1 id="error-title">This page<br />is out of reach.</h1>
+        <p class="ac-copy" id="error-message"></p>
+        <div class="ac-complete-actions">
+          <button class="ac-button ac-button-primary" id="retry">Try again</button>
+          <button class="ac-button ac-button-quiet" id="error-export" hidden>Export partial</button>
+          <button class="ac-button ac-button-quiet" id="error-open-studio" hidden>Open Studio</button>
+        </div>
+        <p class="ac-hint">
+          Browser settings pages, extension pages, and the new tab page are
+          protected. Open a normal website and try again.
+        </p>
+      </section>
+
+      <section id="view-loading" hidden>
+        <p class="ac-loading">Reading the recorder…</p>
+      </section>
+    </main>
+
+    <footer class="ac-foot">
+      <span>Local processing. No account. No upload.</span>
+      <a href="https://lab.tanishk.me/software/afterclick" target="_blank" rel="noreferrer" id="build-notes">Build notes ↗</a>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
