@@ -102,6 +102,66 @@ export default function Software() {
           </div>
         </div>
       </article>
+      <article className="product-feature ac-feature">
+        <div>
+          <Image
+            src="/software/afterclick/feature-cover.jpg"
+            alt="AFTERCLICK cover artwork: four browser-state cards connected across a timed interaction strip, with a stopwatch and printed index cards."
+            width={1374}
+            height={1145}
+            sizes="(max-width: 980px) 90vw, 54vw"
+            unoptimized
+          />
+        </div>
+        <div>
+          <span className="status ac-feature-status">
+            Browser Extension + Studio · v0.1.0
+          </span>
+          <h2>AFTERCLICK</h2>
+          <p>
+            An interface flight recorder. Capture what happens after a click,
+            turn interactions into visual state maps, and see where feedback
+            gets lost.
+          </p>
+          <p>
+            Record real website interactions with a local browser extension.
+            Inspect timing, states, and transitions in a companion Studio, then
+            annotate and export the results.
+          </p>
+          <div className="ac-feature-actions">
+            <a
+              className="lab-button ac-download-button"
+              href="/downloads/afterclick-v0.1.0.zip"
+              download
+            >
+              Download v0.1.0 <Icon name="download" />
+            </a>
+            <Link className="lab-button" href="/play/afterclick">
+              Play with the Studio <Icon />
+            </Link>
+            <Link
+              className="lab-button secondary"
+              href="/software/afterclick"
+            >
+              Read the build notes <Icon />
+            </Link>
+          </div>
+          <div className="product-release ac-feature-release">
+            <h3>Release notes</h3>
+            <p>
+              <strong>v0.1.0 · Chrome extension + Studio</strong>
+              <br />
+              One-tab recording with explicit consent, clicks, modifier
+              shortcuts, focus, SPA route changes, manual checkpoints, and
+              observed disabled, loading, dialog and feedback states. Studio
+              state map, keyboard timeline, event inspector, annotations, and
+              JSON, PNG and self-contained HTML exports. A real sample recording
+              is included. No screenshots, no form values, no keystrokes, and no
+              network requests.
+            </p>
+          </div>
+        </div>
+      </article>
       <ComingSoon />
     </div>
   );

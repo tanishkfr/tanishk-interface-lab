@@ -1,0 +1,750 @@
+{
+  "schema": "afterclick.recording",
+  "version": 1,
+  "id": "rec_mwp8enza8o96yur",
+  "title": "Harbor & Pine — checkout review",
+  "createdAt": "2026-11-20T17:07:00.454Z",
+  "startedAt": "2026-11-20T17:07:00.454Z",
+  "endedAt": "2026-11-20T17:07:12.511Z",
+  "durationMs": 12057,
+  "producer": {
+    "name": "AFTERCLICK",
+    "kind": "extension",
+    "version": "0.1.0"
+  },
+  "source": {
+    "url": "http://127.0.0.1:62692/",
+    "title": "Harbor & Pine — checkout review",
+    "viewport": {
+      "width": 1440,
+      "height": 960
+    }
+  },
+  "consent": {
+    "grantedAt": "2026-11-20T17:07:00.454Z",
+    "statement": "I chose to record this tab with AFTERCLICK. It records local interaction events and observed UI changes only. It does not read form values or typed characters.",
+    "textCollection": true
+  },
+  "capture": {
+    "clicks": true,
+    "shortcuts": true,
+    "focus": true,
+    "domMutations": true,
+    "navigation": true,
+    "screenshots": false,
+    "formValues": false,
+    "keystrokes": false,
+    "feedbackText": true,
+    "observationWindowMs": 4000
+  },
+  "events": [
+    {
+      "id": "evt_0yq3pg5q",
+      "seq": 0,
+      "t": 0,
+      "at": "2026-11-20T17:07:00.454Z",
+      "family": "context",
+      "kind": "page-ready",
+      "title": "Page ready",
+      "evidence": "observed",
+      "data": {
+        "path": "/",
+        "viewport": "unknown"
+      }
+    },
+    {
+      "id": "evt_10t1w16b",
+      "seq": 1,
+      "t": 0,
+      "at": "2026-11-20T17:07:00.454Z",
+      "family": "context",
+      "kind": "session-start",
+      "title": "Recording started",
+      "evidence": "manual",
+      "data": {
+        "feedbackText": true,
+        "observationWindowMs": 4000
+      }
+    },
+    {
+      "id": "evt_2qv39e60",
+      "seq": 2,
+      "t": 1318,
+      "at": "2026-11-20T17:07:01.772Z",
+      "family": "focus",
+      "kind": "focus",
+      "title": "Focus moved to “Email”",
+      "evidence": "observed",
+      "target": {
+        "tag": "input",
+        "label": "Email",
+        "inputType": "email",
+        "selector": "#email",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "evt_3e8177q8",
+      "seq": 3,
+      "t": 1596,
+      "at": "2026-11-20T17:07:02.050Z",
+      "family": "focus",
+      "kind": "focus",
+      "title": "Focus moved to “Apply promo”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Apply promo",
+        "selector": "#apply-promo",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "act_19023dc24b5944",
+      "seq": 4,
+      "t": 1599,
+      "at": "2026-11-20T17:07:02.053Z",
+      "family": "action",
+      "kind": "click",
+      "title": "Clicked “Apply promo”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Apply promo",
+        "selector": "#apply-promo",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high",
+      "data": {
+        "pointer": "mouse",
+        "observationWindowMs": 4000
+      }
+    },
+    {
+      "id": "evt_5hrxeajs",
+      "seq": 5,
+      "t": 1648,
+      "at": "2026-11-20T17:07:02.102Z",
+      "family": "state",
+      "kind": "control-disabled",
+      "title": "“Checking…” became disabled",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Checking…",
+        "selector": "#apply-promo",
+        "disabled": true,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "source": "target-state"
+      },
+      "changes": [
+        {
+          "property": "disabled",
+          "summary": "Control became disabled",
+          "from": "false",
+          "to": "true"
+        }
+      ],
+      "afterActionId": "act_19023dc24b5944",
+      "deltaMs": 49
+    },
+    {
+      "id": "evt_6aoggsxe",
+      "seq": 6,
+      "t": 1648,
+      "at": "2026-11-20T17:07:02.102Z",
+      "family": "state",
+      "kind": "control-label-changed",
+      "title": "“Checking…” label changed",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Checking…",
+        "selector": "#apply-promo",
+        "disabled": true,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "source": "target-label"
+      },
+      "changes": [
+        {
+          "property": "label",
+          "summary": "Label changed from “Apply promo” to “Checking…”",
+          "from": "Apply promo",
+          "to": "Checking…"
+        }
+      ],
+      "afterActionId": "act_19023dc24b5944",
+      "deltaMs": 49
+    },
+    {
+      "id": "evt_77qo2wpx",
+      "seq": 7,
+      "t": 1718,
+      "at": "2026-11-20T17:07:02.172Z",
+      "family": "state",
+      "kind": "loading-appeared",
+      "title": "Loading feedback appeared (“Checking promo…”)",
+      "evidence": "observed",
+      "target": {
+        "tag": "div",
+        "role": "status",
+        "label": "Checking promo…",
+        "selector": "#promo-loading",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high",
+      "data": {
+        "source": "descriptor"
+      },
+      "changes": [
+        {
+          "property": "loading-start",
+          "summary": "Loading indicator appeared"
+        }
+      ],
+      "afterActionId": "act_19023dc24b5944",
+      "deltaMs": 119
+    },
+    {
+      "id": "evt_8toyfxtr",
+      "seq": 8,
+      "t": 2630,
+      "at": "2026-11-20T17:07:03.084Z",
+      "family": "state",
+      "kind": "control-enabled",
+      "title": "“Apply promo” became enabled",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Apply promo",
+        "selector": "#apply-promo",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "source": "target-state"
+      },
+      "changes": [
+        {
+          "property": "disabled",
+          "summary": "Control became enabled",
+          "from": "true",
+          "to": "false"
+        }
+      ],
+      "afterActionId": "act_19023dc24b5944",
+      "deltaMs": 1031
+    },
+    {
+      "id": "evt_9wknat65",
+      "seq": 9,
+      "t": 2630,
+      "at": "2026-11-20T17:07:03.084Z",
+      "family": "state",
+      "kind": "control-label-changed",
+      "title": "“Apply promo” label changed",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Apply promo",
+        "selector": "#apply-promo",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "source": "target-label"
+      },
+      "changes": [
+        {
+          "property": "label",
+          "summary": "Label changed from “Checking…” to “Apply promo”",
+          "from": "Checking…",
+          "to": "Apply promo"
+        }
+      ],
+      "afterActionId": "act_19023dc24b5944",
+      "deltaMs": 1031
+    },
+    {
+      "id": "evt_ayvmqhe7",
+      "seq": 10,
+      "t": 2631,
+      "at": "2026-11-20T17:07:03.085Z",
+      "family": "state",
+      "kind": "feedback-appeared",
+      "title": "Error feedback appeared (“Promo code expired. Try another code.”)",
+      "evidence": "inferred",
+      "target": {
+        "tag": "div",
+        "role": "status",
+        "label": "Promo code expired. Try another code.",
+        "selector": "#promo-feedback",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "messageType": "error",
+        "source": "status polite",
+        "preview": "Promo code expired. Try another code."
+      },
+      "warnings": [
+        "Feedback text is user-enabled and redacted; review before sharing."
+      ],
+      "changes": [
+        {
+          "property": "content",
+          "summary": "Error message appeared"
+        }
+      ],
+      "afterActionId": "act_19023dc24b5944",
+      "deltaMs": 1032
+    },
+    {
+      "id": "evt_bj7p277t",
+      "seq": 11,
+      "t": 2828,
+      "at": "2026-11-20T17:07:03.282Z",
+      "family": "focus",
+      "kind": "focus",
+      "title": "Focus moved to “Save address”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Save address",
+        "selector": "#save-address",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "act_14a2428c3a1544",
+      "seq": 12,
+      "t": 2829,
+      "at": "2026-11-20T17:07:03.283Z",
+      "family": "action",
+      "kind": "click",
+      "title": "Clicked “Save address”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Save address",
+        "selector": "#save-address",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high",
+      "data": {
+        "pointer": "mouse",
+        "observationWindowMs": 4000
+      }
+    },
+    {
+      "id": "evt_d0peekgj",
+      "seq": 13,
+      "t": 3247,
+      "at": "2026-11-20T17:07:03.701Z",
+      "family": "focus",
+      "kind": "focus",
+      "title": "Focus moved to “Place order · $86.00”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Place order · $86.00",
+        "selector": "#place-order",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "act_246b7d6e679746",
+      "seq": 14,
+      "t": 3247,
+      "at": "2026-11-20T17:07:03.701Z",
+      "family": "action",
+      "kind": "click",
+      "title": "Clicked “Place order · $86.00”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Place order · $86.00",
+        "selector": "#place-order",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high",
+      "data": {
+        "pointer": "mouse",
+        "observationWindowMs": 4000
+      }
+    },
+    {
+      "id": "evt_fucdgx9b",
+      "seq": 15,
+      "t": 3299,
+      "at": "2026-11-20T17:07:03.753Z",
+      "family": "state",
+      "kind": "control-disabled",
+      "title": "“Placing order…” became disabled",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Placing order…",
+        "selector": "#place-order",
+        "disabled": true,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "source": "target-state"
+      },
+      "changes": [
+        {
+          "property": "disabled",
+          "summary": "Control became disabled",
+          "from": "false",
+          "to": "true"
+        }
+      ],
+      "afterActionId": "act_246b7d6e679746",
+      "deltaMs": 52
+    },
+    {
+      "id": "evt_gzwc96zh",
+      "seq": 16,
+      "t": 3299,
+      "at": "2026-11-20T17:07:03.753Z",
+      "family": "state",
+      "kind": "control-label-changed",
+      "title": "“Placing order…” label changed",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Placing order…",
+        "selector": "#place-order",
+        "disabled": true,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "source": "target-label"
+      },
+      "changes": [
+        {
+          "property": "label",
+          "summary": "Label changed from “Place order · $86.00” to “Placing order…”",
+          "from": "Place order · $86.00",
+          "to": "Placing order…"
+        }
+      ],
+      "afterActionId": "act_246b7d6e679746",
+      "deltaMs": 52
+    },
+    {
+      "id": "evt_hb1glpx6",
+      "seq": 17,
+      "t": 3375,
+      "at": "2026-11-20T17:07:03.829Z",
+      "family": "state",
+      "kind": "loading-appeared",
+      "title": "Loading feedback appeared (“Placing order…”)",
+      "evidence": "observed",
+      "target": {
+        "tag": "div",
+        "role": "status",
+        "label": "Placing order…",
+        "selector": "#order-loading",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high",
+      "data": {
+        "source": "descriptor"
+      },
+      "changes": [
+        {
+          "property": "loading-start",
+          "summary": "Loading indicator appeared"
+        }
+      ],
+      "afterActionId": "act_246b7d6e679746",
+      "deltaMs": 128
+    },
+    {
+      "id": "evt_il6ztldo",
+      "seq": 18,
+      "t": 4824,
+      "at": "2026-11-20T17:07:05.278Z",
+      "family": "state",
+      "kind": "feedback-appeared",
+      "title": "Success feedback appeared (“Order confirmed. A receipt is ready.”)",
+      "evidence": "inferred",
+      "target": {
+        "tag": "div",
+        "role": "alert",
+        "label": "Order confirmed. A receipt is ready.",
+        "selector": "#order-success",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "messageType": "success",
+        "source": "alert",
+        "preview": "Order confirmed. A receipt is ready."
+      },
+      "warnings": [
+        "Feedback text is user-enabled and redacted; review before sharing."
+      ],
+      "changes": [
+        {
+          "property": "content",
+          "summary": "Success message appeared"
+        }
+      ],
+      "afterActionId": "act_246b7d6e679746",
+      "deltaMs": 1577
+    },
+    {
+      "id": "evt_j0gp56l7",
+      "seq": 19,
+      "t": 4824,
+      "at": "2026-11-20T17:07:05.278Z",
+      "family": "state",
+      "kind": "control-enabled",
+      "title": "“Order placed” became enabled",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Order placed",
+        "selector": "#place-order",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "source": "target-state"
+      },
+      "changes": [
+        {
+          "property": "disabled",
+          "summary": "Control became enabled",
+          "from": "true",
+          "to": "false"
+        }
+      ],
+      "afterActionId": "act_246b7d6e679746",
+      "deltaMs": 1577
+    },
+    {
+      "id": "evt_kvfvkint",
+      "seq": 20,
+      "t": 4824,
+      "at": "2026-11-20T17:07:05.278Z",
+      "family": "state",
+      "kind": "control-label-changed",
+      "title": "“Order placed” label changed",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Order placed",
+        "selector": "#place-order",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "source": "target-label"
+      },
+      "changes": [
+        {
+          "property": "label",
+          "summary": "Label changed from “Placing order…” to “Order placed”",
+          "from": "Placing order…",
+          "to": "Order placed"
+        }
+      ],
+      "afterActionId": "act_246b7d6e679746",
+      "deltaMs": 1577
+    },
+    {
+      "id": "evt_lqg3jt35",
+      "seq": 21,
+      "t": 5296,
+      "at": "2026-11-20T17:07:05.750Z",
+      "family": "focus",
+      "kind": "focus",
+      "title": "Focus moved to “Download invoice”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Download invoice",
+        "selector": "#download-invoice",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "act_a4100f70840d49",
+      "seq": 22,
+      "t": 5297,
+      "at": "2026-11-20T17:07:05.751Z",
+      "family": "action",
+      "kind": "click",
+      "title": "Clicked “Download invoice”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "Download invoice",
+        "selector": "#download-invoice",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high",
+      "data": {
+        "pointer": "mouse",
+        "observationWindowMs": 4000
+      }
+    },
+    {
+      "id": "evt_na7z2rr2",
+      "seq": 23,
+      "t": 7627,
+      "at": "2026-11-20T17:07:08.081Z",
+      "family": "state",
+      "kind": "feedback-appeared",
+      "title": "Success feedback appeared (“Invoice download ready.”)",
+      "evidence": "inferred",
+      "target": {
+        "tag": "div",
+        "role": "status",
+        "label": "Invoice download ready.",
+        "selector": "#order-feedback",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "medium",
+      "data": {
+        "messageType": "success",
+        "source": "status polite",
+        "preview": "Invoice download ready."
+      },
+      "warnings": [
+        "Feedback text is user-enabled and redacted; review before sharing."
+      ],
+      "changes": [
+        {
+          "property": "content",
+          "summary": "Success message appeared"
+        }
+      ],
+      "afterActionId": "act_a4100f70840d49",
+      "deltaMs": 2330
+    },
+    {
+      "id": "evt_ozsks6dh",
+      "seq": 24,
+      "t": 8000,
+      "at": "2026-11-20T17:07:08.454Z",
+      "family": "manual",
+      "kind": "checkpoint",
+      "title": "Manual checkpoint: Success state reached",
+      "evidence": "manual",
+      "data": {
+        "note": "Success state reached",
+        "paused": false
+      },
+      "note": "Success state reached"
+    },
+    {
+      "id": "evt_p9jdhzzt",
+      "seq": 25,
+      "t": 8014,
+      "at": "2026-11-20T17:07:08.468Z",
+      "family": "focus",
+      "kind": "focus",
+      "title": "Focus moved to “View receipt”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "View receipt",
+        "selector": "#view-receipt",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "act_499cd45a9d2d46",
+      "seq": 26,
+      "t": 8014,
+      "at": "2026-11-20T17:07:08.468Z",
+      "family": "action",
+      "kind": "click",
+      "title": "Clicked “View receipt”",
+      "evidence": "observed",
+      "target": {
+        "tag": "button",
+        "label": "View receipt",
+        "selector": "#view-receipt",
+        "disabled": false,
+        "hidden": false
+      },
+      "confidence": "high",
+      "data": {
+        "pointer": "mouse",
+        "observationWindowMs": 4000
+      }
+    },
+    {
+      "id": "evt_rmvi8qx2",
+      "seq": 27,
+      "t": 8181,
+      "at": "2026-11-20T17:07:08.635Z",
+      "family": "navigation",
+      "kind": "route-change",
+      "title": "Route changed to /receipt",
+      "evidence": "observed",
+      "confidence": "high",
+      "data": {
+        "path": "/receipt",
+        "from": "/",
+        "method": "history-or-hash"
+      },
+      "afterActionId": "act_499cd45a9d2d46",
+      "deltaMs": 167
+    },
+    {
+      "id": "evt_srjvpcg0",
+      "seq": 28,
+      "t": 12057,
+      "at": "2026-11-20T17:07:12.511Z",
+      "family": "context",
+      "kind": "session-end",
+      "title": "Recording stopped",
+      "evidence": "observed",
+      "data": {
+        "reason": "stopped"
+      }
+    }
+  ],
+  "annotations": [],
+  "notes": "Sample captured from the local Harbor & Pine test fixture with the built v0.1.0 extension. The fixture contains fake values; the recording verifies they were not stored. Save address intentionally gives no feedback; Download invoice deliberately delays its confirmation for more than two seconds."
+}

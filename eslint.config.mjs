@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "output/**",
     "build/**",
     "plugins/grid-crimes/**",
+    "extensions/afterclick/dist/**",
+    "qa/**",
     "next-env.d.ts",
   ]),
 ]);

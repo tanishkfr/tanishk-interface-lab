@@ -1,0 +1,13 @@
+{
+  "name": "@lab/afterclick-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AFTERCLICK — local-first interface flight recorder (Chrome MV3 extension)",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "package": "node tools/build.mjs && node tools/package.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test ../../tests/afterclick.test.ts"
+  }
+}
