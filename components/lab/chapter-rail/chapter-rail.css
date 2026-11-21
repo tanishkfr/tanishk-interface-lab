@@ -1,0 +1,246 @@
+.cr-root {
+  --cr-ink: #232018;
+  --cr-muted: #7b7568;
+  --cr-line: rgba(35, 32, 24, 0.16);
+  --cr-accent: #8a2f27;
+  --cr-paper: #f4f0e6;
+  --cr-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  column-gap: 14px;
+  min-width: 0;
+  color: var(--cr-ink);
+  font: inherit;
+}
+
+.cr-kicker {
+  grid-column: 1 / -1;
+  margin: 0 0 18px;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cr-muted);
+}
+
+.cr-track {
+  position: relative;
+  grid-column: 1;
+  grid-row: 2;
+  width: 18px;
+}
+
+.cr-line {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 8px;
+  width: 1px;
+  background: var(--cr-line);
+}
+
+.cr-line--progress {
+  bottom: auto;
+  height: calc((100% - 24px) * var(--cr-progress, 0));
+  background: var(--cr-accent);
+  transition: height 120ms linear;
+}
+
+.cr-marker {
+  position: absolute;
+  top: var(--cr-pos, 0px);
+  left: 3px;
+  width: 11px;
+  height: 11px;
+  margin-top: -5.5px;
+  border: 1px solid var(--cr-accent);
+  border-radius: 50%;
+  background: var(--cr-paper);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--cr-accent) 12%, transparent);
+  transition: top 180ms var(--cr-ease);
+}
+
+.cr-list {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cr-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  min-height: 34px;
+  padding: 7px 8px;
+  border-radius: 6px;
+  color: var(--cr-muted);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  text-decoration: none;
+  transition:
+    color 180ms var(--cr-ease),
+    background-color 180ms var(--cr-ease);
+}
+
+.cr-number {
+  flex: none;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.06em;
+  color: var(--cr-muted);
+  opacity: 0.72;
+  transition: color 180ms var(--cr-ease);
+}
+
+.cr-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  transition:
+    transform 220ms var(--cr-ease),
+    font-weight 220ms var(--cr-ease);
+}
+
+.cr-list a:hover {
+  color: var(--cr-ink);
+  background: color-mix(in srgb, var(--cr-ink) 5%, transparent);
+}
+
+.cr-list a[aria-current="location"] {
+  color: var(--cr-ink);
+  font-weight: 600;
+}
+
+.cr-list a[aria-current="location"] .cr-label {
+  transform: translateX(2px);
+}
+
+.cr-list a[aria-current="location"] .cr-number {
+  color: var(--cr-accent);
+  opacity: 1;
+}
+
+.cr-list a:focus-visible {
+  outline: 2px solid var(--cr-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .cr-root {
+    display: block;
+    padding: 10px 12px 12px;
+    border: 1px solid var(--cr-line);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--cr-paper) 92%, transparent);
+    backdrop-filter: blur(6px);
+  }
+
+  .cr-kicker {
+    margin: 0 0 9px;
+    font-size: 0.5625rem;
+  }
+
+  .cr-track {
+    position: absolute;
+    right: 14px;
+    bottom: 8px;
+    left: 14px;
+    top: auto;
+    width: auto;
+    height: 1px;
+  }
+
+  .cr-line {
+    top: 0;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: 1px;
+  }
+
+  .cr-line--progress {
+    width: calc(100% * var(--cr-progress, 0));
+    height: 1px;
+    transition: width 120ms linear;
+  }
+
+  .cr-marker {
+    top: -5px;
+    left: var(--cr-pos, 0px);
+    margin-top: 0;
+    margin-left: -5.5px;
+    transition: left 180ms var(--cr-ease);
+  }
+
+  .cr-list {
+    display: flex;
+    gap: 2px;
+    margin: 0 0 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .cr-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cr-list li {
+    flex: 0 0 auto;
+  }
+
+  .cr-list a {
+    min-height: 32px;
+    padding: 5px 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .cr-list a[aria-current="location"] {
+    font-weight: 500;
+  }
+
+  .cr-list a[aria-current="location"] .cr-label {
+    transform: none;
+  }
+
+  .cr-number {
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cr-number {
+    display: none;
+  }
+
+  .cr-list a {
+    padding: 5px 6px;
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .cr-root {
+    padding: 8px 9px 10px;
+  }
+
+  .cr-list a {
+    padding: 4px 4px;
+    font-size: 0.625rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cr-marker,
+  .cr-line--progress,
+  .cr-list a,
+  .cr-label,
+  .cr-number {
+    transition-duration: 0.01ms;
+  }
+}

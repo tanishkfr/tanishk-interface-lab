@@ -1,0 +1,132 @@
+.lf-root {
+  --lf-x: 50%;
+  --lf-y: 22%;
+  --lf-rx: 0deg;
+  --lf-ry: 0deg;
+  --lf-intensity: 0.5;
+  --lf-tilt: 3deg;
+  --lf-size: 52%;
+  --lf-focus: #d9b98a;
+  position: relative;
+  min-width: 0;
+  border-radius: 14px;
+  perspective: 900px;
+  isolation: isolate;
+  font: inherit;
+  transform-style: preserve-3d;
+}
+
+.lf-plane {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  transform: rotateX(var(--lf-rx)) rotateY(var(--lf-ry));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.lf-light {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--lf-x) var(--lf-y),
+    rgba(255, 250, 236, calc(var(--lf-intensity) * 0.42)),
+    rgba(255, 250, 236, calc(var(--lf-intensity) * 0.12)) 32%,
+    transparent var(--lf-size)
+  );
+  mix-blend-mode: screen;
+  opacity: 1;
+  transition: opacity 260ms ease;
+}
+
+.lf-root[data-finish="matte"] .lf-light {
+  background: radial-gradient(
+    circle at var(--lf-x) var(--lf-y),
+    rgba(255, 250, 236, calc(var(--lf-intensity) * 0.16)),
+    transparent var(--lf-size)
+  );
+}
+
+.lf-root[data-finish="gloss"] .lf-light {
+  background:
+    radial-gradient(
+      circle at var(--lf-x) var(--lf-y),
+      rgba(255, 253, 246, calc(var(--lf-intensity) * 0.62)),
+      rgba(255, 253, 246, calc(var(--lf-intensity) * 0.16)) 18%,
+      transparent var(--lf-size)
+    ),
+    linear-gradient(
+      118deg,
+      transparent 28%,
+      rgba(255, 255, 255, calc(var(--lf-intensity) * 0.08)) 44%,
+      transparent 58%
+    );
+}
+
+.lf-edge {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, calc(var(--lf-intensity) * 0.14)),
+    transparent 30%
+  );
+  mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  mask-composite: exclude;
+  padding: 1px;
+}
+
+.lf-root:focus-visible {
+  outline: 2px solid var(--lf-focus);
+  outline-offset: 3px;
+}
+
+.lf-root:focus-within .lf-light {
+  opacity: 1;
+}
+
+.lf-root[data-disabled="true"] .lf-light {
+  opacity: 0.35;
+}
+
+.lf-root[data-disabled="true"] .lf-plane {
+  transform: none;
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .lf-plane {
+    transform: none;
+  }
+
+  .lf-light {
+    background: radial-gradient(
+      circle at 50% 16%,
+      rgba(255, 250, 236, calc(var(--lf-intensity) * 0.3)),
+      transparent var(--lf-size)
+    );
+  }
+
+  .lf-root[data-finish="gloss"] .lf-light {
+    background:
+      radial-gradient(
+        circle at 50% 16%,
+        rgba(255, 253, 246, calc(var(--lf-intensity) * 0.5)),
+        transparent var(--lf-size)
+      ),
+      linear-gradient(
+        118deg,
+        transparent 28%,
+        rgba(255, 255, 255, calc(var(--lf-intensity) * 0.06)) 44%,
+        transparent 58%
+      );
+  }
+}

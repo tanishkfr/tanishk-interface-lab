@@ -520,27 +520,90 @@
   border: 1px solid var(--lab-line);
   border-radius: var(--lab-radius);
   background: var(--lab-surface);
-  padding: 20px;
+  padding: clamp(18px, 2.6vw, 24px);
+}
+
+.install-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.install-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.install-mark {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--lab-acid);
+  box-shadow: inset 0 0 0 1px rgba(20, 20, 24, 0.18);
 }
 
 .install-card h3 {
-  margin: 0 0 6px;
+  margin: 0;
   font-size: var(--lab-text-sm);
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
-.install-card .hint {
-  margin: 0 0 14px;
-  font-size: var(--lab-text-sm);
+.install-chip {
+  flex: none;
+  padding: 4px 8px;
+  border: 1px solid var(--lab-line);
+  border-radius: 999px;
+  color: var(--lab-faint);
+  font-family: var(--lab-font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.install-card .install-lede {
+  max-width: 72ch;
+  margin: 14px 0 16px;
   color: var(--lab-muted);
-  line-height: 1.5;
+  font-size: var(--lab-text-sm);
+  line-height: 1.55;
+}
+
+.install-card .install-lede code {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--lab-ink);
+  font-family: var(--lab-font-mono);
+  font-size: 0.86em;
+  text-decoration: underline;
+  text-decoration-color: var(--lab-line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
 }
 
 .install-cmd {
   display: flex;
-  align-items: stretch;
-  gap: 6px;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 4px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: #17171c;
+}
+
+.install-prompt {
+  flex: none;
+  color: var(--lab-acid);
+  font-family: var(--lab-font-mono);
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .install-cmd code {
@@ -549,75 +612,295 @@
   display: block;
   overflow-x: auto;
   white-space: nowrap;
-  background: #17171c;
+  padding: 8px 0;
+  background: none;
   color: #e8e8e4;
-  border-radius: var(--lab-radius-sm);
-  padding: 10px 12px;
+  font-family: var(--lab-font-mono);
   font-size: 0.75rem;
   line-height: 1.5;
   scrollbar-width: thin;
 }
 
-.install-alt {
-  margin: 14px 0 0;
-  font-size: var(--lab-text-sm);
+.install-cmd code:focus-visible {
+  outline: 2px solid var(--lab-acid);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.install-cmd .copy-btn {
+  flex: none;
+  min-height: 36px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--lab-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.07em;
+}
+
+.install-lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(210px, 0.7fr);
+  gap: 24px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--lab-line-soft);
+}
+
+.install-manual {
+  min-width: 0;
+}
+
+.install-subhead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.install-subhead h4 {
+  margin: 0;
+  font-size: var(--lab-text-xs);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.install-subhead > span {
+  padding: 1px 6px;
+  border: 1px solid var(--lab-line);
+  border-radius: 999px;
+  color: var(--lab-faint);
+  font-family: var(--lab-font-mono);
+  font-size: 0.5625rem;
+  line-height: 1.4;
+}
+
+.install-files {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--lab-line-soft);
+  border-radius: 9px;
+  background: var(--lab-surface-soft);
+  list-style: none;
+}
+
+.install-card .install-files li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  padding: 9px 11px;
+  border-bottom: 1px solid var(--lab-line-soft);
+  color: var(--lab-ink-soft);
+  font-family: var(--lab-font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+
+.install-card .install-files li:last-child {
+  border-bottom: 0;
+}
+
+.install-file-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 18px;
+  color: var(--lab-faint);
+}
+
+.install-file-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.install-file-path {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.install-file-dir {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--lab-faint);
+}
+
+.install-file-path strong {
+  flex: none;
+  color: var(--lab-ink);
+  font-weight: 500;
+}
+
+.install-files .file-kind {
+  flex: none;
+  padding: 2px 6px;
+  border: 1px solid var(--lab-line-soft);
+  border-radius: 999px;
+  background: var(--lab-surface);
+  color: var(--lab-faint);
+  font-size: 0.5625rem;
+  letter-spacing: 0.07em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.install-card .install-note {
+  margin: 16px 0 0;
   color: var(--lab-muted);
+  font-size: 0.75rem;
   line-height: 1.55;
 }
 
-.install-alt button {
-  appearance: none;
-  border: 0;
-  background: none;
-  padding: 0;
-  font: inherit;
+.install-card .install-note a {
   color: var(--lab-ink);
+  font-weight: 500;
   text-decoration: underline;
   text-decoration-color: var(--lab-accent);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
-  cursor: pointer;
-}
-
-.install-files {
-  margin: 16px 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--lab-line-soft);
-}
-
-.install-files li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--lab-line-soft);
-  font-family: var(--lab-font-mono);
-  font-size: 0.6875rem;
-  color: var(--lab-ink-soft);
-}
-
-.install-card .install-cmd + .install-alt {
-  margin-top: 18px;
-}
-
-.install-card .install-files + .install-alt {
-  margin-top: 16px;
-}
-
-.install-files li span {
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.install-files .file-kind {
+.install-card .install-note a:hover {
+  color: var(--lab-accent-deep);
+}
+
+.install-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding-left: 22px;
+  border-left: 1px solid var(--lab-line-soft);
+}
+
+.install-meta-row {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.install-meta-row > span {
   color: var(--lab-faint);
+  font-family: var(--lab-font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  font-size: 0.625rem;
-  flex: none;
+}
+
+.install-meta-row strong {
+  color: var(--lab-ink);
+  font-size: var(--lab-text-sm);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.install-meta-row a {
+  color: var(--lab-ink);
+  font-family: var(--lab-font-mono);
+  font-size: 0.6875rem;
+  text-decoration: underline;
+  text-decoration-color: var(--lab-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.install-meta-row a:hover {
+  color: var(--lab-accent-deep);
+}
+
+@media (max-width: 760px) {
+  .install-lower {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .install-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 20px;
+    padding-top: 14px;
+    padding-left: 0;
+    border-top: 1px solid var(--lab-line-soft);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .install-card-head {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .install-card .install-lede {
+    font-size: 0.8125rem;
+  }
+
+  .install-cmd {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 5px;
+  }
+
+  .install-prompt {
+    display: none;
+  }
+
+  .install-cmd code {
+    flex: 1 1 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    padding: 4px 6px 2px;
+    font-size: 0.6875rem;
+  }
+
+  .install-cmd .copy-btn {
+    margin-left: auto;
+  }
+
+  .install-card .install-files li {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    font-size: 0.75rem;
+  }
+
+  .install-file-path {
+    flex-basis: calc(100% - 52px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .install-file-dir {
+    display: block;
+    width: auto;
+    text-overflow: clip;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .install-file-path strong {
+    display: block;
+    width: auto;
+  }
+
+  .install-files .file-kind {
+    margin-left: 25px;
+  }
+
+  .install-meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ---------- copy button ---------- */

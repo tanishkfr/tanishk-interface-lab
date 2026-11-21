@@ -12,11 +12,12 @@
  * written inside the Lab or the portfolio.
  */
 
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawn } from "node:child_process";
 import { cp, mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { tmpdir } from "node:os";
+import { chromium } from "playwright";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const TEMPLATE = join(HERE, "fixture", "template");
@@ -102,6 +103,54 @@ async function main() {
       imports: 'import { FailureRecoverySurface } from "@/components/lab/failure-recovery/failure-recovery";',
       element: '<FailureRecoverySurface title="Fixture export" phase="idle" steps={[{ id: "prepare", label: "Prepare", status: "pending" }]} preserved="No export started." retrySafety="unavailable" rollbackAvailable={false} />',
     },
+    "continuity-tabs": {
+      imports: 'import { ContinuityTabs } from "@/components/lab/continuity-tabs/continuity-tabs";',
+      element: '<div data-fixture="continuity-tabs"><ContinuityTabs defaultValue="one" tabs={[{ id: "one", label: "One", content: <p>Overview panel</p> }, { id: "two", label: "Two", content: <p>Activity panel</p> }]} /></div>',
+    },
+    "chapter-rail": {
+      imports: 'import { ChapterRail } from "@/components/lab/chapter-rail/chapter-rail";',
+      element: '<div data-fixture="chapter-rail"><section id="fixture-chapter"><ChapterRail chapters={[{ id: "fixture-chapter", label: "Fixture chapter" }]} /></section></div>',
+    },
+    "elastic-sheet": {
+      imports: 'import { ElasticSheet } from "@/components/lab/elastic-sheet/elastic-sheet";',
+      element: '<ElasticSheet open title="Fixture sheet" onOpenChange={() => {}}><p>Sheet body</p></ElasticSheet>',
+    },
+    "reflow-grid": {
+      imports: 'import { ReflowGrid } from "@/components/lab/reflow-grid/reflow-grid";',
+      element: '<div data-fixture="reflow-grid"><ReflowGrid items={[{ id: "a", name: "Object A" }, { id: "b", name: "Object B" }]} getKey={(item) => item.id} renderItem={(item) => <article>{item.name}</article>} /></div>',
+    },
+    "spring-disclosure": {
+      imports: 'import { SpringDisclosure } from "@/components/lab/spring-disclosure/spring-disclosure";',
+      element: '<div data-fixture="spring-disclosure"><SpringDisclosure items={[{ id: "one", title: "Details", content: <p>Fixture details</p> }]} /></div>',
+    },
+    "quiet-status-stack": {
+      imports: 'import { QuietStatusStack } from "@/components/lab/quiet-status-stack/quiet-status-stack";',
+      element: '<div data-fixture="quiet-status-stack"><QuietStatusStack items={[{ id: "job", title: "Fixture job", status: "success", detail: "Complete" }]} onDismiss={() => {}} /></div>',
+    },
+    "liquid-segmented": {
+      imports: 'import { LiquidSegmented } from "@/components/lab/liquid-segmented/liquid-segmented";',
+      element: '<div data-fixture="liquid-segmented"><LiquidSegmented label="Fixture density" value="a" onChange={() => {}} options={[{ value: "a", label: "Compact" }, { value: "b", label: "Spacious" }]} /></div>',
+    },
+    "focus-frame": {
+      imports: 'import { FocusFrame } from "@/components/lab/focus-frame/focus-frame";',
+      element: '<div data-fixture="focus-frame"><FocusFrame label="Fixture field" value="" onChange={() => {}} hint="Fixture hint" /></div>',
+    },
+    "edge-reveal": {
+      imports: 'import { EdgeReveal } from "@/components/lab/edge-reveal/edge-reveal";',
+      element: '<div data-fixture="edge-reveal"><EdgeReveal title="Fixture" category="Study" detail="Fixture detail" media={<div style={{ height: "100%", background: "#222" }} />} action={<button type="button">Save</button>} /></div>',
+    },
+    "number-drift": {
+      imports: 'import { NumberDrift } from "@/components/lab/number-drift/number-drift";',
+      element: '<div data-fixture="number-drift"><NumberDrift value={1234} prefix="$" /></div>',
+    },
+    "shared-moment-gallery": {
+      imports: 'import { SharedMomentGallery } from "@/components/lab/shared-moment-gallery/shared-moment-gallery";',
+      element: '<div data-fixture="shared-moment-gallery"><SharedMomentGallery items={[{ id: "a", title: "Fixture study", category: "Study", date: "2026", caption: "Fixture caption", alt: "Fixture visual", visual: <div style={{ height: "100%", background: "#ddd" }} /> }]} /></div>',
+    },
+    "lightfield-surface": {
+      imports: 'import { LightfieldSurface } from "@/components/lab/lightfield-surface/lightfield-surface";',
+      element: '<div data-fixture="lightfield-surface"><LightfieldSurface><article style={{ padding: 16 }}>Fixture surface</article></LightfieldSurface></div>',
+    },
   };
   const mounted = installed.filter((slug) => Object.hasOwn(examples, slug));
   if (mounted.length) {
@@ -122,6 +171,100 @@ async function main() {
       .slice(-5)
       .join("\n"),
   );
+
+  /* Render proof: serve the built fixture and inspect every mounted root. */
+  const port = 4319;
+  const preview = spawn(
+    "npm",
+    ["run", "preview", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"],
+    {
+      cwd: root,
+      shell: process.platform === "win32",
+      stdio: "ignore",
+    },
+  );
+  const stopPreview = () => {
+    if (!preview.pid) return;
+    if (process.platform === "win32") {
+      try {
+        execFileSync("taskkill", ["/pid", String(preview.pid), "/T", "/F"], {
+          stdio: "ignore",
+        });
+      } catch {
+        preview.kill();
+      }
+    } else {
+      preview.kill();
+    }
+  };
+
+  try {
+    const origin = `http://127.0.0.1:${port}`;
+    let ready = false;
+    for (let attempt = 0; attempt < 60; attempt += 1) {
+      try {
+        const response = await fetch(origin);
+        if (response.ok) {
+          ready = true;
+          break;
+        }
+      } catch {
+        /* server still starting */
+      }
+      await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+    if (!ready) throw new Error("fixture preview server did not start");
+
+    const selectors = {
+      "continuity-tabs": '[data-fixture="continuity-tabs"] .ct-root',
+      "chapter-rail": '[data-fixture="chapter-rail"] .cr-root',
+      "elastic-sheet": ".es-panel",
+      "reflow-grid": '[data-fixture="reflow-grid"] .rg-root',
+      "spring-disclosure": '[data-fixture="spring-disclosure"] .sd-root',
+      "quiet-status-stack": '[data-fixture="quiet-status-stack"] .qs-root',
+      "liquid-segmented": '[data-fixture="liquid-segmented"] .ls-root',
+      "focus-frame": '[data-fixture="focus-frame"] .ff-root',
+      "edge-reveal": '[data-fixture="edge-reveal"] .er-card',
+      "number-drift": '[data-fixture="number-drift"] .nd-root',
+      "shared-moment-gallery": '[data-fixture="shared-moment-gallery"] .smg-root',
+      "lightfield-surface": '[data-fixture="lightfield-surface"] .lf-root',
+    };
+
+    const browser = await chromium.launch({ channel: "chrome", headless: true });
+    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    const errors = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text());
+    });
+    await page.goto(origin, { waitUntil: "networkidle" });
+    const title = await page.title();
+    if (!title.includes("Lab fixture consumer")) {
+      throw new Error(`fixture preview served the wrong app (${title})`);
+    }
+    const rendered = [];
+    for (const slug of installed.filter((entry) => selectors[entry])) {
+      const locator = page.locator(selectors[slug]).first();
+      const count = await locator.count();
+      const box = count ? await locator.boundingBox() : null;
+      if (!box || box.height < 2) {
+        throw new Error(`installed ${slug} did not render a sized root`);
+      }
+      rendered.push(slug);
+    }
+    if (errors.length) {
+      throw new Error(`fixture runtime errors: ${errors.slice(0, 3).join(" | ")}`);
+    }
+    console.log(
+      `\nrendered in the fixture: ${rendered.join(", ")}`,
+    );
+    console.log(
+      `✔ ${rendered.length} installed components render outside the Lab`,
+    );
+    await browser.close();
+  } finally {
+    stopPreview();
+  }
 
   console.log(`\n✔ ${installed.length}/${SLUGS.length} experiments installed and built`);
   if (failed.length) {

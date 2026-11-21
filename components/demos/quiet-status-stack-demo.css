@@ -1,0 +1,346 @@
+/* SAMPLE SCENE — a file-processing desk. */
+
+.dm-qs-root {
+  position: relative;
+  min-height: 100%;
+  padding: clamp(16px, 3.6vw, 32px);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(29, 107, 76, 0.06), transparent 36%),
+    #f2f1ec;
+  color: #1d2422;
+  font-family: var(--lab-font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+.dm-qs-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(29, 36, 34, 0.16);
+}
+
+.dm-qs-kicker {
+  margin: 0 0 10px;
+  color: #1d6b4c;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+}
+
+.dm-qs-head h2 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.dm-qs-intro {
+  max-width: 48ch;
+  margin: 9px 0 0;
+  color: #66706c;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.dm-qs-tools {
+  flex: none;
+  display: flex;
+  gap: 6px;
+}
+
+.dm-qs-add,
+.dm-qs-restore {
+  min-height: 34px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.dm-qs-add {
+  border: 1px solid #1d2422;
+  background: #1d2422;
+  color: #f2f1ec;
+}
+
+.dm-qs-restore {
+  border: 1px solid rgba(29, 36, 34, 0.2);
+  background: transparent;
+  color: #66706c;
+}
+
+.dm-qs-add:focus-visible,
+.dm-qs-restore:focus-visible {
+  outline: 2px solid #1d6b4c;
+  outline-offset: 3px;
+}
+
+.dm-qs-notice {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 10px 0 12px;
+  color: #66706c;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.dm-qs-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 338px);
+  align-items: start;
+  gap: 16px;
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.dm-qs-desk {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(29, 36, 34, 0.14);
+  border-radius: 12px;
+  background: #fffefa;
+}
+
+.dm-qs-desk-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(29, 36, 34, 0.1);
+  color: #66706c;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dm-qs-jobs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dm-qs-jobs li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 66px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(29, 36, 34, 0.08);
+}
+
+.dm-qs-jobs li:last-child {
+  border-bottom: 0;
+}
+
+.dm-qs-file {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 34px;
+  border-radius: 5px;
+  background: #f0f2ee;
+  color: #66706c;
+}
+
+.dm-qs-file svg {
+  width: 17px;
+  height: 17px;
+}
+
+.dm-qs-job-copy {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dm-qs-job-copy strong {
+  overflow: hidden;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dm-qs-job-copy small {
+  overflow: hidden;
+  color: #56605b;
+  font-size: 0.6875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dm-qs-mini-bar {
+  display: block;
+  width: min(220px, 100%);
+  height: 2px;
+  margin-top: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(29, 36, 34, 0.1);
+}
+
+.dm-qs-mini-bar i {
+  display: block;
+  height: 100%;
+  background: #9a4b1c;
+  transform-origin: left center;
+  transition: transform 300ms linear;
+}
+
+.dm-qs-status {
+  flex: none;
+  min-width: 48px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #f0f2ee;
+  color: #66706c;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.dm-qs-status[data-status="success"] {
+  background: #e4efe7;
+  color: #1d6b4c;
+}
+
+.dm-qs-status[data-status="error"] {
+  background: #f7e5e3;
+  color: #a12f2a;
+}
+
+.dm-qs-status[data-status="processing"] {
+  background: #f6ece3;
+  color: #9a4b1c;
+}
+
+.dm-qs-actions {
+  flex: none;
+  display: flex;
+  gap: 4px;
+}
+
+.dm-qs-actions button {
+  min-height: 28px;
+  padding: 3px 8px;
+  border: 1px solid rgba(29, 36, 34, 0.16);
+  border-radius: 6px;
+  background: transparent;
+  color: #444c48;
+  font: inherit;
+  font-size: 0.625rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dm-qs-actions button:hover {
+  border-color: rgba(29, 36, 34, 0.4);
+  background: #f6f6f2;
+}
+
+.dm-qs-actions button:focus-visible {
+  outline: 2px solid #1d6b4c;
+  outline-offset: 2px;
+}
+
+.dm-qs-desk-foot {
+  margin: 0;
+  padding: 9px 14px;
+  border-top: 1px solid rgba(29, 36, 34, 0.08);
+  color: #626c67;
+  font-size: 0.625rem;
+}
+
+.dm-qs-dock {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid rgba(29, 36, 34, 0.12);
+  border-radius: 14px;
+  background: color-mix(in srgb, #f2f1ec 86%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 50px -34px rgba(29, 36, 34, 0.5);
+}
+
+.dm-qs-dock-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 8px;
+  color: #56605b;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dm-qs-dock-label span {
+  color: #626c67;
+}
+
+.dm-qs-empty {
+  margin: 0;
+  padding: 18px 8px;
+  color: #626c67;
+  font-size: 0.6875rem;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .dm-qs-root {
+    padding-bottom: 18px;
+  }
+
+  .dm-qs-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dm-qs-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dm-qs-tools {
+    width: 100%;
+  }
+
+  .dm-qs-add,
+  .dm-qs-restore {
+    flex: 1;
+  }
+
+  .dm-qs-jobs li {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .dm-qs-job-copy {
+    flex-basis: calc(100% - 90px);
+  }
+
+  .dm-qs-status {
+    order: 3;
+    margin-left: 41px;
+  }
+
+  .dm-qs-actions {
+    order: 4;
+    margin-left: auto;
+  }
+}

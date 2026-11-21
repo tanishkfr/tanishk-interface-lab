@@ -1,0 +1,355 @@
+/* SAMPLE SCENE — a winter research note. */
+
+.dm-cr-root {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 88% 6%, rgba(138, 47, 39, 0.05), transparent 34%),
+    #f4efe3;
+  color: #27231b;
+  font-family: var(--lab-font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+.dm-cr-grid {
+  display: grid;
+  grid-template-columns: 178px minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 54px);
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 48px);
+}
+
+.dm-cr-aside {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  display: grid;
+  gap: 26px;
+}
+
+.dm-cr-aside-foot {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(39, 35, 27, 0.14);
+  color: #857d6b;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.dm-cr-article {
+  min-width: 0;
+  max-width: 660px;
+}
+
+.dm-cr-masthead {
+  padding-bottom: clamp(30px, 6vw, 62px);
+  border-bottom: 1px solid rgba(39, 35, 27, 0.24);
+}
+
+.dm-cr-kicker {
+  margin: 0 0 18px;
+  color: #8a2f27;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+}
+
+.dm-cr-masthead h1 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(2.8rem, 8vw, 5.6rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.dm-cr-deck {
+  max-width: 34ch;
+  margin: 22px 0 0;
+  color: #5e5748;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.dm-cr-byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 9px;
+  margin-top: 22px;
+  color: #807867;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dm-cr-section {
+  padding: clamp(38px, 7vw, 76px) 0 0;
+  scroll-margin-top: 24px;
+}
+
+.dm-cr-chapter {
+  margin: 0 0 16px;
+  color: #8a2f27;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.dm-cr-section h2 {
+  margin: 0 0 20px;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.55rem, 4vw, 2.3rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+.dm-cr-section p {
+  margin: 0 0 16px;
+  color: #3d382d;
+  font-size: 0.9375rem;
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.dm-cr-lede {
+  color: #27231b !important;
+  font-size: 1.0625rem !important;
+}
+
+.dm-cr-lede::first-letter {
+  float: left;
+  margin: 7px 7px 0 0;
+  color: #8a2f27;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 3.4rem;
+  line-height: 0.72;
+}
+
+.dm-cr-section blockquote {
+  margin: 30px 0;
+  padding: 4px 0 4px 20px;
+  border-left: 2px solid #8a2f27;
+  color: #27231b;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.dm-cr-annotation {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 16px;
+  margin: 26px 0;
+  padding: 16px 0;
+  border-top: 1px solid rgba(39, 35, 27, 0.16);
+  border-bottom: 1px solid rgba(39, 35, 27, 0.16);
+}
+
+.dm-cr-annotation > span {
+  color: #8a2f27;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dm-cr-annotation p {
+  margin: 0;
+  color: #615949;
+  font-size: 0.8125rem;
+  line-height: 1.62;
+}
+
+.dm-cr-figure {
+  margin: 30px 0;
+}
+
+.dm-cr-specimen {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  height: 180px;
+  padding: 14px;
+  border: 1px solid rgba(39, 35, 27, 0.16);
+  background: #ece5d5;
+}
+
+.dm-cr-specimen span {
+  align-self: end;
+  height: 64%;
+  border: 1px solid rgba(39, 35, 27, 0.2);
+  background: #f7f2e7;
+}
+
+.dm-cr-specimen span:nth-child(2) {
+  height: 82%;
+  background: #8a2f27;
+}
+
+.dm-cr-specimen span:nth-child(3) {
+  height: 48%;
+  background: #f7f2e7;
+}
+
+.dm-cr-specimen i {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 1px;
+  background: #8a2f27;
+}
+
+.dm-cr-figure figcaption {
+  margin-top: 8px;
+  color: #857d6b;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+.dm-cr-figure--wide .dm-cr-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 150px;
+  padding: 16px;
+  border: 1px solid rgba(39, 35, 27, 0.16);
+  background: #ece5d5;
+}
+
+.dm-cr-strip i {
+  flex: 1;
+  min-width: 3px;
+  background: #8a2f27;
+  opacity: 0.74;
+}
+
+.dm-cr-strip i:nth-child(3n) {
+  background: #27231b;
+  opacity: 0.36;
+}
+
+.dm-cr-list {
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(39, 35, 27, 0.16);
+}
+
+.dm-cr-list li {
+  padding: 10px 0 10px 24px;
+  border-bottom: 1px solid rgba(39, 35, 27, 0.12);
+  color: #4c4538;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+.dm-cr-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: #8a2f27;
+}
+
+.dm-cr-table {
+  margin: 26px 0;
+  border-top: 1px solid rgba(39, 35, 27, 0.24);
+  font-size: 0.75rem;
+}
+
+.dm-cr-table > div {
+  display: grid;
+  grid-template-columns: 0.8fr 1.1fr 1.3fr;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(39, 35, 27, 0.12);
+}
+
+.dm-cr-table-head {
+  color: #8a2f27;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dm-cr-table span:first-child {
+  font-weight: 650;
+}
+
+.dm-cr-table span {
+  color: #4c4538;
+  line-height: 1.45;
+}
+
+.dm-cr-end {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 42px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(39, 35, 27, 0.24);
+  color: #857d6b;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dm-cr-colophon {
+  margin-top: 18px !important;
+  color: #857d6b !important;
+  font-size: 0.6875rem !important;
+  line-height: 1.6 !important;
+}
+
+@media (max-width: 720px) {
+  .dm-cr-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 14px;
+  }
+
+  .dm-cr-aside {
+    top: 8px;
+    z-index: 5;
+    gap: 0;
+  }
+
+  .dm-cr-aside-foot {
+    display: none;
+  }
+
+  .dm-cr-article {
+    max-width: none;
+  }
+
+  .dm-cr-section {
+    scroll-margin-top: 96px;
+  }
+
+  .dm-cr-annotation {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .dm-cr-table > div {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .dm-cr-table span:last-child {
+    display: none;
+  }
+}

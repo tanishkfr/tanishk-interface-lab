@@ -1,10 +1,11 @@
 import { ComponentLibrary } from "@/components/docs/library";
 import { DocsShell } from "@/components/docs/navigation";
 import { docEntries } from "@/lib/registry/doc-entries";
+import { experimentCount } from "@/lib/registry/experiments";
 export const metadata = {
   title: "Components",
   description:
-    "19 independently installable interactions. Real responsive previews, controls, installation, props and source.",
+    `${experimentCount} independently installable interactions. Real responsive previews, controls, installation, props and source.`,
 };
 export default function Components() {
   const entries = docEntries();

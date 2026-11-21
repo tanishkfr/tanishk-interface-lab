@@ -1,0 +1,289 @@
+/* SAMPLE SCENE — a printed annual review. */
+
+.dm-nd-root {
+  min-height: 100%;
+  padding: clamp(16px, 3.6vw, 32px);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(217, 234, 79, 0.16), transparent 34%),
+    #f7f4ea;
+  color: #171814;
+  font-family: var(--lab-font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+.dm-nd-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(940px, 100%);
+  margin: 0 auto;
+  padding-bottom: 18px;
+  border-bottom: 2px solid #171814;
+}
+
+.dm-nd-kicker {
+  margin: 0 0 9px;
+  color: #5d6055;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+}
+
+.dm-nd-head h2 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+}
+
+.dm-nd-deck {
+  max-width: 46ch;
+  margin: 10px 0 0;
+  color: #5d6055;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.dm-nd-controls {
+  flex: none;
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
+
+.dm-nd-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.dm-nd-buttons button,
+.dm-nd-format button {
+  min-height: 28px;
+  padding: 3px 8px;
+  border: 1px solid rgba(23, 24, 20, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: #44463f;
+  font: inherit;
+  font-size: 0.625rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dm-nd-buttons button:hover,
+.dm-nd-format button:hover {
+  border-color: rgba(23, 24, 20, 0.5);
+  color: #171814;
+}
+
+.dm-nd-precision-note {
+  margin: 0;
+  color: #6a6d64;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dm-nd-buttons button:focus-visible,
+.dm-nd-format button:focus-visible,
+.dm-nd-stepper button:focus-visible {
+  outline: 2px solid #171814;
+  outline-offset: 2px;
+}
+
+.dm-nd-format {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid rgba(23, 24, 20, 0.18);
+  border-radius: 999px;
+  background: #efece1;
+}
+
+.dm-nd-format button {
+  border: 0;
+  min-height: 24px;
+  background: transparent;
+  color: #6a6d64;
+}
+
+.dm-nd-format button[aria-pressed="true"] {
+  background: #171814;
+  color: #f7f4ea;
+}
+
+.dm-nd-board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(940px, 100%);
+  margin: 0 auto;
+  border-left: 1px solid rgba(23, 24, 20, 0.16);
+}
+
+.dm-nd-metric {
+  min-width: 0;
+  padding: 18px 18px 14px;
+  border-right: 1px solid rgba(23, 24, 20, 0.16);
+  border-bottom: 1px solid rgba(23, 24, 20, 0.16);
+}
+
+.dm-nd-metric-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dm-nd-label {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: -0.005em;
+}
+
+.dm-nd-note {
+  margin: 2px 0 0;
+  color: #7a7d73;
+  font-size: 0.625rem;
+  line-height: 1.4;
+}
+
+.dm-nd-delta {
+  flex: none;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #d9ea4f;
+  color: #171814;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  font-weight: 600;
+}
+
+.dm-nd-delta[data-down="true"] {
+  background: #f0d9cd;
+  color: #7d3b24;
+}
+
+.dm-nd-value-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0 10px;
+}
+
+.dm-nd-value {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  color: #171814;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.dm-nd-metric[data-negative="true"] .dm-nd-value {
+  color: #8f3f27;
+}
+
+.dm-nd-stepper {
+  flex: none;
+  display: flex;
+  gap: 3px;
+  padding-bottom: 2px;
+}
+
+.dm-nd-stepper button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid rgba(23, 24, 20, 0.22);
+  border-radius: 50%;
+  background: transparent;
+  color: #44463f;
+  font: inherit;
+  font-size: 0.8125rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dm-nd-stepper button:hover {
+  border-color: #171814;
+  background: #171814;
+  color: #f7f4ea;
+}
+
+.dm-nd-spark {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 34px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(23, 24, 20, 0.1);
+}
+
+.dm-nd-spark i {
+  flex: 1;
+  min-width: 2px;
+  background: #171814;
+  opacity: 0.18;
+}
+
+.dm-nd-spark i:nth-last-child(-n + 3) {
+  opacity: 0.62;
+}
+
+.dm-nd-spark i:last-child {
+  background: #b7c92f;
+  opacity: 1;
+}
+
+.dm-nd-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(940px, 100%);
+  margin: 12px auto 0;
+  color: #7a7d73;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .dm-nd-head {
+    flex-direction: column;
+  }
+
+  .dm-nd-controls {
+    justify-items: start;
+  }
+
+  .dm-nd-buttons {
+    justify-content: flex-start;
+  }
+
+  .dm-nd-board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dm-nd-foot {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dm-nd-spark i {
+    transition: none;
+  }
+}

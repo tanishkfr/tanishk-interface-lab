@@ -21,6 +21,18 @@ import UndoWindowPreview from "./undo-window";
 import PermissionScopePreview from "./permission-scope";
 import FailureRecoveryPreview from "./failure-recovery";
 import ScrubNumberPreview from './scrub-number';
+import ContinuityTabsPreview from "./continuity-tabs";
+import ChapterRailPreview from "./chapter-rail";
+import ElasticSheetPreview from "./elastic-sheet";
+import ReflowGridPreview from "./reflow-grid";
+import SpringDisclosurePreview from "./spring-disclosure";
+import QuietStatusStackPreview from "./quiet-status-stack";
+import LiquidSegmentedPreview from "./liquid-segmented";
+import FocusFramePreview from "./focus-frame";
+import EdgeRevealPreview from "./edge-reveal";
+import NumberDriftPreview from "./number-drift";
+import SharedMomentGalleryPreview from "./shared-moment-gallery";
+import LightfieldSurfacePreview from "./lightfield-surface";
 
 /**
  * CATALOG PREVIEWS — each card gets a lightweight window into its
@@ -49,4 +61,16 @@ export const PREVIEWS: Record<string, ComponentType> = {
   "undo-window": UndoWindowPreview,
   "permission-scope": PermissionScopePreview,
   "failure-recovery": FailureRecoveryPreview,
+  "continuity-tabs": ContinuityTabsPreview,
+  "chapter-rail": ChapterRailPreview,
+  "elastic-sheet": ElasticSheetPreview,
+  "reflow-grid": ReflowGridPreview,
+  "spring-disclosure": SpringDisclosurePreview,
+  "quiet-status-stack": QuietStatusStackPreview,
+  "liquid-segmented": LiquidSegmentedPreview,
+  "focus-frame": FocusFramePreview,
+  "edge-reveal": EdgeRevealPreview,
+  "number-drift": NumberDriftPreview,
+  "shared-moment-gallery": SharedMomentGalleryPreview,
+  "lightfield-surface": LightfieldSurfacePreview,
 };

@@ -1,0 +1,193 @@
+.ct-root {
+  --ct-ink: #1d2026;
+  --ct-muted: #6b6f78;
+  --ct-line: rgba(29, 32, 38, 0.12);
+  --ct-surface: #ffffff;
+  --ct-soft: #f4f4f1;
+  --ct-accent: #3c36c9;
+  --ct-accent-soft: rgba(60, 54, 201, 0.09);
+  --ct-focus: #3c36c9;
+  --ct-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  min-width: 0;
+  color: var(--ct-ink);
+  font: inherit;
+}
+
+.ct-tablist-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.ct-tablist-wrap::before,
+.ct-tablist-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 22px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms linear;
+}
+
+.ct-tablist-wrap::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--ct-soft), transparent);
+}
+
+.ct-tablist-wrap::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--ct-soft), transparent);
+}
+
+.ct-tablist-wrap[data-fade-left="true"]::before,
+.ct-tablist-wrap[data-fade-right="true"]::after {
+  opacity: 1;
+}
+
+.ct-tablist {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--ct-line);
+  border-radius: 11px;
+  background: var(--ct-soft);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ct-tablist::-webkit-scrollbar {
+  display: none;
+}
+
+.ct-tab {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 8px 15px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ct-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 180ms var(--ct-ease);
+}
+
+.ct-tab:hover {
+  color: var(--ct-ink);
+}
+
+.ct-tab[aria-selected="true"] {
+  color: var(--ct-ink);
+}
+
+.ct-tab:disabled {
+  color: var(--ct-muted);
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.ct-tab:focus-visible {
+  outline: 2px solid var(--ct-focus);
+  outline-offset: 1px;
+}
+
+.ct-indicator {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  bottom: 3px;
+  z-index: 0;
+  border: 1px solid rgba(29, 32, 38, 0.08);
+  border-radius: 8px;
+  background: var(--ct-surface);
+  box-shadow:
+    0 1px 2px rgba(29, 32, 38, 0.07),
+    0 6px 18px -12px rgba(29, 32, 38, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 360ms var(--ct-ease),
+    width 360ms var(--ct-ease),
+    opacity 140ms linear;
+  will-change: transform, width;
+}
+
+.ct-indicator[data-ready="true"] {
+  opacity: 1;
+}
+
+.ct-root[data-motion="fade"] .ct-indicator {
+  transition:
+    transform 260ms ease-out,
+    width 260ms ease-out,
+    opacity 140ms linear;
+}
+
+.ct-root[data-motion="none"] .ct-indicator {
+  transition: opacity 100ms linear;
+}
+
+.ct-viewport {
+  position: relative;
+  min-width: 0;
+  margin-top: 18px;
+  overflow: hidden;
+  transition: height 300ms var(--ct-ease);
+}
+
+.ct-viewport:not([data-ready="true"]) .ct-panel {
+  position: static;
+}
+
+.ct-panel {
+  position: absolute;
+  inset: 0 0 auto;
+  min-width: 0;
+  opacity: 1;
+}
+
+.ct-panel[hidden] {
+  display: none;
+}
+
+.ct-panel--leaving {
+  pointer-events: none;
+  user-select: none;
+}
+
+.ct-root[data-motion="none"] .ct-viewport {
+  transition: none;
+}
+
+@media (max-width: 520px) {
+  .ct-tab {
+    min-height: 36px;
+    padding-inline: 12px;
+    font-size: 0.8125rem;
+  }
+
+  .ct-viewport {
+    margin-top: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ct-indicator,
+  .ct-viewport,
+  .ct-tab {
+    transition-duration: 0.01ms;
+  }
+}

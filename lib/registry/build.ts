@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { experiments } from "./experiments";
-import type { Experiment, RegistryFile } from "./types";
+import { experiments } from "./experiments.ts";
+import type { Experiment, RegistryFile } from "./types.ts";
 
 /**
  * REGISTRY BUILDER — turns registry records into shadcn-compatible
