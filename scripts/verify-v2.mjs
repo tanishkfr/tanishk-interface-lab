@@ -67,7 +67,9 @@ await check(
   "Data import, invalid-input recovery, meaningful geometry and SVG/data exports",
   async () => {
     await goto("/play/data-matter");
+    await page.waitForSelector(".dm-stage canvas");
     const input = page.getByRole("textbox", { name: "Your numbers" });
+    await page.getByText("Edit data or load a CSV").click();
     await input.fill("a,-1\nb,3");
     await click("Build this landscape");
     assert.ok(await page.locator(".instrument-error[role=alert]").isVisible());
@@ -78,19 +80,16 @@ await check(
       0,
     );
     assert.equal(await page.locator(".data-values>div").count(), 3);
-    const before = await page
-      .locator(".data-scene polyline")
-      .first()
-      .getAttribute("points");
-    await page.getByRole("slider", { name: /Relief/ }).press("End");
-    assert.notEqual(
-      await page.locator(".data-scene polyline").first().getAttribute("points"),
-      before,
-    );
-    const svg = await exported(
-      "data-matter.svg",
+    const beforeSvg = await exported(
+      "data-matter-relief-before.svg",
       page.getByRole("button", { name: "Export SVG", exact: true }),
     );
+    await page.getByRole("slider", { name: /Relief/ }).press("End");
+    const svg = await exported(
+      "data-matter-2d-study.svg",
+      page.getByRole("button", { name: "Export SVG", exact: true }),
+    );
+    assert.notEqual(svg, beforeSvg);
     assert.ok(svg.includes("<polyline"));
     assert.ok(svg.includes("Morning: 10"));
     const json = JSON.parse(
@@ -101,6 +100,7 @@ await check(
     );
     assert.equal(json.data[1].value, 80);
     assert.equal(json.height, 230);
+    assert.equal(json.relief, 230);
   },
 );
 await check(

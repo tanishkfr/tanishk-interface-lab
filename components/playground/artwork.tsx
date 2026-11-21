@@ -2,62 +2,19 @@ import {
   DEFAULT_RECIPE,
   recipeShapes,
   SAMPLE_DATA,
-  type Datum,
   type Recipe,
 } from "@/lib/playground/math";
-export function DataSculpture({
-  data = SAMPLE_DATA,
-  height = 160,
-  angle = 0,
-  wire = false,
-}: {
-  data?: Datum[];
-  height?: number;
-  angle?: number;
-  wire?: boolean;
-}) {
-  const max = Math.max(...data.map((d) => d.value), 1);
+import { VectorStudy } from "@/lib/playground/data-matter/vector-study";
+
+export function DataSculpture() {
   return (
-    <svg
-      viewBox="0 0 900 560"
-      fill="none"
-      role="img"
-      aria-label={`Data sculpture. ${data.map((d) => `${d.label}: ${d.value}`).join(", ")}. Ridge heights are proportional to values.`}
-    >
-      <g transform={`translate(450 320) rotate(${angle}) translate(-450 -320)`}>
-        <path
-          d="M140 400 430 510 790 330 500 225Z"
-          stroke="currentColor"
-          opacity=".2"
-        />
-        {Array.from({ length: 47 }, (_, row) => {
-          const t = 1 - row / 46;
-          const x0 = 145 + t * 345,
-            y0 = 398 - t * 158;
-          const points = Array.from({ length: 121 }, (_, i) => {
-            const u = i / 120;
-            const at = u * (data.length - 1);
-            const a = Math.floor(at),
-              b = Math.min(data.length - 1, a + 1);
-            const f = at - a;
-            const smooth = f * f * (3 - 2 * f);
-            const value =
-              (data[a].value * (1 - smooth) + data[b].value * smooth) / max;
-            const envelope = Math.sin(Math.PI * t) * 0.75 + 0.25;
-            return `${(x0 + u * 300).toFixed(2)},${(y0 + u * 110 - value * height * envelope).toFixed(2)}`;
-          });
-          return (
-            <polyline
-              key={row}
-              points={`${x0},${y0} ${points.join(" ")} ${x0 + 300},${y0 + 110}`}
-              fill={wire ? "none" : "var(--sculpture-fill, #e7e8e4)"}
-              stroke="currentColor"
-              strokeWidth="1.1"
-            />
-          );
-        })}
-      </g>
-    </svg>
+    <VectorStudy
+      data={SAMPLE_DATA}
+      relief={170}
+      formation="terrain"
+      material="strata"
+      caption={false}
+    />
   );
 }
 export function VectorArtwork({

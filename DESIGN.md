@@ -22,7 +22,7 @@ Different tasks have different motion: print deformation and spring settling, di
 
 ## Individual worlds
 
-Data Matter: cobalt plotting room with warm sculptural ribs; values map directly to ridge height. Interface Genome: paper/black rule-driven editorial interface. Type Has Mass: coral kinetic type installation. Browser Terrarium: pale chartreuse botanical world with violet inhabitants. Cost of a Click: high-contrast editorial stages, framed illustrative demonstrations. Motion Foundry: dark aubergine timeline and lime motion specimens. Vector Kitchen: cream/navy recipe-based vector instrument with violet/coral outputs.
+Data Matter: warm paper studio with an acid signal; layered cardstock, continuous porcelain and wire constructions map values to height and radial displacement. Interface Genome: paper/black rule-driven editorial interface. Type Has Mass: coral kinetic type installation. Browser Terrarium: pale chartreuse botanical world with violet inhabitants. Cost of a Click: high-contrast editorial stages, framed illustrative demonstrations. Motion Foundry: dark aubergine timeline and lime motion specimens. Vector Kitchen: cream/navy recipe-based vector instrument with violet/coral outputs.
 
 Sticker City: periwinkle and printed vector matter. Almost Nothing: a quiet, unframed surface with temporal ink. Grid Crimes: exposed editorial rules, warm paper and a coral/lime illustration. AFTERCLICK: one graphite recorder bar over a bone working surface, an acid-selected action map, coral missing-feedback rows, measured delay bars, and a plain timeline/inspector pair. BRUTAL.EXE: four hard-color rooms with a visible floor plan. Software's violet coming-soon installation is truthful about unreleased possibilities.
 
