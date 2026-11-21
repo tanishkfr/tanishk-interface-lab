@@ -45,13 +45,13 @@ export const projects: Project[] = [
   {
     slug: "data-matter",
     status: "Prototype",
-    version: "0.1",
+    version: "0.2",
     name: "Data Matter",
     category: "Experiment",
     medium: "Data as a physical material",
     description:
       "Give numbers a landscape. Shape, turn, and take home a sculpture made from your data.",
-    color: "#e6e8ed",
+    color: "#d9cebc",
   },
   {
     slug: "type-has-mass",
