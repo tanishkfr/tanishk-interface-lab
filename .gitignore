@@ -42,4 +42,6 @@ next-env.d.ts
 
 # local QA artifacts and build scratch
 /qa
+/output
+/.playwright-mcp
 /.lab-build

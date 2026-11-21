@@ -1,0 +1,103 @@
+/* SAMPLE SCENE — a dark portfolio wall with a shortlist. */
+
+.dm-er-root {
+  min-height: 100%;
+  padding: clamp(16px, 3.6vw, 32px);
+  background:
+    radial-gradient(circle at 80% 0%, rgba(255, 122, 69, 0.05), transparent 36%),
+    #101113;
+  color: #f2eee4;
+  font-family: var(--lab-font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+.dm-er-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(242, 238, 228, 0.14);
+}
+
+.dm-er-kicker {
+  margin: 0 0 10px;
+  color: #ff9a6b;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+}
+
+.dm-er-head h2 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.dm-er-count {
+  flex: none;
+  display: grid;
+  justify-items: end;
+  color: #8f918e;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dm-er-count span {
+  color: #f2eee4;
+  font-family: var(--lab-font-sans, ui-sans-serif, system-ui, sans-serif);
+  font-size: 1.7rem;
+  font-weight: 550;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.dm-er-grid {
+  width: min(980px, 100%);
+  margin: 18px auto 0;
+  columns: 3;
+  column-gap: 12px;
+}
+
+.dm-er-item {
+  break-inside: avoid;
+  margin: 0 0 12px;
+}
+
+.dm-er-foot {
+  width: min(980px, 100%);
+  margin: 8px auto 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(242, 238, 228, 0.12);
+  color: #8f918e;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 780px) {
+  .dm-er-grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .dm-er-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dm-er-count {
+    justify-items: start;
+  }
+
+  .dm-er-grid {
+    columns: 1;
+  }
+}

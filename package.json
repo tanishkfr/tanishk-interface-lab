@@ -12,6 +12,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test",
     "qa": "node scripts/qa.mjs",
+    "verify:expansion": "node scripts/verify-expansion.mjs",
+    "fixture:install": "node scripts/fixture-install.mjs",
     "afterclick:build": "node extensions/afterclick/tools/build.mjs",
     "afterclick:package": "node extensions/afterclick/tools/package.mjs",
     "afterclick:acceptance": "node scripts/afterclick-acceptance.mjs",

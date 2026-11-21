@@ -14,7 +14,7 @@ Body copy is 16px with generous leading; operating controls are 14px and compact
 
 Use a 1440px maximum reading/exhibition frame, fluid 24–64px gutters, 8px base spacing, 24–32px control groups, 64–120px between editorial sections. Type scales with available width. Artwork can overlap artwork inside a clipped scene; labels, controls and navigation never overlap. Primary operating controls use 44px targets; compact documentation choices use at least 36px. Mobile rearranges stages into a portrait scene followed by controls; no desktop sidebar squeezed onto a phone.
 
-The hero is a working typographic printing press. Drag its lettering, change the pressure, print an impression and keep the actual PNG. A compact introduction sits above it. Discovery pairs a loud sticker wall with a quiet drawing, then alternates full-width sculptural data, unequal typographic/software spreads, and a green living scene. A searchable index provides a direct route to every project and all 19 components.
+The hero is a working typographic printing press. Drag its lettering, change the pressure, print an impression and keep the actual PNG. A compact introduction sits above it. Discovery pairs a loud sticker wall with a quiet drawing, then alternates full-width sculptural data, unequal typographic/software spreads, and a green living scene. A searchable index provides a direct route to every project and all 32 components.
 
 ## Motion
 

@@ -182,11 +182,97 @@ p {
   top: 112px;
   max-height: calc(100dvh - 136px);
   overflow: auto;
+  overscroll-behavior: contain;
   scrollbar-width: thin;
   padding-right: 12px;
 }
 .docs-navigation {
   font-size: 14px;
+}
+.docs-nav-filter {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 7px;
+  padding: 0 4px 0 9px;
+  border: 1px solid #23241f30;
+  border-radius: 3px;
+  background: #fff8;
+}
+.docs-nav-filter:focus-within {
+  border-color: var(--lab-ink);
+  outline: 2px solid color-mix(in srgb, var(--lab-accent) 50%, transparent);
+  outline-offset: 1px;
+}
+.docs-nav-filter svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--lab-faint);
+}
+.docs-nav-filter input {
+  flex: 1;
+  min-width: 0;
+  min-height: 34px;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--lab-ink);
+  font: inherit;
+  font-size: 13px;
+}
+.docs-nav-filter input:focus-visible {
+  outline: none;
+}
+.docs-nav-filter button {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--lab-muted);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+.docs-nav-filter button:hover {
+  background: color-mix(in srgb, var(--lab-ink) 8%, transparent);
+  color: var(--lab-ink);
+}
+.docs-nav-filter button:focus-visible {
+  outline: 2px solid var(--lab-focus);
+  outline-offset: 1px;
+}
+.docs-nav-count {
+  margin: 0 10px 4px;
+  color: var(--lab-faint);
+  font-family: var(--lab-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.docs-nav-empty {
+  margin: 18px 10px;
+  color: var(--lab-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.docs-nav-empty button {
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--lab-ink);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
 }
 .docs-home-link {
   font-weight: 700;
@@ -738,6 +824,18 @@ p {
     grid-column: 1/-1;
   }
 }
+@media (max-width: 420px) {
+  .library-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .library-controls .view-switch {
+    align-self: flex-start;
+  }
+}
+
 @media (max-width: 750px) {
   .docs-shell {
     display: block;

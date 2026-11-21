@@ -1,0 +1,224 @@
+/* SAMPLE SCENE — a dark material showroom. */
+
+.dm-lf-root {
+  min-height: 100%;
+  padding: clamp(16px, 3.6vw, 34px);
+  background:
+    radial-gradient(circle at 76% 0%, rgba(217, 185, 138, 0.08), transparent 38%),
+    #111312;
+  color: #eeeae1;
+  font-family: var(--lab-font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+.dm-lf-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  width: min(1000px, 100%);
+  margin: 0 auto;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(238, 234, 225, 0.14);
+}
+
+.dm-lf-kicker {
+  margin: 0 0 10px;
+  color: #d9b98a;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+}
+
+.dm-lf-head h2 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.96;
+}
+
+.dm-lf-intro {
+  max-width: 36ch;
+  margin: 0;
+  color: #8d918b;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.dm-lf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  width: min(1000px, 100%);
+  margin: 20px auto 0;
+}
+
+.dm-lf-card {
+  align-self: start;
+  border: 1px solid rgba(238, 234, 225, 0.12);
+  background: #1a1c1b;
+}
+
+.dm-lf-card > .lf-plane > article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dm-lf-art {
+  overflow: hidden;
+  aspect-ratio: 6 / 5;
+  border-bottom: 1px solid rgba(238, 234, 225, 0.08);
+  background: #1c1b19;
+}
+
+.dm-lf-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dm-lf-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px;
+}
+
+.dm-lf-family {
+  margin: 0;
+  color: #a89a7e;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dm-lf-copy h3 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.dm-lf-note {
+  margin: 2px 0 0;
+  color: #8d918b;
+  font-size: 0.6875rem;
+  line-height: 1.45;
+}
+
+.dm-lf-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 13px;
+}
+
+.dm-lf-bottom span {
+  color: #6f746f;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dm-lf-bottom button {
+  min-height: 28px;
+  padding: 3px 9px;
+  border: 1px solid rgba(238, 234, 225, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: #ddd8cd;
+  font: inherit;
+  font-size: 0.625rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.dm-lf-bottom button:hover {
+  background: #eeeae1;
+  color: #111312;
+}
+
+.dm-lf-bottom button[aria-pressed="true"] {
+  border-color: #d9b98a;
+  color: #d9b98a;
+}
+
+.dm-lf-bottom button:focus-visible {
+  outline: 2px solid #d9b98a;
+  outline-offset: 2px;
+}
+
+.dm-lf-status {
+  width: min(1000px, 100%);
+  margin: 16px auto 0;
+  color: #8d918b;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+.dm-lf-key {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  width: min(1000px, 100%);
+  margin: 10px auto 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(238, 234, 225, 0.1);
+  color: #6f746f;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dm-lf-key span:first-child {
+  margin-right: auto;
+}
+
+.dm-lf-key span[data-dot]::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #6f746f;
+  vertical-align: 1px;
+}
+
+.dm-lf-key span[data-dot="satin"]::before {
+  background: #a89a7e;
+}
+
+.dm-lf-key span[data-dot="gloss"]::before {
+  background: #eeeae1;
+}
+
+@media (max-width: 780px) {
+  .dm-lf-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dm-lf-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dm-lf-art {
+    aspect-ratio: 16 / 9;
+  }
+}

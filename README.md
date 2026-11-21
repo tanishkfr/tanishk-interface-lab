@@ -5,7 +5,7 @@ V2 expands the preserved component library into eleven individually art-directed
 - `/`: kinetic wordmark, editorial gallery, searchable index, filters, and surprise navigation.
 - `/experiments`: larger experiments and the interactive essay.
 - `/tools`: Motion Foundry and Vector Kitchen.
-- `/components`: the original 19 components with live previews and documentation.
+- `/components`: all 32 components with live previews and documentation.
 - `/software`: accurately labeled product prototypes and release information, including the Grid Crimes Figma development build and the AFTERCLICK browser extension.
 - `/software/grid-crimes`: Grid Crimes build notes, install steps, direction sheet, privacy and release status.
 - `/software/afterclick`: AFTERCLICK build notes, local install steps, state-map explanation, test status, privacy, and release notes.
@@ -29,7 +29,7 @@ node scripts/audit-v2.mjs
 node scripts/fixture-install.mjs --base-url=http://127.0.0.1:3300
 ```
 
-The refinement adds `scripts/verify-unreasonable.mjs` for the new experience flows and actual downloads, and `scripts/verify-preview-pass.mjs` for all 19 component workbenches. Both accept `LAB_QA_URL`; their reports live in `output/unreasonable/`.
+The refinement adds `scripts/verify-unreasonable.mjs` for the new experience flows and actual downloads, `scripts/verify-preview-pass.mjs` for all 32 component workbenches, and `scripts/verify-expansion.mjs` for the twelve new components: registry contracts, homepage curation, library integration, real interactions, touch, reduced motion, axe, and rendered screenshots across 1440 / 1024 / 768 / 390 / 320. They accept `LAB_QA_URL`; their reports live in `output/`.
 
 The V2 browser scripts use installed Chrome and default to port 3300. `verify-v2.mjs` accepts `LAB_QA_URL` to change the origin. Captures, checks, and verified downloads are written under `output/lab-v2/`. The axe script uses the installed axe-core copy. Native Windows build-worker instability required the documented Webpack build path with bounded workers in this environment; no runtime library was added.
 
@@ -117,8 +117,9 @@ node scripts/fixture-install.mjs --base-url=http://localhost:3000
 The script copies a throwaway Vite + React consumer from
 `scripts/fixture/template` into a temp directory, installs a representative
 set of experiments from the running registry through the shadcn CLI, lists the
-files it received, and then type-checks and builds the fixture. It is how the
-install path is kept honest — nothing is assumed.
+files it received, then type-checks, builds and serves the fixture and verifies
+that every mounted component renders. It is how the install path is kept
+honest — nothing is assumed.
 
 ## Architecture
 

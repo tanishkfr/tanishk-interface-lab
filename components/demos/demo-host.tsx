@@ -50,6 +50,18 @@ const DEMOS: Record<string, ComponentType<DemoProps>> = {
   "undo-window": dynamic(() => import("@/components/demos/undo-window")),
   "permission-scope": dynamic(() => import("@/components/demos/permission-scope")),
   "failure-recovery": dynamic(() => import("@/components/demos/failure-recovery")),
+  "continuity-tabs": dynamic(() => import("@/components/demos/continuity-tabs")),
+  "chapter-rail": dynamic(() => import("@/components/demos/chapter-rail")),
+  "elastic-sheet": dynamic(() => import("@/components/demos/elastic-sheet")),
+  "reflow-grid": dynamic(() => import("@/components/demos/reflow-grid")),
+  "spring-disclosure": dynamic(() => import("@/components/demos/spring-disclosure")),
+  "quiet-status-stack": dynamic(() => import("@/components/demos/quiet-status-stack")),
+  "liquid-segmented": dynamic(() => import("@/components/demos/liquid-segmented")),
+  "focus-frame": dynamic(() => import("@/components/demos/focus-frame")),
+  "edge-reveal": dynamic(() => import("@/components/demos/edge-reveal")),
+  "number-drift": dynamic(() => import("@/components/demos/number-drift")),
+  "shared-moment-gallery": dynamic(() => import("@/components/demos/shared-moment-gallery")),
+  "lightfield-surface": dynamic(() => import("@/components/demos/lightfield-surface")),
 };
 
 export function DemoHost({ slug, values }: { slug: string; values: Record<string, PreviewValue> }) {

@@ -1,0 +1,407 @@
+/* SAMPLE SCENE — a warm product information page. */
+
+.dm-sd-root {
+  min-height: 100%;
+  padding: clamp(14px, 3vw, 28px);
+  background:
+    radial-gradient(circle at 12% 6%, rgba(45, 90, 67, 0.06), transparent 36%),
+    #f0eadf;
+  color: #20261f;
+  font-family: var(--lab-font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+.dm-sd-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: min(980px, 100%);
+  margin: 0 auto 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(32, 38, 31, 0.18);
+  color: #6c716a;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+}
+
+.dm-sd-brand {
+  color: #2d5a43;
+  font-weight: 600;
+}
+
+.dm-sd-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(20px, 4vw, 44px);
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.dm-sd-stage {
+  align-self: start;
+}
+
+.dm-sd-art {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 4 / 4.5;
+  background: #e9e1d1;
+}
+
+.dm-sd-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dm-sd-art-label {
+  position: absolute;
+  right: 12px;
+  bottom: 11px;
+  color: #5c584d;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dm-sd-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.dm-sd-chips span {
+  padding: 3px 8px;
+  border: 1px solid rgba(32, 38, 31, 0.16);
+  border-radius: 999px;
+  color: #6c716a;
+  font-size: 0.625rem;
+}
+
+.dm-sd-info {
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.dm-sd-eyebrow {
+  margin: 0;
+  color: #6b6355;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+}
+
+.dm-sd-info h1 {
+  margin: 4px 0 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.dm-sd-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 8px 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.dm-sd-price span {
+  color: #655f55;
+  font-size: 0.625rem;
+  font-weight: 500;
+}
+
+.dm-sd-deck {
+  max-width: 44ch;
+  margin: 12px 0 0;
+  color: #5b5d54;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.dm-sd-buy {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.dm-sd-qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(32, 38, 31, 0.24);
+  border-radius: 999px;
+}
+
+.dm-sd-qty button {
+  width: 30px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  color: #20261f;
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.dm-sd-qty span {
+  min-width: 18px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.dm-sd-qty button:focus-visible {
+  outline: 2px solid #2d5a43;
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+.dm-sd-cart {
+  flex: 1;
+  min-height: 38px;
+  padding: 6px 14px;
+  border: 1px solid #20261f;
+  border-radius: 999px;
+  background: #20261f;
+  color: #f4f0e6;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.dm-sd-cart:hover {
+  background: #2d5a43;
+  border-color: #2d5a43;
+}
+
+.dm-sd-cart:focus-visible {
+  outline: 2px solid #2d5a43;
+  outline-offset: 3px;
+}
+
+.dm-sd-cart-note {
+  margin: 7px 0 18px;
+  color: #655f55;
+  font-size: 0.625rem;
+  line-height: 1.5;
+}
+
+.dm-sd-disclosure {
+  margin-top: 4px;
+}
+
+.dm-sd-prose p {
+  margin: 0 0 10px;
+}
+
+.dm-sd-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.dm-sd-facts span {
+  padding: 3px 7px;
+  border: 1px solid rgba(32, 38, 31, 0.12);
+  border-radius: 999px;
+  color: #6c716a;
+  font-size: 0.625rem;
+}
+
+.dm-sd-box ul {
+  display: grid;
+  gap: 0;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(32, 38, 31, 0.12);
+}
+
+.dm-sd-box li {
+  display: flex;
+  gap: 9px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(32, 38, 31, 0.1);
+  font-size: 0.8125rem;
+}
+
+.dm-sd-box li span {
+  color: #6b6355;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  padding-top: 2px;
+}
+
+.dm-sd-addon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid rgba(32, 38, 31, 0.16);
+  border-radius: 7px;
+  background: #f7f3e9;
+  cursor: pointer;
+}
+
+.dm-sd-addon input {
+  accent-color: #2d5a43;
+}
+
+.dm-sd-addon span {
+  display: grid;
+  gap: 1px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.dm-sd-addon small {
+  color: #655f55;
+  font-size: 0.625rem;
+  font-weight: 400;
+}
+
+.dm-sd-table,
+.dm-sd-compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.dm-sd-table th,
+.dm-sd-table td,
+.dm-sd-compare th,
+.dm-sd-compare td {
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(32, 38, 31, 0.1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.dm-sd-table th {
+  width: 34%;
+  color: #6c716a;
+  font-weight: 500;
+}
+
+.dm-sd-table td {
+  color: #20261f;
+}
+
+.dm-sd-compare th,
+.dm-sd-compare td {
+  padding-inline: 6px;
+}
+
+.dm-sd-compare thead th {
+  color: #6b6355;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dm-sd-compare tr[data-current="true"] {
+  background: rgba(45, 90, 67, 0.06);
+}
+
+.dm-sd-compare-wrap > p {
+  margin: 9px 0 0;
+  color: #655f55;
+  font-size: 0.6875rem;
+}
+
+.dm-sd-care p {
+  margin: 0 0 10px;
+}
+
+.dm-sd-care form {
+  display: grid;
+  gap: 5px;
+}
+
+.dm-sd-care label {
+  color: #6c716a;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.dm-sd-care form > div {
+  display: flex;
+  gap: 6px;
+}
+
+.dm-sd-care input {
+  flex: 1;
+  min-width: 0;
+  min-height: 34px;
+  padding: 5px 9px;
+  border: 1px solid rgba(32, 38, 31, 0.22);
+  border-radius: 6px;
+  background: #fffdf8;
+  color: #20261f;
+  font: inherit;
+  font-size: 0.75rem;
+}
+
+.dm-sd-care input:focus-visible,
+.dm-sd-care button:focus-visible {
+  outline: 2px solid #2d5a43;
+  outline-offset: 2px;
+}
+
+.dm-sd-care button {
+  min-height: 34px;
+  padding: 5px 10px;
+  border: 1px solid #2d5a43;
+  border-radius: 6px;
+  background: transparent;
+  color: #2d5a43;
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dm-sd-care-result {
+  margin-top: 8px !important;
+  color: #2d5a43;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .dm-sd-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .dm-sd-art {
+    aspect-ratio: 4 / 3;
+  }
+
+  .dm-sd-info h1 {
+    font-size: 2.8rem;
+  }
+
+  .dm-sd-buy {
+    flex-wrap: wrap;
+  }
+
+  .dm-sd-cart {
+    flex-basis: 100%;
+  }
+}

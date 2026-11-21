@@ -1,0 +1,91 @@
+/* SAMPLE SCENE — a light gallery wall with a dark reading room. */
+
+.dm-smg-root {
+  min-height: 100%;
+  padding: clamp(16px, 3.6vw, 34px);
+  background:
+    radial-gradient(circle at 88% 0%, rgba(198, 180, 140, 0.12), transparent 36%),
+    #ece7dc;
+  color: #1b1b1d;
+  font-family: var(--lab-font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+.dm-smg-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  width: min(1000px, 100%);
+  margin: 0 auto;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(27, 27, 29, 0.18);
+}
+
+.dm-smg-kicker {
+  margin: 0 0 10px;
+  color: #8a6c3d;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+}
+
+.dm-smg-head h2 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+}
+
+.dm-smg-intro {
+  max-width: 34ch;
+  margin: 0;
+  color: #726e64;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.dm-smg-root .smg-grid {
+  width: min(1000px, 100%);
+  margin: 18px auto 0;
+  gap: 14px;
+}
+
+.dm-smg-root .smg-thumb {
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(27, 27, 29, 0.08);
+}
+
+.dm-smg-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(1000px, 100%);
+  margin: 18px auto 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(27, 27, 29, 0.14);
+  color: #7d786d;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .dm-smg-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dm-smg-intro {
+    max-width: none;
+  }
+
+  .dm-smg-foot {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

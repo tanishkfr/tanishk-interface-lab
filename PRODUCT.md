@@ -4,7 +4,7 @@ LAB/ is Tanishk's independent internet playground: interactive experiments, usef
 
 The November 2026 V2 brief authorizes independent research, creative direction, implementation, and verification. The user specifically requires spacing, padding, hierarchy, deliberate overlap, and responsive usability to remain fundamental. Do not deploy or replace production without explicit approval.
 
-Preserve all 19 existing component URLs under `/experiments/` and their `/r/` registry endpoints. Component documentation prioritizes usability: live previews, controls, installation, usage, props, accessibility, dependencies, and source.
+Preserve all 32 existing component URLs under `/experiments/` and their `/r/` registry endpoints. Component documentation prioritizes usability: live previews, controls, installation, usage, props, accessibility, dependencies, and source.
 
 Launch experiences: Data Matter, Interface Genome, Type Has Mass, Browser Terrarium, The Cost of a Click, Motion Foundry, Vector Kitchen. Controls and exports must actually work. Demonstration data and illustrative simulations must be labeled. No invented product availability or scientific claims. Software may be accurately described as prototypes.
 
