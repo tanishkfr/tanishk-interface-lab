@@ -1,19 +1,20 @@
+import Image from "next/image";
 import {
   DEFAULT_RECIPE,
   recipeShapes,
-  SAMPLE_DATA,
   type Recipe,
 } from "@/lib/playground/math";
-import { VectorStudy } from "@/lib/playground/data-matter/vector-study";
 
 export function DataSculpture() {
   return (
-    <VectorStudy
-      data={SAMPLE_DATA}
-      relief={170}
-      formation="terrain"
-      material="strata"
-      caption={false}
+    <Image
+      className="data-sculpture-preview"
+      src="/images/data-matter-terrain-strata.webp"
+      alt=""
+      width={2000}
+      height={1250}
+      sizes="(max-width: 650px) 92vw, (max-width: 1100px) 44vw, (min-width: 1440px) 875px, 62vw"
+      loading="eager"
     />
   );
 }

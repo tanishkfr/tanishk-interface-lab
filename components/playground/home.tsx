@@ -1,9 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { HeroPress } from "./living-wordmark";
-import { projects, type Project } from "@/lib/playground/projects";
+import {
+  projects,
+  projectBySlug,
+  type Project,
+} from "@/lib/playground/projects";
 import { Icon } from "./icons";
 import { ProjectArtwork } from "./artwork";
 type ComponentEntry = {
@@ -12,6 +16,57 @@ type ComponentEntry = {
   description: string;
   category: string;
 };
+
+/**
+ * The full-collection gallery is a curated editorial sequence rather than a
+ * uniform card grid. Each spread shares an art height so rows close cleanly
+ * while spans, ratios and reading rhythm keep changing. Filtered and searched
+ * results fall back to the neutral clustered arrangement below.
+ */
+type GalleryCell = {
+  slug: string;
+  span: number;
+  ratio: number;
+};
+
+const GALLERY_LAYOUT: GalleryCell[][] = [
+  [
+    { slug: "text-desk", span: 5, ratio: 1.09 },
+    { slug: "sticker-city", span: 7, ratio: 1.55 },
+  ],
+  [
+    { slug: "data-matter", span: 8, ratio: 1.6 },
+    { slug: "almost-nothing", span: 4, ratio: 0.78 },
+  ],
+  [
+    { slug: "grid-crimes", span: 7, ratio: 1.45 },
+    { slug: "type-has-mass", span: 5, ratio: 1 },
+  ],
+  [
+    { slug: "vector-kitchen", span: 4, ratio: 0.78 },
+    { slug: "motion-foundry", span: 8, ratio: 1.6 },
+  ],
+  [
+    { slug: "interface-genome", span: 5, ratio: 0.92 },
+    { slug: "browser-terrarium", span: 7, ratio: 1.3 },
+  ],
+  [
+    { slug: "brutal-exe", span: 7, ratio: 1.35 },
+    { slug: "the-cost-of-a-click", span: 5, ratio: 0.9 },
+  ],
+];
+
+const CURATED_SLUGS = new Set(
+  GALLERY_LAYOUT.flat().map((cell) => cell.slug),
+);
+
+function galleryCellStyle(cell: GalleryCell): CSSProperties {
+  return {
+    "--gallery-span": cell.span,
+    "--gallery-ratio": cell.ratio,
+  } as CSSProperties;
+}
+
 export function SurpriseButton() {
   const router = useRouter();
   return (
@@ -88,6 +143,10 @@ export function PlaygroundHome({
       (filter === "Everything" || filter === "Components") &&
       `${c.name} ${c.description} ${c.category}`.toLowerCase().includes(q),
   );
+  const curated = filter === "Everything" && q === "";
+  const extras = curated
+    ? selected.filter((project) => !CURATED_SLUGS.has(project.slug))
+    : [];
   return (
     <div className="v2-home">
       <section className="v2-wrap playground-hero">
@@ -208,33 +267,72 @@ export function PlaygroundHome({
           </div>
         ) : (
           <>
-            <div className="staggered-gallery">
-              {Array.from(
-                { length: Math.ceil(selected.length / 5) },
-                (_, group) => {
-                  const items = selected.slice(group * 5, group * 5 + 5);
-                  return (
-                    <div className="gallery-cluster" key={group}>
-                      <div className="gallery-column">
-                        {[items[0], items[3]].filter(Boolean).map((p) => (
-                          <ProjectCard key={p.slug} project={p} />
-                        ))}
-                      </div>
-                      <div className="gallery-column">
-                        {[items[1], items[2]].filter(Boolean).map((p) => (
-                          <ProjectCard key={p.slug} project={p} />
-                        ))}
-                      </div>
-                      {items[4] && (
-                        <div className="gallery-wide">
-                          <ProjectCard project={items[4]} />
+            {curated ? (
+              <div className="staggered-gallery gallery-curated">
+                {GALLERY_LAYOUT.map((spread, spreadIndex) => (
+                  <div className="gallery-spread" key={spreadIndex}>
+                    {spread.map((cell) => {
+                      const project = projectBySlug(cell.slug);
+                      if (!project) return null;
+                      return (
+                        <div
+                          className={`gallery-cell gallery-cell--${cell.slug}`}
+                          key={cell.slug}
+                          style={galleryCellStyle(cell)}
+                        >
+                          <ProjectCard project={project} />
                         </div>
-                      )}
-                    </div>
-                  );
-                },
-              )}
-            </div>
+                      );
+                    })}
+                  </div>
+                ))}
+                {extras.length > 0 && (
+                  <div className="gallery-spread gallery-spread--extras">
+                    {extras.map((project) => (
+                      <div
+                        className={`gallery-cell gallery-cell--${project.slug}`}
+                        key={project.slug}
+                        style={galleryCellStyle({
+                          slug: project.slug,
+                          span: 6,
+                          ratio: 1.35,
+                        })}
+                      >
+                        <ProjectCard project={project} />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="staggered-gallery">
+                {Array.from(
+                  { length: Math.ceil(selected.length / 5) },
+                  (_, group) => {
+                    const items = selected.slice(group * 5, group * 5 + 5);
+                    return (
+                      <div className="gallery-cluster" key={group}>
+                        <div className="gallery-column">
+                          {[items[0], items[3]].filter(Boolean).map((p) => (
+                            <ProjectCard key={p.slug} project={p} />
+                          ))}
+                        </div>
+                        <div className="gallery-column">
+                          {[items[1], items[2]].filter(Boolean).map((p) => (
+                            <ProjectCard key={p.slug} project={p} />
+                          ))}
+                        </div>
+                        {items[4] && (
+                          <div className="gallery-wide">
+                            <ProjectCard project={items[4]} />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  },
+                )}
+              </div>
+            )}
             {matches.length > 0 && (
               <div className="component-collection">
                 <div>
