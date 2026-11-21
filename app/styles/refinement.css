@@ -1328,3 +1328,107 @@
     opacity: 0;
   }
 }
+
+/* Curated home collection: paired spreads share an art height, while the
+   column split, ratio and order change from row to row. */
+.gallery-curated {
+  gap: 34px;
+}
+.gallery-spread {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 30px 24px;
+  align-items: start;
+}
+.gallery-cell {
+  grid-column: span var(--gallery-span, 6);
+  min-width: 0;
+}
+.gallery-spread > .gallery-cell:only-child {
+  grid-column: 1 / -1;
+}
+.gallery-cell > .exhibit {
+  width: 100%;
+}
+.gallery-cell .exhibit-art {
+  aspect-ratio: var(--gallery-ratio, 1.35);
+}
+.data-sculpture-preview {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.gallery-cell--data-matter .exhibit-art {
+  background: #efece2;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .data-sculpture-preview {
+    transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .exhibit-link:hover .data-sculpture-preview {
+    transform: scale(1.02);
+  }
+}
+@media (min-width: 651px) {
+  .gallery-cell--type-has-mass .mass-art {
+    font-size: clamp(44px, 6.5vw, 92px);
+    padding: 22px;
+  }
+  .gallery-cell--type-has-mass .mass-art small {
+    left: 22px;
+    bottom: 20px;
+  }
+  .gallery-cell--the-cost-of-a-click .click-art {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 22px;
+    padding: 36px 30px;
+  }
+  .gallery-cell--the-cost-of-a-click .click-art > span {
+    font-size: clamp(42px, 5vw, 68px);
+  }
+  .gallery-cell--the-cost-of-a-click .click-art > div {
+    align-self: flex-end;
+    font-size: 13px;
+    padding: 18px 24px;
+  }
+}
+@media (max-width: 1100px) {
+  .gallery-spread {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 20px;
+  }
+  .gallery-cell {
+    grid-column: auto;
+  }
+  .gallery-cell .exhibit-art {
+    aspect-ratio: 1.35;
+  }
+  .gallery-cell--data-matter .exhibit-art {
+    aspect-ratio: 1.45;
+  }
+}
+@media (max-width: 650px) {
+  .gallery-curated {
+    gap: 26px;
+  }
+  .gallery-spread {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .gallery-cell {
+    grid-column: auto;
+  }
+  .gallery-cell .exhibit-art {
+    aspect-ratio: 1.3;
+  }
+  .gallery-cell--data-matter .exhibit-art {
+    aspect-ratio: 1.5;
+  }
+  .gallery-cell--the-cost-of-a-click .exhibit-art {
+    aspect-ratio: 1.15;
+  }
+}
