@@ -162,6 +162,71 @@ export default function Software() {
           </div>
         </div>
       </article>
+      <article className="product-feature fs-feature">
+        <div>
+          <Image
+            src="/software/fix-storage/feature-cover.webp"
+            alt="An art-directed LAB/ print flat lay for fix-storage — Windows: a specification card with violet storage bars and a folder tree, surrounded by an opened hard drive, violet chart cards, swatches and a steel ruler on warm paper."
+            width={1374}
+            height={1145}
+            sizes="(max-width: 980px) 90vw, 54vw"
+            unoptimized
+          />
+        </div>
+        <div>
+          <span className="status fs-feature-status">
+            Windows utility · v0.2.0 Beta
+          </span>
+          <h2>fix-storage — Windows</h2>
+          <p>
+            A terminal-based tool for figuring out what is taking up space on a
+            Windows machine. It scans read-only, sorts the total into the
+            categories you recognize, and follows the largest folders down to
+            the files responsible.
+          </p>
+          <p>
+            Review the evidence before anything moves. Every cleanup candidate
+            is an individual file with an exact path, a size and a reason; real
+            Recycle Bin recycling is a separate opt-in, never the default.
+          </p>
+          <div className="fs-feature-actions">
+            <a
+              className="lab-button fs-download-button"
+              href="https://github.com/tanishkfr/fix-storage-windows/releases/download/v0.2.0-windows-beta/fix-storage-windows-beta-0.2.0.zip"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download for Windows <Icon name="download" />
+            </a>
+            <a
+              className="lab-button secondary"
+              href="https://github.com/tanishkfr/fix-storage-windows"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub <Icon />
+            </a>
+            <Link className="lab-button secondary" href="/software/fix-storage">
+              Read the build notes <Icon />
+            </Link>
+          </div>
+          <div className="fs-feature-meta">
+            Open source / MIT · Windows 11 x64 · Free
+          </div>
+          <div className="product-release fs-feature-release">
+            <h3>Release notes</h3>
+            <p>
+              <strong>v0.2.0 Beta · Windows 11 x64</strong>
+              <br />
+              Read-only scan and categorized disk map, culprit finder,
+              preview-first cleanup planner, and explicit opt-in Recycle Bin
+              recycling. Node.js 20.11+ required; Windows 10 and ARM64 are
+              unverified. An independent Windows port of govijr/fix-storage,
+              not an official upstream release.
+            </p>
+          </div>
+        </div>
+      </article>
       <ComingSoon />
     </div>
   );
