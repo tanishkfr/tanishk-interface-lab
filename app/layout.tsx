@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/shell/site-header";
 import { SiteFooter } from "@/components/shell/site-footer";
 import { SITE_URL } from "@/lib/site";
 import { SiteFrame } from "@/components/shell/site-frame";
+import { NewBar } from "@/components/shell/new-bar";
 
 const sans = localFont({
   src: [
@@ -55,7 +56,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${sans.variable} ${mono.variable} ${display.variable}`}
     >
       <body>
-        <SiteFrame header={<SiteHeader />} footer={<SiteFooter />}>
+        <SiteFrame
+          header={
+            <>
+              <NewBar />
+              <SiteHeader />
+            </>
+          }
+          footer={<SiteFooter />}
+        >
           {children}
         </SiteFrame>
       </body>

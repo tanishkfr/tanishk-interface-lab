@@ -85,6 +85,16 @@ pnpm test           # pure-logic tests (node:test)
 pnpm build          # production build
 ```
 
+## What's new strip
+
+The strip above the masthead reads `lib/whats-new.ts`. Add one dated entry per
+component, tool, experiment or software release (`kind`, `name`, `href`, `cta`,
+plus `version` and a `note` for a solo release). Entries sharing a date are one
+announcement: one is named, several are counted by kind — "5 new components",
+"2 components + 1 tool" — rather than listed individually. Three or more
+kinds collapse to a total. The entry shape is documented in the file header;
+`AGENTS.md` carries the rule.
+
 ## Install model
 
 Every experiment is published as a shadcn-compatible registry item:
