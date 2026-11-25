@@ -1279,6 +1279,7 @@ html.dm-capture-open body {
 }
 
 html.dm-capture-open .v2-header,
+html.dm-capture-open .lab-new-bar,
 html.dm-capture-open .v2-footer,
 html.dm-capture-open .skip-link {
   display: none;
